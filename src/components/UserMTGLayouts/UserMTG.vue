@@ -2,25 +2,21 @@
 <body id="page-top">
   <div id="wrapper">
     <Sidebar />
-    <Body />
+    <CreateUser />
   </div>
-  <Scroll />
 </body>
 </template>
 
 <script>
+import CreateUser from "./CreateUser";
 import Sidebar from "../GLayouts/Sidebar";
-import Body from "./Body";
-import Scroll from "../GLayouts/ScrollupModal";
 export default {
-  name: "AdminDashboard",
+  name: "UserMTG",
   components: {
     Sidebar,
-    Body,
-    Scroll
+    CreateUser
   }
 };
 </script>
 
-<style scoped>
-</style>
+<style lang="stylus" scoped></style>

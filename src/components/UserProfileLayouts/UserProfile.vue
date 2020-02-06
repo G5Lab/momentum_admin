@@ -4,23 +4,21 @@
     <Sidebar />
     <Body />
   </div>
-  <Scroll />
+  <ScrollupModal />
 </body>
 </template>
-
 <script>
 import Sidebar from "../GLayouts/Sidebar";
+import ScrollupModal from "../GLayouts/ScrollupModal";
 import Body from "./Body";
-import Scroll from "../GLayouts/ScrollupModal";
 export default {
-  name: "AdminDashboard",
+  name: "UserProfile",
   components: {
     Sidebar,
     Body,
-    Scroll
+    ScrollupModal
   }
 };
 </script>
 
-<style scoped>
-</style>
+<style lang="stylus" scoped></style>

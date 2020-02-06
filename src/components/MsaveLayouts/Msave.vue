@@ -4,23 +4,22 @@
     <Sidebar />
     <Body />
   </div>
-  <Scroll />
+  <ScrollupModal />
 </body>
 </template>
 
 <script>
-import Sidebar from "../GLayouts/Sidebar";
 import Body from "./Body";
-import Scroll from "../GLayouts/ScrollupModal";
+import Sidebar from "../GLayouts/Sidebar";
+import ScrollupModal from "../GLayouts/ScrollupModal";
 export default {
-  name: "AdminDashboard",
+  name: "Msave",
   components: {
     Sidebar,
-    Body,
-    Scroll
+    ScrollupModal,
+    Body
   }
 };
 </script>
 
-<style scoped>
-</style>
+<style lang="stylus" scoped></style>
