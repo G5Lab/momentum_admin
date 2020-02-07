@@ -1,22 +1,24 @@
 <template>
 <body id="page-top">
   <div id="wrapper">
-    <Sidebar />
-    <Body />
+    <Sidebar Utype="User">
+      <SidebarInner />
+    </Sidebar>
+    <Body page="Dashboard"></Body>
   </div>
-  <ScrollupModal />
 </body>
 </template>
 
 <script>
-import Body from "./Body";
 import Sidebar from "../GLayouts/Sidebar";
-import ScrollupModal from "../GLayouts/ScrollupModal";
+import SidebarInner from "./GUserLayouts/SidebarInner";
+import Body from "../GLayouts/Body";
+
 export default {
-  name: "Msave",
+  name: "index",
   components: {
     Sidebar,
-    ScrollupModal,
+    SidebarInner,
     Body
   }
 };

@@ -1,23 +1,32 @@
-import Home from './components/Auth/Home';
-import Register from './components/Auth/Register.vue';
-import Login from './components/Auth/Login.vue';
-import ForgotPassword from './components/Auth/ForgotPassword'
-import AdminDashboard from './components/AdminLayouts/AdminDashboard'
-import MInvest from './components/MInvestLayouts/MInvest'
-import UserMTG from './components/UserMTGLayouts/UserMTG'
-import Msave from './components/MsaveLayouts/Msave'
-import UserProfile from './components/UserProfileLayouts/UserProfile'
+// Authentication
 
+import Home from './components/Auth/Home';
+import Login from './components/Auth/Login'
+import Register from './components/Auth/Register'
+import ForgotPassword from './components/Auth/ForgotPassword'
+
+// UserDashboard
+import UserDashboard from './components/UserDashboard'
+
+// Profile
+import UpdateProfile from './components/UserDashboard/Profile/UpdateProfile'
+import BankInfo from './components/UserDashboard/Profile/BankInfo'
 
 const routes = [
+    // Authentication
     { path: '/', component: Home },
-    { path: '/register', component: Register },
     { path: '/login', component: Login },
+    { path: '/register', component: Register },
     { path: '/forgotpassword', component: ForgotPassword },
-    { path: '/admin', component: AdminDashboard },
-    { path: '/minvest', component: MInvest },
-    { path: '/usermtg', component: UserMTG },
-    { path: '/msave', component: Msave },
-    { path: '/userprofile', component: UserProfile },
-];
+    // { path: '/dashboard', component: Dashboard },
+
+    // User Dashboard
+    { path: '/userdashboard', component: UserDashboard },
+
+    // Profile
+    { path: '/updateprofile', component: UpdateProfile },
+    { path: '/bkinfo', component: BankInfo }
+
+]
+
 export default routes;
