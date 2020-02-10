@@ -1,10 +1,7 @@
 <template>
   <!-- Sidebar -->
   <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-    <router-link
-      class="sidebar-brand d-flex align-items-center justify-content-center"
-      to="/userdashboard"
-    >
+    <router-link class="sidebar-brand d-flex align-items-center justify-content-center" to>
       <div class="sidebar-brand-text mx-3">
         {{Utype}}
         <sup></sup>
@@ -15,7 +12,7 @@
 
     <!--Dashboard -->
     <li class="nav-item active">
-      <router-link class="nav-link" to="/userdashboard">
+      <router-link class="nav-link" to>
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span>
       </router-link>

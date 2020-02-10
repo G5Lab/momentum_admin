@@ -6,8 +6,7 @@
     <br />
     <router-link to="/userdashboard">User Dashboard</router-link>
     <br />
-    <!-- <router-link to="/admin">Admin Dashboard</router-link> -->
-    <br />
+    <router-link to="/admindashboard">Admin Dashboard</router-link>
   </div>
 </template>
 <script>

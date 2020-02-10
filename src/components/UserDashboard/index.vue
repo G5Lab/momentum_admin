@@ -1,27 +1,18 @@
 <template>
-<body id="page-top">
-  <div id="wrapper">
-    <Sidebar Utype="User">
-      <SidebarInner />
-    </Sidebar>
-    <Body page="Dashboard"></Body>
-  </div>
-</body>
+  <Structure page="Dashboard">
+    <div class="container">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae architecto laboriosam modi dicta. Autem recusandae esse tenetur deserunt, consequatur consequuntur suscipit magnam est! Quos veniam, nesciunt reiciendis illum quod nihil.
+      lorem
+    </div>
+  </Structure>
 </template>
-
 <script>
-import Sidebar from "../GLayouts/Sidebar";
-import SidebarInner from "./GUserLayouts/SidebarInner";
-import Body from "../GLayouts/Body";
-
+import Structure from "./GUserLayouts/Structure";
 export default {
   name: "index",
   components: {
-    Sidebar,
-    SidebarInner,
-    Body
+    Structure
   }
 };
 </script>
-
-<style lang="stylus" scoped></style>
+<style scoped></style>

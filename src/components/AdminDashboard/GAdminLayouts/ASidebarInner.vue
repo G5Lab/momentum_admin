@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- All Profiles -->
+    <!-- Users -->
     <li class="nav-item">
       <a
         class="nav-link collapsed"
@@ -10,7 +10,7 @@
         aria-controls="collapseTwo"
       >
         <i class="fas fa-fw fa-cog"></i>
-        <span>Profile</span>
+        <span>Users</span>
       </a>
       <div
         id="collapseTwo"
@@ -19,9 +19,9 @@
         data-parent="#accordionSidebar"
       >
         <div class="bg-white py-2 collapse-inner rounded">
-          <router-link class="collapse-item" to="/updateprofile">Update Profile</router-link>
-          <router-link class="collapse-item" to="/bkinfo">Enter Bank Info</router-link>
-          <router-link class="collapse-item" to="/kyc">Complete KYC</router-link>
+          <router-link class="collapse-item" to="/allusers">View All Users</router-link>
+          <router-link class="collapse-item" to="/akycrequest">View Kyc Request</router-link>
+          <router-link class="collapse-item" to>View A User</router-link>
         </div>
       </div>
     </li>
@@ -45,10 +45,9 @@
         data-parent="#accordionSidebar"
       >
         <div class="bg-white py-2 collapse-inner rounded">
-          <router-link class="collapse-item" to="/scheduledsavings">Scheduled Savings</router-link>
-          <router-link class="collapse-item" to="/ajo">Ajo</router-link>
-          <router-link class="collapse-item" to="/directsavings">Direct Savings</router-link>
-          <router-link class="collapse-item" to="/savingshistory">Savings History</router-link>
+          <router-link class="collapse-item" to="/amsavesettings">mSave Settings</router-link>
+          <router-link class="collapse-item" to="/asavingsreport">Savings Report</router-link>
+          <router-link class="collapse-item" to="/aviewallsavings">View All Savings</router-link>
         </div>
       </div>
     </li>
@@ -72,10 +71,11 @@
         data-parent="#accordionSidebar"
       >
         <div class="bg-white py-2 collapse-inner rounded">
-          <router-link class="collapse-item" to="/viewinvestment">View Investments</router-link>
-          <router-link class="collapse-item" to="/investmentreport">Investment Reports</router-link>
-          <router-link class="collapse-item" to="/investmenthistory">View Investment History</router-link>
-          <router-link class="collapse-item" to="/uploadinvestment">Upload Investment</router-link>
+          <router-link class="collapse-item" to="/aminvest">Crowd Investment</router-link>
+          <router-link class="collapse-item" to="/aminvest">Upload An Investment</router-link>
+          <router-link class="collapse-item" to="/aminvest">View Investment Request</router-link>
+          <router-link class="collapse-item" to="/aminvest">Investment Settings</router-link>
+          <router-link class="collapse-item" to="/aminvest">View Investment Report</router-link>
         </div>
       </div>
     </li>
@@ -99,11 +99,8 @@
         data-parent="#accordionSidebar"
       >
         <div class="bg-white py-2 collapse-inner rounded">
-          <router-link class="collapse-item" to>Top Up Balance</router-link>
-          <router-link class="collapse-item" to>Collect Funds</router-link>
-          <router-link class="collapse-item" to>View Savers</router-link>
-          <router-link class="collapse-item" to>Report</router-link>
-          <router-link class="collapse-item" to></router-link>
+          <router-link class="collapse-item" to>View mAgents</router-link>
+          <router-link class="collapse-item" to>View mAgents Report</router-link>
         </div>
       </div>
     </li>
@@ -126,9 +123,9 @@
         data-parent="#accordionSidebar"
       >
         <div class="bg-white py-2 collapse-inner rounded">
-          <router-link class="collapse-item" to>Report To Admin</router-link>
-          <router-link class="collapse-item" to>View Messages</router-link>
-          <router-link class="collapse-item" to>View Annoncement</router-link>
+          <router-link class="collapse-item" to>User Messages</router-link>
+          <router-link class="collapse-item" to>Sent Messages</router-link>
+          <router-link class="collapse-item" to>Send An Annoncement</router-link>
         </div>
       </div>
     </li>
@@ -137,7 +134,7 @@
 
 <script>
 export default {
-  name: "SidebarInner"
+  name: "ASidebarInner"
 };
 </script>
 

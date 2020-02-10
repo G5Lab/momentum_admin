@@ -1,46 +1,39 @@
 <template>
-  <Structure page="Enter Bank Details">
+  <Structure page="KYC">
     <div class="container">
       <div class="row justify-content-center">
         <form class="register bg-white p-4">
-          <div class="text-center text-gray-900 h4 py-4">Bank Details</div>
+          <div class="text-center text-gray-900 h4 py-4">KYC Request</div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="firstname">Account Name</label>
+              <label for="Name">Name</label>
               <input
                 type="text"
                 class="form-control"
                 required
-                placeholder="Account Name"
-                id="firstname"
-                name="firstname"
+                placeholder="Name"
+                id="Name"
+                name="Name"
               />
             </div>
             <div class="form-group col-md-6">
-              <label for="lastname">Bank</label>
+              <label for="KycName">KYC Name</label>
               <input
                 type="text"
                 class="form-control"
                 required
-                id="lastname"
-                placeholder="Bank Name"
-                name="lastname"
+                id="KycName"
+                placeholder="KycName"
+                name="KycName"
               />
             </div>
           </div>
           <div class="form-group">
-            <label for="number">Account Number</label>
-            <input
-              type="Number"
-              required
-              placeholder="xxxxxxxxxxxxxxxx"
-              class="form-control"
-              id="email"
-              name="email"
-            />
+            <label for="number">Description</label>
+            <input type="text" required placeholder class="form-control" id="email" name="email" />
           </div>
 
-          <button type="submit" class="btn btn-primary mt-4 mb-3">Enter</button>
+          <button type="submit" class="btn btn-primary mt-4 mb-3">Submit</button>
         </form>
       </div>
     </div>
@@ -50,14 +43,14 @@
 <script>
 import Structure from "../GUserLayouts/Structure";
 export default {
-  name: "BankInfo",
+  name: "CompleteKYC",
   components: {
     Structure
   }
 };
 </script>
 
-<style  scoped>
+<style scoped>
 .register {
   min-height: 25rem;
   padding-top: 5%;
