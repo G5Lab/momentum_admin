@@ -6,34 +6,39 @@
           <div class="text-center text-gray-900 h4 py-4">KYC Request</div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="Name">Name</label>
-              <input
-                type="text"
-                class="form-control"
-                required
-                placeholder="Name"
-                id="Name"
-                name="Name"
-              />
+              <label for="Name">Employment Status</label>
+              <input type="text" class="form-control" required placeholder="Employment Status" />
             </div>
             <div class="form-group col-md-6">
-              <label for="KycName">KYC Name</label>
-              <input
-                type="text"
-                class="form-control"
-                required
-                id="KycName"
-                placeholder="KycName"
-                name="KycName"
-              />
+              <label for="KycName">Employer Name</label>
+              <input type="text" class="form-control" required placeholder="Employer Name" />
             </div>
           </div>
           <div class="form-group">
-            <label for="number">Description</label>
-            <input type="text" required placeholder class="form-control" id="email" name="email" />
+            <label for="number">Employer Address</label>
+            <input
+              type="text"
+              required
+              placeholder="Employer Address"
+              class="form-control"
+              id="email"
+              name="email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="number">Utility Bill</label>
+            <input type="file" required class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="number">National Identification</label>
+            <input type="file" required class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="number">BVN Number</label>
+            <input type="number" required placeholder="BVN Number" class="form-control" />
           </div>
 
-          <button type="submit" class="btn btn-primary mt-4 mb-3">Submit</button>
+          <button type="submit" class="btn btn-primary mt-2 mb-3">Submit</button>
         </form>
       </div>
     </div>

@@ -1,5 +1,26 @@
 <template>
   <div>
+    <!-- Sidebar -->
+    <router-link
+      class="sidebar-brand d-flex align-items-center justify-content-center"
+      to="/userdashboard"
+    >
+      <div class="sidebar-brand-text mx-3">
+        User
+        <sup></sup>
+      </div>
+    </router-link>
+
+    <hr class="sidebar-divider my-0" />
+    <!--Dashboard -->
+    <li class="nav-item active">
+      <router-link class="nav-link" to="/userdashboard">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span>
+      </router-link>
+    </li>
+
+    <hr class="sidebar-divider" />
     <!-- All Profiles -->
     <li class="nav-item">
       <a
@@ -80,7 +101,7 @@
       </div>
     </li>
 
-    <!-- mAgent -->
+    <!-- mAjo -->
     <li class="nav-item">
       <a
         class="nav-link collapsed"
@@ -90,7 +111,7 @@
         aria-controls="collapseUtilities"
       >
         <i class="fas fa-fw fa-folder"></i>
-        <span>mAgent</span>
+        <span>mAjo</span>
       </a>
       <div
         id="collapseUtilities"
@@ -99,11 +120,11 @@
         data-parent="#accordionSidebar"
       >
         <div class="bg-white py-2 collapse-inner rounded">
-          <router-link class="collapse-item" to>Top Up Balance</router-link>
-          <router-link class="collapse-item" to>Collect Funds</router-link>
-          <router-link class="collapse-item" to>View Savers</router-link>
-          <router-link class="collapse-item" to>Report</router-link>
-          <router-link class="collapse-item" to></router-link>
+          <router-link class="collapse-item" to="/registeracm">Register a CM</router-link>
+          <router-link class="collapse-item" to="/becomeacm">Become a CM</router-link>
+          <router-link class="collapse-item" to="/credituser">Credit Users</router-link>
+          <router-link class="collapse-item" to="/breakajosavings">Break Ajo Savings</router-link>
+          <router-link class="collapse-item" to="/myajosettings">My Ajo Settings</router-link>
         </div>
       </div>
     </li>
@@ -126,9 +147,32 @@
         data-parent="#accordionSidebar"
       >
         <div class="bg-white py-2 collapse-inner rounded">
-          <router-link class="collapse-item" to>Report To Admin</router-link>
-          <router-link class="collapse-item" to>View Messages</router-link>
-          <router-link class="collapse-item" to>View Annoncement</router-link>
+          <router-link class="collapse-item" to="/createticket">Create Ticket</router-link>
+          <router-link class="collapse-item" to="/inbox">Inbox</router-link>
+          <router-link class="collapse-item" to="/announcement">Announcements</router-link>
+        </div>
+      </div>
+    </li>
+    <!-- Learning Center -->
+    <li class="nav-item">
+      <a
+        class="nav-link collapsed"
+        data-toggle="collapse"
+        data-target="#learningCenter"
+        aria-expanded="true"
+        aria-controls="collapseUtilities"
+      >
+        <i class="fas fa-fw fa-folder"></i>
+        <span>Learning Center</span>
+      </a>
+      <div
+        id="learningCenter"
+        class="collapse"
+        aria-labelledby="headingUtilities"
+        data-parent="#accordionSidebar"
+      >
+        <div class="bg-white py-2 collapse-inner rounded">
+          <router-link class="collapse-item" to="/learningmaterials">Learning Materials</router-link>
         </div>
       </div>
     </li>

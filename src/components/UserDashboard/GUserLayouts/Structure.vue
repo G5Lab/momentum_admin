@@ -1,7 +1,7 @@
 <template>
 <body id="page-top">
   <div id="wrapper">
-    <Sidebar Utype="User">
+    <Sidebar>
       <SidebarInner />
     </Sidebar>
     <Body :page="page">

@@ -53,6 +53,17 @@
               value="0009999002222"
             />
           </div>
+          <div class="form-group">
+            <label for="tel">Address</label>
+            <input
+              type="text"
+              class="form-control"
+              id="text"
+              placeholder="Address"
+              name="address"
+              value="Your Address"
+            />
+          </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputCity">City</label>
@@ -60,15 +71,7 @@
             </div>
             <div class="form-group col-md-4">
               <label for="inputState">State</label>
-              <select id="inputState" class="form-control">
-                <option selected>Choose...</option>
-                <option>Abia</option>
-                <option>Lagos</option>
-                <option>Ogun</option>
-                <option>Ibadan</option>
-                <option>Delta</option>
-                <option>Edo</option>
-              </select>
+              <input type="text" name placeholder class="form-control" id />
             </div>
             <div class="form-group col-md-2">
               <label for="inputZip">Zip</label>

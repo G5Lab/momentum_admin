@@ -1,5 +1,24 @@
 <template>
   <div>
+    <!-- Sidebar -->
+    <router-link
+      class="sidebar-brand d-flex align-items-center justify-content-center"
+      to="/admindashboard"
+    >
+      <div class="sidebar-brand-text mx-3">
+        Admin
+        <sup></sup>
+      </div>
+    </router-link>
+
+    <hr class="sidebar-divider my-0" />
+    <!--Dashboard -->
+    <li class="nav-item active">
+      <router-link class="nav-link" to="/admindashboard">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span>
+      </router-link>
+    </li>
     <!-- Users -->
     <li class="nav-item">
       <a
