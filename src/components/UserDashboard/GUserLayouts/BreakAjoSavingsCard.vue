@@ -18,10 +18,8 @@ export default {
 
 <style scoped>
 .card {
-  max-width: 20rem;
   transition: all 0.5s;
-  margin: 0.45rem;
-  min-width: 12rem;
+  margin: 0.4rem;
 }
 .card:hover {
   transform: translateY(6px);

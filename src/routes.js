@@ -37,6 +37,7 @@ import ViewInvestment from "./components/UserDashboard/MInvest/ViewInvestment"
 import InvestmentReports from "./components/UserDashboard/MInvest/InvestmentReport"
 import InvestmentHistory from "./components/UserDashboard/MInvest/InvestmentHistory"
 import UploadInvestment from "./components/UserDashboard/MInvest/UploadInvestment"
+import Invest from "./components/UserDashboard/MInvest/Invest"
 
 // mAjo 
 import RegisterACm from "./components/UserDashboard/MAjo/RegisterACm"
@@ -161,6 +162,10 @@ const routes = [
     {
         path: '/uploadinvestment',
         component: UploadInvestment
+    },
+    {
+        path: '/invest',
+        component: Invest
     },
 
     // mAjo

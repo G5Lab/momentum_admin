@@ -13,7 +13,6 @@
 
 <style scoped>
 .card {
-  max-width: 20rem;
   transition: all 0.5s;
   margin: 0.45rem;
   color: rgb(19, 17, 17);

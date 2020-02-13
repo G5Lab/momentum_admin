@@ -1,19 +1,36 @@
 <template>
   <Structure page="Credit Users">
-    <div class="container">
-      <div class="row">
-        <CreditUserCard Username="Bikol" Amount="23000" TheDate="11/02/2020" />
-        <CreditUserCard Username="Bikol" Amount="23000" TheDate="11/02/2020" />
-        <CreditUserCard Username="Bikol" Amount="23000" TheDate="11/02/2020" />
-        <CreditUserCard Username="Bikol" Amount="23000" TheDate="11/02/2020" />
-        <CreditUserCard Username="Bikol" Amount="23000" TheDate="11/02/2020" />
-        <CreditUserCard Username="Bikol" Amount="23000" TheDate="11/02/2020" />
-        <CreditUserCard Username="Bikol" Amount="23000" TheDate="11/02/2020" />
-        <CreditUserCard Username="Bikol" Amount="23000" TheDate="11/02/2020" />
-        <CreditUserCard Username="Bikol" Amount="23000" TheDate="11/02/2020" />
-        <CreditUserCard Username="Bikol" Amount="23000" TheDate="11/02/2020" />
-        <CreditUserCard Username="Bikol" Amount="23000" TheDate="11/02/2020" />
-        <CreditUserCard Username="Bikol" Amount="23000" TheDate="11/02/2020" />
+    <div class="container-fluid">
+      <div class="card shadow justify-content-center mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">- Credit User Form</h6>
+        </div>
+        <div class="card-body">
+          <form class="register bg-white">
+            <div class="form-group">
+              <label for="name">Name Of The User</label>
+              <input
+                type="text"
+                name="name"
+                class="form-control"
+                id="name"
+                placeholder="Name Of The User"
+              />
+            </div>
+            <div class="form-group">
+              <label for="name">Amount</label>
+              <input
+                type="number"
+                name="name"
+                class="form-control"
+                id="name"
+                placeholder="Amount To Send"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3 btn-block text-center mb-3">Send</button>
+          </form>
+        </div>
       </div>
     </div>
   </Structure>
@@ -21,12 +38,10 @@
 
 <script>
 import Structure from "../GUserLayouts/Structure";
-import CreditUserCard from "../GUserLayouts/CreditUserCard";
 export default {
   name: "CreditUsers",
   components: {
-    Structure,
-    CreditUserCard
+    Structure
   }
 };
 </script>

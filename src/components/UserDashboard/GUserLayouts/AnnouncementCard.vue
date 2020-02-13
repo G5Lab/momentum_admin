@@ -1,9 +1,14 @@
 <template>
-  <div class="card">
+  <div class="card border-left-primary shadow h-100 py-2">
     <div
       class="card-body"
     >Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto tempore doloribus tenetur magni laboriosam deserunt, corporis dolorem voluptas voluptates quas distinctio ipsam alias consectetur expedita! Voluptatem blanditiis nulla nobis quas?</div>
   </div>
+
+  <!-- <div class="card">
+    <div
+      class="card-body"
+  ></div>-->
 </template>
 <script>
 export default {
@@ -13,7 +18,6 @@ export default {
 
 <style scoped>
 .card {
-  max-width: 20rem;
   transition: all 0.5s;
   margin: 0.45rem;
 }

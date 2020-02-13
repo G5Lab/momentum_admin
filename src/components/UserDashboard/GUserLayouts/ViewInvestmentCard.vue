@@ -26,10 +26,9 @@ export default {
 </script>
 <style scoped>
 .card {
-  width: 15rem;
   border-radius: 5%;
   transition: 0.6s all;
-  margin: 0.4rem;
+  margin: 0.1rem;
   position: relative;
 }
 .card:hover {
