@@ -28,11 +28,10 @@ export default {
 .card {
   border-radius: 5%;
   transition: 0.6s all;
-  margin: 0.1rem;
   position: relative;
 }
 .card:hover {
-  transform: translateY(6px);
+  transform: translateY(4px);
   box-shadow: 2px 1px 2px 2px rgba(0, 0, 255, 0.493);
 }
 .state {

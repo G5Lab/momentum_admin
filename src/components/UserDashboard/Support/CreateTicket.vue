@@ -1,7 +1,7 @@
 <template>
   <Structure page="Create Ticket">
-    <div class="container d-flex justify-content-center">
-      <div class="card CardOne shadow justify-content-center mb-4">
+    <div class="container col-md-7">
+      <div class="card shadow mb-4">
         <div class="card-header py-3">
           <h6 class="m-0 font-weight-bold text-primary">- Write To Admin</h6>
         </div>
@@ -41,9 +41,4 @@ export default {
 };
 </script>
 <style scoped>
-.CardOne {
-  max-width: 50rem;
-  min-width: 40rem;
-  color: black;
-}
 </style>

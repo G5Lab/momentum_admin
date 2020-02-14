@@ -16,7 +16,7 @@
     <li class="nav-item active">
       <router-link class="nav-link" to="/userdashboard">
         <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Dashboard</span>
+        <span class="d-none d-md-inline">Dashboard</span>
       </router-link>
     </li>
 
@@ -30,7 +30,7 @@
         aria-expanded="true"
         aria-controls="collapseTwo"
       >
-        <i class="fas fa-fw fa-cog"></i>
+        <i class="fas fa-fw fa-user"></i>
         <span>Profile</span>
       </a>
       <div
@@ -176,6 +176,31 @@
         </div>
       </div>
     </li>
+
+    <!-- Transactions -->
+    <li class="nav-item">
+      <a
+        class="nav-link collapsed"
+        data-toggle="collapse"
+        data-target="#transactions"
+        aria-expanded="true"
+        aria-controls="collapseUtilities"
+      >
+        <i class="fas fa-fw fa-folder"></i>
+        <span>Transact</span>
+      </a>
+      <div
+        id="transactions"
+        class="collapse"
+        aria-labelledby="headingUtilities"
+        data-parent="#accordionSidebar"
+      >
+        <div class="bg-white py-2 collapse-inner rounded">
+          <router-link class="collapse-item" to="/transfer">Transfer</router-link>
+          <router-link class="collapse-item" to="/withdraw">Withdraw</router-link>
+        </div>
+      </div>
+    </li>
   </div>
 </template>
 
@@ -186,4 +211,12 @@ export default {
 </script>
 
 <style scoped>
+@media (max-width: 767px) {
+  .navbar-nav {
+    margin-left: -20px !important;
+  }
+  .sidebar {
+    width: 4.7rem !important;
+  }
+}
 </style>

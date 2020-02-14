@@ -4,7 +4,7 @@
       <!-- First -->
       <div class="row">
         <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-6 mb-2">
           <div class="card border-left-primary shadow h-100 py-2">
             <div class="card-body">
               <div class="row no-gutters align-items-center">
@@ -21,7 +21,7 @@
         </div>
 
         <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-6 mb-2">
           <div class="card border-left-success shadow h-100 py-2">
             <div class="card-body">
               <div class="row no-gutters align-items-center">
@@ -38,7 +38,7 @@
         </div>
 
         <!-- Pending Requests Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-6 mb-2">
           <div class="card border-left-warning shadow h-100 py-2">
             <div class="card-body">
               <div class="row no-gutters align-items-center">
@@ -55,7 +55,7 @@
         </div>
 
         <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-6 mb-2">
           <div class="card border-left-success shadow h-100 py-2">
             <div class="card-body">
               <div class="row no-gutters align-items-center">
@@ -85,52 +85,64 @@
             <div class="container-fluid card-body">
               <div class="row">
                 <div class="col-xl-3 col-md-6 mb-4">
-                  <InvestmentCard
-                    name="Jokodn doop"
-                    interest="10%"
-                    location="Lagos"
-                    amount="10000"
-                  />
+                  <router-link class="link" to="/invest">
+                    <InvestmentCard
+                      name="Jokodn doop"
+                      interest="10%"
+                      location="Lagos"
+                      amount="10000"
+                    />
+                  </router-link>
                 </div>
                 <div class="col-xl-3 col-md-6 mb-4">
-                  <InvestmentCard
-                    name="Jokodn doop"
-                    interest="10%"
-                    location="Lagos"
-                    amount="10000"
-                  />
+                  <router-link class="link" to="/invest">
+                    <InvestmentCard
+                      name="Jokodn doop"
+                      interest="10%"
+                      location="Lagos"
+                      amount="10000"
+                    />
+                  </router-link>
                 </div>
                 <div class="col-xl-3 col-md-6 mb-4">
-                  <InvestmentCard
-                    name="Jokodn doop"
-                    interest="10%"
-                    location="Lagos"
-                    amount="10000"
-                  />
+                  <router-link class="link" to="/invest">
+                    <InvestmentCard
+                      name="Jokodn doop"
+                      interest="10%"
+                      location="Lagos"
+                      amount="10000"
+                    />
+                  </router-link>
                 </div>
                 <div class="col-xl-3 col-md-6 mb-4">
-                  <InvestmentCard
-                    name="Jokodn doop"
-                    interest="10%"
-                    location="Lagos"
-                    amount="10000"
-                  />
+                  <router-link class="link" to="/invest">
+                    <InvestmentCard
+                      name="Jokodn doop"
+                      interest="10%"
+                      location="Lagos"
+                      amount="10000"
+                    />
+                  </router-link>
                 </div>
                 <div class="col-xl-3 col-md-6 mb-4">
-                  <InvestmentCard
-                    name="Jokodn doop"
-                    interest="10%"
-                    location="Lagos"
-                    amount="10000"
-                  />
+                  <router-link class="link" to="/invest">
+                    <InvestmentCard
+                      name="Jokodn doop"
+                      interest="10%"
+                      location="Lagos"
+                      amount="10000"
+                    />
+                  </router-link>
                 </div>
                 <div class="col-xl-3 col-md-6 mb-4">
-                  <InvestmentCard
-                    name="Jokodn doop"
-                    interest="10%"
-                    location="Lagos"
-                    amount="10000"
-                  />
+                  <router-link class="link" to="/invest">
+                    <InvestmentCard
+                      name="Jokodn doop"
+                      interest="10%"
+                      location="Lagos"
+                      amount="10000"
+                    />
+                  </router-link>
                 </div>
               </div>
             </div>
@@ -281,4 +293,10 @@ export default {
 };
 </script>
 <style scoped>
+@media (max-width: 768px) {
+  .container-fluid {
+    padding-left: 0.7rem;
+    /* padding-right: initial !important; */
+  }
+}
 </style>

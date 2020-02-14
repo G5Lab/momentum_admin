@@ -1,20 +1,20 @@
 <template>
-  <Structure page="Credit Users">
+  <Structure page="Transfer">
     <div class="container-fluid col-md-7">
       <div class="card shadow justify-content-center mb-4">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">- Credit User Form</h6>
+          <h6 class="m-0 font-weight-bold text-primary">- You Can Now Transfer To Any User</h6>
         </div>
         <div class="card-body">
           <form class="register bg-white">
             <div class="form-group">
-              <label for="name">Name Of The User</label>
+              <label for="name">Username</label>
               <input
                 type="text"
                 name="name"
                 class="form-control"
                 id="name"
-                placeholder="Name Of The User"
+                placeholder="Enter The Username Of the User"
               />
             </div>
             <div class="form-group">
@@ -39,7 +39,7 @@
 <script>
 import Structure from "../GUserLayouts/Structure";
 export default {
-  name: "CreditUsers",
+  name: "Transfer",
   components: {
     Structure
   }

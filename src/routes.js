@@ -52,9 +52,12 @@ import Inbox from "./components/UserDashboard/Support/Inbox"
 import Announcement from "./components/UserDashboard/Support/Announcement"
 
 // Learning Center
-
 import LearningMaterials from "./components/UserDashboard/LearningCenter/LearningMaterials"
 
+// Transactions
+
+import Transfer from "./components/UserDashboard/Transactions/Transfer"
+import Withdraw from "./components/UserDashboard/Transactions/Withdraw"
 
 const routes = [
     // Authentication
@@ -205,7 +208,17 @@ const routes = [
     {
         path: "/learningmaterials",
         component: LearningMaterials
+    },
+    // Transactions
+    {
+        path: '/transfer',
+        component: Transfer
+    },
+    {
+        path: '/withdraw',
+        component: Withdraw
     }
+
 ]
 
 export default routes;

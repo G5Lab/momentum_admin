@@ -1,21 +1,19 @@
 <template>
-  <Structure page="Credit Users">
+  <Structure page="Withdraw">
     <div class="container-fluid col-md-7">
       <div class="card shadow justify-content-center mb-4">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">- Credit User Form</h6>
+          <h6 class="m-0 font-weight-bold text-primary">- Withdraw From Any Wallet</h6>
         </div>
         <div class="card-body">
           <form class="register bg-white">
             <div class="form-group">
-              <label for="name">Name Of The User</label>
-              <input
-                type="text"
-                name="name"
-                class="form-control"
-                id="name"
-                placeholder="Name Of The User"
-              />
+              <label for="name">Username</label>
+              <select class="custom-select form-control">
+                <option value>Select Wallet</option>
+                <option value>mSave</option>
+                <option value>mInvest</option>
+              </select>
             </div>
             <div class="form-group">
               <label for="name">Amount</label>
@@ -24,7 +22,7 @@
                 name="name"
                 class="form-control"
                 id="name"
-                placeholder="Amount To Send"
+                placeholder="Amount To Withdraw"
               />
             </div>
 
@@ -39,7 +37,7 @@
 <script>
 import Structure from "../GUserLayouts/Structure";
 export default {
-  name: "CreditUsers",
+  name: "Withdraw",
   components: {
     Structure
   }

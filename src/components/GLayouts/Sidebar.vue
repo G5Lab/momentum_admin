@@ -2,9 +2,9 @@
   <!-- Sidebar -->
   <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
     <!-- Sidebar Toggle (Topbar) -->
-    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+    <!--  <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
       <i class="fa fa-bars"></i>
-    </button>
+    </button>-->
 
     <!-- Input Data Goes Here! -->
     <slot></slot>
@@ -35,5 +35,14 @@ export default {
 ul {
   padding-top: 1rem;
   /* display: none; */
+}
+
+@media (max-width: 767px) {
+  .navbar-nav {
+    margin-left: -20px !important;
+  }
+  .sidebar {
+    width: 4.7rem !important;
+  }
 }
 </style>

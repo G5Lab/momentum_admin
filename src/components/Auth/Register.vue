@@ -1,32 +1,30 @@
 <template>
-<body class="py-3">
+<body>
   <div class="container">
     <div class="row justify-content-center">
-      <form class="register bg-white p-4">
-        <div class="text-center text-gray-900 h3 py-4">Create an Account</div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="firstname">First Name</label>
-            <input
-              type="text"
-              class="form-control"
-              required
-              placeholder="First Name"
-              id="firstname"
-              name="firstname"
-            />
-          </div>
-          <div class="form-group col-md-6">
-            <label for="lastname">Last Name</label>
-            <input
-              type="text"
-              class="form-control"
-              required
-              id="lastname"
-              placeholder="Last Name"
-              name="lastname"
-            />
-          </div>
+      <form class="register col-md-7 bg-white p-3">
+        <div class="text-center text-gray-900 h3 py-2">Create an Account</div>
+
+        <div class="form-group">
+          <label for="firstname">Full Name</label>
+          <input
+            type="text"
+            class="form-control"
+            required
+            placeholder="Full Name"
+            id="firstname"
+            name="firstname"
+          />
+        </div>
+        <div class="form-group">
+          <label for="tel">Mobile Number</label>
+          <input
+            type="tel"
+            class="form-control"
+            id="tel"
+            placeholder="Telephone Number"
+            name="phone"
+          />
         </div>
         <div class="form-group">
           <label for="email">Email</label>
@@ -39,38 +37,7 @@
             name="email"
           />
         </div>
-        <div class="form-group">
-          <label for="tel">Phone</label>
-          <input
-            type="tel"
-            class="form-control"
-            id="tel"
-            placeholder="Telephone Number"
-            name="phone"
-          />
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputCity">City</label>
-            <input type="text" class="form-control" id="inputCity" />
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputState">State</label>
-            <select id="inputState" class="form-control">
-              <option selected>Choose...</option>
-              <option>Abia</option>
-              <option>Lagos</option>
-              <option>Ogun</option>
-              <option>Ibadan</option>
-              <option>Delta</option>
-              <option>Edo</option>
-            </select>
-          </div>
-          <div class="form-group col-md-2">
-            <label for="inputZip">Zip</label>
-            <input type="text" class="form-control" id="inputZip" />
-          </div>
-        </div>
+
         <div class="form-group">
           <label for="password">Password</label>
           <input
@@ -80,6 +47,10 @@
             placeholder="Enter Password"
             name="password"
           />
+        </div>
+        <div class="form-group">
+          <label for="password">Referer</label>
+          <input type="text" class="form-control" id="password" placeholder="Refere Id" />
         </div>
         <button type="submit" class="btn btn-primary mt-4 mb-3">Sign Up</button>
         <div class="text-center">
@@ -100,14 +71,8 @@ export default {
 <style scoped>
 body {
   background: rgb(75, 75, 224);
-  padding-top: 10%;
   min-height: 100vh;
   color: black;
-}
-
-.register {
-  min-height: 25rem;
-  padding-top: 5%;
 }
 
 .btn {
@@ -115,5 +80,8 @@ body {
   text-align: center;
   margin: 0.9rem auto;
   padding: 5px 30px;
+}
+.register {
+  margin: 30px 0;
 }
 </style>

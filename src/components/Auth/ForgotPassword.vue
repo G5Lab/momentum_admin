@@ -41,14 +41,13 @@ export default {
 <style scoped>
 body {
   background: rgb(75, 75, 224);
-  padding-top: 10%;
   min-height: 100vh;
   color: black;
 }
 
 .forgot {
   min-height: 25rem;
-  padding-top: 1%;
+  margin: 20vh 0;
 }
 .btn {
   display: block;
