@@ -13,7 +13,6 @@ export default {
 </script>
 <style scoped>
 .card {
-  max-width: 30rem;
   margin: 0.5rem;
 }
 </style>

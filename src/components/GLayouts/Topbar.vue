@@ -1,11 +1,11 @@
 <template>
   <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-    <form class="d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <!-- <form class="d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
       <router-link class="link" to>
         <h1 class="ml-auto h2 mylogo text-black-100">Logo Here!</h1>
       </router-link>
     </form>
-
+    -->
     <ul class="navbar-nav ml-auto">
       <div class="topbar-divider d-none d-sm-block"></div>
       <!-- Nav Item - User Information -->

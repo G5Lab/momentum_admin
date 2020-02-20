@@ -1,6 +1,6 @@
 <template>
 <body id="page-top">
-  <div id="wrapper">
+  <div id="wrapper" class="text-gray-800">
     <Sidebar>
       <SidebarInner />
     </Sidebar>

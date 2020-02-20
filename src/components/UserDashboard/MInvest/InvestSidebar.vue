@@ -1,6 +1,6 @@
 <template>
-  <ul class="nav list-group">
-    <li class="list-group-item">Categories</li>
+  <ul class="list-group">
+    <li class="list-group-item border-none">Categories</li>
     <li class="nav-item d-block">
       <router-link class="nav-link" to="#">Accessories</router-link>
     </li>
@@ -19,8 +19,8 @@
 <style scoped>
 .list-group-item {
   font-size: 1.17rem;
-  color: black;
-  background: rgba(61, 60, 60, 0.336);
+  color: whitesmoke;
+  background: rgb(74, 71, 138);
 }
 .nav-item,
 .nav-link {
@@ -36,8 +36,8 @@
   color: white !important;
 }
 ul {
-  border: 1px solid rgb(59, 58, 58);
-  border-radius: 3%;
+  border: 1px solid rgb(17, 90, 33);
+  border-radius: 0.5rem;
   min-height: 100%;
 }
 </style>

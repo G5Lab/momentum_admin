@@ -1,12 +1,19 @@
 <template>
   <Structure page="Investment Reports">
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
-        <InvestmentReportCard />
-        <InvestmentReportCard />
-        <InvestmentReportCard />
-        <InvestmentReportCard />
-        <InvestmentReportCard />
+        <div class="col-md-6">
+          <InvestmentReportCard />
+        </div>
+        <div class="col-md-6">
+          <InvestmentReportCard />
+        </div>
+        <div class="col-md-6">
+          <InvestmentReportCard />
+        </div>
+        <div class="col-md-6">
+          <InvestmentReportCard />
+        </div>
       </div>
     </div>
   </Structure>

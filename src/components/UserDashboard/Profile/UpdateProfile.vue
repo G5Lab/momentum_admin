@@ -1,34 +1,20 @@
 <template>
   <Structure page="Update Profile">
-    <div class="container">
+    <div class="container-fluid">
       <div class="row justify-content-center">
-        <form class="register bg-white p-4">
+        <form class="register border bg-white p-4">
           <div class="text-center text-gray-900 h3 py-4">Update your Profile</div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="firstname">First Name</label>
-              <input
-                type="text"
-                class="form-control"
-                required
-                placeholder="First Name"
-                id="firstname"
-                name="firstname"
-                value="FirstName"
-              />
-            </div>
-            <div class="form-group col-md-6">
-              <label for="lastname">Last Name</label>
-              <input
-                type="text"
-                class="form-control"
-                required
-                id="lastname"
-                placeholder="Last Name"
-                name="lastname"
-                value="LastName"
-              />
-            </div>
+          <div class="form-group">
+            <label for="firstname">Full Name</label>
+            <input
+              type="text"
+              class="form-control"
+              required
+              placeholder="Full Name"
+              id="firstname"
+              name="firstname"
+              value="FullName"
+            />
           </div>
           <div class="form-group">
             <label for="email">Email</label>
@@ -79,15 +65,16 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password">Enter Password</label>
             <input
               type="password"
               class="form-control"
               id="password"
-              placeholder="Enter Password"
+              placeholder="Enter Password To Save"
               name="password"
             />
           </div>
+
           <button type="submit" class="btn btn-primary mt-4 mb-3">Update</button>
         </form>
       </div>

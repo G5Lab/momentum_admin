@@ -13,7 +13,12 @@
             </div>
             <div class="form-group">
               <label for="exampleTextarea">Priority</label>
-              <input type="text" class="form-control" placeholder="Enter Ticket Name" name id />
+              <select name id class="form-control">
+                <option value>Select Priority</option>
+                <option value>Val 1</option>
+                <option value>Val 2</option>
+                <option value>Val 3</option>
+              </select>
             </div>
 
             <div class="form-group">

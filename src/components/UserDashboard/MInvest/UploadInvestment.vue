@@ -40,15 +40,8 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="amount">Investment Ends At...</label>
-              <input
-                type="date"
-                required
-                placeholder=" eg N50000"
-                class="form-control"
-                id="amount"
-                name="amount"
-              />
+              <label>Investment Ends At...</label>
+              <input type="date" required placeholder=" eg N50000" class="form-control" />
             </div>
             <button type="submit" class="btn btn-primary mt-3 btn-block text-center mb-3">Submit</button>
           </form>

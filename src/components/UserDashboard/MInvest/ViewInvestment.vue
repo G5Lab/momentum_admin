@@ -2,10 +2,10 @@
   <Structure page="View Investments">
     <div class="container-fluid">
       <div class="row">
-        <div class="d-none d-lg-block col-lg-3">
+        <div class="d-none d-lg-block col-lg-2">
           <InSidebar />
         </div>
-        <div class="col-lg-9 col">
+        <div class="col-lg-10 col">
           <div class="row no-gutters">
             <div class="col-md-6 col-lg-4 col-sm-6 mb-1">
               <router-link class="nav-link" to="/invest">

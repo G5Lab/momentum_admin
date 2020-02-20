@@ -1,36 +1,30 @@
 // Authentication
-import Home from './components/Auth/Home';
 import Login from './components/Auth/Login'
 import Register from './components/Auth/Register'
 import ForgotPassword from './components/Auth/ForgotPassword'
-
-
-// AdminDashboard
-import AdminDashboard from './components/AdminDashboard'
-// AUser 
-import AViewAllUsers from './components/AdminDashboard/Users/ViewAllUsers'
-import AKycRequest from './components/AdminDashboard/Users/KycRequest'
-// AmSave
-import AMsaveSettings from './components/AdminDashboard/MSave/MsaveSettings'
-import ASavingsReport from './components/AdminDashboard/MSave/SavingsReport'
-import AViewAllSavings from './components/AdminDashboard/MSave/ViewAllSavings'
-
-// AmInvest
-import AmInvest from './components/AdminDashboard/MInvest'
 
 // UserDashboard
 import UserDashboard from './components/UserDashboard'
 
 // Profile
+import BasicProfile from './components/UserDashboard/Profile/BasicProfile'
+import UpgradeMembership from './components/UserDashboard/Profile/UpgradeMembership'
 import UpdateProfile from './components/UserDashboard/Profile/UpdateProfile'
 import BankInfo from './components/UserDashboard/Profile/BankInfo'
 import CompleteKYC from './components/UserDashboard/Profile/CompleteKYC'
+import ChangePassword from './components/UserDashboard/Profile/ChangePassword'
+import SetPin from './components/UserDashboard/Profile/SetPin'
+
+// Main Wallet
+import Transfer from "./components/UserDashboard/MainWallet/Transfer"
+import Withdraw from "./components/UserDashboard/MainWallet/Withdraw"
+import TopUpWallet from "./components/UserDashboard/MainWallet/TopUpWallet"
+import MainHistory from "./components/UserDashboard/MainWallet/MainHistory"
 
 // mSave
 import SavingsHistory from "./components/UserDashboard/Msave/SavingsHistory"
-import ScheduledSavings from "./components/UserDashboard/Msave/ScheduledSavings"
-import Ajo from "./components/UserDashboard/Msave/Ajo"
-import DirectSavings from "./components/UserDashboard/Msave/DirectSavings"
+import TargetSavingsAction from "./components/UserDashboard/Msave/TargetSavingsAction"
+import TargetSavings from "./components/UserDashboard/Msave/TargetSavings"
 
 // mInvest
 import ViewInvestment from "./components/UserDashboard/MInvest/ViewInvestment"
@@ -40,30 +34,30 @@ import UploadInvestment from "./components/UserDashboard/MInvest/UploadInvestmen
 import Invest from "./components/UserDashboard/MInvest/Invest"
 
 // mAjo 
-import RegisterACm from "./components/UserDashboard/MAjo/RegisterACm"
-import BecomeACm from "./components/UserDashboard/MAjo/BecomeACm"
+import RegisterAgent from "./components/UserDashboard/MAjo/RegisterAgent"
+import BecomeAgent from "./components/UserDashboard/MAjo/BecomeAgent"
+import ChangeAgent from "./components/UserDashboard/MAjo/ChangeAgent"
 import BreakAjo from "./components/UserDashboard/MAjo/BreakAjoSavings"
 import CreditUsers from "./components/UserDashboard/MAjo/CreditUsers"
-import MyAjoSettings from "./components/UserDashboard/MAjo/MyAjoSettings"
+import AjoCycle from "./components/UserDashboard/MAjo/AjoCycle"
+import AjoHistory from "./components/UserDashboard/MAjo/AjoHistory"
+
 
 // Support 
 import CreateTicket from "./components/UserDashboard/Support/CreateTicket"
 import Inbox from "./components/UserDashboard/Support/Inbox"
 import Announcement from "./components/UserDashboard/Support/Announcement"
+import SentMessages from "./components/UserDashboard/Support/SentMessages"
 
 // Learning Center
 import LearningMaterials from "./components/UserDashboard/LearningCenter/LearningMaterials"
 
-// Transactions
-
-import Transfer from "./components/UserDashboard/Transactions/Transfer"
-import Withdraw from "./components/UserDashboard/Transactions/Withdraw"
 
 const routes = [
     // Authentication
     {
         path: '/',
-        component: Home
+        component: Login
     },
     {
         path: '/login',
@@ -79,38 +73,7 @@ const routes = [
     },
     // { path: '/dashboard', component: Dashboard },
 
-    // Admin Dashboard 
-    {
-        path: '/admindashboard',
-        component: AdminDashboard
-    },
-    // AUsers
-    {
-        path: '/allusers',
-        component: AViewAllUsers
-    },
-    {
-        path: '/akycrequest',
-        component: AKycRequest
-    },
-    // AmSave
-    {
-        path: '/amsavesettings',
-        component: AMsaveSettings
-    },
-    {
-        path: '/asavingsreport',
-        component: ASavingsReport
-    },
-    {
-        path: '/aviewallsavings',
-        component: AViewAllSavings
-    },
-    // AmINVEST
-    {
-        path: "/aminvest",
-        component: AmInvest
-    },
+
 
     // User Dashboard
     {
@@ -119,6 +82,14 @@ const routes = [
     },
 
     // Profile
+    {
+        path: '/basicprofile',
+        component: BasicProfile
+    },
+    {
+        path: '/upgrademembership',
+        component: UpgradeMembership
+    },
     {
         path: '/updateprofile',
         component: UpdateProfile
@@ -131,22 +102,42 @@ const routes = [
         path: '/kyc',
         component: CompleteKYC
     },
+    {
+        path: '/ChangePassword',
+        component: ChangePassword
+    },
+    {
+        path: '/Setpin',
+        component: SetPin
+    },
+
+    // Main Wallet
+    {
+        path: '/transfer',
+        component: Transfer
+    },
+    {
+        path: '/withdraw',
+        component: Withdraw
+    },
+    {
+        path: "/MainHistory",
+        component: MainHistory
+    },
+    {
+        path: "/TopUpWallet",
+        component: TopUpWallet
+    },
+
+
     // mSave
     {
         path: '/savingshistory',
         component: SavingsHistory
     },
     {
-        path: '/scheduledsavings',
-        component: ScheduledSavings
-    },
-    {
-        path: '/ajo',
-        component: Ajo
-    },
-    {
-        path: '/directsavings',
-        component: DirectSavings
+        path: '/TargetSavingsAction',
+        component: TargetSavingsAction
     },
 
     // mInvest
@@ -170,15 +161,23 @@ const routes = [
         path: '/invest',
         component: Invest
     },
+    {
+        path: "/TargetSavings",
+        component: TargetSavings
+    },
 
     // mAjo
     {
-        path: '/registeracm',
-        component: RegisterACm
+        path: '/registeranagent',
+        component: RegisterAgent
     },
     {
-        path: '/becomeacm',
-        component: BecomeACm
+        path: '/becomeanagent',
+        component: BecomeAgent
+    },
+    {
+        path: '/changeanagent',
+        component: ChangeAgent
     },
     {
         path: '/breakajosavings',
@@ -189,8 +188,12 @@ const routes = [
         component: CreditUsers
     },
     {
-        path: '/myajosettings',
-        component: MyAjoSettings
+        path: '/Ajocycle',
+        component: AjoCycle
+    },
+    {
+        path: '/AjoHistory',
+        component: AjoHistory
     },
     // Support 
     {
@@ -200,24 +203,21 @@ const routes = [
     {
         path: "/inbox",
         component: Inbox
-    }, {
+    },
+    {
         path: "/announcement",
         component: Announcement
+    },
+    {
+        path: "/SentMessages",
+        component: SentMessages
     },
     // Learning Center
     {
         path: "/learningmaterials",
         component: LearningMaterials
     },
-    // Transactions
-    {
-        path: '/transfer',
-        component: Transfer
-    },
-    {
-        path: '/withdraw',
-        component: Withdraw
-    }
+
 
 ]
 

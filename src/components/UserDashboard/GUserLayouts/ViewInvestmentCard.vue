@@ -36,7 +36,21 @@ export default {
 }
 .state {
   position: absolute;
-  top: 20%;
+  top: 14%;
   right: 5%;
+  width: 6rem;
+  padding: 3px;
+}
+@media only screen and (max-width: 330px) {
+  .card {
+    background-color: red;
+  }
+  .state {
+    position: absolute;
+    top: 10%;
+    right: 3%;
+    width: 4rem;
+    padding: 0;
+  }
 }
 </style>

@@ -2,12 +2,16 @@
   <Structure page="KYC">
     <div class="container">
       <div class="row justify-content-center">
-        <form class="register bg-white p-4">
+        <form class="register border col-md-7 bg-white p-4">
           <div class="text-center text-gray-900 h4 py-4">KYC Request</div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="Name">Employment Status</label>
-              <input type="text" class="form-control" required placeholder="Employment Status" />
+              <select name class="form-control" id>
+                <option value>Status</option>
+                <option value>Status</option>
+                <option value>Status</option>
+              </select>
             </div>
             <div class="form-group col-md-6">
               <label for="KycName">Employer Name</label>

@@ -8,14 +8,6 @@
         <div class="card-body">
           <form class="register bg-white">
             <div class="form-group">
-              <label for="name">Username</label>
-              <select class="custom-select form-control">
-                <option value>Select Wallet</option>
-                <option value>mSave</option>
-                <option value>mInvest</option>
-              </select>
-            </div>
-            <div class="form-group">
               <label for="name">Amount</label>
               <input
                 type="number"
@@ -25,7 +17,14 @@
                 placeholder="Amount To Withdraw"
               />
             </div>
-
+            <div class="form-group">
+              <label for="name">Wallet</label>
+              <select class="custom-select form-control">
+                <option value>Select Wallet</option>
+                <option value>mSave</option>
+                <option value>mInvest</option>
+              </select>
+            </div>
             <button type="submit" class="btn btn-primary mt-3 btn-block text-center mb-3">Send</button>
           </form>
         </div>

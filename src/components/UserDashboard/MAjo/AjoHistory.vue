@@ -1,5 +1,5 @@
 <template>
-  <Structure page="Savings History">
+  <Structure page="mAjo History">
     <div class="container-fluid">
       <div class="table-responsive">
         <table class="table table-bordered">
@@ -82,14 +82,13 @@
     </div>
   </Structure>
 </template>
+
 <script>
 import Structure from "../GUserLayouts/Structure";
 export default {
-  name: "SavingsHistory",
+  name: "AjoHistory",
   components: {
     Structure
   }
 };
 </script>
-<style scoped>
-</style>

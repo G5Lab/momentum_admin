@@ -1,6 +1,6 @@
 <template>
-  <Structure page="Savings History">
-    <div class="container-fluid">
+  <Structure page="Main History">
+    <div class="container-fluid mt-3">
       <div class="table-responsive">
         <table class="table table-bordered">
           <thead>
@@ -82,14 +82,13 @@
     </div>
   </Structure>
 </template>
+
 <script>
 import Structure from "../GUserLayouts/Structure";
 export default {
-  name: "SavingsHistory",
+  name: "MainHistory",
   components: {
     Structure
   }
 };
 </script>
-<style scoped>
-</style>

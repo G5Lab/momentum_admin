@@ -1,6 +1,6 @@
 <template>
   <Structure page="Enter Bank Details">
-    <div class="container">
+    <div class="container-fluid">
       <div class="row justify-content-center">
         <form class="register bg-white p-4">
           <div class="text-center text-gray-900 h4 py-4">Bank Details</div>

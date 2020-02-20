@@ -6,8 +6,8 @@
       to="/userdashboard"
     >
       <div class="sidebar-brand-text mx-3">
-        User
-        <sup></sup>
+        <span class="font-weight-normal">User Id:</span>
+        Pedro1234
       </div>
     </router-link>
 
@@ -40,9 +40,41 @@
         data-parent="#accordionSidebar"
       >
         <div class="bg-white py-2 collapse-inner rounded">
+          <router-link class="collapse-item" to="/basicprofile">Basic Profile</router-link>
+          <router-link class="collapse-item" to="/upgrademembership">Upgrade Membership</router-link>
           <router-link class="collapse-item" to="/updateprofile">Update Profile</router-link>
           <router-link class="collapse-item" to="/bkinfo">Enter Bank Info</router-link>
           <router-link class="collapse-item" to="/kyc">Complete KYC</router-link>
+          <router-link class="collapse-item" to="/ChangePassword">Change Password</router-link>
+          <router-link class="collapse-item" to="/SetPin">Set Pin</router-link>
+        </div>
+      </div>
+    </li>
+
+    <!-- Main Wallet -->
+    <li class="nav-item">
+      <a
+        class="nav-link collapsed"
+        data-toggle="collapse"
+        data-target="#transactions"
+        aria-expanded="true"
+        aria-controls="collapseUtilities"
+      >
+        <i class="fas fa-fw fa-folder"></i>
+        <span class="mr-1">Main</span>
+        <span class="d-none d-md-inline">Wallet</span>
+      </a>
+      <div
+        id="transactions"
+        class="collapse"
+        aria-labelledby="headingUtilities"
+        data-parent="#accordionSidebar"
+      >
+        <div class="bg-white py-2 collapse-inner rounded">
+          <router-link class="collapse-item" to="/transfer">Transfer</router-link>
+          <router-link class="collapse-item" to="/withdraw">Withdraw</router-link>
+          <router-link class="collapse-item" to="/MainHistory">History</router-link>
+          <router-link class="collapse-item" to="/TopUpWallet">Top-Up Wallet</router-link>
         </div>
       </div>
     </li>
@@ -66,9 +98,7 @@
         data-parent="#accordionSidebar"
       >
         <div class="bg-white py-2 collapse-inner rounded">
-          <router-link class="collapse-item" to="/scheduledsavings">Scheduled Savings</router-link>
-          <router-link class="collapse-item" to="/ajo">Ajo</router-link>
-          <router-link class="collapse-item" to="/directsavings">Direct Savings</router-link>
+          <router-link class="collapse-item" to="/TargetSavings">Target Savings</router-link>
           <router-link class="collapse-item" to="/savingshistory">Savings History</router-link>
         </div>
       </div>
@@ -120,14 +150,17 @@
         data-parent="#accordionSidebar"
       >
         <div class="bg-white py-2 collapse-inner rounded">
-          <router-link class="collapse-item" to="/registeracm">Register a CM</router-link>
-          <router-link class="collapse-item" to="/becomeacm">Become a CM</router-link>
+          <router-link class="collapse-item" to="/registeranagent">Register an Agent</router-link>
+          <router-link class="collapse-item" to="/becomeanagent">Become an Agent</router-link>
+          <!-- <router-link class="collapse-item" to="/changeanagent">Change Agent</router-link> -->
           <router-link class="collapse-item" to="/credituser">Credit Users</router-link>
           <router-link class="collapse-item" to="/breakajosavings">Break Ajo Savings</router-link>
-          <router-link class="collapse-item" to="/myajosettings">My Ajo Settings</router-link>
+          <router-link class="collapse-item" to="/AjoCycle">Ajo Cycle</router-link>
+          <router-link class="collapse-item" to="/AjoHistory">History</router-link>
         </div>
       </div>
     </li>
+
     <!-- Support -->
     <li class="nav-item">
       <a
@@ -150,6 +183,7 @@
           <router-link class="collapse-item" to="/createticket">Create Ticket</router-link>
           <router-link class="collapse-item" to="/inbox">Inbox</router-link>
           <router-link class="collapse-item" to="/announcement">Announcements</router-link>
+          <router-link class="collapse-item" to="/sentmessages">Sent Messages</router-link>
         </div>
       </div>
     </li>
@@ -173,31 +207,6 @@
       >
         <div class="bg-white py-2 collapse-inner rounded">
           <router-link class="collapse-item" to="/learningmaterials">Learning Materials</router-link>
-        </div>
-      </div>
-    </li>
-
-    <!-- Transactions -->
-    <li class="nav-item">
-      <a
-        class="nav-link collapsed"
-        data-toggle="collapse"
-        data-target="#transactions"
-        aria-expanded="true"
-        aria-controls="collapseUtilities"
-      >
-        <i class="fas fa-fw fa-folder"></i>
-        <span>Transact</span>
-      </a>
-      <div
-        id="transactions"
-        class="collapse"
-        aria-labelledby="headingUtilities"
-        data-parent="#accordionSidebar"
-      >
-        <div class="bg-white py-2 collapse-inner rounded">
-          <router-link class="collapse-item" to="/transfer">Transfer</router-link>
-          <router-link class="collapse-item" to="/withdraw">Withdraw</router-link>
         </div>
       </div>
     </li>
