@@ -234,7 +234,7 @@ export default {
   position: fixed;
   top: 27%;
   right: 33%;
-  z-index: 2;
+  /* z-index: 1; */
 }
 @media (max-width: 768px) {
   .container-fluid {
@@ -243,7 +243,7 @@ export default {
 
   .fixed {
     top: 30%;
-    right: 30%;
+    right: 13%;
   }
 }
 .first {

@@ -192,7 +192,6 @@ export default {
   position: fixed;
   top: 27%;
   right: 33%;
-  z-index: 2;
 }
 .scroll {
   width: 30px;
@@ -201,7 +200,7 @@ export default {
 @media (max-width: 767px) {
   .fixed {
     top: 30%;
-    right: 30%;
+    right: 14%;
   }
 }
 @keyframes move {
