@@ -1,13 +1,13 @@
 <template>
   <!-- Footer -->
-  <footer class="sticky-footer mt-2 bg-white">
+  <footer class="sticky-footer py-4 mt-2 bg-white">
     <div class="container my-auto">
       <div class="copyright text-center my-auto">
         <span>Copyright &copy; Mostalpha7 2020</span>
       </div>
     </div>
   </footer>
-  <!-- End of Footer -->
+  <!-- End off Footer -->
 </template>
 
 <script>
