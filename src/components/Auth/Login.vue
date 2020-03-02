@@ -88,7 +88,7 @@ export default {
       this.loading = true;
       // https://momentum.ng/backend
       axios
-        .post("http://localhost:3000/api/users/login", this.login)
+        .post("https://momentum.ng/backend/api/users/login", this.login)
         .then(res => {
           if (res.data.status == true) {
             this.$session.start();
