@@ -1,9 +1,9 @@
 <template>
-  <Structure page="KYC">
+  <Structure page="KYC Request Form">
     <div class="container">
       <div class="row justify-content-center">
-        <form class="register border col-md-7 bg-white p-4">
-          <div class="text-center text-gray-900 h4 py-4">KYC Request</div>
+        <form v-on:submit.prevent="submitKyc" class="register border col-md-11 bg-white p-3">
+          <div class="text-center text-gray-900 h5 py-2">Kyc Request</div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="Name">Employment Status</label>
@@ -42,7 +42,7 @@
             <input type="number" required placeholder="BVN Number" class="form-control" />
           </div>
 
-          <button type="submit" class="btn btn-primary mt-2 mb-3">Submit</button>
+          <button type="submit" class="btn btn-primary btn-block mt-2 mb-3">Submit Kyc</button>
         </form>
       </div>
     </div>
@@ -55,16 +55,15 @@ export default {
   name: "CompleteKYC",
   components: {
     Structure
+  },
+  data() {
+    return {};
+  },
+  methods: {
+    submitKyc() {}
   }
 };
 </script>
 
-<style scoped>
-.register {
-  min-height: 25rem;
-  padding-top: 5%;
-}
-.container {
-  margin-bottom: 50px;
-}
-</style>
+
+

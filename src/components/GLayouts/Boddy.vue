@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-2">
-          <h1 class="h3 page mb-0 text-gray-800">{{page}}</h1>
+          <h1 class="h2 page mb-3 text-gray-800">{{page}}</h1>
         </div>
       </div>
 
@@ -23,7 +23,7 @@
 import Topbar from "./Topbar";
 import Footer from "./Footer";
 export default {
-  name: "body",
+  name: "Boddy",
   components: {
     Topbar,
     Footer
@@ -39,7 +39,7 @@ export default {
 <style scoped>
 @media only screen and (max-width: 600px) {
   .page {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
 }
 @media (max-width: 768px) {

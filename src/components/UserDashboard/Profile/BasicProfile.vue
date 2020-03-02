@@ -4,20 +4,17 @@
       <div class="container border emp-profile">
         <div class="row">
           <div class="col-md-4">
-            <div class="profile-img">
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-                alt
-              />
+            <div class="profile-img my-2 mb-3">
+              <i style="font-size:" class="fa fa-user"></i>
             </div>
           </div>
           <div class="col-md-6">
-            <div class="profile-head">
-              <h5>Mustapha Abdulmujeeb</h5>
-              <h6>Basic Member</h6>
+            <div class="profile-head text-center">
+              <h5>{{fullname}}</h5>
+              <h6>Free Member</h6>
               <p class="proile-rating">
-                RANKINGS :
-                <span>8/10</span>
+                RATING :
+                <span>{{rating}}</span>
               </p>
               <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
@@ -46,7 +43,11 @@
             </div>
           </div>
           <div class="col-md-2">
-            <router-link to="/updateprofile" class="profile-edit-btn" name="btnAddMore">Edit Profile</router-link>
+            <router-link
+              to="/updateprofile"
+              class="profile-edit-btn d-none d-md-block"
+              name="btnAddMore"
+            >Edit Profile</router-link>
           </div>
         </div>
         <div class="row d-flex justify-content-center">
@@ -60,10 +61,10 @@
               >
                 <div class="row">
                   <div class="col-md-6">
-                    <label>User Id</label>
+                    <label>Transaction Id</label>
                   </div>
                   <div class="col-md-6">
-                    <p>Pedro1234</p>
+                    <p>{{transId}}</p>
                   </div>
                 </div>
                 <div class="row">
@@ -71,7 +72,7 @@
                     <label>Name</label>
                   </div>
                   <div class="col-md-6">
-                    <p>Mustapha Abdulmujeeb</p>
+                    <p>{{fullname}}</p>
                   </div>
                 </div>
                 <div class="row">
@@ -79,7 +80,7 @@
                     <label>Email</label>
                   </div>
                   <div class="col-md-6">
-                    <p>mujeeb@gmail.com</p>
+                    <p>{{email}}</p>
                   </div>
                 </div>
                 <div class="row">
@@ -87,7 +88,7 @@
                     <label>Phone</label>
                   </div>
                   <div class="col-md-6">
-                    <p>123 456 7890</p>
+                    <p>{{mobile}}</p>
                   </div>
                 </div>
                 <div class="row">
@@ -95,11 +96,19 @@
                     <label>Address</label>
                   </div>
                   <div class="col-md-6">
-                    <p>Sango Ota, Ogun State, Nigeria</p>
+                    <p>{{address}}</p>
                   </div>
                 </div>
               </div>
               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Level</label>
+                  </div>
+                  <div class="col-md-6">
+                    <p>{{level}}</p>
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col-md-6">
                     <label>Membership Status</label>
@@ -124,6 +133,14 @@
                     <p>Lekki , Lagos</p>
                   </div>
                 </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Referer</label>
+                  </div>
+                  <div class="col-md-6">
+                    <p>{{referer}}</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -132,15 +149,39 @@
     </div>
   </Structure>
 </template>
+
+
 <script>
 import Structure from "../GUserLayouts/Structure";
 export default {
   name: "BasicProfile",
   components: {
     Structure
+  },
+  data() {
+    return {
+      fullname: "",
+      rating: "",
+      transId: "",
+      email: "",
+      mobile: "",
+      level: "",
+      referer: "",
+      address: ""
+    };
+  },
+  created() {
+    this.fullname = this.$session.get("user").fullname;
+    this.rating = this.$session.get("user").rating;
+    this.transId = this.$session.get("user").trans_id;
+    this.email = this.$session.get("user").email;
+    this.mobile = this.$session.get("user").mobile;
+    this.level = this.$session.get("user").level;
+    this.referer = this.$session.get("user").referer;
   }
 };
 </script>
+
 
 <style scoped>
 body {
@@ -156,9 +197,10 @@ body {
 .profile-img {
   text-align: center;
 }
-.profile-img img {
+.profile-img .fa {
   width: 70%;
   height: 100%;
+  font-family: 100rem;
 }
 .profile-img .file {
   position: relative;
@@ -186,10 +228,15 @@ body {
   border: none;
   border-radius: 1.5rem;
   width: 70%;
-  padding: 2%;
+  background: rgb(22, 22, 22);
+  padding: 4%;
   font-weight: 600;
-  color: #6c757d;
+  color: white;
+  text-align: center;
   cursor: pointer;
+}
+.fa {
+  font-size: 9rem !important;
 }
 .proile-rating {
   font-size: 12px;
@@ -233,6 +280,7 @@ body {
 }
 .profile-tab label {
   font-weight: 600;
+  margin: 0 !important;
 }
 .profile-tab p {
   font-weight: 600;

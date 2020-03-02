@@ -1,7 +1,7 @@
 <template>
 <body class="bg-gradient-primary">
   <Nav />
-  <div class="container mt-0">
+  <div class="container">
     <!-- Outer Row -->
     <div class="row justify-content-center">
       <div class="col-xl-10 col-lg-12 col-md-9">
@@ -9,41 +9,36 @@
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-              <div class="col-lg-6 d-none d-lg-block bg-password-">
-                <img src="/img/forgot.webp" alt class="w-100 h-100" />
-              </div>
+              <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
               <div class="col-lg-6">
-                <div class="p-5">
+                <h2
+                  v-if="msg.length > 1"
+                  class="text-primary pt-5 py-2 font-weight-bold text-center h2"
+                >PAssword Change Sussefully</h2>
+                <div class="p-4">
                   <div class="text-center">
-                    <h2
-                      v-if="msg.length > 1"
-                      class="text-danger mb-1 text-center font-weight-bold h3"
-                    >{{msg}}</h2>
-                    <h1 class="h4 py-3 text-gray-900 mb-1">Reset Password</h1>
+                    <h1 class="h4 py-3 text-gray-900 mb-1">Choose a new password</h1>
                     <p
                       class="mb-4 mt-0"
-                    >Input your email address below to receive the code to reset your password.</p>
+                    >Create a new password that is at least 6 characters long. A strong password has a combination of letters, digits and punctuation marks.</p>
                   </div>
                   <form class="user" v-on:submit.prevent="resetPassword">
                     <div class="form-group">
                       <input
-                        v-model="email"
+                        v-model="password"
                         class="form-control form-control-user"
-                        type="email"
-                        id="email"
+                        type="password"
                         required
-                        placeholder="Email Address"
+                        placeholder="New password"
                       />
                     </div>
                     <button type="submit" class="btn btn-danger btn-user btn-block my-4">Continue</button>
                   </form>
                   <hr />
                   <div class="text-center">
-                    Password Remembered? Kindly
-                    <router-link to="/login" class="text-primary">Login</router-link>
-                  </div>
-                  <div class="text-center">
-                    <router-link to="/register" class="text-primary">Create An Account</router-link>
+                    <router-link to="/ForgotPassword" class="text-primary">Didn't get a code?</router-link>
+                    <span class="mx-2">||</span>
+                    <router-link to="/login" class="text-primary">Cancel</router-link>
                   </div>
                 </div>
               </div>
@@ -60,32 +55,39 @@
 import axios from "axios";
 import Nav from "./Nav";
 export default {
-  name: "ForgotPassword",
+  name: "Initial",
   components: {
     Nav
   },
   data() {
     return {
       msg: "",
-      email: ""
+      password: ""
     };
   },
   methods: {
     resetPassword() {
       axios
-        .post(`http://localhost:3000/api/users/forgotpassword/${this.email}`)
+        .patch(
+          `http://localhost:3000/api/users/resetpassword/${sessionStorage.getItem(
+            "emailpassupdate"
+          )}`,
+          { password: this.password }
+        )
         .then(res => {
-          console.log(res.data);
-          if (res.data.status != true) {
+          if (
+            res.data.status == true &&
+            res.data.msg == "Password Updated Successfully"
+          ) {
+            this.msg = "Password Updated successfully";
+            setTimeout(() => {
+              this.$router.push("login");
+            }, 2000);
+          } else {
             this.msg = "Email Does not exist";
             setTimeout(() => {
               this.msg = "";
             }, 1500);
-          } else {
-            this.msg = "Email Sent";
-            setTimeout(() => {
-              this.$router.push("login");
-            }, 2500);
           }
         })
         .catch(err => {

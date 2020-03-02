@@ -33,6 +33,7 @@
 </template>
 <script>
 import Structure from "../GUserLayouts/Structure";
+// import axios from "axios";
 export default {
   name: "RegisterAgent",
   components: {

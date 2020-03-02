@@ -2,9 +2,13 @@
 import Login from './components/Auth/Login'
 import Register from './components/Auth/Register'
 import ForgotPassword from './components/Auth/ForgotPassword'
+import Welcome from './components/Auth/Welcome'
+import Recover from './components/Auth/Recover'
+import Initial from './components/Auth/Initial'
 
 // UserDashboard
 import UserDashboard from './components/UserDashboard'
+import TestRave from "./components/UserDashboard/Msave/TargetSavingsAction/TestRave"
 
 // Profile
 import BasicProfile from './components/UserDashboard/Profile/BasicProfile'
@@ -13,7 +17,7 @@ import UpdateProfile from './components/UserDashboard/Profile/UpdateProfile'
 import BankInfo from './components/UserDashboard/Profile/BankInfo'
 import CompleteKYC from './components/UserDashboard/Profile/CompleteKYC'
 import ChangePassword from './components/UserDashboard/Profile/ChangePassword'
-import SetPin from './components/UserDashboard/Profile/SetPin'
+import ResetPin from './components/UserDashboard/Profile/ResetPin'
 
 // Main Wallet
 import Transfer from "./components/UserDashboard/MainWallet/Transfer"
@@ -57,168 +61,296 @@ const routes = [
     // Authentication
     {
         path: '/',
-        component: Login
+        component: Login,
+        meta: {
+            guest: true
+        }
     },
     {
         path: '/login',
-        component: Login
+        component: Login,
+        meta: {
+            guest: true
+        }
     },
     {
         path: '/register',
-        component: Register
+        component: Register,
+        meta: {
+            guest: true
+        }
     },
     {
         path: '/forgotpassword',
-        component: ForgotPassword
+        component: ForgotPassword,
+        meta: {
+            guest: true
+        }
     },
-    // { path: '/dashboard', component: Dashboard },
-
+    {
+        path: "/recover",
+        component: Recover
+    },
+    {
+        path: "/initial",
+        component: Initial
+    },
+    {
+        path: '/welcomemessage',
+        component: Welcome,
+        meta: {
+            registerNow: true
+        }
+    },
+    // { path: '/dashboard', component: Dashboard }
 
 
     // User Dashboard
     {
         path: '/userdashboard',
-        component: UserDashboard
+        component: UserDashboard,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: "/testRave",
+        component: TestRave
     },
 
     // Profile
     {
         path: '/basicprofile',
-        component: BasicProfile
+        component: BasicProfile,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/upgrademembership',
-        component: UpgradeMembership
+        component: UpgradeMembership,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/updateprofile',
-        component: UpdateProfile
+        component: UpdateProfile,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/bkinfo',
-        component: BankInfo
+        component: BankInfo,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/kyc',
-        component: CompleteKYC
+        component: CompleteKYC,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/ChangePassword',
-        component: ChangePassword
+        component: ChangePassword,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
-        path: '/Setpin',
-        component: SetPin
+        path: '/reSetpin',
+        component: ResetPin,
+        meta: {
+            requiresAuth: true
+        }
     },
 
     // Main Wallet
     {
         path: '/transfer',
-        component: Transfer
+        component: Transfer,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/withdraw',
-        component: Withdraw
+        component: Withdraw,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: "/MainHistory",
-        component: MainHistory
+        component: MainHistory,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: "/TopUpWallet",
-        component: TopUpWallet
+        component: TopUpWallet,
+        meta: {
+            requiresAuth: true
+        }
     },
 
 
     // mSave
     {
         path: '/savingshistory',
-        component: SavingsHistory
+        component: SavingsHistory,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/TargetSavingsAction',
-        component: TargetSavingsAction
+        component: TargetSavingsAction,
+        meta: {
+            requiresAuth: true
+        }
     },
 
     // mInvest
     {
         path: '/viewinvestment',
-        component: ViewInvestment
+        component: ViewInvestment,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/investmentreport',
-        component: InvestmentReports
+        component: InvestmentReports,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/investmenthistory',
-        component: InvestmentHistory
+        component: InvestmentHistory,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/uploadinvestment',
-        component: UploadInvestment
+        component: UploadInvestment,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/invest',
-        component: Invest
+        component: Invest,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: "/TargetSavings",
-        component: TargetSavings
+        component: TargetSavings,
+        meta: {
+            requiresAuth: true
+        }
     },
 
     // mAjo
     {
         path: '/registeranagent',
-        component: RegisterAgent
+        component: RegisterAgent,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/becomeanagent',
-        component: BecomeAgent
+        component: BecomeAgent,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/changeanagent',
-        component: ChangeAgent
+        component: ChangeAgent,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/breakajosavings',
-        component: BreakAjo
+        component: BreakAjo,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/credituser',
-        component: CreditUsers
+        component: CreditUsers,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/Ajocycle',
-        component: AjoCycle
+        component: AjoCycle,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/AjoHistory',
-        component: AjoHistory
+        component: AjoHistory,
+        meta: {
+            requiresAuth: true
+        }
     },
+
     // Support 
     {
         path: "/createticket",
-        component: CreateTicket
+        component: CreateTicket,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: "/inbox",
-        component: Inbox
+        component: Inbox,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: "/announcement",
-        component: Announcement
+        component: Announcement,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: "/SentMessages",
-        component: SentMessages
+        component: SentMessages,
+        meta: {
+            requiresAuth: true
+        }
     },
     // Learning Center
     {
         path: "/learningmaterials",
-        component: LearningMaterials
+        component: LearningMaterials,
+        meta: {
+            requiresAuth: true
+        }
     },
-
-
 ]
+
+
+
 
 export default routes;

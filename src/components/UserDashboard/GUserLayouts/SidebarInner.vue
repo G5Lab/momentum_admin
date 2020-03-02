@@ -6,8 +6,8 @@
       to="/userdashboard"
     >
       <div class="sidebar-brand-text mx-3">
-        <span class="font-weight-normal">User Id:</span>
-        Pedro1234
+        <span class="font-weight-normal d-block">Transaction Id:</span>
+        <span class="font-weight-bold">{{trans_id}}</span>
       </div>
     </router-link>
 
@@ -46,7 +46,7 @@
           <router-link class="collapse-item" to="/bkinfo">Enter Bank Info</router-link>
           <router-link class="collapse-item" to="/kyc">Complete KYC</router-link>
           <router-link class="collapse-item" to="/ChangePassword">Change Password</router-link>
-          <router-link class="collapse-item" to="/SetPin">Set Pin</router-link>
+          <router-link class="collapse-item" to="/resetPin">Reset Pin</router-link>
         </div>
       </div>
     </li>
@@ -215,9 +215,18 @@
 
 <script>
 export default {
-  name: "SidebarInner"
+  name: "SidebarInner",
+  data() {
+    return {
+      trans_id: ""
+    };
+  },
+  created() {
+    this.trans_id = this.$session.get("user").trans_id;
+  }
 };
 </script>
+
 
 <style scoped>
 @media (max-width: 767px) {

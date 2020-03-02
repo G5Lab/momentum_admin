@@ -4,9 +4,9 @@
     <Sidebar>
       <SidebarInner />
     </Sidebar>
-    <Body :page="page">
+    <Boddy :page="page">
       <slot></slot>
-    </Body>
+    </Boddy>
   </div>
   <ScrollUpModal />
 </body>
@@ -15,7 +15,7 @@
 <script>
 import Sidebar from "../../GLayouts/Sidebar";
 import SidebarInner from "../GUserLayouts/SidebarInner";
-import Body from "../../GLayouts/Body";
+import Boddy from "../../GLayouts/Boddy";
 import ScrollUpModal from "../../GLayouts/ScrollupModal";
 
 export default {
@@ -23,7 +23,7 @@ export default {
   components: {
     Sidebar,
     SidebarInner,
-    Body,
+    Boddy,
     ScrollUpModal
   },
   props: {

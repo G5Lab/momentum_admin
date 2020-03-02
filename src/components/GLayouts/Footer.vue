@@ -1,6 +1,6 @@
 <template>
   <!-- Footer -->
-  <footer class="sticky-footer bg-white">
+  <footer class="sticky-footer mt-2 bg-white">
     <div class="container my-auto">
       <div class="copyright text-center my-auto">
         <span>Copyright &copy; Mostalpha7 2020</span>
@@ -16,4 +16,3 @@ export default {
 };
 </script>
 
-<style lang="stylus" scoped></style>
