@@ -1,61 +1,100 @@
 <template>
-<body class="bg-gradient-primary">
-  <Nav name="Welcome To Momentum" />
-  <div class="container">
+<body>
+  <div class="container pt-4">
+    <div class="text-center text-white h2 pt-5 pb-4">
+      <span>
+        <i class="fab fa-accusoft mr-2"></i>
+      </span>
+      <span class="font-weight-light">Momen</span>
+      <span class="font-weight-bold text-gray-900">tum</span>
+    </div>
+    <div v-if="loading" class="text-center pb-3">
+      <Loader />
+    </div>
     <div class="row justify-content-center">
-      <div class="col-xl-10 col-lg-12 col-md-9">
-        <div class="card o-hidden py-3 border-0 shadow-lg my-5">
-          <div class="card-body py-3">
-            <div class="row">
-              <div class="col-lg-6 d-none d-lg-block bg-login-">
-                <img src="/img/login.jpg" alt class="w-100 h-100" />
-              </div>
-              <div class="fixed" v-if="loading">
-                <Loader />
-              </div>
-              <div class="bg-white col-md-12 col-lg-6 py-auto">
-                <h2
-                  v-if="msg.length > 1"
-                  class="text-danger mx-0 py-2 bg-white text-center display-4"
-                >{{msg}}</h2>
-                <div class="text-center text-gray-900 h4 py-4">Login Board</div>
-                <form class="user" v-on:submit.prevent="onLogin">
-                  <div class="form-group">
-                    <input
-                      required
-                      v-model="login.loginid"
-                      class="form-control form-control-user"
-                      type
-                      id="email"
-                      placeholder="Email"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <input
-                      required
-                      v-model="login.password"
-                      class="form-control form-control-user"
-                      type="password"
-                      id="password"
-                      placeholder="Password"
-                    />
-                  </div>
+      <div class="col-xl-6 col-lg-7 col-md-10">
+        <div class="card o-hidden py-0 border-0 shadow-lg">
+          <div class="card-body px-0 py-0">
+            <div class="bg-white py-3 px-3">
+              <div
+                style="font-size: 1.1rem; font-weight: 600"
+                class="text-center py-4"
+              >LOGIN TO YOUR DASHBOARD</div>
+              <form v-on:submit.prevent="onLogin">
+                <div class="form-group">
+                  <input
+                    required
+                    v-model="login.loginid"
+                    class="form-control p-4"
+                    type
+                    id="email"
+                    placeholder="Email"
+                  />
+                </div>
+                <div class="form-group my-4">
+                  <input
+                    required
+                    v-model="login.password"
+                    class="form-control p-4"
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                  />
+                </div>
 
-                  <button type="submit" class="btn btn-primary btn-user mb-4 btn-block">Login</button>
-                  <hr />
-                  <div class="text-center text-gray-850 my-2 mt-4 mb-0">
-                    <router-link class="text-primary mb-3" to="/register">Create An Account</router-link>
-                    <br />
-                    <router-link to="/ForgotPassword" class="d-block mb-5 text-danger">
-                      <i>Forgot Password?</i>
-                    </router-link>
-                  </div>
-                </form>
-              </div>
+                <input
+                  :disabled="loading"
+                  type="submit"
+                  value="Login"
+                  class="btn btn-primary mb-3 p-2 btn-block"
+                />
+                <div
+                  v-if="msg"
+                  class="alert alert-warning alert-dismissible fade show"
+                  role="alert"
+                >
+                  <strong>{{msg}}</strong>
+                  <button
+                    type="button"
+                    @click="closeMsg"
+                    class="close"
+                    data-dismiss="alert"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <hr />
+                <div class="text-center text-gray-850 my-2 mt-4 mb-0">
+                  Don't have a Momentum account?
+                  <router-link class="text-primary mb-3" to="/register">Sign up</router-link>
+                  <br />
+                  <router-link to="/ForgotPassword" class="d-block mb-4 text-danger">
+                    <i>Forgot Password?</i>
+                  </router-link>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="text-center py-3">
+      <span>
+        <router-link to="#" class="text-light">
+          <i>Terms &#38; Conditions</i>
+        </router-link>
+      </span>
+      <span>
+        <router-link to="#" class="mx-3 text-light">
+          <i>Help</i>
+        </router-link>
+      </span>
+      <span>
+        <router-link to="#" class="text-light">
+          <i>Privacy Policy</i>
+        </router-link>
+      </span>
     </div>
   </div>
 </body>
@@ -64,13 +103,10 @@
 
 <script>
 import axios from "axios";
-import Nav from "./Nav";
-import Loader from "./Loader";
-
+import Loader from "../Auth/Loader";
 export default {
   name: "Login",
   components: {
-    Nav,
     Loader
   },
   data() {
@@ -85,34 +121,28 @@ export default {
   },
   methods: {
     onLogin() {
-      this.loading = true;
       // https://momentum.ng/backend
+      this.loading = true;
       axios
         .post("https://momentum.ng/backend/api/users/login", this.login)
         .then(res => {
+          this.loading = false;
           if (res.data.status == true) {
             this.$session.start();
             this.$session.set("jwt", res.data.token);
             this.$session.set("user", res.data.user);
             this.$session.set("wallet", res.data.wallet);
-            this.loading = false;
             setTimeout(() => {
               sessionStorage.clear();
               this.$router.push("login");
             }, 900000);
             this.$router.push("userdashboard");
           } else if (res.data.status == false) {
-            this.loading = false;
             if (res.data.message == "Password Incorrect") {
-              this.msg = "Password Incorrect";
-              setTimeout(() => {
-                this.msg = "";
-              }, 2500);
+              this.msg = "Error: The Password You Enterd Is Incorrect.";
             } else {
-              this.msg = "User Not Found";
-              setTimeout(() => {
-                this.msg = "";
-              }, 2500);
+              this.msg =
+                "Error: The email address you entered is does not match any user. ";
             }
           } else {
             console.log("Else occured");
@@ -121,6 +151,9 @@ export default {
         .catch(err => {
           console.error(err);
         });
+    },
+    closeMsg() {
+      this.msg = "";
     }
   }
 };
@@ -130,38 +163,7 @@ export default {
 <style scoped>
 body {
   min-height: 100vh;
-}
-.fixed {
-  position: fixed;
-  top: 27%;
-  right: 39%;
-  z-index: 2;
-}
-.display-4 {
-  font-weight: 700;
-  font-size: 3.4rem;
-  position: fixed;
-}
-@media (max-width: 767px) {
-  .fixed {
-    top: 30%;
-    right: 30%;
-  }
-  .display-4 {
-    font-weight: 600;
-    font-size: 2.1rem;
-    position: fixed;
-  }
-}
-@media (max-width: 360px) {
-  .fixed {
-    top: 30%;
-    right: 14%;
-  }
-  .display-4 {
-    font-weight: 600;
-    font-size: 2.1rem;
-    position: fixed;
-  }
+  color: black;
+  background: #0336798e;
 }
 </style>

@@ -6,7 +6,7 @@
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">mAjo</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800">N{{ajo_balance}}</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">&#8358;{{ajo_balance}}</div>
           </div>
           <div class="col-auto">
             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

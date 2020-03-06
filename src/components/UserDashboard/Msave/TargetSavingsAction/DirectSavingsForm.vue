@@ -1,28 +1,26 @@
 <template>
   <div>
-    <h2 v-if="msg.length > 1" class="text-white my-2 p-2 bg-danger text-center display-4">{{msg}}</h2>
-    <VerifyPin v-if="verifypin" v-on:verifyPin="verifyPin" />
-    <!-- <form class="border p-3" v-if="verifypin" v-on:submit.prevent="verifyPin">
-      <p class="text-center font-weight-bold">Enter Your 4 Digit Pin To Proceed</p>
-      <div class="form-group">
-        <input
-          required
-          class="form-control"
-          v-model="pin"
-          type="text"
-          placeholder="Enter Four Digit Pin"
-        />
+    <div v-if="mssg" class="alert alert-primary alert-dismissible mt-2 fade show" role="alert">
+      <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
+      <button type="button" @click="closeMsg" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div v-if="loading" class="text-center">
+      <Loader />
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <VerifyPin class="my-2" v-if="verifypin" v-on:verifyPin="verifyPin" />
       </div>
-      <button
-        type="submit"
-        :disabled="pin<1"
-        class="btn d-block btn-primary text-center mx-auto"
-      >Enter Pin</button>
-    </form>-->
+    </div>
+    <div v-if="msg" class="alert alert-danger alert-dismissible mt-2 fade show" role="alert">
+      <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
+      <button type="button" @click="closeMsg" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
     <form v-if="pay" action class="border p-2 my-2" v-on:submit.prevent>
-      <div class="fixed" v-if="loading">
-        <Loader />
-      </div>
       <div class="form-group">
         <label class="h6 font-weight-bold">Enter Amount To Save</label>
         <div class="input-group">
@@ -58,7 +56,7 @@
 </template>
 
 <script>
-import Loader from "../../../Auth/Loader";
+import Loader from "../Loader";
 import VerifyPin from "../../../Auth/VerifyPin";
 import Rave from "./TestRave";
 import axios from "axios";
@@ -74,6 +72,7 @@ export default {
       Mamount: "",
       loading: false,
       msg: "",
+      mssg: "",
       verifypin: false,
       pay: true,
       email: ""
@@ -92,6 +91,12 @@ export default {
     }
   },
   methods: {
+    closeMsg() {
+      this.msg = "";
+      this.mssg = "";
+      this.pay = true;
+      this.verifypin = false;
+    },
     SubmitMain() {
       this.verifypin = true;
       this.pay = false;
@@ -116,7 +121,6 @@ export default {
           }
         )
         .then(res => {
-          this.loading = false;
           if (res.data.status == true) {
             // Make the pay Request
             axios
@@ -136,26 +140,18 @@ export default {
               .then(res => {
                 this.loading = false;
                 if (res.data.status == true) {
-                  this.msg = res.data.message;
-                  setInterval(() => {
-                    this.msg = "";
-                  }, 1500);
+                  this.mssg = res.data.message;
                 } else {
+                  this.loading = false;
                   this.msg = res.data.message;
                 }
               })
               .catch(err => {
                 console.log(err);
               });
-
-            this.pay = true;
-            this.verifypin = false;
-            console.log(res.data);
           } else {
+            this.loading = false;
             this.msg = "Incorrect Pin";
-            setTimeout(() => {
-              this.msg = "";
-            }, 2000);
           }
         })
         .catch(err => {
@@ -171,27 +167,7 @@ export default {
 </script>
 
 <style scoped>
-.display-4 {
-  font-weight: 700;
-  font-size: 3.4rem;
-  background-color: red;
-  border-radius: 15px;
-}
-.fixed {
-  position: fixed;
-  top: 27%;
-  right: 33%;
-  z-index: 2;
-}
 @media (max-width: 767px) {
-  .fixed {
-    top: 30%;
-    right: 35%;
-  }
-  .display-4 {
-    font-weight: 600;
-    font-size: 1.9rem;
-  }
   .rave {
     padding-bottom: 3rem;
   }

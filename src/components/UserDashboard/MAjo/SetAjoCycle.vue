@@ -1,6 +1,9 @@
 <template>
-  <Structure page="mAjo / Break Ajo">
-    <div class="container">
+  <Structure page="mAjo / Set Ajo Cycle ">
+    <div class="container-fluid">
+      <div class="text-center" v-if="loading">
+        <Loader />
+      </div>
       <div
         v-if="mssg"
         class="alert text-center alert-primary alert-dismissible mt-2 fade show"
@@ -17,18 +20,11 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="text-center" v-if="loading">
-        <Loader />
-      </div>
       <div class="row no-gutters justify-content-center">
-        <form
-          v-if="form"
-          v-on:submit.prevent="breakSavings"
-          class="col-md-7 card shadow border bg-white p-4"
-        >
-          <div class="text-center text-gray-900 h4 py-4">Enter Amount To Break</div>
+        <form v-on:submit.prevent="SetCycle" class="col-md-7 border bg-white p-4">
+          <div class="text-center text-gray-900 h4 py-4">Create Your Ajo Cycle</div>
           <div class="form-group">
-            <label for="number">Amount</label>
+            <label>Amount</label>
             <input
               v-model="amount"
               type="number"
@@ -37,14 +33,20 @@
               class="form-control"
             />
           </div>
-          <button type="submit" class="btn btn-danger d-block mx-auto px-3 my-2">Break</button>
-        </form>
-        <div v-if="verified" class="col-md-6">
-          <Verify class="bg-white p-5" v-on:verifyPin="verifyPin" />
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-md-6">
+          <div class="form-group">
+            <label>Choose Cycle</label>
+            <select v-model="cycle" class="browser-default custom-select" required>
+              <option></option>
+              <option value="1">Daily</option>
+              <option value="7">Weekly</option>
+              <option value="30">Monthly</option>
+            </select>
+          </div>
+          <button
+            :disabled="loading"
+            type="submit"
+            class="btn d-block mx-auto btn-primary my-2"
+          >Create Cycle</button>
           <div
             v-if="msg"
             class="alert text-center alert-danger alert-dismissible mt-2 fade show"
@@ -61,7 +63,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </Structure>
@@ -69,50 +71,40 @@
 
 <script>
 import Structure from "../GUserLayouts/Structure";
-import Verify from "../../Auth/VerifyPin";
 import Loader from "../Index/Loader";
 import axios from "axios";
 export default {
-  name: "BreakAjoSavings",
+  name: "SetAjoCycle",
   components: {
     Structure,
-    Verify,
     Loader
   },
   data() {
     return {
       amount: "",
-      form: true,
-      verified: false,
-      loading: false,
-
+      cycle: "",
       token: "",
       trans_id: "",
-      user_id: "",
+      loading: false,
 
-      mssg: "",
-      msg: ""
+      msg: "",
+      mssg: ""
     };
   },
   methods: {
     closeMsg() {
       this.msg = "";
       this.mssg = "";
-      this.verified = false;
-      this.form = true;
     },
-    breakSavings() {
-      this.verified = true;
-      this.form = false;
-    },
-    verifyPin(pin) {
+    SetCycle() {
       this.loading = true;
       axios
         .post(
-          `https://momentum.ng/backend/api/users/verifypin`,
+          `https://momentum.ng/backend/api/ajo/setajo`,
           {
-            user_id: this.user_id,
-            pin: pin
+            trans_id: this.trans_id,
+            ajo_amount: parseInt(this.amount),
+            ajo_cycle: parseInt(this.cycle)
           },
           {
             headers: {
@@ -122,36 +114,12 @@ export default {
           }
         )
         .then(res => {
+          console.log(res.data);
+          this.loading = false;
           if (res.data.status == true) {
-            axios
-              .post(
-                `https://momentum.ng/backend/api/ajo/breakajo`,
-                {
-                  trans_id: this.trans_id,
-                  amount: this.amount
-                },
-                {
-                  headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${this.token}`
-                  }
-                }
-              )
-              .then(res => {
-                this.loading = false;
-                if (res.data.status == true) {
-                  this.mssg = res.data.message;
-                } else {
-                  this.msg = res.data.message;
-                }
-              })
-              .catch(err => {
-                console.log(err);
-              });
+            this.mssg = res.data.message;
           } else {
-            this.loading = false;
-            this.msg = "Incorrect Pin";
-            console.log(res.data);
+            this.msg = res.data.message;
           }
         })
         .catch(err => {
@@ -162,7 +130,6 @@ export default {
   created() {
     this.token = this.$session.get("jwt");
     this.trans_id = this.$session.get("user").trans_id;
-    this.user_id = this.$session.get("user")._id;
   }
 };
 </script>

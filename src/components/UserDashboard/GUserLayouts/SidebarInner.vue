@@ -79,6 +79,36 @@
       </div>
     </li>
 
+    <!-- mAjo -->
+    <li class="nav-item">
+      <a
+        class="nav-link collapsed"
+        data-toggle="collapse"
+        data-target="#collapseUtilities"
+        aria-expanded="true"
+        aria-controls="collapseUtilities"
+      >
+        <i class="fas fa-fw fa-folder"></i>
+        <span>mAjo</span>
+      </a>
+      <div
+        id="collapseUtilities"
+        class="collapse"
+        aria-labelledby="headingUtilities"
+        data-parent="#accordionSidebar"
+      >
+        <div class="bg-white py-2 collapse-inner rounded">
+          <router-link class="collapse-item" to="/registeranagent">Register an Agent</router-link>
+          <router-link class="collapse-item" to="/becomeanagent">Become an Agent</router-link>
+          <!-- <router-link class="collapse-item" to="/changeanagent">Change Agent</router-link> -->
+          <router-link class="collapse-item" to="/credituser">Credit Users</router-link>
+          <router-link class="collapse-item" to="/breakajosavings">Break Ajo Savings</router-link>
+          <router-link class="collapse-item" to="/SetAjoCycle">Set Ajo Cycle</router-link>
+          <router-link class="collapse-item" to="/AjoHistory">History</router-link>
+        </div>
+      </div>
+    </li>
+
     <!-- mSAVE -->
     <li class="nav-item">
       <a
@@ -131,32 +161,70 @@
       </div>
     </li>
 
-    <!-- mAjo -->
+    <!-- Cooming Soon  -->
+    <li class="nav-item">
+      <router-link class="route" to="/marketplace">
+        <a
+          class="nav-link"
+          data-toggle="collapse"
+          data-target="#"
+          aria-expanded
+          aria-controls="collapsePages"
+        >
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Market Place</span>
+        </a>
+      </router-link>
+    </li>
+    <li class="nav-item">
+      <router-link class="route" to="/hirepurchase">
+        <a
+          class="nav-link"
+          data-toggle="collapse"
+          data-target="#"
+          aria-expanded
+          aria-controls="collapsePages"
+        >
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Hire Purchase</span>
+        </a>
+      </router-link>
+    </li>
+    <li class="nav-item">
+      <router-link class="route" to="/loan">
+        <a
+          class="nav-link"
+          data-toggle="collapse"
+          data-target="#"
+          aria-expanded
+          aria-controls="collapsePages"
+        >
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Loan</span>
+        </a>
+      </router-link>
+    </li>
+
+    <!-- Learning Center -->
     <li class="nav-item">
       <a
         class="nav-link collapsed"
         data-toggle="collapse"
-        data-target="#collapseUtilities"
+        data-target="#learningCenter"
         aria-expanded="true"
         aria-controls="collapseUtilities"
       >
         <i class="fas fa-fw fa-folder"></i>
-        <span>mAjo</span>
+        <span>Learning Center</span>
       </a>
       <div
-        id="collapseUtilities"
+        id="learningCenter"
         class="collapse"
         aria-labelledby="headingUtilities"
         data-parent="#accordionSidebar"
       >
         <div class="bg-white py-2 collapse-inner rounded">
-          <router-link class="collapse-item" to="/registeranagent">Register an Agent</router-link>
-          <router-link class="collapse-item" to="/becomeanagent">Become an Agent</router-link>
-          <!-- <router-link class="collapse-item" to="/changeanagent">Change Agent</router-link> -->
-          <router-link class="collapse-item" to="/credituser">Credit Users</router-link>
-          <router-link class="collapse-item" to="/breakajosavings">Break Ajo Savings</router-link>
-          <router-link class="collapse-item" to="/AjoCycle">Ajo Cycle</router-link>
-          <router-link class="collapse-item" to="/AjoHistory">History</router-link>
+          <router-link class="collapse-item" to="/learningmaterials">Learning Materials</router-link>
         </div>
       </div>
     </li>
@@ -187,29 +255,6 @@
         </div>
       </div>
     </li>
-    <!-- Learning Center -->
-    <li class="nav-item">
-      <a
-        class="nav-link collapsed"
-        data-toggle="collapse"
-        data-target="#learningCenter"
-        aria-expanded="true"
-        aria-controls="collapseUtilities"
-      >
-        <i class="fas fa-fw fa-folder"></i>
-        <span>Learning Center</span>
-      </a>
-      <div
-        id="learningCenter"
-        class="collapse"
-        aria-labelledby="headingUtilities"
-        data-parent="#accordionSidebar"
-      >
-        <div class="bg-white py-2 collapse-inner rounded">
-          <router-link class="collapse-item" to="/learningmaterials">Learning Materials</router-link>
-        </div>
-      </div>
-    </li>
   </div>
 </template>
 
@@ -236,5 +281,8 @@ export default {
   .sidebar {
     width: 4.7rem !important;
   }
+}
+.route:hover {
+  text-decoration: none !important;
 }
 </style>

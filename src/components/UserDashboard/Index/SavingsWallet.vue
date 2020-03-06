@@ -7,13 +7,13 @@
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">mSave</div>
 
-            <div class="h5 mb-2 font-weight-bold text-gray-800">N{{savings_balance}}</div>
+            <div class="h5 mb-2 font-weight-bold text-gray-800">&#8358;{{savings_balance || 0}}</div>
 
             <div class="row no-gutters align-items-center">
               <div class="col-auto">
-                <div class="mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                <!-- <div class="mb-0 mr-3 font-weight-bold text-gray-800">50%</div> -->
               </div>
-              <div class="col">
+              <!-- <div class="col">
                 <div class="progress progress-sm mr-2">
                   <div
                     class="progress-bar bg-info"
@@ -24,11 +24,11 @@
                     aria-valuemax="100"
                   ></div>
                 </div>
-              </div>
+              </div>-->
             </div>
             <small class>
               <span class>Maturity Date:</span>
-              <span class="ml-2">{{msavematurity}}</span>
+              <span class="ml-2">{{msavematurity || "Not Set"}}</span>
             </small>
           </div>
           <div class="col-auto">
@@ -39,7 +39,7 @@
       <div class="card-footer m-0 p-1 d-flex justify-content-center">
         <small class>
           <span class>Target:</span>
-          <span class="h6 m-2 font-weight-bold">N{{msavetarget}}</span>
+          <span class="h6 m-2 font-weight-bold">N{{msavetarget || "ot Set"}}</span>
         </small>
       </div>
     </div>
@@ -72,17 +72,14 @@ export default {
       .then(res => {
         const result = res.data;
         // console.log(result);
-        if (result.status == false) {
-          this.msavematurity = "Not set";
-          this.msavetarget = "ot set";
-        } else {
+        if (result.status == true) {
           this.msavetarget = result.savings.target_amount;
           var maturity = new Date(result.savings.maturity);
-          var dayNum = `${maturity.getDay()}th`;
+          // var dayNum = `${maturity.getDay()}th`;
           var day = maturity.toString().slice(0, 15);
-          var month = maturity.getMonth() + 1;
-          var year = maturity.getFullYear();
-          console.log(`${dayNum}  ${month}  ${year}`);
+          // var month = maturity.getMonth() + 1;
+          // var year = maturity.getFullYear();
+          // console.log(`${dayNum}  ${month}  ${year}`);
           this.msavematurity = day;
         }
       })

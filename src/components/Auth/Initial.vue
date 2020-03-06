@@ -1,46 +1,55 @@
 <template>
-<body class="bg-gradient-primary">
-  <Nav />
-  <div class="container">
-    <!-- Outer Row -->
+<body>
+  <div class="container pt-4">
+    <div class="text-center h2 pt-5 pb-4">
+      <span>
+        <i class="fab fa-accusoft mr-2"></i>
+      </span>
+      <span class="font-weight-light">Momen</span>
+      <span class="font-weight-bold">tum</span>
+    </div>
+    <div v-if="loading" class="text-center pb-3">
+      <Loader />
+    </div>
     <div class="row justify-content-center">
-      <div class="col-xl-10 col-lg-12 col-md-9">
-        <div class="card o-hidden border-0 shadow-lg my-5">
-          <div class="card-body p-0">
-            <!-- Nested Row within Card Body -->
-            <div class="row">
-              <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
-              <div class="col-lg-6">
-                <h2
-                  v-if="msg.length > 1"
-                  class="text-primary pt-5 py-2 font-weight-bold text-center h2"
-                >PAssword Change Sussefully</h2>
-                <div class="p-4">
-                  <div class="text-center">
-                    <h1 class="h4 py-3 text-gray-900 mb-1">Choose a new password</h1>
-                    <p
-                      class="mb-4 mt-0"
-                    >Create a new password that is at least 6 characters long. A strong password has a combination of letters, digits and punctuation marks.</p>
-                  </div>
-                  <form class="user" v-on:submit.prevent="resetPassword">
-                    <div class="form-group">
-                      <input
-                        v-model="password"
-                        class="form-control form-control-user"
-                        type="password"
-                        required
-                        placeholder="New password"
-                      />
-                    </div>
-                    <button type="submit" class="btn btn-danger btn-user btn-block my-4">Continue</button>
-                  </form>
-                  <hr />
-                  <div class="text-center">
-                    <router-link to="/ForgotPassword" class="text-primary">Didn't get a code?</router-link>
-                    <span class="mx-2">||</span>
-                    <router-link to="/login" class="text-primary">Cancel</router-link>
-                  </div>
+      <div class="col-xl-6 col-lg-7 col-md-10">
+        <div class="card o-hidden py-0 border-0 shadow-lg">
+          <div class="card-body px-0 py-0">
+            <div class="bg-white py-3 px-3">
+              <div
+                style="font-size: 1.1rem; font-weight: 600"
+                class="text-center py-4"
+              >Choose a new password</div>
+              <p
+                class="mb-4 text-justify"
+              >Create a new password that is at least 6 characters long. A strong password has a combination of letters, digits and punctuation marks.</p>
+
+              <form class v-on:submit.prevent="resetPassword">
+                <div class="form-group">
+                  <input
+                    v-model="password"
+                    class="form-control p-4"
+                    type="password"
+                    required
+                    placeholder="New password"
+                  />
                 </div>
+                <div class="form-group">
+                  <input
+                    v-model="password2"
+                    class="form-control p-4"
+                    type="password"
+                    required
+                    placeholder="Confirm password"
+                  />
+                </div>
+                <button type="submit" class="btn btn-danger p-2 btn-block my-4">Continue</button>
+              </form>
+              <hr />
+              <div class="text-center">
+                <router-link to="/ForgotPassword" class="text-primary">Didn't get a code?</router-link>
+                <span class="mx-2">||</span>
+                <router-link to="/login" class="text-primary">Cancel</router-link>
               </div>
             </div>
           </div>
@@ -53,46 +62,51 @@
 
 <script>
 import axios from "axios";
-import Nav from "./Nav";
 export default {
   name: "Initial",
-  components: {
-    Nav
-  },
+  components: {},
   data() {
     return {
       msg: "",
-      password: ""
+      password: "",
+      password2: ""
     };
   },
   methods: {
     resetPassword() {
-      axios
-        .patch(
-          `http://localhost:3000/api/users/resetpassword/${sessionStorage.getItem(
-            "emailpassupdate"
-          )}`,
-          { password: this.password }
-        )
-        .then(res => {
-          if (
-            res.data.status == true &&
-            res.data.msg == "Password Updated Successfully"
-          ) {
-            this.msg = "Password Updated successfully";
-            setTimeout(() => {
-              this.$router.push("login");
-            }, 2000);
-          } else {
-            this.msg = "Email Does not exist";
-            setTimeout(() => {
-              this.msg = "";
-            }, 1500);
-          }
-        })
-        .catch(err => {
-          console.error(err);
-        });
+      if (this.password != this.password2) {
+        this.msg = "Unmatched Password";
+        setTimeout(() => {
+          this.msg = "";
+        }, 2500);
+      } else {
+        axios
+          .patch(
+            `http://localhost:3000/api/users/resetpassword/${sessionStorage.getItem(
+              "emailpassupdate"
+            )}`,
+            { password: this.password }
+          )
+          .then(res => {
+            if (
+              res.data.status == true &&
+              res.data.msg == "Password Updated Successfully"
+            ) {
+              this.msg = "Password Updated successfully";
+              setTimeout(() => {
+                this.$router.push("login");
+              }, 2000);
+            } else {
+              this.msg = "Email Does not exist";
+              setTimeout(() => {
+                this.msg = "";
+              }, 1500);
+            }
+          })
+          .catch(err => {
+            console.error(err);
+          });
+      }
     }
   }
 };
@@ -101,5 +115,7 @@ export default {
 <style scoped>
 body {
   min-height: 100vh;
+  color: black;
+  background: #0336798e;
 }
 </style>

@@ -1,36 +1,45 @@
 <template>
-  <div class="border bg-white col-md-6 py-auto">
-    <h2 v-if="msg.length>1" class="text-danger py-1 font-weight-normal text-center h2">{{msg}}</h2>
-    <div class="text-center text-gray-900 h3 py-3">Set A Pin</div>
-    <!-- Set Pin Form -->
-    <form v-on:submit.prevent="updatePin">
-      <div class="form-group">
-        <input
-          required
-          class="form-control"
-          v-model="pin1"
-          type="text"
-          placeholder="Enter Four Digit Pin"
-        />
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="border bg-white col-md-6 py-auto">
+          <h2 v-if="msg.length>1" class="text-danger py-1 font-weight-normal text-center h2">{{msg}}</h2>
+          <div class="text-center text-gray-900 h3 pb-2 pt-3">Set A Pin</div>
+          <!-- Set Pin Form -->
+          <form v-on:submit.prevent="updatePin">
+            <p>For Security Purpose, We Will be Requesting a Four Digit Pin On Every Transaction You Want To make on this Application</p>
+            <p class="text-center font-weight-bold">
+              Pls Keep Transaction Pin
+              Confidential
+            </p>
+            <div class="form-group">
+              <input
+                maxlength="4"
+                required
+                class="form-control"
+                v-model="pin1"
+                type="text"
+                placeholder="Set A Four Digit Pin"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                required
+                v-model="pin2"
+                class="form-control"
+                type="text"
+                placeholder=" Confirm Pin"
+              />
+            </div>
+            <button
+              type="submit"
+              v-bind:disabled="pin1.length > 4 || pin2.length > 4"
+              class="btn my-3 mt-4 btn-primary mx-auto"
+            >Set Pin</button>
+          </form>
+        </div>
       </div>
-      <div class="form-group">
-        <input required v-model="pin2" class="form-control" type="text" placeholder=" Confirm Pin" />
-      </div>
-
-      <button
-        type="submit"
-        v-bind:disabled="pin1.length > 4 || pin2.length > 4"
-        class="btn my-3 mt-4 btn-primary mx-auto"
-      >Set Pin</button>
-      <div class="text-center my-2">
-        Haven't registered. Register
-        <router-link class="text-primary mb-3" to="/register">Here</router-link>
-        <span class="mx-1">|</span>
-        <router-link to="/ForgotPassword" class="text-danger">
-          <i>Forgot Password?</i>
-        </router-link>
-      </div>
-    </form>
+    </div>
   </div>
 </template>
 <script>
@@ -67,8 +76,8 @@ export default {
               headers
             }
           )
-          .then(res => {
-            console.log(res.data);
+          .then(() => {
+            // console.log(res.data);
             console.log("Good");
             location.reload();
           })

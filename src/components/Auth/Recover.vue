@@ -1,41 +1,40 @@
 <template>
-<body class="bg-gradient-primary">
-  <Nav />
-  <div class="container">
-    <!-- Outer Row -->
+<body>
+  <div class="container pt-4">
+    <div class="text-center h2 pt-5 pb-4">
+      <span>
+        <i class="fab fa-accusoft mr-2"></i>
+      </span>
+      <span class="font-weight-light">Momen</span>
+      <span class="font-weight-bold">tum</span>
+    </div>
+    <div v-if="loading" class="text-center pb-3">
+      <Loader />
+    </div>
     <div class="row justify-content-center">
-      <div class="col-xl-10 col-lg-12 col-md-9">
-        <div class="card o-hidden border-0 shadow-lg my-5">
-          <div class="card-body p-0">
-            <!-- Nested Row within Card Body -->
-            <div class="row">
-              <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
-              <div class="col-lg-6">
-                <div class="p-5">
-                  <div class="text-center">
-                    <h1 class="h4 py-3 text-gray-900 mb-1">Enter Security Code</h1>
-                    <p
-                      class="mb-4 mt-0"
-                    >Please check your email for a message with your code. Your code is 6 digits long.</p>
-                  </div>
-                  <form class="user" v-on:submit.prevent="resetPassword">
-                    <div class="form-group">
-                      <input
-                        class="form-control form-control-user"
-                        type="text"
-                        required
-                        placeholder="Enter Code"
-                      />
-                    </div>
-                    <button type="submit" class="btn btn-danger btn-user btn-block my-4">Continue</button>
-                  </form>
-                  <hr />
-                  <div class="text-center">
-                    <router-link to="/ForgotPassword" class="text-primary">Didn't get a code?</router-link>
-                    <span class="mx-2">||</span>
-                    <router-link to="/login" class="text-primary">Cancel</router-link>
-                  </div>
+      <div class="col-xl-6 col-lg-7 col-md-10">
+        <div class="card o-hidden py-0 border-0 shadow-lg">
+          <div class="card-body px-0 py-0">
+            <div class="bg-white py-3 px-3">
+              <div
+                style="font-size: 1.1rem; font-weight: 600"
+                class="text-center py-4"
+              >Enter Security Code</div>
+              <p
+                class="mb-4 text-justify-center"
+              >Please check your email for a message with your code. Your code is 6 digits long.</p>
+
+              <form class="user" v-on:submit.prevent="resetPassword">
+                <div class="form-group">
+                  <input class="form-control p-4" type="text" required placeholder="Enter Code" />
                 </div>
+                <button type="submit" class="btn p-2 btn-danger btn-block my-4">Continue</button>
+              </form>
+              <hr />
+              <div class="text-center">
+                <router-link to="/ForgotPassword" class="text-primary">Didn't get a code?</router-link>
+                <span class="mx-2">||</span>
+                <router-link to="/login" class="text-primary">Cancel</router-link>
               </div>
             </div>
           </div>
@@ -46,12 +45,9 @@
 </body>
 </template>
 <script>
-import Nav from "./Nav";
 export default {
   name: "Recover",
-  components: {
-    Nav
-  },
+  components: {},
   data() {
     return {};
   },
@@ -69,5 +65,7 @@ export default {
 <style scoped>
 body {
   min-height: 100vh;
+  color: black;
+  background: #0336798e;
 }
 </style>

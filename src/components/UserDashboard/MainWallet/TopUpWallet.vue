@@ -97,25 +97,24 @@ export default {
     callback: function(response) {
       const token = this.$session.get("jwt");
       const trans_id = this.$session.get("user").trans_id;
-      const headers = {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-      };
       console.log(response);
       axios
         .post(
-          // TODO Api End Point To Top-up Main Wallet
-          ``,
+          `https://momentum.ng/backend/api/wallet/directbankpayment`,
           {
             trans_id: trans_id,
             amount: this.amount
           },
           {
-            headers
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`
+            }
           }
         )
         .then(res => {
           console.log(res.data);
+          alert(res.data.message);
         })
         .catch(err => {
           console.log(err);

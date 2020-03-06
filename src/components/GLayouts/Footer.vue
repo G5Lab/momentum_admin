@@ -3,7 +3,7 @@
   <footer class="sticky-footer py-4 mt-2 bg-white">
     <div class="container my-auto">
       <div class="copyright text-center my-auto">
-        <span>Copyright &copy; Mostalpha7 2020</span>
+        <span>Copyright &copy; G5Lab 2020</span>
       </div>
     </div>
   </footer>

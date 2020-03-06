@@ -16,7 +16,7 @@
             <div class="col-md-8">
               <div class="card shadow justify-content-center mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">- Create Savings Wallet</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">- Create Savings Plan</h6>
                 </div>
 
                 <div class="card-body">
@@ -96,7 +96,7 @@
 
 <script>
 import Structure from "../GUserLayouts/Structure";
-import Loader from "../../Auth/Loader";
+import Loader from "./Loader";
 import axios from "axios";
 
 export default {
@@ -140,7 +140,6 @@ export default {
           }
         )
         .then(res => {
-          console.log(res.data);
           if (res.data.status == false) {
             this.msg = "You are currently on a Plan";
             setTimeout(() => {
@@ -171,7 +170,6 @@ export default {
         }
       })
       .then(res => {
-        console.log(res.data);
         if (res.data.status == true) {
           this.msg = "";
           this.$router.push("TargetSavingsAction");

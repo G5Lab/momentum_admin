@@ -1,3 +1,9 @@
+// Cooming Soon
+import MarketPlace from "./components/UserDashboard/Cooming/MarketPlace"
+import HirePurchase from "./components/UserDashboard/Cooming/HirePurchase"
+import Loan from "./components/UserDashboard/Cooming/Loan"
+
+
 // Authentication
 import Login from './components/Auth/Login'
 import Register from './components/Auth/Register'
@@ -43,7 +49,7 @@ import BecomeAgent from "./components/UserDashboard/MAjo/BecomeAgent"
 import ChangeAgent from "./components/UserDashboard/MAjo/ChangeAgent"
 import BreakAjo from "./components/UserDashboard/MAjo/BreakAjoSavings"
 import CreditUsers from "./components/UserDashboard/MAjo/CreditUsers"
-import AjoCycle from "./components/UserDashboard/MAjo/AjoCycle"
+import SetAjoCycle from "./components/UserDashboard/MAjo/SetAjoCycle"
 import AjoHistory from "./components/UserDashboard/MAjo/AjoHistory"
 
 
@@ -55,9 +61,33 @@ import SentMessages from "./components/UserDashboard/Support/SentMessages"
 
 // Learning Center
 import LearningMaterials from "./components/UserDashboard/LearningCenter/LearningMaterials"
-
+import LearningMaterialsDetails from "./components/UserDashboard/LearningCenter/LearningMaterialsDetails"
 
 const routes = [
+
+    // Cooming Sooon 
+    {
+        path: '/marketplace',
+        component: MarketPlace,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/hirepurchase',
+        component: HirePurchase,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/loan',
+        component: Loan,
+        meta: {
+            requiresAuth: true
+        }
+    },
+
     // Authentication
     {
         path: '/',
@@ -297,8 +327,8 @@ const routes = [
         }
     },
     {
-        path: '/Ajocycle',
-        component: AjoCycle,
+        path: '/SetAjocycle',
+        component: SetAjoCycle,
         meta: {
             requiresAuth: true
         }
@@ -348,6 +378,14 @@ const routes = [
             requiresAuth: true
         }
     },
+    {
+        path: "/learningmaterialsdetails/:id",
+        component: LearningMaterialsDetails,
+        meta: {
+            requiresAuth: true
+        }
+
+    }
 ]
 
 

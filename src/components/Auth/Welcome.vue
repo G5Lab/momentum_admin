@@ -5,7 +5,6 @@
       <a class="navbar-brand" href="#">Momentum</a>
     </div>
   </nav>
-
   <div class="container-fluid">
     <div class="text-center">
       <h1 class="my-4 h2">Registration Successful</h1>
@@ -14,48 +13,59 @@
       <div class="row justify-content-between">
         <div class="border col-md-6">
           <div class="text-center text-gray-900 h3 pt-4">About The App</div>
-          <div
-            class="card-body pb-0"
-          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque mollitia pariatur earum impedit veniam. Voluptatum quas quasi illo error maxime, accusamus optio aliquam eveniet quidem, nesciunt pariatur magnam esse ea.</div>
-          <div
-            class="card-body"
-          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque mollitia pariatur earum impedit veniam. Voluptatum quas quasi illo error maxime, accusamus optio aliquam eveniet quidem, nesciunt pariatur magnam esse ea.</div>
+          <div class="card-body pb-0">
+            Welcome to Momentum, your number one source for Business offers. We're dedicated to providing you the very best of
+            <span
+              class="font-weight-bold text-primary"
+            >Investment, Savings and Ajo Plans.</span>
+          </div>
+          <div class="card-body py-2">
+            Founded in 2020 by
+            <span class="text-primary font-weight-bold">SuccessDrive,</span> has come a long way from its beginnings in
+            <span
+              class="text-primary font-weight-bold"
+            >Ikeja, Lagos.</span> When
+            <span class="font-weight-bold">Mr Akinlade</span> first started out his passion for Investments, Savings and Ajo, it drive clients interest to start their own business and come up with innovative business ideas. We now serve customers Nationwide and are thrilled that we're able to define our objective.
+          </div>
+          <div class="card-body pt-1">
+            We hope you enjoy our products as much as we enjoy offering them to you. If you have any questions or comments, please don't hesitate to contact us.
+            <br />
+            <br />Sincerely,
+            <br />
+            <span class="font-weight-bold text-primary">Momentum</span>
+          </div>
         </div>
         <div class="border bg-white col-md-6 py-auto">
           <h2 v-if="msg.length>1" class="text-danger py-1 font-weight-normal text-center h2">{{msg}}</h2>
-          <div class="text-center text-gray-900 h3 py-3">Set A Pin</div>
+          <div class="text-center text-gray-900 h3 py-3">Login</div>
           <!-- Set Pin Form -->
-          <form v-on:submit.prevent="updatePin">
+          <form class="user" v-on:submit.prevent="onLogin">
             <div class="form-group">
               <input
                 required
-                class="form-control"
-                v-model="pin1"
-                type="text"
-                placeholder="Enter Four Digit Pin"
+                v-model="login.loginid"
+                class="form-control form-control-user"
+                type
+                id="email"
+                placeholder="Email"
               />
             </div>
             <div class="form-group">
               <input
                 required
-                v-model="pin2"
-                class="form-control"
-                type="text"
-                placeholder=" Confirm Pin"
+                v-model="login.password"
+                class="form-control form-control-user"
+                type="password"
+                id="password"
+                placeholder="Password"
               />
             </div>
 
-            <button
-              type="submit"
-              v-bind:disabled="pin1.length > 4 || pin2.length > 4"
-              class="btn my-3 mt-4 btn-primary mx-auto"
-            >Set Pin</button>
-            <div class="text-center my-2">
-              Haven't registered. Register
-              <router-link class="text-primary mb-3" to="/register">Here</router-link>
-              <span class="mx-1">|</span>
-              <router-link to="/ForgotPassword" class="text-danger">
-                <i>Forgot Password?</i>
+            <button type="submit" class="btn btn-primary btn-user mb-4 px-5 d-block mx-auto">Login</button>
+            <hr />
+            <div class="text-center text-gray-850 my-2 mt-4 mb-0">
+              <router-link to="/" class="d-block mb-5 text-info">
+                <i>Go Back To Home</i>
               </router-link>
             </div>
           </form>
@@ -72,6 +82,10 @@ export default {
   name: "Welcome",
   data() {
     return {
+      login: {
+        loginid: "",
+        password: ""
+      },
       pin1: "",
       pin2: "",
       msg: ""
@@ -79,56 +93,43 @@ export default {
   },
   // https://momentum.ng/backend online
   methods: {
-    updatePin() {
-      if (
-        this.pin1 == this.pin2 &&
-        this.pin1.length == 4 &&
-        this.pin2.length == 4
-      ) {
-        axios
-          .post("https://momentum.ng/backend/api/users/updatepin", {
-            user_id: this.$session.get("user")._id,
-            pin: this.pin2
-          })
-          .then(res => {
-            console.log(res.data);
-            if (res.data.status == true) {
-              this.$session.start();
-              this.$session.set("jwt", res.data.token);
-              this.$session.set("trans_id", res.data.user.trans_id);
-              this.$session.set("user", res.data.user);
-              this.$session.set("wallet", res.data.wallet);
-              this.$router.push("userdashboard");
-            } else if (res.data.status == false) {
-              if (res.data.message == "Password Incorrect") {
-                this.msg = "Password Incorrect";
-                setTimeout(() => {
-                  this.msg = "";
-                }, 2000);
-              } else {
-                this.msg = "User Not Found";
-                setTimeout(() => {
-                  this.msg = "";
-                }, 2000);
-              }
+    onLogin() {
+      this.loading = true;
+      // https://momentum.ng/backend
+      axios
+        .post("https://momentum.ng/backend/api/users/login", this.login)
+        .then(res => {
+          if (res.data.status == true) {
+            this.$session.start();
+            this.$session.set("jwt", res.data.token);
+            this.$session.set("user", res.data.user);
+            this.$session.set("wallet", res.data.wallet);
+            this.loading = false;
+            setTimeout(() => {
+              sessionStorage.clear();
+              this.$router.push("login");
+            }, 900000);
+            this.$router.push("userdashboard");
+          } else if (res.data.status == false) {
+            this.loading = false;
+            if (res.data.message == "Password Incorrect") {
+              this.msg = "Password Incorrect";
+              setTimeout(() => {
+                this.msg = "";
+              }, 2500);
             } else {
-              console.log("Else occured");
+              this.msg = "User Not Found";
+              setTimeout(() => {
+                this.msg = "";
+              }, 2500);
             }
-          })
-          .catch(err => {
-            console.error(err);
-          });
-      } else if (this.pin1 != this.pin2) {
-        this.msg = "Pins do not match";
-        setTimeout(() => {
-          this.msg = "";
-        }, 2500);
-      } else {
-        this.msg = "Pin Should be 4 digit";
-        setTimeout(() => {
-          this.msg = "";
-        }, 2500);
-      }
+          } else {
+            console.log("Else occured");
+          }
+        })
+        .catch(err => {
+          console.error(err);
+        });
     }
   },
   created() {}

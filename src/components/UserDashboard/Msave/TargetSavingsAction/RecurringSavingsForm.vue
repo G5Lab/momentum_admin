@@ -59,7 +59,6 @@
         :callback="callback"
         :close="close"
         :metadata="meta"
-        :redirectUrl="redirect"
         :paymentPlan="plan"
         :customerFirstname="fname"
         :customerLastname="lname"
@@ -90,7 +89,7 @@ export default {
       plan: 2928,
       fname: "Adewale",
       lname: "Ayuba",
-      redirect: "/userdashboard",
+      // redirect: "/userdashboard",
       meta: [
         {
           metaname: "school",
@@ -130,23 +129,19 @@ export default {
   },
   methods: {
     callback: function(response) {
-      // const token = this.$session.get("jwt");
-      // const trans_id = this.$session.get("user").trans_id;
-
       if (
         response.data.tx.status == "successful" &&
         response.data.tx.chargeResponseCode === "00"
       ) {
-        const txRef = response.data.tx.txRef;
-        console.log(txRef);
+        // const txRef = response.data.tx.txRef;
 
         // handle success
         axios
           .post(
             `https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/verify`,
             {
-              txref: txRef,
-              SECKEY: this.authSecKey
+              txref: response.data.tx.txRef,
+              SECKEY: this.secretKey
             },
             {
               headers: {
@@ -154,73 +149,83 @@ export default {
               }
             }
           )
-          .then(res => {
-            console.log(res.data);
+          .then(response => {
+            console.log(response);
+            var authToken = response.data.data.card.card_tokens[0].embedtoken;
+
+            var freq = this.frequency;
+            var maturity = this.maturitydate;
+
+            var freqency = Math.floor(freq);
+
+            var today = new Date();
+            var date =
+              today.getFullYear() +
+              "-" +
+              (today.getMonth() + 1) +
+              "-" +
+              today.getDate();
+
+            var ms = new Date().getTime() + freqency * 86400000;
+            var nextn = new Date(ms);
+            var nextd =
+              nextn.getFullYear() +
+              "-" +
+              (nextn.getMonth() + 1) +
+              "-" +
+              nextn.getDate();
+            var nextdebit = new Date(nextd).toJSON().slice(0, 10);
+
+            var date1 = new Date(date);
+            var date2 = new Date(maturity);
+            var diffTime = Math.abs(date2 - date1);
+            var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            var deductcycle = diffDays / freqency;
+
+            var count = Math.floor(deductcycle);
+
+            var payLoad = {
+              trans_id: this.trans_id,
+              useremail: response.data.data.custemail,
+              amount: response.data.data.amount,
+              start_date: date,
+              maturity: maturity,
+              nextdebit: nextdebit,
+              frequency: freqency,
+              count: count,
+              auth_token: authToken
+            };
+            axios
+              .post(
+                "https://momentum.ng/backend/api/savings/startrecuring",
+                payLoad,
+                {
+                  headers: {
+                    Authorization: "Bearer " + this.token
+                  }
+                }
+              )
+              .then(res => {
+                console.log(res.data);
+                alert(res.data.message);
+              })
+              .catch(err => {
+                console.log(err);
+              });
           })
           .catch(err => {
             console.log(err);
           });
       }
-
-      /* axios
-        .post(
-          `https://momentum.ng/backend/api/savings/directbankpayment`,
-          {
-            trans_id: trans_id,
-            amount: this.amount
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`
-            }
-          }
-        )
-        .then(res => {
-          console.log(res.data);
-          console.log("Saved");
-        })
-        .catch(err => {
-          console.log(err);
-        }); */
     },
     close: function() {
       console.log("Payment closed");
-    },
-    RecureSavings() {
-      /* var today = new Date();
-      var date =
-        today.getFullYear() +
-        "-" +
-        (today.getMonth() + 1) +
-        "-" +
-        today.getDate();
-
-      var ms = new Date().getTime() + this.freqency * 86400000;
-      var nextn = new Date(ms);
-      var nextd =
-        nextn.getFullYear() +
-        "-" +
-        (nextn.getMonth() + 1) +
-        "-" +
-        nextn.getDate();
-      var nextdebit = new Date(nextd).toJSON().slice(0, 10);
-
-      var date1 = new Date(date);
-      var date2 = new Date(maturity);
-      var diffTime = Math.abs(date2 - date1);
-      var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      var deductcycle = diffDays / freqency;
-
-      var count = Math.floor(deductcycle); */
     }
   },
   created() {
     this.token = this.$session.get("jwt");
     this.email = this.$session.get("user").email;
     this.trans_id = this.$session.get("user").trans_id;
-    console.log("Workd");
-
     axios
       .post(
         `https://momentum.ng/backend/api/users/getpaykeys`,
@@ -235,10 +240,8 @@ export default {
         }
       )
       .then(res => {
-        if (res.status == true) {
-          console.log(res.data);
+        if (res.data.status == true) {
           this.secretKey = res.data.authSecKey;
-          console.log("Go");
         }
       })
       .catch(err => {
@@ -247,6 +250,7 @@ export default {
   }
 };
 </script>
+
 
 <style  scoped>
 .shop {

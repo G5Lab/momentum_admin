@@ -8,6 +8,7 @@
         v-model="pin"
         type="password"
         placeholder="Enter Four Digit Pin"
+        maxlength="4"
       />
     </div>
     <button

@@ -138,7 +138,6 @@
   </Structure>
 </template>
 
-
     
 <script>
 import axios from "axios";
@@ -150,7 +149,7 @@ import MainWallet from "./Index/MainWallet";
 import mAjo from "./Index/mAjo";
 import SavingsWallet from "./Index/SavingsWallet";
 import Invest from "./Index/Invest";
-import Loader from "../Auth/Loader";
+import Loader from "./Index/Loader";
 import SetPin from "./Index/SetPin";
 
 export default {
@@ -214,7 +213,6 @@ export default {
         if (res.data.status == false && res.data.message == "Not Set") {
           this.others.loading = false;
           this.others.setpinform = true;
-          console.log(res.data);
         } else {
           this.others.loading = false;
           this.others.mode = true;
@@ -232,8 +230,8 @@ export default {
 <style scoped>
 .fixed {
   position: fixed;
-  top: 27%;
-  right: 33%;
+  top: 30%;
+  right: 40%;
   /* z-index: 1; */
 }
 @media (max-width: 768px) {
