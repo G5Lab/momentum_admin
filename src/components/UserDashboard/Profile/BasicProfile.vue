@@ -10,8 +10,8 @@
           </div>
           <div class="col-md-6">
             <div class="profile-head text-center">
-              <h5>{{fullname}}</h5>
-              <h6>Free Member</h6>
+              <h5 class="h1 font-weight-normal text-capitalize">{{fullname}}</h5>
+              <h6 class="font-weight-normal h4">{{membershipStatus}}</h6>
               <p class="proile-rating">
                 RATING :
                 <span>{{rating}}</span>
@@ -47,7 +47,10 @@
               to="/updateprofile"
               class="profile-edit-btn d-none d-md-block"
               name="btnAddMore"
-            >Edit Profile</router-link>
+            >
+              Edit
+              <span class="d-none d-lg-inline">Profile</span>
+            </router-link>
           </div>
         </div>
         <div class="row d-flex justify-content-center">
@@ -59,14 +62,6 @@
                 role="tabpanel"
                 aria-labelledby="home-tab"
               >
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Transaction Id</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{{transId}}</p>
-                  </div>
-                </div>
                 <div class="row">
                   <div class="col-md-6">
                     <label>Name</label>
@@ -96,7 +91,32 @@
                     <label>Address</label>
                   </div>
                   <div class="col-md-6">
-                    <p>{{address}}</p>
+                    <p>{{address || "Not Set"}}</p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Date Of Birth</label>
+                  </div>
+                  <div class="col-md-6">
+                    <p>{{dob || "Not Set"}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Transaction Id</label>
+                  </div>
+                  <div class="col-md-6">
+                    <p>{{transId}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Referer</label>
+                  </div>
+                  <div class="col-md-6">
+                    <p>{{referer}}</p>
                   </div>
                 </div>
               </div>
@@ -111,10 +131,26 @@
                 </div>
                 <div class="row">
                   <div class="col-md-6">
-                    <label>Membership Status</label>
+                    <label>Rating</label>
                   </div>
                   <div class="col-md-6">
-                    <p>Basic Member</p>
+                    <p>{{rating}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Next Of Kin</label>
+                  </div>
+                  <div class="col-md-6">
+                    <p>{{nok || "Not Set"}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Next Of Kin No.</label>
+                  </div>
+                  <div class="col-md-6">
+                    <p>{{nok_number || "Not Set"}}</p>
                   </div>
                 </div>
                 <div class="row">
@@ -122,23 +158,24 @@
                     <label>Employment Name</label>
                   </div>
                   <div class="col-md-6">
-                    <p>Name</p>
+                    <p>{{EmployerName || "Not Set"}}</p>
                   </div>
                 </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Membership Status</label>
+                  </div>
+                  <div class="col-md-6">
+                    <p>{{membershipStatus}}</p>
+                  </div>
+                </div>
+
                 <div class="row">
                   <div class="col-md-6">
                     <label>Employer Address</label>
                   </div>
                   <div class="col-md-6">
-                    <p>Lekki , Lagos</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Referer</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{{referer}}</p>
+                    <p>{{EmployerAddress|| "Not Set"}}</p>
                   </div>
                 </div>
               </div>
@@ -167,7 +204,13 @@ export default {
       mobile: "",
       level: "",
       referer: "",
-      address: ""
+      address: "",
+      dob: "",
+      nok: "",
+      nok_number: "",
+      EmployerName: "",
+      EmployerAddress: "",
+      membershipStatus: ""
     };
   },
   created() {
@@ -178,6 +221,17 @@ export default {
     this.mobile = this.$session.get("user").mobile;
     this.level = this.$session.get("user").level;
     this.referer = this.$session.get("user").referer;
+    this.address = this.$session.get("user").address;
+    this.nok = this.$session.get("user").nok;
+    this.nok_number = this.$session.get("user").nok_number;
+    this.dob = new Date(this.$session.get("user").dob).toString().slice(0, 15);
+    if (this.level == 1) {
+      this.membershipStatus = "Basic Member";
+    } else if (this.level == 4) {
+      this.membershipStatus = "Premium Member";
+    } else {
+      this.membershipStatus = "Share-holder";
+    }
   }
 };
 </script>

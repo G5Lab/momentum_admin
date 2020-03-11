@@ -1,14 +1,15 @@
 <template>
-  <Structure page="Announcement">
-    <div class="container-fluid mb-4">
-      <div v-if="loading" class="my-2 text-center">
-        <Loader />
-      </div>
-      <div v-if="noAnnouncement">
-        <p class="text-center my-5 h1 display-4 text-danger">Announcement is Currently Empty</p>
-      </div>
+  <div class="card">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Announcements</h6>
+    </div>
+    <div class="card-body">
       <div class="row">
-        <div v-for="(announcement, index) in announcements" :key="index" class="first">
+        <div
+          v-for="(announcement, index) in announcements"
+          :key="index"
+          class="col-md-5 col-lg-5 col-xl-3 col-sm-6 m-2 first border"
+        >
           <div class="card-body">
             <p class="text-dark m-1">
               <span>Title:</span>
@@ -26,18 +27,14 @@
         </div>
       </div>
     </div>
-  </Structure>
+  </div>
 </template>
+
+
 <script>
 import axios from "axios";
-import Structure from "../GUserLayouts/Structure";
-import Loader from "../Msave/Loader";
 export default {
-  name: "Inbox",
-  components: {
-    Structure,
-    Loader
-  },
+  name: "IndexAnnouncement",
   filters: {
     formatDate: function(value) {
       var day = new Date(value);
@@ -72,8 +69,8 @@ export default {
         if (res.data.data.length == 0) {
           this.noAnnouncement = "You Do Not Have Any Inbox Yet";
         } else {
-          console.log(res.data);
-          this.announcements = res.data.data.slice().reverse();
+          var returns = res.data.data.slice(0, 4);
+          this.announcements = returns.slice().reverse();
         }
       })
       .catch(err => {
@@ -82,16 +79,10 @@ export default {
   }
 };
 </script>
-<style scoped>
-.first {
-  width: 20rem;
-  margin: 0.4rem;
-  border: 2px dotted rgba(31, 30, 30, 0.63);
 
-  padding: 0.1rem;
-  transition: all 0.5s;
-}
+
+<style scoped>
 .first:hover {
-  border: 2px solid rgba(31, 30, 30, 0.63);
+  border: 2px dotted rgba(31, 30, 30, 0.63) !important;
 }
 </style>

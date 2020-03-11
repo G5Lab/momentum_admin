@@ -80,7 +80,7 @@ export default {
         if (res.data.data.length == 0) {
           this.noHistory = "You Do Not Have Any History Yet";
         } else {
-          this.ajoHistory = res.data.data;
+          this.ajoHistory = res.data.data.slice().reverse();
           console.log(res.data.data);
         }
       })

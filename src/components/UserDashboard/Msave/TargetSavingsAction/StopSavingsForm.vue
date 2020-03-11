@@ -53,7 +53,7 @@ export default {
       user_id: "",
 
       msg: "",
-      mssg: "It has been Stoped",
+      mssg: "",
       loading: false
     };
   },

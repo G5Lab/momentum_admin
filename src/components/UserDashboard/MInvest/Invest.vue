@@ -94,12 +94,10 @@
 </template>
 <script>
 import Structure from "../GUserLayouts/Structure";
-import ViewInvestmentCard from "../GUserLayouts/ViewInvestmentCard";
 export default {
   name: "Invest",
   components: {
-    Structure,
-    ViewInvestmentCard
+    Structure
   }
 };
 </script>

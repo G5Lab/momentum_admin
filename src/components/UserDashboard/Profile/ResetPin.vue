@@ -3,12 +3,15 @@
     <div class="container-fluid">
       <div class="container">
         <div class="row justify-content-center">
+          <div v-if="loading" class="my-2 text-center">
+            <Loader />
+          </div>
           <form v-on:submit.prevent="updatePin" class="col-md-11 border bg-white py-2 px-3">
-            <Mssg :msg="msg" />
             <div class="text-center text-gray-900 h5 py-2">Reset Pin</div>
             <div class="form-group">
               <label for="number">Input Pin</label>
               <input
+                maxlength="4"
                 type="password"
                 required
                 placeholder="Include Pin"
@@ -20,6 +23,7 @@
               <label for="number">Confirm Pin</label>
               <input
                 type="password"
+                maxlength="4"
                 required
                 placeholder="Confirm Pin"
                 class="form-control"
@@ -30,18 +34,47 @@
               <label for="number">Enter Former Pin</label>
               <input
                 type="password"
+                maxlength="4"
                 required
                 placeholder="Former Pin"
                 class="form-control"
-                v-model="password"
+                v-model="formerPin"
               />
             </div>
-            <button
-              type="submit"
-              v-bind:disabled="pin1.length > 4 || pin2.length > 4"
-              class="btn btn-primary my-2"
-            >Reset</button>
+            <button :disabled="loading" type="submit" class="btn btn-primary my-2">Reset</button>
           </form>
+        </div>
+        <div
+          v-if="mssg"
+          class="alert text-center alert-primary alert-dismissible mt-2 fade show"
+          role="alert"
+        >
+          <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
+          <button
+            type="button"
+            @click="closeMsg"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div
+          v-if="msg"
+          class="alert text-center alert-danger alert-dismissible mt-2 fade show"
+          role="alert"
+        >
+          <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
+          <button
+            type="button"
+            @click="closeMsg"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
       </div>
     </div>
@@ -50,67 +83,120 @@
 
 
 <script>
+import Loader from "../Msave/Loader";
 import Structure from "../GUserLayouts/Structure";
-import Mssg from "../GUserLayouts/Mssg";
 import axios from "axios";
 export default {
   name: "ResetPin",
   components: {
     Structure,
-    Mssg
+    Loader
   },
   data() {
     return {
       pin1: "",
       pin2: "",
-      password: "",
-      msg: ""
+      formerPin: "",
+
+      token: "",
+      trans_id: "",
+      user_id: "",
+
+      msg: "",
+      mssg: "",
+      loading: false
     };
   },
   methods: {
+    closeMsg() {
+      this.msg = "";
+      this.mssg = "";
+      this.pin1 = "";
+      this.pin2 = "";
+      this.formerPin = "";
+    },
     updatePin() {
-      const token = this.$session.get("jwt");
-      const headers = {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-      };
-      if (
-        this.pin1 == this.pin2 &&
-        this.pin1.length == 4 &&
-        this.pin2.length == 4
-      ) {
+      if (this.pin1 == this.pin2) {
+        this.loading = true;
         axios
-          .patch(
-            // TODO Api endpoint
-            ``,
+          .post(
+            `https://momentum.ng/backend/api/users/verifypin`,
             {
-              user_id: this.$session.get("user")._id,
-              pin: this.pin2
+              user_id: this.user_id,
+              pin: this.formerPin
             },
             {
-              headers
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${this.token}`
+              }
             }
           )
           .then(res => {
-            console.log(res.data);
-            console.log("Good");
-            location.reload();
+            if (res.data.status == true) {
+              axios
+                .post(
+                  `https://momentum.ng/backend/api/users/resetpin`,
+                  {
+                    user_id: this.user_id
+                  },
+                  {
+                    headers: {
+                      "Content-Type": "application/json",
+                      Authorization: `Bearer ${this.token}`
+                    }
+                  }
+                )
+                .then(res => {
+                  if (res.data.status == true) {
+                    axios
+                      .post(
+                        `https://momentum.ng/backend/api/users/updatepin`,
+                        {
+                          user_id: this.user_id,
+                          pin: this.pin1
+                        },
+                        {
+                          headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${this.token}`
+                          }
+                        }
+                      )
+                      .then(res => {
+                        this.loading = false;
+                        this.mssg = res.data.message;
+                      })
+                      .catch(err => {
+                        console.log(err);
+                      });
+                  } else {
+                    this.loading = false;
+                    this.msg = res.data.message;
+                  }
+                })
+                .catch(err => {
+                  console.log(err);
+                });
+            } else {
+              this.loading = false;
+              this.msg = "Former Pin Incorrect";
+            }
           })
           .catch(err => {
             console.log(err);
           });
       } else if (this.pin1 != this.pin2) {
         this.msg = "Pins do not match";
-        setTimeout(() => {
-          this.msg = "";
-        }, 2500);
       } else {
         this.msg = "Pin Should be 4 digit";
-        setTimeout(() => {
-          this.msg = "";
-        }, 2500);
       }
     }
+  },
+  created() {
+    this.token = this.$session.get("jwt");
+    this.trans_id = this.$session.get("user").trans_id;
+    this.user_id = this.$session.get("user")._id;
   }
 };
 </script>

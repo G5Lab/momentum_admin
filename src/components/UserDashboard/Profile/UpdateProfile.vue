@@ -1,38 +1,23 @@
 <template>
-  <Structure page="Update Profile">
+  <Structure page="Complete Profile">
     <div class="container-fluid">
       <div class="container">
         <div class="row justify-content-center">
-          <form v-on:submit.prevent="updateProfile" class="border col-md-11 bg-white p-3">
-            <div class="text-center text-gray-900 h5 mx-0 p-0 py-2">Update your Profile</div>
+          <div v-if="loading" class="my-2 text-center">
+            <Loader />
+          </div>
+          <form v-on:submit.prevent="completeProfile" class="border col-md-11 bg-white p-3">
+            <div class="text-center text-gray-900 h5 mx-0 p-0 py-2">Complete Your Profile</div>
             <div class="form-group">
-              <label>Full Name</label>
+              <label>Residential Address</label>
               <input
-                v-model="fullName"
+                v-model="address"
                 type="text"
                 class="form-control"
+                id="text"
+                placeholder="Address"
+                name="address"
                 required
-                placeholder="Full Name"
-              />
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input
-                v-model="email"
-                type="email"
-                required
-                placeholder="example@gmail.com"
-                class="form-control"
-              />
-            </div>
-            <div class="form-group">
-              <label>Phone</label>
-              <input
-                v-model="mobile"
-                type="tel"
-                required
-                class="form-control"
-                placeholder="Telephone Number"
               />
             </div>
             <div class="form-group">
@@ -45,31 +30,27 @@
                 placeholder="Date Of Birth"
               />
             </div>
-            <div class="form-row">
-              <div class="form-group col-md-5">
-                <label>State</label>
-                <input v-model="state" type="text" required placeholder class="form-control" />
-              </div>
-              <div class="form-group col-md-5">
-                <label>Lga_residence</label>
-                <input type="text" required class="form-control" v-model="lgaResidence" />
-              </div>
-              <div class="form-group col-md-2">
-                <label>Zip</label>
-                <input type="number" required class="form-control" v-model="zip" />
-              </div>
-            </div>
             <div class="form-group">
-              <label>Address</label>
+              <label>Next Of Kin</label>
               <input
-                v-model="address"
                 type="text"
+                required
+                v-model="nextOfKin"
                 class="form-control"
-                id="text"
-                placeholder="Address"
-                name="address"
+                placeholder="Enter the name of your Next Of Kin"
               />
             </div>
+            <div class="form-group">
+              <label>Next Of Kin Mobile</label>
+              <input
+                type="number"
+                required
+                v-model="nextOfKinNumber"
+                class="form-control"
+                placeholder="Enter Next Of Kin mobile number"
+              />
+            </div>
+
             <div class="form-group">
               <label>Enter Password</label>
               <input
@@ -82,8 +63,44 @@
                 name="password"
               />
             </div>
-            <button type="submit" class="btn btn-primary px-4 my-3">Update Profile</button>
+            <button
+              type="submit"
+              :disabled="loading"
+              class="btn btn-primary px-4 my-3"
+            >Complete Profile</button>
           </form>
+        </div>
+        <div
+          v-if="mssg"
+          class="alert text-center alert-primary alert-dismissible mt-2 fade show"
+          role="alert"
+        >
+          <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
+          <button
+            type="button"
+            @click="closeMsg"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div
+          v-if="msg"
+          class="alert text-center alert-danger alert-dismissible mt-2 fade show"
+          role="alert"
+        >
+          <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
+          <button
+            type="button"
+            @click="closeMsg"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
       </div>
     </div>
@@ -93,41 +110,97 @@
 
 <script>
 import Structure from "../GUserLayouts/Structure";
+import Loader from "../Msave/Loader";
 import axios from "axios";
 export default {
   name: "UpdateProfile",
   components: {
-    Structure
+    Structure,
+    Loader
   },
   data() {
     return {
-      fullName: "",
-      email: "",
-      mobile: "",
+      nextOfKinNumber: "",
+      nextOfKin: "",
       dataOfBirth: "",
-      state: "",
-      lgaResidence: "",
-      zip: "",
       address: "",
-      password: ""
+      password: "",
+
+      token: "",
+      trans_id: "",
+      user_id: "",
+
+      msg: "",
+      mssg: "",
+      loading: false
     };
   },
   methods: {
-    updateProfile() {
-      const token = this.$session.get("jwt");
-      const headers = {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-      };
-      axios.post(
-        // TODO: momentum Update Profile Api EndPoint
-        ``,
-        {
-          headers
-        },
-        {}
-      );
+    closeMsg() {
+      this.msg = "";
+      this.mssg = "";
+      this.nextOfKinNumber = "";
+      this.nextOfKin = "";
+      this.dataOfBirth = "";
+      this.address = "";
+      this.password = "";
+    },
+    completeProfile() {
+      this.loading = true;
+      axios
+        .post(
+          `https://momentum.ng/backend/api/users/verifypassword`,
+          {
+            user_id: this.user_id,
+            password: this.password
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${this.token}`
+            }
+          }
+        )
+        .then(res => {
+          if (res.data.status == true) {
+            axios
+              .post(
+                `https://momentum.ng/backend/api/users/updateprofile`,
+                {
+                  user_id: this.user_id,
+                  address: this.address,
+                  dob: this.dataOfBirth,
+                  nok: this.nextOfKin,
+                  nok_number: this.nextOfKinNumber
+                },
+                {
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${this.token}`
+                  }
+                }
+              )
+              .then(res => {
+                this.loading = false;
+                this.mssg = res.data.message;
+              })
+              .catch(err => {
+                console.log(err);
+              });
+          } else {
+            this.loading = false;
+            this.msg = "Wrong Password";
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
+  },
+  created() {
+    this.token = this.$session.get("jwt");
+    this.trans_id = this.$session.get("user").trans_id;
+    this.user_id = this.$session.get("user")._id;
   }
 };
 </script>

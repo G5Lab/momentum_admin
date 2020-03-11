@@ -77,9 +77,6 @@ export default {
           var maturity = new Date(result.savings.maturity);
           // var dayNum = `${maturity.getDay()}th`;
           var day = maturity.toString().slice(0, 15);
-          // var month = maturity.getMonth() + 1;
-          // var year = maturity.getFullYear();
-          // console.log(`${dayNum}  ${month}  ${year}`);
           this.msavematurity = day;
         }
       })

@@ -88,8 +88,9 @@ export default {
         if (res.data.data.length == 0) {
           this.onMaterials = "You Do Not Have Any History Yet";
         } else {
-          this.materials = res.data.data[this.$route.params.id];
-          console.log(res.data.data[this.$route.params.id]);
+          this.materials = res.data.data.slice().reverse()[
+            this.$route.params.id
+          ];
         }
       })
       .catch(err => {

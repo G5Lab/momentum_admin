@@ -24,115 +24,15 @@
         <!-- Second -->
         <div class="row">
           <!-- Trending Investment -->
-          <div class="col-xl-12 col-lg-12">
-            <div class="card shadow mb-4">
-              <!-- Card Header - Dropdown -->
-              <div class="card-header py-3">
-                <h6 class="m-0 mb-2 h5 font-weight-bold text-primary">- Trending Investments</h6>
-                <div class="container-fluid mb-1 small text-muted">
-                  You Can Invest In Any Of The Investment below
-                  <span
-                    class="bg-dark p-1 text-white"
-                  >Note</span>
-                  You can also Fill The Upload Investment Form If You Need Investors for your business
-                </div>
-              </div>
-              <div class="container-fluid card-body">
-                <div class="row">
-                  <div class="col-xl-3 col-md-6 mb-4">
-                    <router-link class="link" to="/invest">
-                      <InvestmentCard
-                        name="Jokodn doop"
-                        interest="10%"
-                        location="Lagos"
-                        amount="10000"
-                        state="Selling"
-                      />
-                    </router-link>
-                  </div>
-                  <div class="col-xl-3 col-md-6 mb-4">
-                    <router-link class="link" to="/invest">
-                      <InvestmentCard
-                        name="Jokodn doop"
-                        interest="10%"
-                        location="Lagos"
-                        amount="10000"
-                        state="Selling"
-                      />
-                    </router-link>
-                  </div>
-                  <div class="col-xl-3 col-md-6 mb-4">
-                    <router-link class="link" to="/invest">
-                      <InvestmentCard
-                        name="Jokodn doop"
-                        interest="10%"
-                        location="Lagos"
-                        amount="10000"
-                        state="Selling"
-                      />
-                    </router-link>
-                  </div>
-                  <div class="col-xl-3 col-md-6 mb-4">
-                    <router-link class="link" to="/invest">
-                      <InvestmentCard
-                        name="Jokodn doop"
-                        interest="10%"
-                        location="Lagos"
-                        amount="10000"
-                        state="Selling"
-                      />
-                    </router-link>
-                  </div>
-                  <div class="col-xl-3 col-md-6 mb-4">
-                    <router-link class="link" to="/invest">
-                      <InvestmentCard
-                        name="Jokodn doop"
-                        interest="10%"
-                        location="Lagos"
-                        amount="10000"
-                        state="Selling"
-                      />
-                    </router-link>
-                  </div>
-                  <div class="col-xl-3 col-md-6 mb-4">
-                    <router-link class="link" to="/invest">
-                      <InvestmentCard
-                        name="Jokodn doop"
-                        interest="10%"
-                        location="Lagos"
-                        amount="10000"
-                        state="Selling"
-                      />
-                    </router-link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <IndexTrendingInvestment />
         </div>
         <!-- Announcement -->
-        <div class="card">
-          <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Announcements</h6>
-          </div>
-          <div class="row no-gutters">
-            <div class="col-xl-3 col-md-6 mb-4">
-              <AnnouncementCard />
-            </div>
-            <div class="col-xl-3 d-none d-md-block col-md-6 mb-4">
-              <AnnouncementCard />
-            </div>
-            <div class="col-xl-3 d-none d-md-block col-md-6 mb-4">
-              <AnnouncementCard />
-            </div>
-            <div class="col-xl-3 col-md-6 mb-4">
-              <AnnouncementCard />
-            </div>
-          </div>
+        <div>
+          <IndexAnnouncement />
         </div>
       </div>
     </div>
-    <div class="fixed" v-if="others.loading">
+    <div class="text-center mt-5" v-if="others.loading">
       <Loader />
     </div>
   </Structure>
@@ -142,13 +42,15 @@
 <script>
 import axios from "axios";
 import Structure from "./GUserLayouts/Structure";
-import InvestmentCard from "./GUserLayouts/ViewInvestmentCard";
-import AnnouncementCard from "./GUserLayouts/AnnouncementCard";
 
 import MainWallet from "./Index/MainWallet";
 import mAjo from "./Index/mAjo";
 import SavingsWallet from "./Index/SavingsWallet";
 import Invest from "./Index/Invest";
+
+import IndexTrendingInvestment from "./Index/IndexTrendingInvestment";
+import IndexAnnouncement from "./Index/IndexAnnouncement";
+
 import Loader from "./Index/Loader";
 import SetPin from "./Index/SetPin";
 
@@ -156,8 +58,8 @@ export default {
   name: "index",
   components: {
     Structure,
-    InvestmentCard,
-    AnnouncementCard,
+    IndexTrendingInvestment,
+    IndexAnnouncement,
     mAjo,
     MainWallet,
     SavingsWallet,
@@ -228,20 +130,9 @@ export default {
 
 
 <style scoped>
-.fixed {
-  position: fixed;
-  top: 30%;
-  right: 40%;
-  /* z-index: 1; */
-}
 @media (max-width: 768px) {
   .container-fluid {
     padding-left: 0.7rem;
-  }
-
-  .fixed {
-    top: 30%;
-    right: 13%;
   }
 }
 .first {

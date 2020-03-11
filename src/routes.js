@@ -58,6 +58,8 @@ import CreateTicket from "./components/UserDashboard/Support/CreateTicket"
 import Inbox from "./components/UserDashboard/Support/Inbox"
 import Announcement from "./components/UserDashboard/Support/Announcement"
 import SentMessages from "./components/UserDashboard/Support/SentMessages"
+import InboxDetails from "./components/UserDashboard/Support/InboxDetails"
+import AnnouncementDetails from "./components/UserDashboard/Support/AnnouncementDetails"
 
 // Learning Center
 import LearningMaterials from "./components/UserDashboard/LearningCenter/LearningMaterials"
@@ -357,8 +359,22 @@ const routes = [
         }
     },
     {
+        path: "/inboxDetails/:id",
+        component: InboxDetails,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
         path: "/announcement",
         component: Announcement,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: "/announcementDetails/:id",
+        component: AnnouncementDetails,
         meta: {
             requiresAuth: true
         }

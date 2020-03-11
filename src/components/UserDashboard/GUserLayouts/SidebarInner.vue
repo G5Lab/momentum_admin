@@ -42,7 +42,7 @@
         <div class="bg-white py-2 collapse-inner rounded">
           <router-link class="collapse-item" to="/basicprofile">Basic Profile</router-link>
           <router-link class="collapse-item" to="/upgrademembership">Upgrade Membership</router-link>
-          <router-link class="collapse-item" to="/updateprofile">Update Profile</router-link>
+          <router-link class="collapse-item" to="/updateprofile">Complete Profile</router-link>
           <router-link class="collapse-item" to="/bkinfo">Enter Bank Info</router-link>
           <router-link class="collapse-item" to="/kyc">Complete KYC</router-link>
           <router-link class="collapse-item" to="/ChangePassword">Change Password</router-link>

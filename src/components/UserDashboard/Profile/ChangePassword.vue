@@ -3,8 +3,10 @@
     <div class="container-fluid">
       <div class="container">
         <div class="row justify-content-center my-3">
+          <div v-if="loading" class="my-2 text-center">
+            <Loader />
+          </div>
           <form v-on:submit.prevent="ChangePassword" class="col-md-11 border bg-white py-2 px-3">
-            <Mssg :msg="msg" />
             <div class="text-center text-gray-900 h5 py-2">Change Password</div>
             <div class="form-group">
               <label for="number">New Password</label>
@@ -37,8 +39,40 @@
                 class="form-control"
               />
             </div>
-            <button type="submit" class="btn btn-primary my-2">Save</button>
+            <button :disabled="loading" type="submit" class="btn btn-primary my-2">Change</button>
           </form>
+        </div>
+        <div
+          v-if="mssg"
+          class="alert text-center alert-primary alert-dismissible mt-2 fade show"
+          role="alert"
+        >
+          <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
+          <button
+            type="button"
+            @click="closeMsg"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div
+          v-if="msg"
+          class="alert text-center alert-danger alert-dismissible mt-2 fade show"
+          role="alert"
+        >
+          <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
+          <button
+            type="button"
+            @click="closeMsg"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
       </div>
     </div>
@@ -48,56 +82,74 @@
 <script>
 import axios from "axios";
 import Structure from "../GUserLayouts/Structure";
-import Mssg from "../GUserLayouts/Mssg";
+import Loader from "../Msave/Loader";
 export default {
   name: "ChangePassword",
   components: {
     Structure,
-    Mssg
+    Loader
   },
   data() {
     return {
       newpassword1: "",
       newpassword2: "",
       oldPassword: "",
-      msg: ""
+
+      token: "",
+      trans_id: "",
+      user_id: "",
+
+      msg: "",
+      mssg: "",
+      loading: false
     };
   },
   methods: {
+    closeMsg() {
+      this.msg = "";
+      this.mssg = "";
+      this.newpassword1 = "";
+      this.newpassword2 = "";
+      this.oldPassword = "";
+    },
     ChangePassword() {
-      const token = this.$session.get("jwt");
-      const headers = {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-      };
-
       if (this.newpassword1 != this.newpassword2) {
-        console.log("Passwords Do Not Match");
         this.msg = "Passwords Do Not Match";
-        setTimeout(() => {
-          this.msg = "";
-        }, 2500);
       } else {
+        this.loading = true;
         axios
           .post(
-            // TODO: momentum Change Password Api EndPoint
-            ``,
+            `https://momentum.ng/backend/api/users/updatepassword`,
             {
-              headers
+              user_id: this.user_id,
+              oldpassword: this.oldPassword,
+              newpassword: this.newpassword2
             },
             {
-              newpassword: this.newpassword2,
-              oldPassword: this.oldPassword
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${this.token}`
+              }
             }
           )
           .then(res => {
-            console.log(res.data);
+            this.loading = false;
+            if (res.data.status == true) {
+              this.mssg = res.data.message;
+            } else {
+              this.msg = res.data.message;
+            }
           })
           .catch(err => {
             console.log(err);
           });
       }
     }
+  },
+  created() {
+    this.token = this.$session.get("jwt");
+    this.trans_id = this.$session.get("user").trans_id;
+    this.user_id = this.$session.get("user")._id;
   }
 };
 </script>

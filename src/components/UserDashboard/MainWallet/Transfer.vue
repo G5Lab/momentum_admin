@@ -101,14 +101,14 @@ export default {
       amount: "",
       form: true,
       verified: false,
-      loading: false,
 
       token: "",
       trans_id: "",
       user_id: "",
 
       mssg: "",
-      msg: ""
+      msg: "",
+      loading: false
     };
   },
   methods: {
