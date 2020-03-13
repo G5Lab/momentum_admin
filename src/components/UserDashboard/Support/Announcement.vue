@@ -7,7 +7,7 @@
       <div v-if="noAnnouncement">
         <p class="text-center my-5 h1 display-4 text-danger">Announcement is Currently Empty</p>
       </div>
-      <div class="row">
+      <div class="row px-2">
         <div v-for="(announcement, index) in announcements" :key="index" class="first">
           <div class="card-body">
             <p class="text-dark m-1">
@@ -28,6 +28,8 @@
     </div>
   </Structure>
 </template>
+
+
 <script>
 import axios from "axios";
 import Structure from "../GUserLayouts/Structure";
@@ -72,7 +74,6 @@ export default {
         if (res.data.data.length == 0) {
           this.noAnnouncement = "You Do Not Have Any Inbox Yet";
         } else {
-          console.log(res.data);
           this.announcements = res.data.data.slice().reverse();
         }
       })
@@ -82,6 +83,8 @@ export default {
   }
 };
 </script>
+
+
 <style scoped>
 .first {
   width: 20rem;

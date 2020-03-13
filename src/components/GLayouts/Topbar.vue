@@ -1,5 +1,12 @@
 <template>
-  <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+  <nav class="navbar navbar-expand navbar-light static-top bg-white topbar mb-4 shadow">
+    <button
+      id="sidebarToggleTop"
+      @click="$emit('hideSidebar')"
+      class="btn d-md-none btn-link rounded-circle mr-3"
+    >
+      <i class="text-center fa fa-bars"></i>
+    </button>
     <ul class="navbar-nav ml-auto">
       <div class="topbar-divider d-none d-sm-block"></div>
       <!-- Nav Item - User Information -->
@@ -20,7 +27,7 @@
         </a>
         <!-- Dropdown - User Information -->
         <div
-          class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+          class="dropdown-menu dropdown-menu-right mt-3 shadow animated--grow-in"
           aria-labelledby="userDropdown"
         >
           <routerLink class="dropdown-item" to="/basicprofile">
@@ -46,6 +53,7 @@ export default {
       name: ""
     };
   },
+  methods: {},
   created() {
     this.name = this.$session.get("user").fullname;
   }

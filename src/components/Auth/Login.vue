@@ -1,12 +1,16 @@
 <template>
 <body>
   <div class="container pt-4">
-    <div class="text-center text-white h2 pt-5 pb-4">
-      <span>
-        <i class="fab fa-accusoft mr-2"></i>
-      </span>
-      <span class="font-weight-light">Momen</span>
-      <span class="font-weight-bold text-gray-900">tum</span>
+    <div class="text-center d-flex justify-content-center text-white h2 pt-4 pb-2">
+      <div>
+        <img src="img/favi.png" width="80rem" alt />
+      </div>
+      <div class="mt-2">
+        <p class="mt-3 d-inline-block">
+          <span class="font-weight-light i">omen</span>
+          <span class="font-weight-bold text-gray-900">tum</span>
+        </p>
+      </div>
     </div>
     <div v-if="loading" class="text-center pb-3">
       <Loader />
@@ -66,7 +70,7 @@
                 </div>
                 <hr />
                 <div class="text-center text-gray-850 my-2 mt-4 mb-0">
-                  Don't have a Momentum account?
+                  Don't have an account?
                   <router-link class="text-primary mb-3" to="/register">Sign up</router-link>
                   <br />
                   <router-link to="/ForgotPassword" class="d-block mb-4 text-danger">

@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 import VueSession from 'vue-session'
 
 import axios from 'axios'
-import routes from './routes'
+import routes from './routes/routes'
 
 Vue.use(VueSession)
 Window.axios = axios

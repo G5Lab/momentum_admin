@@ -1,9 +1,9 @@
 <template>
   <Structure page="mAjo / Set Ajo Cycle ">
+    <div class="text-center" v-if="loading">
+      <Loader />
+    </div>
     <div class="container-fluid">
-      <div class="text-center" v-if="loading">
-        <Loader />
-      </div>
       <div
         v-if="mssg"
         class="alert text-center alert-primary alert-dismissible mt-2 fade show"

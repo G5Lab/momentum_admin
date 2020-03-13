@@ -1,6 +1,6 @@
 <template>
   <Structure page="mAjo / Register agent ">
-    <div class="container">
+    <div class="container-fluid mb-4">
       <div
         v-if="mssg"
         class="alert text-center alert-primary alert-dismissible mt-2 fade show"
@@ -37,7 +37,10 @@
               class="form-control"
             />
           </div>
-          <button type="submit" class="btn btn-primary mt-3 btn-block text-center mb-3">Register</button>
+          <button
+            type="submit"
+            class="btn btn-primary mt-3 mx-auto d-block px-4 text-center mb-3"
+          >Register</button>
         </form>
         <div v-if="verified" class="col-md-6">
           <Verify class="bg-white p-5" v-on:verifyPin="verifyPin" />
@@ -66,7 +69,6 @@
     </div>
   </Structure>
 </template>
-
 
 
 <script>

@@ -1,22 +1,21 @@
 <template>
-  <Structure page="Inbox Details">
-    <div v-if="loading" class="row justify-content-center">
-      <div class="text-center">
-        <Loader />
-      </div>
+  <Structure page="Announcement  Details">
+    <div v-if="loading" class="text-center">
+      <Loader />
     </div>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div v-if="arrive" class="m-0 p-0 col-md">
           <div class="row no-gutters">
             <div class="col-md-10 m-0">
               <div class="card-header text-justify-start">
                 <p>
-                  <span class="d-block font-weight-bold text-primary">Title: {{announcement.title}}</span>
-                  <span class="d-block mb-3 text-gray-900 h5">
-                    <span class="font-weight-bold">Overview:</span>
-                    {{announcement.overview}}
+                  <span class="d-block text-gray-900 h5">
+                    <span class="font-weight-bold">Title: {{announcement.title}}</span>
                   </span>
+                  <span
+                    class="d-block mb-3 font-weight-bold text-primary"
+                  >Overview: {{announcement.overview}}</span>
                 </p>
               </div>
             </div>
@@ -26,7 +25,7 @@
             <div class="d-flex justify-content-center mt-5">
               <router-link class="btn btn-outline-primary px-5" to="/announcement">
                 <i class="fa fa-arrow-left"></i>
-                Go Back
+                View more
               </router-link>
             </div>
           </div>
@@ -35,6 +34,7 @@
     </div>
   </Structure>
 </template>
+
 
 <script>
 import Loader from "../Msave/Loader";

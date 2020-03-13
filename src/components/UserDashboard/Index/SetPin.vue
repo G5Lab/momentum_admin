@@ -25,6 +25,7 @@
             <div class="form-group">
               <input
                 required
+                maxlength="4"
                 v-model="pin2"
                 class="form-control"
                 type="text"

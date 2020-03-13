@@ -1,7 +1,7 @@
 
 <template>
   <Structure page="MainWallet / Transfer">
-    <div class="container">
+    <div class="container-fluid mb-4">
       <div
         v-if="mssg"
         class="alert text-center alert-primary alert-dismissible mt-2 fade show"
@@ -21,7 +21,7 @@
       <div class="text-center" v-if="loading">
         <Loader />
       </div>
-      <div class="row no-gutters justify-content-center">
+      <div class="row no-gutters justify-content-center mb-3">
         <form
           v-if="form"
           v-on:submit.prevent="registeragent"
@@ -51,7 +51,10 @@
                 class="form-control"
               />
             </div>
-            <button type="submit" class="btn btn-primary mt-3 btn-block text-center mb-3">Transfer</button>
+            <button
+              type="submit"
+              class="btn btn-primary mt-3 mx-auto d-block px-4 text-center mb-3"
+            >Transfer</button>
           </div>
         </form>
         <div v-if="verified" class="col-md-6">

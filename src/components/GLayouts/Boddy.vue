@@ -2,15 +2,13 @@
   <div id="content-wrapper" class="d-flex flex-column">
     <div id="content">
       <!-- Topbar -->
-      <Topbar />
-
+      <Topbar class v-on:hideSidebar="$emit('hideSidebar')" />
       <div class="container-fluid">
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-2">
           <h1 class="h2 page mb-3 text-gray-800">{{page}}</h1>
         </div>
       </div>
-
       <!-- Body Content Goes Here! -->
       <slot></slot>
     </div>
@@ -40,11 +38,6 @@ export default {
 @media only screen and (max-width: 600px) {
   .page {
     font-size: 1.5rem;
-  }
-}
-@media (max-width: 768px) {
-  .container-fluid {
-    padding-left: 0.7rem;
   }
 }
 </style>

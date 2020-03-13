@@ -1,10 +1,10 @@
 <template>
 <body id="page-top">
   <div id="wrapper" class="text-gray-800">
-    <Sidebar>
+    <Sidebar :class="{Sidebar: hide == true}">
       <SidebarInner />
     </Sidebar>
-    <Boddy :page="page">
+    <Boddy v-on:hideSidebar="hideSidebar" :page="page">
       <slot></slot>
     </Boddy>
   </div>
@@ -20,6 +20,11 @@ import ScrollUpModal from "../../GLayouts/ScrollupModal";
 
 export default {
   name: "structure",
+  data() {
+    return {
+      hide: false
+    };
+  },
   components: {
     Sidebar,
     SidebarInner,
@@ -30,9 +35,21 @@ export default {
     page: {
       type: String
     }
+  },
+  methods: {
+    hideSidebar() {
+      if (this.hide == false) {
+        this.hide = true;
+      } else {
+        this.hide = false;
+      }
+    }
   }
 };
 </script>
 
 <style  scoped>
+.Sidebar {
+  display: none !important;
+}
 </style>

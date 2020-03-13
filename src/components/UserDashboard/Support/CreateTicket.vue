@@ -1,87 +1,85 @@
 <template>
   <Structure page="Create Ticket">
     <div class="container-fluid">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div v-if="loading" class="my-2 text-center">
-            <Loader />
+      <div class="row justify-content-center px-2">
+        <div v-if="loading" class="my-2 text-center">
+          <Loader />
+        </div>
+        <div class="card col-md-11 p-0 shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">- Write To Admin</h6>
           </div>
-          <div class="card col-md-11 p-0 shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">- Write To Admin</h6>
-            </div>
-            <div class="card-body px-5">
-              <form class="bg-white" @submit.prevent="createTicket">
-                <div class="form-group">
-                  <label for="exampleTextarea">Subject</label>
-                  <input
-                    type="text"
-                    v-model="subject"
-                    class="form-control"
-                    placeholder="Enter Ticket Name"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="exampleTextarea">Priority</label>
-                  <select name="Priority" required v-model="priority" class="form-control">
-                    <option value disabled selected>Select Priority</option>
-                    <option value="Normal">Normal</option>
-                    <option value="Medium">Medium</option>
-                    <option value="High">High</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="exampleTextarea">Body</label>
-                  <textarea
-                    v-model="body"
-                    required
-                    class="form-control"
-                    id="exampleTextarea"
-                    rows="7"
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  :disabled="loading"
-                  class="btn btn-primary mt-3 btn-block text-center mb-3"
-                >Create Ticket</button>
-              </form>
-            </div>
+          <div class="card-body px-5">
+            <form class="bg-white" @submit.prevent="createTicket">
+              <div class="form-group">
+                <label for="exampleTextarea">Subject</label>
+                <input
+                  type="text"
+                  v-model="subject"
+                  class="form-control"
+                  placeholder="Enter Ticket Name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="exampleTextarea">Priority</label>
+                <select name="Priority" required v-model="priority" class="form-control">
+                  <option value disabled selected>Select Priority</option>
+                  <option value="Normal">Normal</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleTextarea">Body</label>
+                <textarea
+                  v-model="body"
+                  required
+                  class="form-control"
+                  id="exampleTextarea"
+                  rows="7"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                :disabled="loading"
+                class="btn btn-primary mt-3 btn-block text-center mb-3"
+              >Create Ticket</button>
+            </form>
           </div>
         </div>
-        <div
-          v-if="mssg"
-          class="alert text-center alert-primary alert-dismissible mt-2 fade show"
-          role="alert"
+      </div>
+      <div
+        v-if="mssg"
+        class="alert text-center alert-primary alert-dismissible mt-2 fade show"
+        role="alert"
+      >
+        <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
+        <button
+          type="button"
+          @click="closeMsg"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
         >
-          <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
-          <button
-            type="button"
-            @click="closeMsg"
-            class="close"
-            data-dismiss="alert"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div
-          v-if="msg"
-          class="alert text-center alert-danger alert-dismissible mt-2 fade show"
-          role="alert"
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div
+        v-if="msg"
+        class="alert text-center alert-danger alert-dismissible mt-2 fade show"
+        role="alert"
+      >
+        <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
+        <button
+          type="button"
+          @click="closeMsg"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
         >
-          <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
-          <button
-            type="button"
-            @click="closeMsg"
-            class="close"
-            data-dismiss="alert"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
     </div>
   </Structure>

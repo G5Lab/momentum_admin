@@ -1,11 +1,11 @@
 <template>
   <Structure page="Dashboard">
-    <!-- Set Pin-->
-    <div v-if="others.setpinform" class="row mt-5 justify-content-center">
-      <SetPin />
-    </div>
-    <div v-if="others.mode">
-      <div class="container-fluid">
+    <div class="container-fluid mx-0 px-2">
+      <!-- Set Pin-->
+      <div v-if="others.setpinform" class="row mt-5 justify-content-center">
+        <SetPin />
+      </div>
+      <div v-if="others.mode">
         <!-- First -->
         <div
           class="container-fluid mb-1 d-none d-md-block text-muted"
@@ -21,11 +21,9 @@
           <Invest :investment_balance="investment_balance" />
         </div>
 
-        <!-- Second -->
-        <div class="row">
-          <!-- Trending Investment -->
-          <IndexTrendingInvestment />
-        </div>
+        <!-- Trending Investment -->
+        <IndexTrendingInvestment />
+
         <!-- Announcement -->
         <div>
           <IndexAnnouncement />
@@ -51,7 +49,7 @@ import Invest from "./Index/Invest";
 import IndexTrendingInvestment from "./Index/IndexTrendingInvestment";
 import IndexAnnouncement from "./Index/IndexAnnouncement";
 
-import Loader from "./Index/Loader";
+import Loader from "./Msave/Loader";
 import SetPin from "./Index/SetPin";
 
 export default {
@@ -130,11 +128,6 @@ export default {
 
 
 <style scoped>
-@media (max-width: 768px) {
-  .container-fluid {
-    padding-left: 0.7rem;
-  }
-}
 .first {
   transition: 0.6s all;
 }

@@ -1,81 +1,83 @@
 <template>
   <Structure page="Reset Transaction Pin">
-    <div class="container-fluid">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div v-if="loading" class="my-2 text-center">
-            <Loader />
+    <div class="container-fluid mb-4">
+      <div class="row justify-content-center px-1 mb-2">
+        <div v-if="loading" class="my-2 text-center">
+          <Loader />
+        </div>
+        <form v-on:submit.prevent="updatePin" class="col-md-11 border bg-white py-2 px-3">
+          <div class="text-center text-gray-900 h5 py-2">Reset Pin</div>
+          <div class="form-group">
+            <label for="number">Input Pin</label>
+            <input
+              maxlength="4"
+              type="password"
+              required
+              placeholder="Include Pin"
+              class="form-control"
+              v-model="pin1"
+            />
           </div>
-          <form v-on:submit.prevent="updatePin" class="col-md-11 border bg-white py-2 px-3">
-            <div class="text-center text-gray-900 h5 py-2">Reset Pin</div>
-            <div class="form-group">
-              <label for="number">Input Pin</label>
-              <input
-                maxlength="4"
-                type="password"
-                required
-                placeholder="Include Pin"
-                class="form-control"
-                v-model="pin1"
-              />
-            </div>
-            <div class="form-group">
-              <label for="number">Confirm Pin</label>
-              <input
-                type="password"
-                maxlength="4"
-                required
-                placeholder="Confirm Pin"
-                class="form-control"
-                v-model="pin2"
-              />
-            </div>
-            <div class="form-group">
-              <label for="number">Enter Former Pin</label>
-              <input
-                type="password"
-                maxlength="4"
-                required
-                placeholder="Former Pin"
-                class="form-control"
-                v-model="formerPin"
-              />
-            </div>
-            <button :disabled="loading" type="submit" class="btn btn-primary my-2">Reset</button>
-          </form>
-        </div>
-        <div
-          v-if="mssg"
-          class="alert text-center alert-primary alert-dismissible mt-2 fade show"
-          role="alert"
-        >
-          <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
+          <div class="form-group">
+            <label for="number">Confirm Pin</label>
+            <input
+              type="password"
+              maxlength="4"
+              required
+              placeholder="Confirm Pin"
+              class="form-control"
+              v-model="pin2"
+            />
+          </div>
+          <div class="form-group">
+            <label for="number">Enter Former Pin</label>
+            <input
+              type="password"
+              maxlength="4"
+              required
+              placeholder="Former Pin"
+              class="form-control"
+              v-model="formerPin"
+            />
+          </div>
           <button
-            type="button"
-            @click="closeMsg"
-            class="close"
-            data-dismiss="alert"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div
-          v-if="msg"
-          class="alert text-center alert-danger alert-dismissible mt-2 fade show"
-          role="alert"
+            :disabled="loading"
+            type="submit"
+            class="btn mx-auto d-block px-4 btn-primary my-2"
+          >Reset</button>
+        </form>
+      </div>
+      <div
+        v-if="mssg"
+        class="alert text-center alert-primary alert-dismissible mt-2 fade show"
+        role="alert"
+      >
+        <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
+        <button
+          type="button"
+          @click="closeMsg"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
         >
-          <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
-          <button
-            type="button"
-            @click="closeMsg"
-            class="close"
-            data-dismiss="alert"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div
+        v-if="msg"
+        class="alert text-center alert-danger alert-dismissible mt-2 fade show"
+        role="alert"
+      >
+        <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
+        <button
+          type="button"
+          @click="closeMsg"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
     </div>
   </Structure>

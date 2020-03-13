@@ -95,13 +95,13 @@ export default {
 /* Track */
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px grey;
-  border-radius: 5px;
+  border-radius: 2px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #395ecf !important;
-  border-radius: 5px;
+  border-radius: 2px;
 }
 
 /* Handle on hover */

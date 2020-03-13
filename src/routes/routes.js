@@ -1,69 +1,72 @@
 // Cooming Soon
-import MarketPlace from "./components/UserDashboard/Cooming/MarketPlace"
-import HirePurchase from "./components/UserDashboard/Cooming/HirePurchase"
-import Loan from "./components/UserDashboard/Cooming/Loan"
+import MarketPlace from "../components/UserDashboard/Cooming/MarketPlace"
+import HirePurchase from "../components/UserDashboard/Cooming/HirePurchase"
+import Loan from "../components/UserDashboard/Cooming/Loan"
 
 
 // Authentication
-import Login from './components/Auth/Login'
-import Register from './components/Auth/Register'
-import ForgotPassword from './components/Auth/ForgotPassword'
-import Welcome from './components/Auth/Welcome'
-import Recover from './components/Auth/Recover'
-import Initial from './components/Auth/Initial'
+import Login from '../components/Auth/Login'
+import Register from '../components/Auth/Register'
+import ForgotPassword from '../components/Auth/ForgotPassword'
+import Welcome from '../components/Auth/Welcome'
+import Recover from '../components/Auth/Recover'
+import Initial from '../components/Auth/Initial'
 
 // UserDashboard
-import UserDashboard from './components/UserDashboard'
-import TestRave from "./components/UserDashboard/Msave/TargetSavingsAction/TestRave"
+import UserDashboard from '../components/UserDashboard'
+import TestRave from "../components/UserDashboard/Msave/TargetSavingsAction/TestRave"
 
 // Profile
-import BasicProfile from './components/UserDashboard/Profile/BasicProfile'
-import UpgradeMembership from './components/UserDashboard/Profile/UpgradeMembership'
-import UpdateProfile from './components/UserDashboard/Profile/UpdateProfile'
-import BankInfo from './components/UserDashboard/Profile/BankInfo'
-import CompleteKYC from './components/UserDashboard/Profile/CompleteKYC'
-import ChangePassword from './components/UserDashboard/Profile/ChangePassword'
-import ResetPin from './components/UserDashboard/Profile/ResetPin'
+import BasicProfile from '../components/UserDashboard/Profile/BasicProfile'
+import UpgradeMembership from '../components/UserDashboard/Profile/UpgradeMembership'
+import UpdateProfile from '../components/UserDashboard/Profile/UpdateProfile'
+import BankInfo from '../components/UserDashboard/Profile/BankInfo'
+import CompleteKYC from '../components/UserDashboard/Profile/CompleteKYC'
+import ChangePassword from '../components/UserDashboard/Profile/ChangePassword'
+import ResetPin from '../components/UserDashboard/Profile/ResetPin'
 
 // Main Wallet
-import Transfer from "./components/UserDashboard/MainWallet/Transfer"
-import Withdraw from "./components/UserDashboard/MainWallet/Withdraw"
-import TopUpWallet from "./components/UserDashboard/MainWallet/TopUpWallet"
-import MainHistory from "./components/UserDashboard/MainWallet/MainHistory"
+import Transfer from "../components/UserDashboard/MainWallet/Transfer"
+import Withdraw from "../components/UserDashboard/MainWallet/Withdraw"
+import TopUpWallet from "../components/UserDashboard/MainWallet/TopUpWallet"
+import MainHistory from "../components/UserDashboard/MainWallet/MainHistory"
 
 // mSave
-import SavingsHistory from "./components/UserDashboard/Msave/SavingsHistory"
-import TargetSavingsAction from "./components/UserDashboard/Msave/TargetSavingsAction"
-import TargetSavings from "./components/UserDashboard/Msave/TargetSavings"
+import SavingsHistory from "../components/UserDashboard/Msave/SavingsHistory"
+import TargetSavingsAction from "../components/UserDashboard/Msave/TargetSavingsAction"
+import TargetSavings from "../components/UserDashboard/Msave/TargetSavings"
 
-// mInvest
-import ViewInvestment from "./components/UserDashboard/MInvest/ViewInvestment"
-import InvestmentReports from "./components/UserDashboard/MInvest/InvestmentReport"
-import InvestmentHistory from "./components/UserDashboard/MInvest/InvestmentHistory"
-import UploadInvestment from "./components/UserDashboard/MInvest/UploadInvestment"
-import Invest from "./components/UserDashboard/MInvest/Invest"
+
 
 // mAjo 
-import RegisterAgent from "./components/UserDashboard/MAjo/RegisterAgent"
-import BecomeAgent from "./components/UserDashboard/MAjo/BecomeAgent"
-import ChangeAgent from "./components/UserDashboard/MAjo/ChangeAgent"
-import BreakAjo from "./components/UserDashboard/MAjo/BreakAjoSavings"
-import CreditUsers from "./components/UserDashboard/MAjo/CreditUsers"
-import SetAjoCycle from "./components/UserDashboard/MAjo/SetAjoCycle"
-import AjoHistory from "./components/UserDashboard/MAjo/AjoHistory"
+import RegisterAgent from "../components/UserDashboard/MAjo/RegisterAgent"
+import BecomeAgent from "../components/UserDashboard/MAjo/BecomeAgent"
+import ChangeAgent from "../components/UserDashboard/MAjo/ChangeAgent"
+import BreakAjo from "../components/UserDashboard/MAjo/BreakAjoSavings"
+import CreditUsers from "../components/UserDashboard/MAjo/CreditUsers"
+import SetAjoCycle from "../components/UserDashboard/MAjo/SetAjoCycle"
+import AjoHistory from "../components/UserDashboard/MAjo/AjoHistory"
+
+// mInvest
+import ViewInvestment from "../components/UserDashboard/MInvest/ViewInvestment"
+import InvestmentReports from "../components/UserDashboard/MInvest/InvestmentReport"
+import InvestmentHistory from "../components/UserDashboard/MInvest/InvestmentHistory"
+import UploadInvestment from "../components/UserDashboard/MInvest/UploadInvestment"
+import InvestmentDetails from "../components/UserDashboard/MInvest/InvestmentDetails"
+import InvestmentReportDetails from "../components/UserDashboard/MInvest/InvestmentReportDetails"
 
 
 // Support 
-import CreateTicket from "./components/UserDashboard/Support/CreateTicket"
-import Inbox from "./components/UserDashboard/Support/Inbox"
-import Announcement from "./components/UserDashboard/Support/Announcement"
-import SentMessages from "./components/UserDashboard/Support/SentMessages"
-import InboxDetails from "./components/UserDashboard/Support/InboxDetails"
-import AnnouncementDetails from "./components/UserDashboard/Support/AnnouncementDetails"
+import CreateTicket from "../components/UserDashboard/Support/CreateTicket"
+import Inbox from "../components/UserDashboard/Support/Inbox"
+import Announcement from "../components/UserDashboard/Support/Announcement"
+import SentMessages from "../components/UserDashboard/Support/SentMessages"
+import InboxDetails from "../components/UserDashboard/Support/InboxDetails"
+import AnnouncementDetails from "../components/UserDashboard/Support/AnnouncementDetails"
 
 // Learning Center
-import LearningMaterials from "./components/UserDashboard/LearningCenter/LearningMaterials"
-import LearningMaterialsDetails from "./components/UserDashboard/LearningCenter/LearningMaterialsDetails"
+import LearningMaterials from "../components/UserDashboard/LearningCenter/LearningMaterials"
+import LearningMaterialsDetails from "../components/UserDashboard/LearningCenter/LearningMaterialsDetails"
 
 const routes = [
 
@@ -247,6 +250,14 @@ const routes = [
             requiresAuth: true
         }
     },
+    {
+        path: "/TargetSavings",
+        component: TargetSavings,
+        meta: {
+            requiresAuth: true
+        }
+
+    },
 
     // mInvest
     {
@@ -278,19 +289,20 @@ const routes = [
         }
     },
     {
-        path: '/invest',
-        component: Invest,
+        path: "/investmentDetails/:id",
+        component: InvestmentDetails,
         meta: {
             requiresAuth: true
         }
     },
     {
-        path: "/TargetSavings",
-        component: TargetSavings,
+        path: "/investmentReportDetails/:id",
+        component: InvestmentReportDetails,
         meta: {
             requiresAuth: true
         }
     },
+
 
     // mAjo
     {

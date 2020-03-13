@@ -73,8 +73,8 @@
         <div class="bg-white py-2 collapse-inner rounded">
           <router-link class="collapse-item" to="/transfer">Transfer</router-link>
           <router-link class="collapse-item" to="/withdraw">Withdraw</router-link>
-          <router-link class="collapse-item" to="/MainHistory">History</router-link>
           <router-link class="collapse-item" to="/TopUpWallet">Top-Up Wallet</router-link>
+          <router-link class="collapse-item" to="/MainHistory">History</router-link>
         </div>
       </div>
     </li>
@@ -104,7 +104,7 @@
           <router-link class="collapse-item" to="/credituser">Credit Users</router-link>
           <router-link class="collapse-item" to="/breakajosavings">Break Ajo Savings</router-link>
           <router-link class="collapse-item" to="/SetAjoCycle">Set Ajo Cycle</router-link>
-          <router-link class="collapse-item" to="/AjoHistory">History</router-link>
+          <router-link class="collapse-item" to="/AjoHistory">Ajo History</router-link>
         </div>
       </div>
     </li>
@@ -155,14 +155,14 @@
         <div class="bg-white py-2 collapse-inner rounded">
           <router-link class="collapse-item" to="/viewinvestment">View Investments</router-link>
           <router-link class="collapse-item" to="/investmentreport">Investment Reports</router-link>
-          <router-link class="collapse-item" to="/investmenthistory">View Investment History</router-link>
           <router-link class="collapse-item" to="/uploadinvestment">Upload Investment</router-link>
+          <router-link class="collapse-item" to="/investmenthistory">Investment History</router-link>
         </div>
       </div>
     </li>
 
     <!-- Cooming Soon  -->
-    <li class="nav-item">
+    <!--  <li class="nav-item">
       <router-link class="route" to="/marketplace">
         <a
           class="nav-link"
@@ -172,7 +172,7 @@
           aria-controls="collapsePages"
         >
           <i class="fas fa-fw fa-folder"></i>
-          <span>Market Place</span>
+          <span class="mx-2">Market Place</span>
         </a>
       </router-link>
     </li>
@@ -186,7 +186,7 @@
           aria-controls="collapsePages"
         >
           <i class="fas fa-fw fa-folder"></i>
-          <span>Hire Purchase</span>
+          <span class="mx-1">Hire Purchase</span>
         </a>
       </router-link>
     </li>
@@ -203,7 +203,7 @@
           <span>Loan</span>
         </a>
       </router-link>
-    </li>
+    </li>-->
 
     <!-- Learning Center -->
     <li class="nav-item">

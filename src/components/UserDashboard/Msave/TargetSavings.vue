@@ -1,14 +1,12 @@
 <template>
   <Structure page="Target Savings">
-    <div v-if="mode">
-      <div class="container-fluid">
-        <div class="container-fluid">
-          <div class="border text-center lead p-3">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, quidem repellendus? Corrupti magnam totam voluptatibus, aperiam sunt eveniet perspiciatis expedita, illum accusamus ipsam officia eos distinctio ullam esse libero? Cumque?
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum eum cupiditate animi culpa necessitatibus impedit tempore quam excepturi velit aspernatur molestiae nemo adipisci distinctio, dicta fugit accusantium id beatae aperiam?
-            <div class="m-2 p-1">
-              <i class="fa fa-arrow-down h2 text-primary d-inline-block text-center scroll"></i>
-            </div>
+    <div class="container-fluid">
+      <div v-if="mode">
+        <div class="border text-center p-3">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, quidem repellendus? Corrupti magnam totam voluptatibus, aperiam sunt eveniet perspiciatis expedita, illum accusamus ipsam officia eos distinctio ullam esse libero? Cumque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum eum cupiditate animi culpa necessitatibus impedit tempore quam excepturi velit aspernatur molestiae nemo adipisci distinctio, dicta fugit accusantium id beatae aperiam?
+          <div class="m-2 p-1">
+            <i class="fa fa-arrow-down h2 text-primary d-inline-block text-center scroll"></i>
           </div>
         </div>
         <div class="row mt-4">

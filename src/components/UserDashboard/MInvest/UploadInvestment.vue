@@ -68,6 +68,7 @@
   </Structure>
 </template>
 
+
 <script>
 import Structure from "../GUserLayouts/Structure";
 import UploadedInvestmentCard from "../GUserLayouts/UploadedInvestmentCard";
@@ -79,6 +80,8 @@ export default {
   }
 };
 </script>
+
+
 <style scoped>
 .CardOne {
   max-width: 50rem;

@@ -1,45 +1,43 @@
 <template>
   <Structure page="Top-Up Main Wallet">
-    <div class="container-fluid mt-3 d-flex justify-content-center">
-      <div class="col-md-10">
-        <div class="card shadow justify-content-center mb-4">
-          <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">- Save Here!</h6>
-          </div>
-          <div class="card-body">
-            <form v-on:submit.prevent class="register bg-white">
-              <div class="form-group">
-                <label for="amount">Amount To Save</label>
-                <input
-                  type="number"
-                  required
-                  v-model="amount"
-                  class="form-control"
-                  placeholder="Amount"
-                />
-              </div>
-              <Rave
-                class="shop btn btn-primary text-white"
-                :email="email"
-                :amount="parseInt(amount)"
-                :reference="reference"
-                :rave-key="raveKey"
-                :callback="callback"
-                :close="close"
-                :metadata="meta"
-                :redirectUrl="redirect"
-                :paymentPlan="plan"
-                :customerFirstname="fname"
-                paymentOptions="card,barter,account,ussd"
-                hostedPayemt="1"
-                customTitle="Momentum Top-Up Main Wallet"
-                currency="NGN"
-                country="NG"
-              >
-                <i>Top Wallet</i>
-              </Rave>
-            </form>
-          </div>
+    <div class="container-fluid">
+      <div class="card shadow justify-content-center mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">- Save Here!</h6>
+        </div>
+        <div class="card-body">
+          <form v-on:submit.prevent class="register bg-white">
+            <div class="form-group">
+              <label for="amount">Amount To Save</label>
+              <input
+                type="number"
+                required
+                v-model="amount"
+                class="form-control"
+                placeholder="Amount"
+              />
+            </div>
+            <Rave
+              class="shop d-block mx-auto btn btn-primary text-white"
+              :email="email"
+              :amount="parseInt(amount)"
+              :reference="reference"
+              :rave-key="raveKey"
+              :callback="callback"
+              :close="close"
+              :metadata="meta"
+              :redirectUrl="redirect"
+              :paymentPlan="plan"
+              :customerFirstname="fname"
+              paymentOptions="card,barter,account,ussd"
+              hostedPayemt="1"
+              customTitle="Momentum Top-Up Main Wallet"
+              currency="NGN"
+              country="NG"
+            >
+              <i>Top Wallet</i>
+            </Rave>
+          </form>
         </div>
       </div>
     </div>

@@ -24,7 +24,7 @@
             <div class="d-flex justify-content-center mt-5">
               <router-link class="btn btn-outline-primary px-5" to="/inbox">
                 <i class="fa fa-arrow-left"></i>
-                Go Back
+                View more
               </router-link>
             </div>
           </div>

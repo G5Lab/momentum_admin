@@ -2,72 +2,67 @@
   <Structure page="Investment Reports">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-6" v-for="(investment, index) in investments" :key="index">
-          <div class="card border-left-success">
-            <div class="card-body">
-              <p class="card-title mb-0">{{investment.investment_title}}</p>
-              <p class="m-0 p-0">Category: {{investment.category}}</p>
-              <small class="p text-muted">
-                <i class="fa fa-map-marker mr-2"></i>
-                <span>{{investment.investment_location}}</span>
-              </small>
-              <br />
-              <p class="lead font-weight-bold my-0">&#8358;{{investment.investment}}</p>
-              <div>
-                <div class="h6 text-dark d-flex justify-content">
-                  <i class="fa font-weight-bold fa-line-chart mr-2"></i>
-                  <small class="d-block">
-                    <span class="mr-2">Min return:</span>
-                    <span>{{investment.min_return_projection}}%</span>
-                  </small>
-                  <small>
-                    <span class="mr-2">Max return:</span>
-                    <span>{{investment.max_return_projection}}%</span>
-                  </small>
-                </div>
+        <div class="col-md-6 col-lg-4 mb-3" v-for="(investment, index) in investments" :key="index">
+          <router-link class="text-dark link" v-bind:to="'/investmentReportDetails/'+ index">
+            <div class="card border-left-success py-2">
+              <div class="card-body p-2">
+                <p class="card-title mb-0">Name: {{investment.title}}</p>
+                <p class="m-0 p-0">Category: {{investment.category}}</p>
+                <small class="p text-muted">
+                  <i class="fa fa-map-marker mr-2"></i>
+                  <span>{{investment.location}}</span>
+                </small>
+                <br />
+                <small>
+                  <span class="mr-2">End_date:</span>
+                  <span>{{investment.end_date}}</span>
+                </small>
+                <div class="p text-gray-600 font-weight-bold my-0">{{investment.risk_plan}}</div>
               </div>
-              <small>
-                <span class="mr-2">Cylce:</span>
-                <span>{{investment.investment_cycle}} months</span>
-              </small>
-              <div class="p text-gray-600 font-weight-bold my-0">{{investment.risk_plan}}</div>
             </div>
-          </div>
+          </router-link>
         </div>
       </div>
+    </div>
+    <div v-if="loading" class="text-center">
+      <Loader />
     </div>
   </Structure>
 </template>
 
+
 <script>
 import Structure from "../GUserLayouts/Structure";
+import Loader from "../Msave/Loader";
 import axios from "axios";
-// import InvestmentReportCard from "../GUserLayouts/InvestmentReportCard";
 export default {
   name: "InvestmentReport",
   components: {
-    Structure
-    // InvestmentReportCard
+    Structure,
+    Loader
   },
   data() {
     return {
       token: "",
       trans_id: "",
-      investments: []
+      investments: [],
+      loading: true
     };
   },
   created() {
     this.token = this.$session.get("jwt");
     this.trans_id = this.$session.get("user").trans_id;
     axios
-      .get(`https://momentum.ng/backend/api/investments/investmentreport`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${this.token}`
+      .get(
+        `https://momentum.ng/backend/api/investments/investmentreport/${this.trans_id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${this.token}`
+          }
         }
-      })
+      )
       .then(res => {
-        console.log(res.data);
         this.loading = false;
         if (res.data.data.length == 0) {
           this.onInvestments = "There Is Currectly No Investment";
@@ -88,7 +83,11 @@ export default {
 };
 </script>
 
+
 <style scoped>
+.link:hover {
+  text-decoration-line: none;
+}
 .card-body {
   position: relative;
   margin-top: -5px !important;
@@ -118,9 +117,6 @@ export default {
 @media only screen and (width: 320px) {
   .container-fluid {
     margin-left: -10px !important;
-  }
-  .card {
-    width: 14rem;
   }
   .card-body {
     margin: -9px !important;

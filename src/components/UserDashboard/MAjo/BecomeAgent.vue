@@ -1,7 +1,7 @@
 <template>
   <Structure page="Become an Agent">
     <div class="container-fluid">
-      <div class="d-flex justify-content-center">
+      <div class="row justify-content-center">
         <div class="col-md-10">
           <div class="card shadow justify-content-center mb-4">
             <div class="card-header py-3">

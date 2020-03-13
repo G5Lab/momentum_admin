@@ -7,7 +7,6 @@
     <span></span>
     <span></span>
     <span></span>
-    <span></span>
   </div>
 </template>
 
@@ -67,12 +66,6 @@
 }
 
 .loader1 span:nth-child(7) {
-  -webkit-animation-delay: -1s;
-  animation-delay: -1s;
-  background: rgba(255, 255, 255, 0.849);
-}
-
-.loader1 span:nth-child(8) {
   -webkit-animation-delay: -1s;
   animation-delay: -1s;
   background: rgba(255, 255, 255, 0.849);
