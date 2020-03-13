@@ -4,7 +4,7 @@
       <Loader />
     </div>
     <div class="container-fluid px-2">
-      <div class="container mx-0">
+      <div v-if="premium" class="container mx-0">
         <div v-if="mode" class="row">
           <div class="d-none d-lg-block col-lg-3 col-xl-2 mb-3">
             <InSidebar />
@@ -58,6 +58,11 @@
         </div>
       </div>
     </div>
+    <div class="container">
+      <div v-if="notPremium" class>
+        <p class="text-center my-2 h1 text-danger">{{notPremium}}</p>
+      </div>
+    </div>
   </Structure>
 </template>
 
@@ -80,6 +85,10 @@ export default {
       token: "",
       trans_id: "",
 
+      level: "",
+      premium: false,
+      notPremium: "",
+
       investments: [],
 
       mode: false,
@@ -89,6 +98,8 @@ export default {
   created() {
     this.token = this.$session.get("jwt");
     this.trans_id = this.$session.get("user").trans_id;
+    this.level = this.$session.get("user").level;
+
     axios
       .get(`https://momentum.ng/backend/api/investments/investments`, {
         headers: {
@@ -108,6 +119,11 @@ export default {
       .catch(err => {
         console.log(err);
       });
+    if (this.level >= 4) {
+      this.premium = true;
+    } else {
+      this.notPremium = "You Need To Upgrade Your Membership ";
+    }
   },
   filters: {
     formatDate: function(value) {

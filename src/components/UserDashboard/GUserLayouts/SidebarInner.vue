@@ -40,7 +40,7 @@
         data-parent="#accordionSidebar"
       >
         <div class="bg-white py-2 collapse-inner rounded">
-          <router-link class="collapse-item" to="/basicprofile">Basic Profile</router-link>
+          <router-link class="collapse-item" to="/basicprofile">Basic Info</router-link>
           <router-link class="collapse-item" to="/upgrademembership">Upgrade Membership</router-link>
           <router-link class="collapse-item" to="/updateprofile">Complete Profile</router-link>
           <router-link class="collapse-item" to="/bkinfo">Enter Bank Info</router-link>
@@ -155,14 +155,14 @@
         <div class="bg-white py-2 collapse-inner rounded">
           <router-link class="collapse-item" to="/viewinvestment">View Investments</router-link>
           <router-link class="collapse-item" to="/investmentreport">Investment Reports</router-link>
-          <router-link class="collapse-item" to="/uploadinvestment">Upload Investment</router-link>
+          <!-- <router-link class="collapse-item" to="/uploadinvestment">Upload Investment</router-link> -->
           <router-link class="collapse-item" to="/investmenthistory">Investment History</router-link>
         </div>
       </div>
     </li>
 
     <!-- Cooming Soon  -->
-    <!--  <li class="nav-item">
+    <li class="nav-item">
       <router-link class="route" to="/marketplace">
         <a
           class="nav-link"
@@ -203,7 +203,7 @@
           <span>Loan</span>
         </a>
       </router-link>
-    </li>-->
+    </li>
 
     <!-- Learning Center -->
     <li class="nav-item">

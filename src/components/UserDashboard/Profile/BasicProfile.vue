@@ -48,7 +48,7 @@
               class="profile-edit-btn d-none d-md-block"
               name="btnAddMore"
             >
-              Edit
+              Complete
               <span class="d-none d-lg-inline">Profile</span>
             </router-link>
           </div>

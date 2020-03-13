@@ -1,11 +1,7 @@
 <template>
   <Structure page="Market Place">
     <div class="container-fluid">
-      <div class="row justify-content-center">
-        <div class="card p-3 text-center">
-          <p class="h3">Cooming Soon!</p>
-        </div>
-      </div>
+      <p class="text-center my-5 h1 display-4 text-primary">Coming Soon</p>
     </div>
   </Structure>
 </template>

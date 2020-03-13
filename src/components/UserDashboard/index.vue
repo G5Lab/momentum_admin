@@ -72,6 +72,7 @@ export default {
       ajo_balance: "",
       savings_balance: "",
       investment_balance: "",
+
       others: {
         mode: false,
         loading: true,
@@ -82,6 +83,7 @@ export default {
   created() {
     const token = this.$session.get("jwt");
     const trans_id = this.$session.get("user").trans_id;
+
     const headers = {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`

@@ -1,7 +1,7 @@
 <template>
   <Structure page="Investment Reports">
     <div class="container-fluid">
-      <div class="row">
+      <div class="row" v-if="premium">
         <div class="col-md-6 col-lg-4 mb-3" v-for="(investment, index) in investments" :key="index">
           <router-link class="text-dark link" v-bind:to="'/investmentReportDetails/'+ index">
             <div class="card border-left-success py-2">
@@ -27,6 +27,11 @@
     <div v-if="loading" class="text-center">
       <Loader />
     </div>
+    <div class="container">
+      <div v-if="notPremium" class>
+        <p class="text-center my-2 h1 text-danger">{{notPremium}}</p>
+      </div>
+    </div>
   </Structure>
 </template>
 
@@ -46,12 +51,16 @@ export default {
       token: "",
       trans_id: "",
       investments: [],
-      loading: true
+      loading: true,
+      level: "",
+      premium: false,
+      notPremium: ""
     };
   },
   created() {
     this.token = this.$session.get("jwt");
     this.trans_id = this.$session.get("user").trans_id;
+    this.level = this.$session.get("user").level;
     axios
       .get(
         `https://momentum.ng/backend/api/investments/investmentreport/${this.trans_id}`,
@@ -73,6 +82,11 @@ export default {
       .catch(err => {
         console.log(err);
       });
+    if (this.level >= 4) {
+      this.premium = true;
+    } else {
+      this.notPremium = "You Need To Upgrade Your Membership ";
+    }
   },
   filters: {
     formatDate: function(value) {
