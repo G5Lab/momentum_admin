@@ -2,46 +2,61 @@
   <Structure page="Upload Investment">
     <!-- Upload Investment -->
     <div class="container d-flex justify-content-center">
-      <div class="card CardOne shadow justify-content-center mb-4">
+      <div v-if="premium" class="card CardOne shadow justify-content-center mb-4">
         <div class="card-header py-3">
           <h6 class="m-0 font-weight-bold text-primary">- Investment Upload Form</h6>
         </div>
         <div class="card-body">
+          <div
+            class="p-2 mb-3 text-center font-gray-900 border rounded h6"
+          >Submit a proposal for possible investment to the momentum board and begin the process to listing your business in the investment pool</div>
           <form class="register bg-white">
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label for="agentname">Name</label>
-                <input type="text" required placeholder="Name" class="form-control" />
-              </div>
-              <div class="form-group col-md-6">
-                <label for="agentname">Type</label>
-                <input type="text" required placeholder="Type" class="form-control" />
-              </div>
-              <div class="form-group col-md-6">
-                <label for="location">Location</label>
-                <input type="text" required placeholder="State And City" class="form-control" />
-              </div>
-              <div class="form-group col-md-6">
-                <label for="location">Investors Profit Percentage</label>
-                <input type="number" required placeholder="eg. 10 for 10%" class="form-control" />
-              </div>
-              <div class="form-group col-md-6">
-                <label for="location">Total Numbers Of Investors</label>
+                <label>Name</label>
                 <input
-                  type="number"
+                  type="text"
+                  v-model="title"
                   required
-                  placeholder="Total No. of Investors"
+                  placeholder="Name of Investment"
                   class="form-control"
                 />
               </div>
               <div class="form-group col-md-6">
-                <label for="location">Minimun Amount To Start Investing</label>
-                <input type="number" required placeholder class="form-control" />
+                <label>Investment Category</label>
+                <select v-model="category" class="browser-default custom-select" required>
+                  <option value disabled selected>Select</option>
+                  <option value="Agriculture">Agriculture</option>
+                  <option value="Transportation">Transportation</option>
+                  <option value="Real Estate">Real Estate</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label>Required Capital</label>
+                <input type="text" required placeholder="Enter Amount" class="form-control" />
+              </div>
+              <div class="form-group col-md-6">
+                <label>Expected Returns</label>
+                <input type="text" required placeholder="Enter Amount" class="form-control" />
               </div>
             </div>
             <div class="form-group">
-              <label>Investment Ends At...</label>
-              <input type="date" required placeholder=" eg N50000" class="form-control" />
+              <label>Overview</label>
+              <input
+                type="text"
+                required
+                placeholder="Brief Overview Of Investment"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <label>Uploaad Business Brief</label>
+              <input
+                type="file"
+                required
+                placeholder="Brief Overview Of Investment"
+                class="form-control"
+              />
             </div>
             <button type="submit" class="btn btn-primary mt-3 btn-block text-center mb-3">Submit</button>
           </form>
@@ -49,8 +64,14 @@
       </div>
     </div>
 
-    <!-- Uploaded Investment -->
     <div class="container">
+      <div v-if="notPremium" class>
+        <p class="text-center my-2 h1 text-danger">{{notPremium}}</p>
+      </div>
+    </div>
+
+    <!-- Uploaded Investment -->
+    <!-- <div class="container">
       <div class="card mb-4">
         <div class="card-header py-3">
           <h6 class="m-0 font-weight-bold text-primary">- Uploaded Investment</h6>
@@ -64,19 +85,39 @@
           <UploadedInvestmentCard />
         </div>
       </div>
-    </div>
+    </div>-->
   </Structure>
 </template>
 
 
 <script>
 import Structure from "../GUserLayouts/Structure";
-import UploadedInvestmentCard from "../GUserLayouts/UploadedInvestmentCard";
+// import UploadedInvestmentCard from "../GUserLayouts/UploadedInvestmentCard";
 export default {
   name: "UploadInvestment",
   components: {
-    Structure,
-    UploadedInvestmentCard
+    Structure
+    // UploadedInvestmentCard
+  },
+  data() {
+    return {
+      category: "",
+
+      level: "",
+      notPremium: "",
+      premium: false
+    };
+  },
+  created() {
+    this.token = this.$session.get("jwt");
+    this.trans_id = this.$session.get("user").trans_id;
+    this.level = this.$session.get("user").level;
+
+    if (this.level >= 4) {
+      this.premium = true;
+    } else {
+      this.notPremium = "You Need To Upgrade Your Membership ";
+    }
   }
 };
 </script>

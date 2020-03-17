@@ -1,17 +1,7 @@
 <template>
 <body>
   <div class="container pt-4">
-    <div class="text-center d-flex justify-content-center text-white h2 pt-4 pb-2">
-      <div>
-        <img src="img/favi.png" width="80rem" alt />
-      </div>
-      <div class="mt-2">
-        <p class="mt-3 d-inline-block">
-          <span class="font-weight-light i">omen</span>
-          <span class="font-weight-bold text-gray-900">tum</span>
-        </p>
-      </div>
-    </div>
+    <AuthLogo />
     <div v-if="loading" class="text-center pb-3">
       <Loader />
     </div>
@@ -30,8 +20,7 @@
                     required
                     v-model="login.loginid"
                     class="form-control p-4"
-                    type
-                    id="email"
+                    type="email"
                     placeholder="Email"
                   />
                 </div>
@@ -84,18 +73,18 @@
       </div>
     </div>
     <div class="text-center py-3">
-      <span>
-        <router-link to="#" class="text-light">
+      <span class="mr-3">
+        <router-link to="/termsCondition" class="text-light">
           <i>Terms &#38; Conditions</i>
         </router-link>
       </span>
-      <span>
+      <!-- <span>
         <router-link to="#" class="mx-3 text-light">
           <i>Help</i>
         </router-link>
-      </span>
+      </span>-->
       <span>
-        <router-link to="#" class="text-light">
+        <router-link to="/privacyPolicy" class="text-light">
           <i>Privacy Policy</i>
         </router-link>
       </span>
@@ -108,10 +97,12 @@
 <script>
 import axios from "axios";
 import Loader from "../Auth/Loader";
+import AuthLogo from "./AuthLogo";
 export default {
   name: "Login",
   components: {
-    Loader
+    Loader,
+    AuthLogo
   },
   data() {
     return {

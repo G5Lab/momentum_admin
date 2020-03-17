@@ -122,6 +122,7 @@ export default {
     if (this.level >= 4) {
       this.premium = true;
     } else {
+      this.loading = false;
       this.notPremium = "You Need To Upgrade Your Membership ";
     }
   },

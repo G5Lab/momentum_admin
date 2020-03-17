@@ -155,7 +155,7 @@
                 </div>
                 <div class="row">
                   <div class="col-md-6">
-                    <label>Employment Name</label>
+                    <label>Employer Name</label>
                   </div>
                   <div class="col-md-6">
                     <p>{{EmployerName || "Not Set"}}</p>
@@ -224,6 +224,8 @@ export default {
     this.address = this.$session.get("user").address;
     this.nok = this.$session.get("user").nok;
     this.nok_number = this.$session.get("user").nok_number;
+    this.EmployerName = this.$session.get("user").employer;
+    this.EmployerAddress = this.$session.get("user").employer_address;
     this.dob = new Date(this.$session.get("user").dob).toString().slice(0, 15);
     if (this.level == 1) {
       this.membershipStatus = "Basic Member";

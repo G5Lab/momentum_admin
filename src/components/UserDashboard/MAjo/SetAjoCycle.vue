@@ -1,5 +1,5 @@
 <template>
-  <Structure page="mAjo / Set Ajo Cycle ">
+  <Structure page="Set Ajo Cycle ">
     <div class="text-center" v-if="loading">
       <Loader />
     </div>
@@ -22,9 +22,17 @@
       </div>
       <div class="row no-gutters justify-content-center">
         <form v-on:submit.prevent="SetCycle" class="col-md-7 border bg-white p-4">
-          <div class="text-center text-gray-900 h4 py-4">Create Your Ajo Cycle</div>
-          <div class="form-group">
-            <label>Amount</label>
+          <div class="text-center text-primary font-weight-bold h4 py-3">Set Your Ajo Plan</div>
+          <p
+            class="p-2 mb-2 text-center font-gray-900"
+          >You have the option to change the frequency and amount you want to save through Ajo</p>
+          <label>Enter Ajo Amount</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">
+                <i class="fa fa-money"></i>
+              </span>
+            </div>
             <input
               v-model="amount"
               type="number"
@@ -33,13 +41,18 @@
               class="form-control"
             />
           </div>
-          <div class="form-group">
-            <label>Choose Cycle</label>
+          <label>Select Frequency</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">
+                <i class="fa fa-bell"></i>
+              </span>
+            </div>
             <select v-model="cycle" class="browser-default custom-select" required>
-              <option></option>
-              <option value="1">Daily</option>
-              <option value="7">Weekly</option>
-              <option value="30">Monthly</option>
+              <option value disabled selected>Select</option>
+              <option value="Monthly">Monthly</option>
+              <option value="Quaterly">Quaterly</option>
+              <option value="Bi-Annually">Bi-Annually</option>
             </select>
           </div>
           <button
@@ -124,6 +137,7 @@ export default {
         })
         .catch(err => {
           console.log(err);
+          this.msg = "An Error Occured";
         });
     }
   },

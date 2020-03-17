@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 import VueSession from 'vue-session'
+import vueSmoothScroll from 'vue-smooth-scroll'
+Vue.use(vueSmoothScroll)
 
 import axios from 'axios'
 import routes from './routes/routes'

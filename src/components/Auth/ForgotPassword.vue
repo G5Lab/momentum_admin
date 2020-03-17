@@ -1,17 +1,7 @@
 <template>
 <body>
   <div class="container pt-4">
-    <div class="text-center d-flex justify-content-center text-white h2 pt-4 pb-2">
-      <div>
-        <img src="img/favi.png" width="80rem" alt />
-      </div>
-      <div class="mt-2">
-        <p class="mt-3 d-inline-block">
-          <span class="font-weight-light">omen</span>
-          <span class="font-weight-bold text-gray-900">tum</span>
-        </p>
-      </div>
-    </div>
+    <AuthLogo />
     <div v-if="loading" class="text-center pb-3">
       <Loader />
     </div>
@@ -73,10 +63,12 @@
 <script>
 import axios from "axios";
 import Loader from "./Loader";
+import AuthLogo from "./AuthLogo";
 export default {
   name: "ForgotPassword",
   components: {
-    Loader
+    Loader,
+    AuthLogo
   },
   data() {
     return {

@@ -4,12 +4,12 @@
       <div class="row" v-if="premium">
         <div class="col-md-6 col-lg-4 mb-3" v-for="(investment, index) in investments" :key="index">
           <router-link class="text-dark link" v-bind:to="'/investmentReportDetails/'+ index">
-            <div class="card border-left-success py-2">
+            <div class="card border-left-primary py-2">
               <div class="card-body p-2">
                 <p class="card-title mb-0">Name: {{investment.title}}</p>
                 <p class="m-0 p-0">Category: {{investment.category}}</p>
                 <small class="p text-muted">
-                  <i class="fa fa-map-marker mr-2"></i>
+                  <i class="fa fa-map-marker text-dark mr-2"></i>
                   <span>{{investment.location}}</span>
                 </small>
                 <br />
@@ -85,6 +85,7 @@ export default {
     if (this.level >= 4) {
       this.premium = true;
     } else {
+      this.loading = false;
       this.notPremium = "You Need To Upgrade Your Membership ";
     }
   },
@@ -118,7 +119,7 @@ export default {
 }
 .card:hover {
   transform: translateY(4px);
-  box-shadow: 2px 1px 2px 2px rgba(4, 107, 9, 0.493);
+  box-shadow: 2px 1px 2px 2px rgba(52, 46, 131, 0.493);
 }
 
 @media only screen and (max-width: 411px) {

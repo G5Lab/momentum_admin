@@ -1,43 +1,39 @@
 <template>
-  <MomentumAbout pageName="Registration Successful">
+  <MomentumAbout pageName="Terms & Condition">
     <div class="container-fluid">
       <div class="container mt-4">
-        <div class="row justify-content-between py-aut">
+        <div class="row justify-content-between">
           <div class="text-center mt-3 d-none d-md-block col-md-3 py-auto">
             <div class="lead position-fixed bg p-3">
               <div class>
-                <a
-                  href="#aboutMomentum"
-                  v-smooth-scroll="{ duration: 2000, offset: -50 }"
-                >About Momentum</a>
                 <a
                   href="#termsCondition"
                   v-smooth-scroll="{ duration: 2000, offset: -50 }"
                 >Terms &#38; Condtion</a>
                 <a
+                  href="#aboutMomentum"
+                  v-smooth-scroll="{ duration: 2000, offset: -50 }"
+                >About Momentum</a>
+
+                <a
                   href="#privacyPolicy"
                   v-smooth-scroll="{ duration: 2000, offset: -50 }"
                 >Privacy Policy</a>
                 <div class>
-                  <a @click="clearSession" href="/login" class="py-3 bklogin">
+                  <router-link to="/login" class="py-3 bklogin">
                     <i class="fa bklogin fa-arrow-left mr-2"></i>
                     <span>Go to Login</span>
-                  </a>
+                  </router-link>
                 </div>
               </div>
             </div>
           </div>
           <div class="shadow col-md-8 mb-4">
-            <div class="card-body">
-              <div
-                id="aboutMomentum"
-                class="font-weight-bold text-gray-900 h4 pt-2 mb-2"
-              >ABOUT MOMENTUM</div>Momentum is Africa #1 Digital Cooperative built to facilitate financial inclusion as well as boost SMEs growth and acceleration across Africa. Momentum is built to help Individuals, Entrepreneurs and SMEs realize their financial goals, the app will enable members save easily and meet their goals.
-              Momentum seeks to leverage technology to achieve SDGs Goal 1, 2 and 8; thus accelerating socio-economic development. We are on a mission to create an innovative digital driven economy.
+            <div class="card-body p-1">
               <div id="termsCondition" class="my-4">
                 <div
                   class="font-weight-bold text-uppercase text-gray-900 h4 pt-3 mb-2"
-                >Terms &#38; Conditions</div>
+                >Terms & Conditions</div>
                 <span class="d-block mb-2">
                   These Terms of Use govern your use of Momentum and provide information about the Momentum service, outlined below. When you create an account with Momentum or use Momentum, you agree to these terms.
                   Who Can Use Momentum?
@@ -62,6 +58,11 @@
                   </span>You must not engage in fraudulent activities on this platform if not your account will be disabled.
                 </p>
               </div>
+              <div
+                id="aboutMomentum"
+                class="font-weight-bold text-gray-900 h4 pt-2 mb-2"
+              >ABOUT MOMENTUM</div>Momentum is Africa #1 Digital Cooperative built to facilitate financial inclusion as well as boost SMEs growth and acceleration across Africa. Momentum is built to help Individuals, Entrepreneurs and SMEs realize their financial goals, the app will enable members save easily and meet their goals.
+              Momentum seeks to leverage technology to achieve SDGs Goal 1, 2 and 8; thus accelerating socio-economic development. We are on a mission to create an innovative digital driven economy.
               <div id="privacyPolicy" class="my-4">
                 <div
                   class="font-weight-bold text-uppercase text-gray-900 h4 pt-3 mb-2"
@@ -88,12 +89,6 @@ export default {
   name: "Welcome",
   components: {
     MomentumAbout
-  },
-  methods: {
-    clearSession() {
-      sessionStorage.clear();
-      console.log("slldkdk");
-    }
   }
 };
 </script>

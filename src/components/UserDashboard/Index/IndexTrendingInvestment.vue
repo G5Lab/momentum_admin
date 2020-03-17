@@ -1,16 +1,13 @@
 <template>
   <div class="container shadow mb-4 pb-5">
-    <!-- Card Header - Dropdown -->
-    <div class="card">
+    <div class="pt-2 pb-0">
       <div class="card-header py-3">
-        <h6 class="m-0 mb-2 h5 font-weight-bold text-primary">- Latest Investments</h6>
-        <div class="mb-1 px-1 small text-muted">
-          You Can Invest In Any Of The Investment below
-          <span
-            class="p-1 font-weight-bolder text-danger"
-          >Note</span>
+        <h6 class="m-0 mb-2 h4 font-weight-bold text-primary">-Latest Investments</h6>
+        <p class="mb-1 ml-3 px-1 text-muted">
+          <span class="d-block">You Can Invest In Any Of The Investment below</span>
+          <span class="p-1 font-weight-bolder text-danger">Note :</span>
           You can also Fill The Upload Investment Form If You Need Investors for your business
-        </div>
+        </p>
       </div>
       <div v-if="premium" class="row no-gutters">
         <div
@@ -26,13 +23,13 @@
                 :src="investment.attachment"
                 alt="Image"
               />
-              <div class="card-body mt-0">
+              <div class="card-body pb-0 mt-0">
                 <div class="d-flex justify-content-between">
                   <div>
                     <p class="card-title mb-0">{{investment.title}}</p>
                   </div>
                   <div class="m-0 p-0">
-                    <div class="btn btn-success p-2 py-0">{{investment.status}}</div>
+                    <div class="btn btn-success p-1">{{investment.status}}</div>
                   </div>
                 </div>
                 <small class="p text-muted">
@@ -62,6 +59,12 @@
             </div>
           </router-link>
         </div>
+        <button class="btn mx-auto d-block">
+          <router-link
+            to="/viewinvestment"
+            class="btn mx-auto btn-success mt-3 px-5 py-2 mb-0"
+          >View All Investments</router-link>
+        </button>
       </div>
       <div v-if="notPremium" class="container my-5">
         <p class="text-center my-2 h1 text-danger">{{notPremium}}</p>
@@ -125,3 +128,12 @@ export default {
 </script>
 
 
+<style  scoped>
+.nav-link {
+  transition: 0.6s all;
+}
+.nav-link:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
+</style>

@@ -99,7 +99,6 @@ export default {
           this.noHistory = "You Do Not Have Any History Yet";
         } else {
           this.ajoHistory = res.data.data;
-          console.log(res.data.data);
         }
       })
       .catch(err => {

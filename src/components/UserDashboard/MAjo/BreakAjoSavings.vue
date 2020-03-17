@@ -1,5 +1,5 @@
 <template>
-  <Structure page="mAjo / Break Ajo">
+  <Structure page="Break Ajo">
     <div class="container">
       <div
         v-if="mssg"
@@ -26,9 +26,17 @@
           v-on:submit.prevent="breakSavings"
           class="col-md-7 card shadow border bg-white p-4"
         >
-          <div class="text-center text-gray-900 h4 py-4">Enter Amount To Break</div>
-          <div class="form-group">
-            <label for="number">Amount</label>
+          <div class="text-center text-primary font-weight-bold h4 py-3">Enter Amount To Break</div>
+          <p
+            class="p-2 mb-3 text-center font-gray-900"
+          >It is not ideal to withdraw your savings before your cycle completes. However, if it’s a case of emergency, you can break your savings (Ajo) by entering the amount you wish to withdraw.</p>
+          <label for="number">Amount</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">
+                <i class="fa fa-money"></i>
+              </span>
+            </div>
             <input
               v-model="amount"
               type="number"

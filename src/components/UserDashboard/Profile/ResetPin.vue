@@ -7,8 +7,14 @@
         </div>
         <form v-on:submit.prevent="updatePin" class="col-md-11 border bg-white py-2 px-3">
           <div class="text-center text-gray-900 h5 py-2">Reset Pin</div>
-          <div class="form-group">
-            <label for="number">Input Pin</label>
+
+          <label for="number">Input Pin</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">
+                <i class="fa fa-lock"></i>
+              </span>
+            </div>
             <input
               maxlength="4"
               type="password"
@@ -18,8 +24,13 @@
               v-model="pin1"
             />
           </div>
-          <div class="form-group">
-            <label for="number">Confirm Pin</label>
+          <label for="number">Confirm Pin</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">
+                <i class="fa fa-lock"></i>
+              </span>
+            </div>
             <input
               type="password"
               maxlength="4"
@@ -29,8 +40,13 @@
               v-model="pin2"
             />
           </div>
-          <div class="form-group">
-            <label for="number">Enter Former Pin</label>
+          <label for="number">Enter Former Pin</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">
+                <i class="fa fa-lock"></i>
+              </span>
+            </div>
             <input
               type="password"
               maxlength="4"

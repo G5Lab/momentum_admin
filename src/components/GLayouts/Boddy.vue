@@ -2,7 +2,7 @@
   <div id="content-wrapper" class="d-flex flex-column">
     <div id="content">
       <!-- Topbar -->
-      <Topbar class v-on:hideSidebar="$emit('hideSidebar')" />
+      <Topbar v-on:hideSidebar="$emit('hideSidebar')" />
       <div class="container-fluid">
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-2">

@@ -41,11 +41,11 @@
       >
         <div class="bg-white py-2 collapse-inner rounded">
           <router-link class="collapse-item" to="/basicprofile">Basic Info</router-link>
+          <router-link class="collapse-item" to="/updateprofile">Update Profile</router-link>
           <router-link class="collapse-item" to="/upgrademembership">Upgrade Membership</router-link>
-          <router-link class="collapse-item" to="/updateprofile">Complete Profile</router-link>
           <router-link class="collapse-item" to="/bkinfo">Enter Bank Info</router-link>
           <router-link class="collapse-item" to="/kyc">Complete KYC</router-link>
-          <router-link class="collapse-item" to="/ChangePassword">Change Password</router-link>
+          <router-link class="collapse-item" to="/ChangePassword">Update Password</router-link>
           <router-link class="collapse-item" to="/resetPin">Reset Pin</router-link>
         </div>
       </div>
@@ -71,9 +71,9 @@
         data-parent="#accordionSidebar"
       >
         <div class="bg-white py-2 collapse-inner rounded">
-          <router-link class="collapse-item" to="/transfer">Transfer</router-link>
-          <router-link class="collapse-item" to="/withdraw">Withdraw</router-link>
           <router-link class="collapse-item" to="/TopUpWallet">Top-Up Wallet</router-link>
+          <router-link class="collapse-item" to="/transfer">Transfer Funds</router-link>
+          <router-link class="collapse-item" to="/withdraw">Withdraw</router-link>
           <router-link class="collapse-item" to="/MainHistory">History</router-link>
         </div>
       </div>
@@ -98,12 +98,12 @@
         data-parent="#accordionSidebar"
       >
         <div class="bg-white py-2 collapse-inner rounded">
-          <router-link class="collapse-item" to="/registeranagent">Register an Agent</router-link>
-          <router-link class="collapse-item" to="/becomeanagent">Become an Agent</router-link>
-          <!-- <router-link class="collapse-item" to="/changeanagent">Change Agent</router-link> -->
-          <router-link class="collapse-item" to="/credituser">Credit Users</router-link>
-          <router-link class="collapse-item" to="/breakajosavings">Break Ajo Savings</router-link>
           <router-link class="collapse-item" to="/SetAjoCycle">Set Ajo Cycle</router-link>
+          <router-link class="collapse-item" to="/registeranagent">Register / Remove Agent</router-link>
+          <router-link class="collapse-item" to="/becomeanagent">Collect Ajo</router-link>
+          <!-- <router-link class="collapse-item" to="/changeanagent">Change Agent</router-link> -->
+          <!-- <router-link class="collapse-item" to="/credituser">Credit Users</router-link> -->
+          <router-link class="collapse-item" to="/breakajosavings">Break Ajo Savings</router-link>
           <router-link class="collapse-item" to="/AjoHistory">Ajo History</router-link>
         </div>
       </div>
@@ -155,14 +155,14 @@
         <div class="bg-white py-2 collapse-inner rounded">
           <router-link class="collapse-item" to="/viewinvestment">View Investments</router-link>
           <router-link class="collapse-item" to="/investmentreport">Investment Reports</router-link>
-          <!-- <router-link class="collapse-item" to="/uploadinvestment">Upload Investment</router-link> -->
+          <router-link class="collapse-item" to="/uploadinvestment">Upload Investment</router-link>
           <router-link class="collapse-item" to="/investmenthistory">Investment History</router-link>
         </div>
       </div>
     </li>
 
     <!-- Cooming Soon  -->
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <router-link class="route" to="/marketplace">
         <a
           class="nav-link"
@@ -203,7 +203,7 @@
           <span>Loan</span>
         </a>
       </router-link>
-    </li>
+    </li>-->
 
     <!-- Learning Center -->
     <li class="nav-item">

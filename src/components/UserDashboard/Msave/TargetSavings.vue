@@ -3,8 +3,7 @@
     <div class="container-fluid">
       <div v-if="mode">
         <div class="border text-center p-3">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, quidem repellendus? Corrupti magnam totam voluptatibus, aperiam sunt eveniet perspiciatis expedita, illum accusamus ipsam officia eos distinctio ullam esse libero? Cumque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum eum cupiditate animi culpa necessitatibus impedit tempore quam excepturi velit aspernatur molestiae nemo adipisci distinctio, dicta fugit accusantium id beatae aperiam?
+          With the Target Savings plan, you’ll be able to reach your financial goals faster, whether it’s for a car, phone, new clothes or holiday. Designed to help you save for any specific purpose, your Target Savings will help you get there quicker.
           <div class="m-2 p-1">
             <i class="fa fa-arrow-down h2 text-primary d-inline-block text-center scroll"></i>
           </div>

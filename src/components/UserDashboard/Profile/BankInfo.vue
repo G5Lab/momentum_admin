@@ -2,16 +2,58 @@
   <Structure page="Enter Bank Details">
     <div class="container-fluid">
       <div class="row justify-content-center px-1">
+        <div v-if="recepientPresent" class="col-md-8 h5 p-3">
+          <div class="card">
+            <div class="card-body px-3">
+              <div class="row justify-content-center">
+                <div class="col px-3">
+                  <div
+                    class="text-primary text-center font-weight-bold mb-2"
+                  >Bank Details Already Entered</div>
+                  <p>
+                    <span class="d-block">
+                      You have already uploaded your Bank Details on Momentum,
+                      you can continue using the platform. If you wish to change the existing details, contact Support. Below is your Bank Details.
+                    </span>
+                  </p>
+                  <span class="small d-block">
+                    Account Number :
+                    <span class="font-weight-bold">{{accountNumber}}</span>
+                  </span>
+                  <span class="small d-block mb-3">
+                    Bank Name :
+                    <span class="font-weight-bold">{{bank_name}}</span>
+                  </span>
+                  <button class="btn mx-auto d-block btn-primary">
+                    <router-link to="/userdashboard" class="btn-primary px-3">Return</router-link>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div v-if="loading" class="my-2 text-center">
           <Loader />
         </div>
-        <form v-on:submit.prevent="submitBkinfo" class="col-md-10 border bg-white p-3">
-          <div class="text-center text-gray-900 h5 py-3">Bank Details</div>
+        <form
+          v-if="NotRecepientPresent"
+          v-on:submit.prevent="submitBkinfo"
+          class="col-md-10 border bg-white p-2"
+        >
+          <div class="text-center text-primary font-weight-bold h5 pt-3">Bank Details</div>
+          <div
+            class="p-2 mb-2 text-center p"
+          >The bank details entered will be your default bank when you request for withdraw</div>
           <div class="row justify-content-center">
             <div class="col-md-11">
-              <div class="form-group col">
-                <label>Select Bank</label>
-                <select required v-model="sorttcode" name class="form-control" id>
+              <label>Select Bank</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <i class="fa fa-bank"></i>
+                  </span>
+                </div>
+                <select required v-model="sorttcode" class="form-control">
                   <option value disabled selected>Select</option>
                   <option value="044">Access Bank</option>
                   <option value="063">Access Bank (Diamond)</option>
@@ -41,8 +83,13 @@
                   <option value="057">Zenith Bank</option>
                 </select>
               </div>
-              <div class="form-group col">
-                <label for="number">Account Number</label>
+              <label for="number">Account Number</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <i class="fa fa-pencil"></i>
+                  </span>
+                </div>
                 <input
                   v-model="accountNumber"
                   type="Number"
@@ -111,6 +158,9 @@ export default {
   },
   data() {
     return {
+      recepientPresent: false,
+      NotRecepientPresent: true,
+
       token: "",
       trans_id: "",
       user_id: "",
@@ -226,6 +276,7 @@ export default {
     this.trans_id = this.$session.get("user").trans_id;
     this.user_id = this.$session.get("user")._id;
     this.fullname = this.$session.get("user").fullname;
+    this.recipient_code = this.$session.get("user").recipient_code;
 
     axios
       .post(
@@ -247,6 +298,23 @@ export default {
       .catch(err => {
         console.log(err);
       });
+
+    if (this.recipient_code == null) {
+      this.NotRecepientPresent = true;
+      this.recepientPresent = false;
+    } else {
+      this.NotRecepientPresent = false;
+      this.recepientPresent = true;
+      this.accountNumber = this.$session.get("user").account_number;
+      this.bank_name = this.$session.get("user").bank_name;
+    }
   }
 };
 </script>
+
+
+<style scoped>
+p {
+  font-size: 1.01rem !important;
+}
+</style>

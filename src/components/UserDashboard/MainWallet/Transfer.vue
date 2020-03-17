@@ -28,11 +28,22 @@
           class="col-md-7 card shadow border bg-white"
         >
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">- You Can Now Transfer To Any User</h6>
+            <h6 class="m-0 font-weight-bold text-primary">- Transfer to a User</h6>
           </div>
           <div class="card-body">
-            <div class="form-group">
-              <label for="number">Enter Reciever Id</label>
+            <p class="p-2 mb-2">
+              <span
+                class="d-block"
+              >You can transfer funds to other users. Transfer occurs from your Main Wallet.</span>
+            </p>
+
+            <label for="number">Enter Reciever Id</label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">
+                  <i class="fa fa-user"></i>
+                </span>
+              </div>
               <input
                 v-model="reciever_id"
                 type="number"
@@ -41,8 +52,13 @@
                 class="form-control"
               />
             </div>
-            <div class="form-group">
-              <label for="number">Enter Amount To Transfer</label>
+            <label for="number">Enter Amount To Transfer</label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">
+                  <i class="fa fa-money"></i>
+                </span>
+              </div>
               <input
                 v-model="amount"
                 type="number"

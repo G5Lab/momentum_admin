@@ -19,7 +19,7 @@
                     </div>
                   </a>
                   <div id="collapse1" class="collapse border m-2 p-2 show">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi, rem blanditiis eius quaerat quis ea illo aut aliquid aperiam adipisci maiores porro omnis aspernatur ad sed deserunt. Perferendis, tempore maiores.
+                    You can instantly save funds to your savings wallet to meet your target quickly. For convenience and ease, you can choose to save from your bank account or your main wallet.
                     <!-- DirectSavingsForm Here! -->
                     <DirectSavingsForm />
                   </div>
@@ -34,7 +34,7 @@
                     </div>
                   </a>
                   <div class="card border m-2 p-2 collapse" id="collapse2">
-                    Rora Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae nulla quaerat ipsam quo mollitia, voluptatem eaque cum molestias optio nesciunt, laboriosam ea omnis tempora quidem doloremque ipsum, eum assumenda perferendis.
+                    You can set up your periodic debits from your bank account to savings wallent automatically until you reach your set target. You will be debited starting from the day you start, at the frequency you selected until you reach your target.
                     <!-- Recurring Savings Form Here! -->
                     <RecurringSavingsForm />
                   </div>
@@ -49,9 +49,9 @@
                     </div>
                   </a>
                   <div class="card border m-2 p-2 collapse" id="collapse3">
-                    Loop Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum explicabo cumque laborum, dolorum excepturi soluta placeat animi ipsum nam magnam exercitationem possimus praesentium illo eum. At aperiam soluta adipisci quos.
+                    You can discontinue your periodic debits from your bank account to savings wallet. Once this process is cancelled, you will need to set it again if you wish to enable periodic debits.
                     <!-- StopSavingsForm Here! -->
-                    <StopSavingsForm />
+                    <StopSavingsForm class="mt-2" />
                   </div>
                 </div>
 
@@ -64,7 +64,15 @@
                     </div>
                   </a>
                   <div class="border m-2 p-2 collapse" id="collapse4">
-                    4 ansd Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde fugit nobis molestias voluptatum porro quidem quo natus, facere beatae ipsa molestiae, provident aliquam perspiciatis quia, expedita cupiditate iusto fuga commodi!
+                    <div class="px-3 py-2">
+                      Withdrawing from your savings wallet will break your savings target and we would like to help you reach your target. If you wish to continue,
+                      <span
+                        class="font-weight-bold"
+                      >you will wait for a period of 10 days</span> to process the amount requested for and thereafter, your funds will be available in your main wallet.
+                    </div>
+
+                    <!--  Top Up Main Wallet
+                    Top up funds in your main wallet and use funds for savings, investments or transfer to your bank account.-->
                     <!-- BreakSavingsForm -->
                     <BreakSavingsForm />
                   </div>

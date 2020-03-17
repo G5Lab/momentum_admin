@@ -1,17 +1,7 @@
 <template>
 <body>
   <div class="container pt-2">
-    <div class="text-center d-flex justify-content-center text-white h2 pt-4 pb-2">
-      <div>
-        <img src="img/favi.png" width="80rem" alt />
-      </div>
-      <div class="mt-2">
-        <p class="mt-3 d-inline-block">
-          <span class="font-weight-light">omen</span>
-          <span class="font-weight-bold text-gray-900">tum</span>
-        </p>
-      </div>
-    </div>
+    <AuthLogo />
     <div v-if="loading" class="text-center pb-3">
       <Loader />
     </div>
@@ -143,10 +133,12 @@
 <script>
 import axios from "axios";
 import Loader from "./Loader";
+import AuthLogo from "./AuthLogo";
 export default {
   name: "Register",
   components: {
-    Loader
+    Loader,
+    AuthLogo
   },
   data() {
     return {
@@ -175,18 +167,15 @@ export default {
           .then(res => {
             this.loading = false;
             const result = res.data;
+            console.log(result);
             if (result.status == true) {
               sessionStorage.setItem(
                 "registrationSucces",
                 JSON.stringify(result.status)
               );
               this.$router.push("welcomemessage");
-            } else if (result.message == "user exists with same email") {
-              this.msg = "Email already exist";
-            } else if (result.message == "user exists with same number") {
-              this.msg = "Phone number already exist";
             } else {
-              this.msg = "Registration ins't successful";
+              this.msg = result.message;
             }
           })
           .catch(err => {

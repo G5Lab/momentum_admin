@@ -1,13 +1,7 @@
 <template>
 <body>
   <div class="container pt-4">
-    <div class="text-center h2 pt-5 pb-4">
-      <span>
-        <i class="fab fa-accusoft mr-2"></i>
-      </span>
-      <span class="font-weight-light">Momen</span>
-      <span class="font-weight-bold">tum</span>
-    </div>
+    <AuthLogo />
     <div v-if="loading" class="text-center pb-3">
       <Loader />
     </div>
@@ -45,9 +39,12 @@
 </body>
 </template>
 <script>
+import AuthLogo from "./AuthLogo";
 export default {
   name: "Recover",
-  components: {},
+  components: {
+    AuthLogo
+  },
   data() {
     return {};
   },

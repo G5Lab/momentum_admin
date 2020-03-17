@@ -13,7 +13,8 @@
     "vue": "^2.6.10",
     "vue-ravepayment": "^2.0.2",
     "vue-router": "^3.1.5",
-    "vue-session": "^1.0.0"
+    "vue-session": "^1.0.0",
+    "vue-smooth-scroll": "^1.0.13"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.0",

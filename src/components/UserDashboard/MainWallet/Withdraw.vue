@@ -1,87 +1,103 @@
 <template>
   <Structure page="Withdraw">
     <div class="container-fluid">
-      <div class="text-center my-2" v-if="loading">
-        <Loader />
-      </div>
-      <div
-        v-if="mssg"
-        class="alert text-center alert-primary alert-dismissible my-2 fade show"
-        role="alert"
-      >
-        <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
-        <button
-          type="button"
-          @click="closeMsg"
-          class="close"
-          data-dismiss="alert"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="card shadow justify-content-center mb-4">
-        <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">- Withdraw From Any Wallet</h6>
+      <div class="container">
+        <div class="text-center my-2" v-if="loading">
+          <Loader />
         </div>
-        <div class="card-body">
-          <form v-if="form" @submit.prevent="swap" class="register bg-white">
-            <div class="form-group">
-              <label for="name">Amount</label>
-              <input
-                required
-                type="number"
-                v-model="amount"
-                name="name"
-                class="form-control"
-                id="name"
-                placeholder="Amount To Withdraw"
-              />
-            </div>
-            <button
-              :disabled="loading || nobk"
-              type="submit"
-              class="btn btn-primary mt-3 d-block mx-auto text-center mb-3"
-            >Withdraw</button>
-          </form>
-          <div v-if="verified" class="col-md-6">
-            <Verify class="bg-white p-5" v-on:verifyPin="verifyPin" />
-          </div>
-
-          <div
-            v-if="msg"
-            class="alert text-center alert-danger alert-dismissible mt-1 fade show"
-            role="alert"
+        <div
+          v-if="mssg"
+          class="alert text-center alert-primary alert-dismissible my-2 fade show"
+          role="alert"
+        >
+          <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
+          <button
+            type="button"
+            @click="closeMsg"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
           >
-            <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
-            <button
-              type="button"
-              @click="closeMsg"
-              class="close"
-              data-dismiss="alert"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="row justify-content-center mb-4">
+          <div class="col-md-7">
+            <div class="card shadow">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">- Withdraw From Any Wallet</h6>
+              </div>
+              <div class="card-body">
+                <p class="p-2 mb-2">
+                  <span
+                    class="d-block text-center"
+                  >You can make withdrawal from your wallet to your bank account.</span>
+                </p>
+                <form v-if="form" @submit.prevent="swap" class="register bg-white">
+                  <label for="name">Amount</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">
+                        <i class="fa fa-money"></i>
+                      </span>
+                    </div>
+                    <input
+                      required
+                      type="number"
+                      v-model="amount"
+                      name="name"
+                      class="form-control"
+                      id="name"
+                      placeholder="Amount To Withdraw"
+                    />
+                  </div>
+                  <button
+                    :disabled="loading || nobk"
+                    type="submit"
+                    class="btn btn-primary mt-3 d-block mx-auto text-center mb-3"
+                  >Withdraw</button>
+                </form>
+                <div v-if="verified" class="col-md-6">
+                  <Verify class="bg-white p-5" v-on:verifyPin="verifyPin" />
+                </div>
+              </div>
+
+              <div
+                v-if="msg"
+                class="alert text-center alert-danger alert-dismissible mt-1 fade show"
+                role="alert"
+              >
+                <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
+                <button
+                  type="button"
+                  @click="closeMsg"
+                  class="close"
+                  data-dismiss="alert"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div
-        v-if="nobk"
-        class="alert text-center alert-danger alert-dismissible mt-2 fade show"
-        role="alert"
-      >
-        <span class="text-center d-inline-block font-weight-bolder">{{nobk}}</span>
-        <button
-          type="button"
-          @click="closeNobk"
-          class="close"
-          data-dismiss="alert"
-          aria-label="Close"
+        <div
+          v-if="nobk"
+          class="alert text-center alert-danger alert-dismissible mt-2 fade show"
+          role="alert"
         >
-          <span aria-hidden="true">&times;</span>
-        </button>
+          <span class="text-center d-inline-block font-weight-bolder">{{nobk}}</span>
+          <button
+            type="button"
+            @click="closeNobk"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
       </div>
     </div>
   </Structure>
@@ -264,12 +280,14 @@ export default {
       )
       .then(res => {
         this.loading = false;
-        if (!this.user_recp_code) {
-          this.nobk = "Enter Your Bank Details To Withdraw";
-        }
+        console.log(res.data);
+
         this.paystackAuthPubKey = res.data.paystackAuthPubKey;
         this.paystackAuthSecKey = res.data.paystackAuthSecKey;
         this.user_recp_code = res.data.user_recp_code;
+        if (!this.user_recp_code) {
+          this.nobk = "Enter Your Bank Details To Withdraw";
+        }
       })
       .catch(err => {
         console.log(err);

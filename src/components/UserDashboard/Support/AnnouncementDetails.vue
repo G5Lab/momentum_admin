@@ -1,5 +1,5 @@
 <template>
-  <Structure page="Announcement  Details">
+  <Structure page="Announcement Details">
     <div v-if="loading" class="text-center">
       <Loader />
     </div>

@@ -1,37 +1,36 @@
 <template>
   <Structure page="Dashboard">
     <div class="container-fluid mx-0 px-2">
-      <!-- Set Pin-->
-      <div v-if="others.setpinform" class="row mt-5 justify-content-center">
-        <SetPin />
-      </div>
-      <div v-if="others.mode">
-        <!-- First -->
-        <div
-          class="container-fluid mb-1 d-none d-md-block text-muted"
-        >These are Your Current Wallet Balance And Short Details</div>
-        <div class="row mb-4">
-          <!-- Main Wallet -->
-          <MainWallet :main_balance="main_balance" :dividends="dividends" />
-          <!-- Ajo Wallet -->
-          <mAjo :ajo_balance="ajo_balance" />
-          <!-- Savings Wallet -->
-          <SavingsWallet :savings_balance="savings_balance" />
-          <!-- Investment Wallet -->
-          <Invest :investment_balance="investment_balance" />
+      <div class="container">
+        <!-- Set Pin-->
+        <div v-if="others.setpinform" class="row mt-5 justify-content-center">
+          <SetPin />
         </div>
+        <div v-if="others.mode">
+          <!-- First -->
+          <div class="row mb-4">
+            <!-- Main Wallet -->
+            <MainWallet :main_balance="main_balance" :dividends="dividends" />
+            <!-- Ajo Wallet -->
+            <mAjo :ajo_balance="ajo_balance" />
+            <!-- Savings Wallet -->
+            <SavingsWallet :savings_balance="savings_balance" />
+            <!-- Investment Wallet -->
+            <Invest :investment_balance="investment_balance" />
+          </div>
 
-        <!-- Trending Investment -->
-        <IndexTrendingInvestment />
+          <!-- Trending Investment -->
+          <IndexTrendingInvestment />
 
-        <!-- Announcement -->
-        <div>
-          <IndexAnnouncement />
+          <!-- Announcement -->
+          <div>
+            <IndexAnnouncement />
+          </div>
         </div>
       </div>
-    </div>
-    <div class="text-center mt-5" v-if="others.loading">
-      <Loader />
+      <div class="text-center mt-5" v-if="others.loading">
+        <Loader />
+      </div>
     </div>
   </Structure>
 </template>

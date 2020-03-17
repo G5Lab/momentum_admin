@@ -11,10 +11,11 @@ import ForgotPassword from '../components/Auth/ForgotPassword'
 import Welcome from '../components/Auth/Welcome'
 import Recover from '../components/Auth/Recover'
 import Initial from '../components/Auth/Initial'
+import TermsCondition from "../components/Auth/TermsCondition"
+import PrivacyPolicy from "../components/Auth/PrivacyPolicy"
 
 // UserDashboard
 import UserDashboard from '../components/UserDashboard'
-import TestRave from "../components/UserDashboard/Msave/TargetSavingsAction/TestRave"
 
 // Profile
 import BasicProfile from '../components/UserDashboard/Profile/BasicProfile'
@@ -41,7 +42,6 @@ import TargetSavings from "../components/UserDashboard/Msave/TargetSavings"
 // mAjo 
 import RegisterAgent from "../components/UserDashboard/MAjo/RegisterAgent"
 import BecomeAgent from "../components/UserDashboard/MAjo/BecomeAgent"
-import ChangeAgent from "../components/UserDashboard/MAjo/ChangeAgent"
 import BreakAjo from "../components/UserDashboard/MAjo/BreakAjoSavings"
 import CreditUsers from "../components/UserDashboard/MAjo/CreditUsers"
 import SetAjoCycle from "../components/UserDashboard/MAjo/SetAjoCycle"
@@ -123,6 +123,20 @@ const routes = [
         }
     },
     {
+        path: '/termsCondition',
+        component: TermsCondition,
+        meta: {
+            guest: true
+        }
+    },
+    {
+        path: '/privacyPolicy',
+        component: PrivacyPolicy,
+        meta: {
+            guest: true
+        }
+    },
+    {
         path: "/recover",
         component: Recover
     },
@@ -137,8 +151,6 @@ const routes = [
             registerNow: true
         }
     },
-    // { path: '/dashboard', component: Dashboard }
-
 
     // User Dashboard
     {
@@ -147,10 +159,6 @@ const routes = [
         meta: {
             requiresAuth: true
         }
-    },
-    {
-        path: "/testRave",
-        component: TestRave
     },
 
     // Profile
@@ -315,13 +323,6 @@ const routes = [
     {
         path: '/becomeanagent',
         component: BecomeAgent,
-        meta: {
-            requiresAuth: true
-        }
-    },
-    {
-        path: '/changeanagent',
-        component: ChangeAgent,
         meta: {
             requiresAuth: true
         }

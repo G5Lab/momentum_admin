@@ -1,98 +1,107 @@
 <template>
-  <Structure page="Become an Agent">
-    <div class="container-fluid">
-      <div class="row justify-content-center">
-        <div class="col-md-10">
-          <div class="card shadow justify-content-center mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">- Become an Agent</h6>
+  <Structure page="Collect Ajo">
+    <div class="container-fluid mt-4 d-flex justify-content-center">
+      <div class="card-body shadow col-md-12 col-xs-12 col-lg-10 mb-4">
+        <div class="py-1">
+          <div class="bg-light">
+            <div
+              class="text-center text-uppercase text-primary font-weight-bold h4 mb-0"
+            >COLLEECT AJO OPTIONS</div>
+            <div class="py-2">
+              <p>Community leaders can collect funds from users under them at regular intervals as part of the user's savings. At the point of collection, the Community Leader transfer to the User (Client), and the user gets the funds in their wallet.</p>
             </div>
-            <div class="card-body">
-              <form v-on:submit.prevent="agree" class="bg-white">
-                <div class="border p-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta blanditiis perspiciatis totam sit assumenda laudantium, ducimus quo corporis iusto dignissimos velit deserunt aliquid dolore distinctio, officiis vel reprehenderit error quibusdam!
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur quasi totam eius reiciendis eos hic voluptatem iusto, impedit expedita veniam saepe quam sit sunt accusantium in, consequuntur natus quas similique!
+          </div>
+        </div>
+        <div id="accordion" class="mt-2">
+          <!-- Become a collector -->
+          <div class="border mb-2">
+            <a href="#collapse3" data-parent="#accordion" data-toggle="collapse">
+              <div class="p-2 mb-2 text-dark">
+                <i class="fa fa-users mr-3 lead"></i>
+                <span class="font-weight-bold">Become a Collector</span>
+              </div>
+            </a>
+            <div class="card border m-2 p-2 py-4 collapse" id="collapse3">
+              <div>Community leaders are responsible for collecting funds from users under them. You will collect funds and transfer to the users account as set up by the user. As a Community leader, you will need to have sufficient balance in your account, as this will be the source of the funds you transfer to users.</div>
+
+              <div class="row justify-content-center">
+                <div class="col-md-6">
+                  <div v-if="loading1" class="my-1 text-center">
+                    <Loader />
+                  </div>
+                  <VerifyPin v-if="verifyBasic" v-on:verifyPin="becomeACollectorPin" />
                 </div>
-                <button
-                  type="submit"
-                  class="btn btn-primary mt-3 btn-block text-center mb-3"
-                >Yes I Agree</button>
-              </form>
+              </div>
+              <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg1" />
+              <Failuremsg v-on:closeMsg="closeMsg" :msg="msg1" />
+              <div>
+                <div class="d-flex justify-content-center mt-2" v-if="button1">
+                  <button @click="becomeACollector" class="btn btn-primary">I Understand</button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="container mb-2">
-      <div
-        v-if="mssg"
-        class="alert text-center alert-primary alert-dismissible mt-2 fade show"
-        role="alert"
-      >
-        <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
-        <button
-          type="button"
-          @click="closeMsg"
-          class="close"
-          data-dismiss="alert"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="text-center" v-if="loading">
-        <Loader />
-      </div>
-      <div class="row no-gutters justify-content-center">
-        <form
-          v-if="form"
-          v-on:submit.prevent="breakSavings"
-          class="col-md-7 card shadow border bg-white p-4"
-        >
-          <div class="text-center text-gray-900 h4 py-2">Fill ajo agent form</div>
-          <div class="form-group">
-            <label for="number">Reciever_id</label>
-            <input
-              v-model="reciever_id"
-              type="number"
-              required
-              placeholder="Reciever_id"
-              class="form-control"
-            />
-          </div>
-          <div class="form-group">
-            <label for="number">Amount</label>
-            <input
-              v-model="amount"
-              type="number"
-              required
-              placeholder="Amount In Naira"
-              class="form-control"
-            />
-          </div>
-          <button type="submit" class="btn btn-dark d-block mx-auto px-3 my-2">Become</button>
-        </form>
-        <div v-if="verified" class="col-md-6">
-          <Verify class="bg-white p-5" v-on:verifyPin="verifyPin" />
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-md-6">
-          <div
-            v-if="msg"
-            class="alert text-center alert-danger alert-dismissible mt-2 fade show"
-            role="alert"
-          >
-            <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
-            <button
-              type="button"
-              @click="closeMsg"
-              class="close"
-              data-dismiss="alert"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
+
+          <!-- Collect -->
+          <div class="border mb-2">
+            <a href="#collapse4" data-parent="#accordion" data-toggle="collapse">
+              <div class="p-2 mb-2 text-dark">
+                <i class="fa fa-handshake-o mr-3 lead"></i>
+                <span class="font-weight-bold">Collect From Users</span>
+              </div>
+            </a>
+            <div class="border m-2 p-2 p py-4 collapse" id="collapse4">
+              <div>
+                <p>When Collecting Ajo form users, enter the transaction Id and the amount collected, to complete the transaction</p>
+              </div>
+              <div class="row justify-content-center">
+                <div class="col-md-6">
+                  <div v-if="loading2" class="my-1 text-center">
+                    <Loader />
+                  </div>
+                  <VerifyPin v-if="verifyPro" v-on:verifyPin="completeCollection" />
+                </div>
+              </div>
+              <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg2" />
+              <Failuremsg v-on:closeMsg="closeMsg" :msg="msg2" />
+              <div class="p-2 border">
+                <form @submit.prevent="collectFromUser" class="p-1" v-if="button2">
+                  <label for="number">Enter Reciever Id</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">
+                        <i class="fa fa-user"></i>
+                      </span>
+                    </div>
+                    <input
+                      v-model="reciever_id"
+                      type="number"
+                      required
+                      placeholder="Reciever Id"
+                      class="form-control"
+                    />
+                  </div>
+                  <label for="number">Enter Amount To Transfer</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">
+                        <i class="fa fa-money"></i>
+                      </span>
+                    </div>
+                    <input
+                      v-model="amount"
+                      type="number"
+                      required
+                      placeholder="Amount in naira"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <button class="btn btn-primary">Complete Transaction</button>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -101,68 +110,144 @@
 </template>
 
 <script>
+import Successmsg from "../GUserLayouts/Successmsg";
+import Failuremsg from "../GUserLayouts/Failuremsg";
 import Loader from "../Index/Loader";
 import axios from "axios";
 import Structure from "../GUserLayouts/Structure";
-import Verify from "../../Auth/VerifyPin";
+import VerifyPin from "../../Auth/VerifyPin";
 
 export default {
   name: "BecomeAgent",
   components: {
     Structure,
     Loader,
-    Verify
+    VerifyPin,
+    Successmsg,
+    Failuremsg
   },
   data() {
     return {
-      amount: "",
-      reciever_id: "",
+      verifyBasic: false,
+      button1: true,
+      verifyPro: false,
+      button2: true,
 
-      form: false,
-      verified: false,
-      loading: false,
+      msg1: "",
+      mssg1: "",
+      msg2: "",
+      mssg2: "",
+      loading1: false,
+      loading2: false,
+
+      reciever_id: "",
+      amount: "",
 
       token: "",
       trans_id: "",
       user_id: "",
-
-      mssg: "",
-      msg: ""
+      fullname: "",
+      level: ""
     };
   },
   methods: {
-    agree() {
-      setTimeout(() => {
-        this.form = true;
-      }, 200);
-    },
     closeMsg() {
-      this.msg = "";
-      this.mssg = "";
-      this.verified = false;
-      this.form = false;
+      this.msg1 = "";
+      this.mssg1 = "";
+      this.msg2 = "";
+      this.mssg2 = "";
+      this.$router.go();
     },
-    breakSavings() {
-      this.verified = true;
-      this.form = false;
+    becomeACollector() {
+      this.verifyBasic = true;
+      this.button1 = false;
     },
-    verifyPin(pin) {
-      this.loading = true;
+    becomeACollectorPin(pin) {
+      this.loading1 = true;
+      const token = this.$session.get("jwt");
+      const user_id = this.$session.get("user")._id;
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      };
+      // Verify Pin
       axios
         .post(
           `https://momentum.ng/backend/api/users/verifypin`,
           {
-            user_id: this.user_id,
+            user_id: user_id,
             pin: pin
           },
           {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${this.token}`
-            }
+            headers
           }
         )
         .then(res => {
+          this.loading1 = false;
+          // If Pin is correct
+          if (res.data.status == true) {
+            axios
+              .post(
+                `https://momentum.ng/backend/api/users/becomeagent`,
+                {
+                  user_id: user_id
+                },
+                {
+                  headers
+                }
+              )
+              .then(res => {
+                if (res.data.status == true) {
+                  this.mssg1 = res.data.message;
+                  setTimeout(() => {
+                    this.$router.go();
+                  }, 4000);
+                } else {
+                  setTimeout(() => {
+                    this.$router.go();
+                  }, 4000);
+                  this.msg1 = res.data.message;
+                }
+              })
+              .catch(err => {
+                console.log(err);
+                this.msg1 = "An Error Occured";
+              });
+          } else {
+            // If !pin
+            this.msg1 = res.data.message;
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    collectFromUser() {
+      this.verifyPro = true;
+      this.button2 = false;
+    },
+    completeCollection(pin) {
+      this.loading2 = true;
+      const token = this.$session.get("jwt");
+      const user_id = this.$session.get("user")._id;
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      };
+      // Verify Pin
+      axios
+        .post(
+          `https://momentum.ng/backend/api/users/verifypin`,
+          {
+            user_id: user_id,
+            pin: pin
+          },
+          {
+            headers
+          }
+        )
+        .then(res => {
+          // If Pin is correct
           if (res.data.status == true) {
             axios
               .post(
@@ -173,27 +258,25 @@ export default {
                   amount: this.amount
                 },
                 {
-                  headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${this.token}`
-                  }
+                  headers
                 }
               )
               .then(res => {
-                this.loading = false;
+                this.loading2 = false;
                 if (res.data.status == true) {
-                  this.mssg = res.data.message;
+                  this.mssg2 = res.data.message;
                 } else {
-                  this.msg = res.data.message;
+                  this.msg2 = res.data.message;
                 }
               })
               .catch(err => {
+                this.loading2 = false;
                 console.log(err);
+                this.msg2 = "An Error Occured";
               });
           } else {
-            this.loading = false;
-            this.msg = "Incorrect Pin";
-            console.log(res.data);
+            this.loading2 = false;
+            this.msg2 = res.data.message;
           }
         })
         .catch(err => {
@@ -205,6 +288,17 @@ export default {
     this.token = this.$session.get("jwt");
     this.trans_id = this.$session.get("user").trans_id;
     this.user_id = this.$session.get("user")._id;
+    this.fullname = this.$session.get("user").fullname;
+    this.level = this.$session.get("user").level;
   }
 };
 </script>
+
+<style scoped>
+.p {
+  font-size: 1.035rem;
+}
+.fa {
+  color: blue;
+}
+</style>
