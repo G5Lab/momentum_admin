@@ -1,5 +1,5 @@
 <template>
-  <Structure page="Register agent ">
+  <Structure page="Register / Remove agent ">
     <div class="container-fluid mb-4">
       <div class="container mb-4">
         <div

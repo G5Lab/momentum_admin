@@ -9,7 +9,7 @@
             <div class="h5 mb-0 font-weight-bold text-gray-800">&#8358;{{investment_balance || 0}}</div>
           </div>
           <div class="col-auto">
-            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+            <i class="fa fa-money fa-3x text-gray-800"></i>
           </div>
         </div>
         <div class="mt-3 small mb-0">

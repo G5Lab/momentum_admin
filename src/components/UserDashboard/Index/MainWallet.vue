@@ -11,7 +11,7 @@
             <div class="h5 mb-0 font-weight-bold text-gray-800">&#8358;{{main_balance}}</div>
           </div>
           <div class="col-auto">
-            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+            <i class="fa fa-google-wallet fa-3x text-gray-800"></i>
           </div>
         </div>
       </div>

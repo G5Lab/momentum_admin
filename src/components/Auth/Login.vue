@@ -123,6 +123,7 @@ export default {
         .then(res => {
           this.loading = false;
           if (res.data.status == true) {
+            console.log(res.data)
             this.$session.start();
             this.$session.set("jwt", res.data.token);
             this.$session.set("user", res.data.user);

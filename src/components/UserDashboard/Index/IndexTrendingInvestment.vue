@@ -1,7 +1,7 @@
 <template>
-  <div class="container shadow mb-4 pb-5">
-    <div class="pt-2 pb-0">
-      <div class="card-header py-3">
+  <div class="mb-4 pb-5">
+    <div class="card pt-2 pb-0">
+      <div class="p-3">
         <h6 class="m-0 mb-2 h4 font-weight-bold text-primary">-Latest Investments</h6>
         <p class="mb-1 ml-3 px-1 text-muted">
           <span class="d-block">You Can Invest In Any Of The Investment below</span>
@@ -62,7 +62,7 @@
         <button class="btn mx-auto d-block">
           <router-link
             to="/viewinvestment"
-            class="btn mx-auto btn-success mt-3 px-5 py-2 mb-0"
+            class="btn mx-auto btn-success my-3 px-5 py-2 mb-0"
           >View All Investments</router-link>
         </button>
       </div>

@@ -6,33 +6,16 @@
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">mSave</div>
-
             <div class="h5 mb-2 font-weight-bold text-gray-800">&#8358;{{savings_balance || 0}}</div>
-
-            <div class="row no-gutters align-items-center">
-              <div class="col-auto">
-                <!-- <div class="mb-0 mr-3 font-weight-bold text-gray-800">50%</div> -->
-              </div>
-              <!-- <div class="col">
-                <div class="progress progress-sm mr-2">
-                  <div
-                    class="progress-bar bg-info"
-                    role="progressbar"
-                    style="width: 50%"
-                    aria-valuenow="50"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-              </div>-->
-            </div>
-            <small class>
-              <span class>Maturity Date:</span>
-              <span class="ml-2">{{msavematurity || "Not Set"}}</span>
-            </small>
           </div>
           <div class="col-auto">
-            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+            <i class="fas fa-clipboard-list fa-3x text-gray-300"></i>
+          </div>
+        </div>
+        <div class="row no-gutters align-items-center">
+          <div class="col-auto mt-3 small">
+            Maturity Date:
+            <span class="ml-2 text-info">{{msavematurity || "Not Set"}}</span>
           </div>
         </div>
       </div>

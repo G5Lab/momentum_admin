@@ -1,4 +1,8 @@
+// 404
+import NotFound from "../components/GLayouts/NotFound"
+
 // Cooming Soon
+
 import MarketPlace from "../components/UserDashboard/Cooming/MarketPlace"
 import HirePurchase from "../components/UserDashboard/Cooming/HirePurchase"
 import Loan from "../components/UserDashboard/Cooming/Loan"
@@ -69,6 +73,15 @@ import LearningMaterials from "../components/UserDashboard/LearningCenter/Learni
 import LearningMaterialsDetails from "../components/UserDashboard/LearningCenter/LearningMaterialsDetails"
 
 const routes = [
+    // 404
+    {
+        path: '/404',
+        component: NotFound
+    },
+    {
+        path: '*',
+        redirect: '/404'
+    },
 
     // Cooming Sooon 
     {

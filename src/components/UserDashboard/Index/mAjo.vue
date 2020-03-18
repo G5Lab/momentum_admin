@@ -9,22 +9,22 @@
             <div class="h5 mb-0 font-weight-bold text-gray-800">&#8358;{{ajo_balance}}</div>
           </div>
           <div class="col-auto">
-            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+            <i class="fa fa-handshake fa-3x text-gray-800"></i>
           </div>
         </div>
         <div class="mt-3 small mb-0">
           Amount:
-          <span class="text-danger">{{ajoAmount}}</span>
+          <span class="text-danger">{{ajoAmount || "Not Set"}}</span>
         </div>
         <div class="small mb-0">
           ajoAgent:
-          <span class="text-danger">{{ajoAgent}}</span>
+          <span class="text-danger">{{ajoAgent|| "Not Set"}}</span>
         </div>
       </div>
       <div class="card-footer m-0 p-1 d-flex justify-content-center">
         <small>
           <span class>Cycle:</span>
-          <span class="h6 m-2 font-weight-bold">{{cycle}}</span>
+          <span class="h6 m-2 font-weight-bold">{{cycle || "Not Set"}}</span>
         </small>
       </div>
     </div>
@@ -40,12 +40,14 @@ export default {
     return {
       cycle: "",
       ajoAmount: "",
-      ajoAgent: ""
+      ajoAgent: "",
+      user_id: ""
     };
   },
   created() {
     const token = this.$session.get("jwt");
     const trans_id = this.$session.get("user").trans_id;
+    this.user_id = this.$session.get("user")._id;
     // Get ajo
     axios
       .get(`https://momentum.ng/backend/api/fetchdata/ajo/${trans_id}`, {
@@ -56,11 +58,29 @@ export default {
       })
       .then(res => {
         const result = res.data;
-        if (result.status == false) {
-          this.ajoAmount = "Not set";
-          this.cycle = "Not set";
-          this.ajoAgent = "Not set";
+        if (result.status == true) {
+          console.log(res.data);
+          console.log(new Date(res.data.ajo.date));
+          this.ajoAmount = res.data.ajo.ajo_amount;
+          if (res.data.ajo.ajo_cycle == 30) {
+            this.cycle = "Monthly";
+          }
+          if (res.data.ajo.ajo_cycle == 90) {
+            this.cycle = "Quaterly";
+          }
+          if (res.data.ajo.ajo_cycle == 180) {
+            this.cycle = "Bi-Annually";
+          }
+          // this.cycle = res.data.ajo.ajo_cycle;
         }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    axios
+      .get(`https://momentum.ng/backend/api/users/${this.user_id}`)
+      .then(res => {
+        this.ajoAgent = res.data.agent;
       })
       .catch(err => {
         console.log(err);

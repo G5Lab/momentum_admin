@@ -50,9 +50,9 @@
             </div>
             <select v-model="cycle" class="browser-default custom-select" required>
               <option value disabled selected>Select</option>
-              <option value="Monthly">Monthly</option>
-              <option value="Quaterly">Quaterly</option>
-              <option value="Bi-Annually">Bi-Annually</option>
+              <option value="30">Monthly</option>
+              <option value="90">Quaterly</option>
+              <option value="180">Bi-Annually</option>
             </select>
           </div>
           <button
