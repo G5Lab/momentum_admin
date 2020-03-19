@@ -11,19 +11,19 @@
                     class="text-primary text-center font-weight-bold mb-2"
                   >Bank Details Already Entered</div>
                   <p>
-                    <span class="d-block">
-                      You have already uploaded your Bank Details on Momentum,
-                      you can continue using the platform. If you wish to change the existing details, contact Support. Below is your Bank Details.
-                    </span>
+                    You have already uploaded your Bank Details on Momentum,
+                    you can continue using the platform. If you wish to change the existing details, contact Support. Below is your Bank Details.
                   </p>
-                  <span class="small d-block">
-                    Account Number :
-                    <span class="font-weight-bold">{{accountNumber}}</span>
-                  </span>
-                  <span class="small d-block mb-3">
-                    Bank Name :
-                    <span class="font-weight-bold">{{bank_name}}</span>
-                  </span>
+                  <div class="p">
+                    <span class="d-block">
+                      <span class="font-weight-bold">Account Number :</span>
+                      {{accountNumber}}
+                    </span>
+                    <span class="d-block mb-3">
+                      <span class="font-weight-bold">Bank Name :</span>
+                      {{bank_name}}
+                    </span>
+                  </div>
                   <button class="btn mx-auto d-block btn-primary">
                     <router-link to="/userdashboard" class="btn-primary px-3">Return</router-link>
                   </button>
@@ -313,8 +313,3 @@ export default {
 </script>
 
 
-<style scoped>
-p {
-  font-size: 1.01rem !important;
-}
-</style>

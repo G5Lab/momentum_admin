@@ -1,9 +1,9 @@
 <template>
-  <div class="mb-4 pb-5">
+  <div class="pb-5">
     <div class="card pt-2 pb-0">
       <div class="p-3">
         <h6 class="m-0 mb-2 h4 font-weight-bold text-primary">-Latest Investments</h6>
-        <p class="mb-1 ml-3 px-1 text-muted">
+        <p class="mb-1 ml-3 px-1 text-md text-muted">
           <span class="d-block">You Can Invest In Any Of The Investment below</span>
           <span class="p-1 font-weight-bolder text-danger">Note :</span>
           You can also Fill The Upload Investment Form If You Need Investors for your business

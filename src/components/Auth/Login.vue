@@ -1,12 +1,12 @@
 <template>
-<body>
+<body class="bg-gray-200">
   <div class="container pt-4">
     <AuthLogo />
     <div v-if="loading" class="text-center pb-3">
       <Loader />
     </div>
     <div class="row justify-content-center">
-      <div class="col-xl-6 col-lg-7 col-md-10">
+      <div class="col-xl-6 col-lg-6 col-md-10">
         <div class="card o-hidden py-0 border-0 shadow-lg">
           <div class="card-body px-0 py-0">
             <div class="bg-white py-3 px-3">
@@ -41,21 +41,8 @@
                   value="Login"
                   class="btn btn-primary mb-3 p-2 btn-block"
                 />
-                <div
-                  v-if="msg"
-                  class="alert alert-warning alert-dismissible fade show"
-                  role="alert"
-                >
-                  <strong>{{msg}}</strong>
-                  <button
-                    type="button"
-                    @click="closeMsg"
-                    class="close"
-                    data-dismiss="alert"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                <div v-if="msg">
+                  <Failuremsg :msg="msg" />
                 </div>
                 <hr />
                 <div class="text-center text-gray-850 my-2 mt-4 mb-0">
@@ -74,17 +61,17 @@
     </div>
     <div class="text-center py-3">
       <span class="mr-3">
-        <router-link to="/termsCondition" class="text-light">
+        <router-link to="/termsCondition" class="text-dark">
           <i>Terms &#38; Conditions</i>
         </router-link>
       </span>
       <!-- <span>
-        <router-link to="#" class="mx-3 text-light">
+        <router-link to="#" class="mx-3 text-dark">
           <i>Help</i>
         </router-link>
       </span>-->
       <span>
-        <router-link to="/privacyPolicy" class="text-light">
+        <router-link to="/privacyPolicy" class="text-dark">
           <i>Privacy Policy</i>
         </router-link>
       </span>
@@ -96,13 +83,16 @@
 
 <script>
 import axios from "axios";
-import Loader from "../Auth/Loader";
+import Loader from "../UserDashboard/MAjo/Loader";
 import AuthLogo from "./AuthLogo";
+import Failuremsg from "../UserDashboard/GUserLayouts/Failuremsg";
+
 export default {
   name: "Login",
   components: {
     Loader,
-    AuthLogo
+    AuthLogo,
+    Failuremsg
   },
   data() {
     return {
@@ -123,7 +113,7 @@ export default {
         .then(res => {
           this.loading = false;
           if (res.data.status == true) {
-            console.log(res.data)
+            console.log(res.data);
             this.$session.start();
             this.$session.set("jwt", res.data.token);
             this.$session.set("user", res.data.user);
@@ -160,6 +150,5 @@ export default {
 body {
   min-height: 100vh;
   color: black;
-  background: #0336798e;
 }
 </style>

@@ -4,7 +4,7 @@
       <div class="container mt-4">
         <div class="row justify-content-between">
           <div class="text-center mt-3 d-none d-md-block col-md-3 py-auto">
-            <div class="lead position-fixed bg p-3">
+            <div class="lead position-fixed bg-primary p-3">
               <div class>
                 <a
                   href="#termsCondition"
@@ -101,9 +101,7 @@ export default {
 .display-4 {
   color: rgb(29, 28, 28);
 }
-.bg {
-  background: #0e3b777a;
-}
+
 .bklogin {
   color: whitesmoke !important;
   transition: 2s;
@@ -113,10 +111,10 @@ export default {
 a:hover {
   font-size: 1.2rem;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 200;
 }
 a {
-  font-weight: 600;
+  font-weight: 200;
   color: rgb(20, 19, 19);
   display: block;
 }

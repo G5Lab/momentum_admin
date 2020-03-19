@@ -5,7 +5,7 @@
       <div class="card-body px-2">
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">mSave</div>
+            <div class="text-ls font-weight-bold text-info text-uppercase mb-1">mSave</div>
             <div class="h5 mb-2 font-weight-bold text-gray-800">&#8358;{{savings_balance || 0}}</div>
           </div>
           <div class="col-auto">
@@ -13,7 +13,7 @@
           </div>
         </div>
         <div class="row no-gutters align-items-center">
-          <div class="col-auto mt-3 small">
+          <div class="col-auto mt-3">
             Maturity Date:
             <span class="ml-2 text-info">{{msavematurity || "Not Set"}}</span>
           </div>

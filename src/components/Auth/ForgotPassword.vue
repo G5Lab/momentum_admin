@@ -1,5 +1,5 @@
 <template>
-<body>
+<body class="bg-gray-200">
   <div class="container pt-4">
     <AuthLogo />
     <div v-if="loading" class="text-center pb-3">
@@ -62,7 +62,7 @@
 
 <script>
 import axios from "axios";
-import Loader from "./Loader";
+import Loader from "../UserDashboard/MAjo/Loader";
 import AuthLogo from "./AuthLogo";
 export default {
   name: "ForgotPassword",
@@ -110,6 +110,5 @@ export default {
 body {
   min-height: 100vh;
   color: black;
-  background: #0336798e;
 }
 </style>

@@ -1,25 +1,30 @@
 <template>
-  <Structure>
-    <!-- Begin Page Content -->
+<MomentumAbout>
+  <body class="py-5 my-3">
     <div class="container-fluid">
-      <!-- 404 Error Text -->
-      <div class="text-center">
-        <div class="error mx-auto" data-text="404">404</div>
-        <p class="lead text-gray-800 mb-5">Page Not Found</p>
-        <p class="text-gray-500 mb-0">It looks like you found a glitch in the matrix...</p>
-        <router-link to="/userdashboard">&larr; Back to Dashboard</router-link>
+      <div class="container">
+        <div class="text-center">
+          <div class="error mx-auto" data-text="404">404</div>
+          <p class="lead text-gray-800 mb-2">Oops! PAGE NOT FOUND</p>
+          <p
+            class="text-gray-800 font-weight-bold mb-0 text-uppercase"
+          >We Are Sorry, But The Page You Requested Was Not Found.</p>
+          <router-link to="/userdashboard" class="mt-3 btn btn-primary font-weight-bold">
+            <i class="fa fa-arrow-left text-white"></i>
+            Go Back
+          </router-link>
+        </div>
       </div>
-
-      <!-- /.container-fluid -->
     </div>
-  </Structure>
+  </body>
+</MomentumAbout>
 </template>
 <script>
-import Structure from "../UserDashboard/GUserLayouts/Structure";
+import MomentumAbout from "../Auth/MomentumAbout";
 export default {
   name: "NotFound",
   components: {
-    Structure
+    MomentumAbout
   }
 };
 </script>

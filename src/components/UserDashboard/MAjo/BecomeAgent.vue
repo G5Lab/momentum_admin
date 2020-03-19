@@ -299,6 +299,6 @@ export default {
   font-size: 1.035rem;
 }
 .fa {
-  color: blue;
+  color: rgb(59, 111, 172);
 }
 </style>

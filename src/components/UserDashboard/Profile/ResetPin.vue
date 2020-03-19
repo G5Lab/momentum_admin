@@ -5,7 +5,7 @@
         <div v-if="loading" class="my-2 text-center">
           <Loader />
         </div>
-        <form v-on:submit.prevent="updatePin" class="col-md-11 border bg-white py-2 px-3">
+        <form v-on:submit.prevent="updatePin" class="col-md-11 col-lg-7 border bg-white py-2 px-3">
           <div class="text-center text-gray-900 h5 py-2">Reset Pin</div>
 
           <label for="number">Input Pin</label>

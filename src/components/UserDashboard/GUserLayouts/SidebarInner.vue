@@ -50,6 +50,7 @@
         </div>
       </div>
     </li>
+    <hr class="sidebar-divider d-none d-md-block" />
 
     <!-- Main Wallet -->
     <li class="nav-item">
@@ -61,8 +62,8 @@
         aria-controls="collapseUtilities"
       >
         <i class="fas fa-fw fa-folder"></i>
-        <span class="mr-1">Main</span>
-        <span class="d-none d-md-inline">Wallet</span>
+        <span class>Main</span>
+        <span class>Wallet</span>
       </a>
       <div
         id="transactions"
@@ -78,6 +79,7 @@
         </div>
       </div>
     </li>
+    <hr class="sidebar-divider d-none d-md-block" />
 
     <!-- mAjo -->
     <li class="nav-item">
@@ -108,6 +110,7 @@
         </div>
       </div>
     </li>
+    <hr class="sidebar-divider d-none d-md-block" />
 
     <!-- mSAVE -->
     <li class="nav-item">
@@ -119,7 +122,7 @@
         aria-controls="collapsePages"
       >
         <i class="fas fa-fw fa-folder"></i>
-        <span>mSAVE</span>
+        <span>mSave</span>
       </a>
       <div
         id="collapsePage"
@@ -133,6 +136,7 @@
         </div>
       </div>
     </li>
+    <hr class="sidebar-divider d-none d-md-block" />
 
     <!-- mINVEST -->
     <li class="nav-item">
@@ -144,7 +148,7 @@
         aria-controls="collapsePages"
       >
         <i class="fas fa-fw fa-folder"></i>
-        <span>mINVEST</span>
+        <span>mInvest</span>
       </a>
       <div
         id="collapsePages"
@@ -160,6 +164,7 @@
         </div>
       </div>
     </li>
+    <hr class="sidebar-divider d-none d-md-block" />
 
     <!-- Cooming Soon  -->
     <!-- <li class="nav-item">
@@ -228,6 +233,7 @@
         </div>
       </div>
     </li>
+    <hr class="sidebar-divider d-none d-md-block" />
 
     <!-- Support -->
     <li class="nav-item">
@@ -272,17 +278,21 @@ export default {
 };
 </script>
 
-
 <style scoped>
-@media (max-width: 767px) {
-  .navbar-nav {
-    margin-left: -20px !important;
-  }
-  .sidebar {
-    width: 4.7rem !important;
+@media (max-width: 765px) {
+  .nav-link,
+  .nav-link i,
+  .nav-link span {
+    font-size: 2px !important;
+    margin-right: 1rem;
   }
 }
 .route:hover {
   text-decoration: none !important;
+}
+.nav-link,
+.nav-link .fas,
+.nav-link span {
+  font-size: 1.02rem !important;
 }
 </style>

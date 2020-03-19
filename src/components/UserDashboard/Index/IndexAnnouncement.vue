@@ -1,29 +1,27 @@
 <template>
   <div class="card">
-    <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary">Announcements</h6>
+    <div class="p-3 mb-0">
+      <h6 class="m-0 font-weight-bold h4 text-primary">-Announcements</h6>
     </div>
-    <div class="card-body">
-      <div class="row">
+    <div class="card-body py-0 m-0">
+      <div class="row mt-0 pb-3">
         <div
           v-for="(announcement, index) in announcements"
           :key="index"
-          class="col-md-5 col-lg-5 col-xl-3 col-sm-6 m-2 first border"
+          class="col-md-5 col-lg-5 col-xl-3 col-sm-6 m-2 p-2 first border"
         >
-          <div class="card-body">
-            <p class="text-dark m-1">
-              <span>Title:</span>
-              {{announcement.title}}
-            </p>
-            <p class="text-dark m-1">
-              <span>Overview:</span>
-              {{announcement.overview}}
-            </p>
-            <router-link
-              v-bind:to="'/announcementDetails/'+ index"
-              class="btn btn-info"
-            >View Message</router-link>
-          </div>
+          <p class="text-dark m-1">
+            <span class="font-weight-bold">Title:</span>
+            {{announcement.title}}
+          </p>
+          <p class="text-dark m-1">
+            <span class="font-weight-bold">Overview:</span>
+            {{announcement.overview}}
+          </p>
+          <router-link
+            v-bind:to="'/announcementDetails/'+ index"
+            class="btn btn-outline-dark mx-auto d-block"
+          >View Message</router-link>
         </div>
       </div>
     </div>

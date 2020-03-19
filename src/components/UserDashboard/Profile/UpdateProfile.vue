@@ -6,7 +6,10 @@
           <div v-if="loading" class="my-2 text-center">
             <Loader />
           </div>
-          <form v-on:submit.prevent="completeProfile" class="border col-md-11 mb-3 bg-white p-3">
+          <form
+            v-on:submit.prevent="completeProfile"
+            class="border col-lg-10 col-md-11 mb-3 bg-white p-3"
+          >
             <div class="text-center text-primary font-weight-bold h5 mx-0 p-0 py-2">Update Profile</div>
             <div
               class="p-2 mb-2 text-center h5"

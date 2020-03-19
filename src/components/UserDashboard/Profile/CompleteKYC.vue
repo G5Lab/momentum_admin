@@ -5,7 +5,7 @@
         <Loader />
       </div>
       <div class="row justify-content-center px-1">
-        <form v-on:submit.prevent="submitKyc" class="px-4 border col-md-11 bg-white p-3">
+        <form v-on:submit.prevent="submitKyc" class="px-4 border col-md-11 col-lg-9 bg-white p-3">
           <div class="text-center text-primary font-weight-bold h5 py-2">Kyc Request</div>
           <p
             class="p-2 mb-3 text-center"

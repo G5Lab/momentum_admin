@@ -1,27 +1,19 @@
 <template>
 <body>
-  <div class="bg py-4">
-    <nav class="navbar navbar navbar-expand-lg">
+  <div class="bg-primary m-0 py-1">
+    <nav class="navbar navbar py-0 navbar-expand-lg">
       <div class="container">
-        <div class="text-center d-flex justify-content-center text-white h2 pb-2">
-          <div>
-            <img src="img/favi.png" width="80rem" alt />
-          </div>
-          <div class="mt-2">
-            <p class="mt-3 d-inline-block">
-              <span class="font-weight-light i">omen</span>
-              <span class="font-weight-bold text-gray-900">tum</span>
-            </p>
-          </div>
+        <div>
+          <img src="img/momentum.png" width="300rem" alt />
         </div>
       </div>
     </nav>
-    <div class="text-center">
-      <h1 class="my-4 font-weight-bold display-4">{{pageName}}</h1>
+    <div class="text-center m-0 p-0">
+      <h1 class="mt-0 p-0 font-weight-bold display-4">{{pageName}}</h1>
     </div>
   </div>
   <slot></slot>
-  <Footer class="bg" />
+  <Footer class="bg-primary" />
 </body>
 </template>
 
@@ -41,9 +33,6 @@ export default {
   color: rgb(29, 28, 28);
   font-weight: 300;
   font-style: italic;
-}
-.bg {
-  background: #0e3b777a;
 }
 body {
   color: black;

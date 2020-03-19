@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="container">
         <div class="row justify-content-center mb-4">
-          <div class="col-md-10">
+          <div class="col-md-10 col-lg-8">
             <div class="shadow card">
               <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">- Save Here!</h6>

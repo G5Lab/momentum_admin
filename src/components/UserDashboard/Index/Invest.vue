@@ -5,14 +5,14 @@
       <div class="card-body">
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">mInvest</div>
+            <div class="text-ls font-weight-bold text-warning text-uppercase mb-1">mInvest</div>
             <div class="h5 mb-0 font-weight-bold text-gray-800">&#8358;{{investment_balance || 0}}</div>
           </div>
           <div class="col-auto">
             <i class="fa fa-money fa-3x text-gray-800"></i>
           </div>
         </div>
-        <div class="mt-3 small mb-0">
+        <div class="mt-3 mb-0">
           Expected Return:
           <span class="text-warning">{{returns || "Not Set"}}</span>
         </div>
@@ -66,3 +66,6 @@ export default {
   }
 };
 </script>
+
+<style  scoped>
+</style>

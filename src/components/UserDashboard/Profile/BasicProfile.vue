@@ -1,181 +1,190 @@
 <template>
   <Structure page="Basic Information">
     <div class="container-fluid">
-      <div class="container border emp-profile">
-        <div class="row">
-          <div class="col-md-4">
-            <div class="profile-img my-2 mb-3">
-              <i style="font-size:" class="fa fa-user"></i>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="profile-head text-center">
-              <h5 class="h1 font-weight-normal text-capitalize">{{fullname}}</h5>
-              <h6 class="font-weight-normal h4">{{membershipStatus}}</h6>
-              <p class="proile-rating">
-                RATING :
-                <span>{{rating}}</span>
-              </p>
-              <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                  <a
-                    class="nav-link active"
-                    id="home-tab"
-                    data-toggle="tab"
-                    href="#home"
-                    role="tab"
-                    aria-controls="home"
-                    aria-selected="true"
-                  >Basic</a>
-                </li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    id="profile-tab"
-                    data-toggle="tab"
-                    href="#profile"
-                    role="tab"
-                    aria-controls="profile"
-                    aria-selected="false"
-                  >Others</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <router-link
-              to="/updateprofile"
-              class="profile-edit-btn d-none d-md-block"
-              name="btnAddMore"
-            >
-              Complete
-              <span class="d-none d-lg-inline">Profile</span>
-            </router-link>
-          </div>
-        </div>
-        <div class="row d-flex justify-content-center">
-          <div class="col-md-8">
-            <div class="tab-content profile-tab" id="myTabContent">
-              <div
-                class="tab-pane fade show active"
-                id="home"
-                role="tabpanel"
-                aria-labelledby="home-tab"
-              >
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Name</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{{fullname}}</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Email</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{{email}}</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Phone</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{{mobile}}</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Address</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{{address || "Not Set"}}</p>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Date Of Birth</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{{dob || "Not Set"}}</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Transaction Id</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{{transId}}</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Referer</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{{referer}}</p>
-                  </div>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-10 bg-white shadow col-lg-8 border p-4">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="profile-img my-2 mb-3">
+                  <i style="font-size:" class="fa fa-user"></i>
                 </div>
               </div>
-              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Level</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{{level}}</p>
-                  </div>
+              <div class="col-md-6">
+                <div class="profile-head text-center">
+                  <h5 class="h2 font-weight-normal text-capitalize">{{fullname}}</h5>
+                  <h6 class="font-weight-normal h4">{{membershipStatus}}</h6>
+                  <p class="proile-rating">
+                    RATING :
+                    <span>{{rating}}</span>
+                  </p>
+                  <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                      <a
+                        class="nav-link active"
+                        id="home-tab"
+                        data-toggle="tab"
+                        href="#home"
+                        role="tab"
+                        aria-controls="home"
+                        aria-selected="true"
+                      >Basic</a>
+                    </li>
+                    <li class="nav-item">
+                      <a
+                        class="nav-link"
+                        id="profile-tab"
+                        data-toggle="tab"
+                        href="#profile"
+                        role="tab"
+                        aria-controls="profile"
+                        aria-selected="false"
+                      >Others</a>
+                    </li>
+                  </ul>
                 </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Rating</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{{rating}}</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Next Of Kin</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{{nok || "Not Set"}}</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Next Of Kin No.</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{{nok_number || "Not Set"}}</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Employer Name</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{{EmployerName || "Not Set"}}</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Membership Status</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{{membershipStatus}}</p>
-                  </div>
-                </div>
+              </div>
+              <!--  <div class="col-md-2">
+                <router-link
+                  to="/updateprofile"
+                  class="profile-edit-btn d-none d-md-block"
+                  name="btnAddMore"
+                >
+                  Complete
+                  <span class="d-none d-lg-inline">Profile</span>
+                </router-link>
+              </div>-->
+            </div>
+            <div class="row d-flex justify-content-center">
+              <div class="col-md-7">
+                <div class="tab-content profile-tab" id="myTabContent">
+                  <div
+                    class="tab-pane fade show active"
+                    id="home"
+                    role="tabpanel"
+                    aria-labelledby="home-tab"
+                  >
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Full_Name</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>{{fullname}}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Email</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>{{email}}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Phone</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>{{mobile}}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Address</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>{{address || "Not Set"}}</p>
+                      </div>
+                    </div>
 
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Employer Address</label>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Date Of Birth</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>{{dob || "Not Set"}}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Transaction Id</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>{{transId}}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Referer</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>{{referer}}</p>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-md-6">
-                    <p>{{EmployerAddress|| "Not Set"}}</p>
+                  <div
+                    class="tab-pane fade"
+                    id="profile"
+                    role="tabpanel"
+                    aria-labelledby="profile-tab"
+                  >
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Level</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>{{level}}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Rating</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>{{rating}}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Next Of Kin</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>{{nok || "Not Set"}}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Next Of Kin No.</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>{{nok_number || "Not Set"}}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Employer Name</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>{{EmployerName || "Not Set"}}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Membership Status</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>{{membershipStatus}}</p>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Employer Address</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>{{EmployerAddress|| "Not Set"}}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -240,16 +249,6 @@ export default {
 
 
 <style scoped>
-body {
-  background: -webkit-linear-gradient(left, #3931af, #00c6ff);
-}
-.emp-profile {
-  padding: 3%;
-  margin-top: 3%;
-  margin-bottom: 3%;
-  border-radius: 0.5rem;
-  background: #fff;
-}
 .profile-img {
   text-align: center;
 }
@@ -258,29 +257,19 @@ body {
   height: 100%;
   font-family: 100rem;
 }
-.profile-img .file {
-  position: relative;
-  overflow: hidden;
-  margin-top: -20%;
-  width: 70%;
-  border: none;
-  border-radius: 0;
-  font-size: 15px;
-  background: #212529b8;
-}
-.profile-img .file input {
+/* .profile-img .file input {
   position: absolute;
   opacity: 0;
   right: 0;
   top: 0;
-}
+} */
 .profile-head h5 {
   color: #333;
 }
 .profile-head h6 {
   color: #0062cc;
 }
-.profile-edit-btn {
+/* .profile-edit-btn {
   border: none;
   border-radius: 1.5rem;
   width: 70%;
@@ -290,12 +279,12 @@ body {
   color: white;
   text-align: center;
   cursor: pointer;
-}
+} */
 .fa {
   font-size: 9rem !important;
 }
 .proile-rating {
-  font-size: 12px;
+  font-size: 1rem;
   color: #818182;
   margin-top: 5%;
 }
@@ -335,11 +324,15 @@ body {
   list-style: none;
 }
 .profile-tab label {
-  font-weight: 600;
+  font-weight: 700;
   margin: 0 !important;
+  color: rgb(59, 111, 172);
 }
 .profile-tab p {
-  font-weight: 600;
-  color: #0062cc;
+  font-weight: 500;
 }
+/* .profile-tab .row {
+  border-bottom: 0.02rem solid black;
+  padding-top: 0.05rem;
+} */
 </style>

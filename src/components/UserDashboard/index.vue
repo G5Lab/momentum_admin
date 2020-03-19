@@ -1,7 +1,7 @@
 <template>
   <Structure page="Dashboard">
     <div class="container-fluid mx-0 px-2">
-      <div class="container">
+      <div class="container p-1 m-1">
         <!-- Set Pin-->
         <div v-if="others.setpinform" class="row mt-5 justify-content-center">
           <SetPin />
@@ -12,7 +12,7 @@
             <!-- Main Wallet -->
             <MainWallet :main_balance="main_balance" :dividends="dividends" />
             <!-- Ajo Wallet -->
-            <mAjo :ajo_balance="ajo_balance" />
+            <mAjo :ajo_balance="ajo_balance" class />
             <!-- Savings Wallet -->
             <SavingsWallet :savings_balance="savings_balance" />
             <!-- Investment Wallet -->
@@ -138,5 +138,7 @@ export default {
 }
 .link:hover {
   text-decoration: none;
+}
+.container {
 }
 </style>

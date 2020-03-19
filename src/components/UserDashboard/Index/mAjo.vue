@@ -5,18 +5,18 @@
       <div class="card-body">
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">mAjo</div>
+            <div class="text-ls font-weight-bold text-danger text-uppercase mb-1">mAjo</div>
             <div class="h5 mb-0 font-weight-bold text-gray-800">&#8358;{{ajo_balance}}</div>
           </div>
           <div class="col-auto">
             <i class="fa fa-handshake fa-3x text-gray-800"></i>
           </div>
         </div>
-        <div class="mt-3 small mb-0">
+        <div class="mt-3 mb-0">
           Amount:
           <span class="text-danger">{{ajoAmount || "Not Set"}}</span>
         </div>
-        <div class="small mb-0">
+        <div class="mb-0">
           ajoAgent:
           <span class="text-danger">{{ajoAgent|| "Not Set"}}</span>
         </div>

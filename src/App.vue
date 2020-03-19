@@ -11,11 +11,19 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.btn-primary:hover {
+  background: rgba(27, 93, 131, 0.89) !important;
+}
+.btn-primary {
+  background: rgba(37, 125, 175, 0.89) !important;
+}
+.text-primary {
+  color: rgba(37, 125, 175, 0.89) !important;
+}
+.bg-primary {
+  background: rgba(37, 125, 175, 0.89) !important;
+}
+router:hover {
+  text-decoration: none !important;
 }
 </style>
