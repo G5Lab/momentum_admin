@@ -2,10 +2,16 @@
   <Structure page="Target Savings">
     <div class="container-fluid">
       <div v-if="mode">
-        <div class="border text-center p-3">
-          With the Target Savings plan, you’ll be able to reach your financial goals faster, whether it’s for a car, phone, new clothes or holiday. Designed to help you save for any specific purpose, your Target Savings will help you get there quicker.
-          <div class="m-2 p-1">
-            <i class="fa fa-arrow-down h2 text-primary d-inline-block text-center scroll"></i>
+        <div class="d-flex border justify-content-center">
+          <div class="col-md-9">
+            <p class="text-center lead p-3">
+              With the Target Savings plan, you’ll be able to reach your financial goals faster, whether it’s for a car, phone, new clothes or holiday. Designed to help you save for any specific purpose, your Target Savings will help you get there quicker.
+              <span
+                class="p-1 d-block"
+              >
+                <i class="fa fa-arrow-down h2 text-primary d-inline-block text-center scroll"></i>
+              </span>
+            </p>
           </div>
         </div>
         <div class="row mt-4">

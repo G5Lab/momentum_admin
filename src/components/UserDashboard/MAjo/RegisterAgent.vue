@@ -1,23 +1,7 @@
 <template>
-  <Structure page="Register / Remove agent ">
+  <Structure page="Register an Agent ">
     <div class="container-fluid mb-4">
       <div class="container mb-4">
-        <div
-          v-if="mssg"
-          class="alert text-center alert-primary alert-dismissible mt-2 fade show"
-          role="alert"
-        >
-          <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
-          <button
-            type="button"
-            @click="closeMsg"
-            class="close"
-            data-dismiss="alert"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
         <div class="text-center" v-if="loading">
           <Loader />
         </div>
@@ -60,51 +44,8 @@
 
         <div class="row justify-content-center mt-2">
           <div class="col-md-10">
-            <div
-              v-if="msg"
-              class="alert text-center alert-danger alert-dismissible mt-2 fade show"
-              role="alert"
-            >
-              <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
-              <button
-                type="button"
-                @click="closeMsg"
-                class="close"
-                data-dismiss="alert"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-7">
-            <div class="card bg-light">
-              <div class="card-body p-0">
-                <div class="text-center text-danger font-weight-bold h4 pt-2">Remove Agent</div>
-                <div class="text-center" v-if="loading2">
-                  <Loader />
-                </div>
-                <div v-if="removeForm" class="p-2">
-                  <p class>
-                    To be able to donate Ajo to a particular Agent, you should register the Agent in the form above.
-                    If you wish to remove your agent, click the button below to remove existing Agent.
-                  </p>
-                  <button
-                    @click="removeAgent"
-                    class="btn d-block mx-auto btn-danger px-4"
-                  >Remove Agent</button>
-                </div>
-                <div v-if="verified2" class="col">
-                  <Verify class="bg-white p-5" v-on:verifyPin="verifyPin2" />
-                </div>
-                <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg2" />
-                <Failuremsg v-on:closeMsg="closeMsg" :msg="msg2" />
-              </div>
-            </div>
+            <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg" />
+            <Failuremsg v-on:closeMsg="closeMsg" :msg="msg" />
           </div>
         </div>
       </div>
@@ -134,27 +75,22 @@ export default {
       agent_id: "",
       form: true,
       verified: false,
-      verified2: false,
       loading: false,
-      removeForm: true,
-      loading2: false,
 
       token: "",
       trans_id: "",
       user_id: "",
 
       mssg: "",
-      msg: "",
-      mssg2: "",
-      msg2: ""
+      msg: ""
     };
   },
   methods: {
     closeMsg() {
       this.msg = "";
       this.mssg = "";
-      this.verified = false;
       this.form = true;
+      this.verified = false;
     },
     registeragent() {
       this.verified = true;
@@ -199,62 +135,6 @@ export default {
                   this.mssg = res.data.message;
                 } else {
                   this.msg = res.data.message;
-                }
-              })
-              .catch(err => {
-                console.log(err);
-              });
-          } else {
-            this.loading = false;
-            this.msg = "Incorrect Pin";
-            console.log(res.data);
-          }
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    },
-    removeAgent() {
-      this.verified2 = true;
-      this.removeForm = false;
-    },
-    verifyPin2(pin) {
-      this.loading2 = true;
-      axios
-        .post(
-          `https://momentum.ng/backend/api/users/verifypin`,
-          {
-            user_id: this.user_id,
-            pin: pin
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${this.token}`
-            }
-          }
-        )
-        .then(res => {
-          if (res.data.status == true) {
-            axios
-              .post(
-                `https://momentum.ng/backend/api/ajo/removeagent`,
-                {
-                  trans_id: this.trans_id
-                },
-                {
-                  headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${this.token}`
-                  }
-                }
-              )
-              .then(res => {
-                this.loading2 = false;
-                if (res.data.status == true) {
-                  this.mssg2 = res.data.message;
-                } else {
-                  this.msg2 = res.data.message;
                 }
               })
               .catch(err => {

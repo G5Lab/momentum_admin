@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-2">
-          <h1 class="h2 page mb-3 text-gray-800">{{page}}</h1>
+          <h1 class="h2 font-weight-bold page mb-3 text-gray-850">{{page}}</h1>
         </div>
       </div>
       <!-- Body Content Goes Here! -->

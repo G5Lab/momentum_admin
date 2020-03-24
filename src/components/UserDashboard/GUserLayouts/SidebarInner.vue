@@ -6,8 +6,8 @@
       to="/userdashboard"
     >
       <div class="sidebar-brand-text mx-3">
-        <span class="font-weight-normal d-block">Transaction Id:</span>
-        <span class="font-weight-bold">{{trans_id}}</span>
+        <span class="font-weight-normal p d-block">Transaction Id:</span>
+        <span class="font-weight-bold p">{{trans_id}}</span>
       </div>
     </router-link>
 
@@ -39,7 +39,7 @@
         aria-labelledby="headingTwo"
         data-parent="#accordionSidebar"
       >
-        <div class="bg-white py-2 collapse-inner rounded">
+        <div class="bg-white p-2 collapse-inner rounded">
           <router-link class="collapse-item" to="/basicprofile">Basic Info</router-link>
           <router-link class="collapse-item" to="/updateprofile">Update Profile</router-link>
           <router-link class="collapse-item" to="/upgrademembership">Upgrade Membership</router-link>
@@ -61,7 +61,7 @@
         aria-expanded="true"
         aria-controls="collapseUtilities"
       >
-        <i class="fas fa-fw fa-folder"></i>
+        <i class="fa fa-fw fa-google-wallet"></i>
         <span class>Main</span>
         <span class>Wallet</span>
       </a>
@@ -71,7 +71,7 @@
         aria-labelledby="headingUtilities"
         data-parent="#accordionSidebar"
       >
-        <div class="bg-white py-2 collapse-inner rounded">
+        <div class="bg-white p-2 collapse-inner rounded">
           <router-link class="collapse-item" to="/TopUpWallet">Top-Up Wallet</router-link>
           <router-link class="collapse-item" to="/transfer">Transfer Funds</router-link>
           <router-link class="collapse-item" to="/withdraw">Withdraw</router-link>
@@ -90,7 +90,7 @@
         aria-expanded="true"
         aria-controls="collapseUtilities"
       >
-        <i class="fas fa-fw fa-folder"></i>
+        <i class="fa-fw fas fa-handshake"></i>
         <span>mAjo</span>
       </a>
       <div
@@ -99,12 +99,12 @@
         aria-labelledby="headingUtilities"
         data-parent="#accordionSidebar"
       >
-        <div class="bg-white py-2 collapse-inner rounded">
+        <div class="bg-white p-1 collapse-inner rounded">
           <router-link class="collapse-item" to="/SetAjoCycle">Set Ajo Cycle</router-link>
-          <router-link class="collapse-item" to="/registeranagent">Register / Remove Agent</router-link>
+          <router-link class="collapse-item" to="/registeranagent">Register Agent</router-link>
+
+          <router-link class="collapse-item" to="/removeagent">Remove Agent</router-link>
           <router-link class="collapse-item" to="/becomeanagent">Collect Ajo</router-link>
-          <!-- <router-link class="collapse-item" to="/changeanagent">Change Agent</router-link> -->
-          <!-- <router-link class="collapse-item" to="/credituser">Credit Users</router-link> -->
           <router-link class="collapse-item" to="/breakajosavings">Break Ajo Savings</router-link>
           <router-link class="collapse-item" to="/AjoHistory">Ajo History</router-link>
         </div>
@@ -121,7 +121,7 @@
         aria-expanded="true"
         aria-controls="collapsePages"
       >
-        <i class="fas fa-fw fa-folder"></i>
+        <i class="fas fa-fw fa-clipboard-list"></i>
         <span>mSave</span>
       </a>
       <div
@@ -147,7 +147,7 @@
         aria-expanded="true"
         aria-controls="collapsePages"
       >
-        <i class="fas fa-fw fa-folder"></i>
+        <i class="fas fa-fw fa-money"></i>
         <span>mInvest</span>
       </a>
       <div
@@ -219,7 +219,7 @@
         aria-expanded="true"
         aria-controls="collapseUtilities"
       >
-        <i class="fas fa-fw fa-folder"></i>
+        <i class="fas fa-fw fa-school"></i>
         <span>Learning Center</span>
       </a>
       <div
@@ -244,7 +244,7 @@
         aria-expanded="true"
         aria-controls="collapseUtilities"
       >
-        <i class="fas fa-fw fa-folder"></i>
+        <i class="fas fa-fw fa-support"></i>
         <span>Support</span>
       </a>
       <div
@@ -254,7 +254,7 @@
         data-parent="#accordionSidebar"
       >
         <div class="bg-white py-2 collapse-inner rounded">
-          <router-link class="collapse-item" to="/createticket">Create Ticket</router-link>
+          <router-link class="collapse-item" to="/createticket">Report To Admin</router-link>
           <router-link class="collapse-item" to="/inbox">Inbox</router-link>
           <router-link class="collapse-item" to="/announcement">Announcements</router-link>
           <router-link class="collapse-item" to="/sentmessages">Sent Messages</router-link>
@@ -293,6 +293,17 @@ export default {
 .nav-link,
 .nav-link .fas,
 .nav-link span {
-  font-size: 1.02rem !important;
+  font-size: 1.04rem !important;
+}
+.collapse-item {
+  font-size: 1rem;
+  margin: -2px !important;
+  padding: -2rem !important;
+}
+hr {
+  margin: 0 !important;
+}
+.collapse-inner {
+  padding: 0.5rem !important;
 }
 </style>

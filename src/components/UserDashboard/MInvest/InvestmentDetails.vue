@@ -7,53 +7,58 @@
       <div class="row text-dark">
         <div v-if="arrive" class="m-0 p-0 col-md">
           <div class="row">
-            <div class="col-xl-8 col-md-10 mb-2">
-              <div class="card">
-                <img class="card-img-top" :src="investmentDetails.attachment" alt="Image" />
-                <div class="card-body text-dark">
-                  <p class="h3">Name: {{investmentDetails.title}}</p>
-                  <span class="d-block text-gray-900 h6">
-                    <span class="mr-1">Category:</span>
-                    {{investmentDetails.category}}
-                  </span>
-
-                  <p class="p">
-                    <span class="small rounded p-1 bg-light">Description:</span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident odio illo, non accusantium impedit nesciunt incidunt architecto dignissimos omnis. Soluta voluptates culpa autem quidem qui dolorem eius laborum, ad accusamus.
-                  </p>
-                  <p class="p">
-                    <span class="small rounded p-1 bg-light">Risks Involved:</span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident odio illo, non accusantium impedit nesciunt incidunt architecto dignissimos omnis. Soluta voluptates culpa autem quidem qui dolorem eius laborum, ad accusamus.
-                  </p>
-                  <p class="m-1">
-                    Returns:
-                    <span class="font-weight-bold">
-                      <span class>{{investmentDetails.min_return_projection}}%</span>
-                      <span class="mx-1">-</span>
-                      <span class>{{investmentDetails.max_return_projection}}%</span>
+            <div v-if="notPremium" class="container my-5">
+              <p class="text-center my-2 h1 text-danger">{{notPremium}}</p>
+            </div>
+            <div v-if="premium">
+              <div class="col-xl-8 col-md-10 mb-2">
+                <div class="card">
+                  <img class="card-img-top" :src="investmentDetails.attachment" alt="Image" />
+                  <div class="card-body text-dark">
+                    <p class="h3">Name: {{investmentDetails.title}}</p>
+                    <span class="d-block text-gray-900 h6">
+                      <span class="mr-1">Category:</span>
+                      {{investmentDetails.category}}
                     </span>
-                  </p>
-                  <p class="m-1">
-                    Price :
-                    <span
-                      class="font-weight-bold"
-                    >&#8358;{{investmentDetails.unit_investment}}</span>
-                  </p>
-                  <p class="m-1">
-                    Available Units :
-                    <span
-                      class="font-weight-bold"
-                    >{{investmentDetails.unit_available}}</span>
-                  </p>
-                  <p class="m-1">
-                    Location :
-                    <span class="font-weight-bold">{{investmentDetails.location}}</span>
-                  </p>
-                  <p class="m-1">
-                    Risk_plan:
-                    <span class="font-weight-bold">{{investmentDetails.risk_plan}}</span>
-                  </p>
-                  <button class="btn btn-dark">Invest Now</button>
+
+                    <p class="p">
+                      <span class="small rounded p-1 bg-light">Description:</span>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident odio illo, non accusantium impedit nesciunt incidunt architecto dignissimos omnis. Soluta voluptates culpa autem quidem qui dolorem eius laborum, ad accusamus.
+                    </p>
+                    <p class="p">
+                      <span class="small rounded p-1 bg-light">Risks Involved:</span>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident odio illo, non accusantium impedit nesciunt incidunt architecto dignissimos omnis. Soluta voluptates culpa autem quidem qui dolorem eius laborum, ad accusamus.
+                    </p>
+                    <p class="m-1">
+                      Returns:
+                      <span class="font-weight-bold">
+                        <span class>{{investmentDetails.min_return_projection}}%</span>
+                        <span class="mx-1">-</span>
+                        <span class>{{investmentDetails.max_return_projection}}%</span>
+                      </span>
+                    </p>
+                    <p class="m-1">
+                      Price :
+                      <span
+                        class="font-weight-bold"
+                      >&#8358;{{investmentDetails.unit_investment}}</span>
+                    </p>
+                    <p class="m-1">
+                      Available Units :
+                      <span
+                        class="font-weight-bold"
+                      >{{investmentDetails.unit_available}}</span>
+                    </p>
+                    <p class="m-1">
+                      Location :
+                      <span class="font-weight-bold">{{investmentDetails.location}}</span>
+                    </p>
+                    <p class="m-1">
+                      Risk_plan:
+                      <span class="font-weight-bold">{{investmentDetails.risk_plan}}</span>
+                    </p>
+                    <button class="btn btn-dark">Invest Now</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -111,9 +116,9 @@
           <div class="border mt-0 p-3">
             <p>{{investmentDetails.body}}</p>
             <div class="d-flex justify-content-center mt-5">
-              <router-link class="btn btn-outline-primary px-5" to="/viewinvestment">
+              <router-link class="btn btn-outline-primary px-5" to="/userdashboard">
                 <i class="fa fa-arrow-left"></i>
-                View more
+                Home
               </router-link>
             </div>
           </div>
@@ -139,7 +144,10 @@ export default {
       investmentDetails: [],
       loading: true,
       arrive: false,
-      related: []
+      related: [],
+
+      premium: false,
+      notPremium: ""
     };
   },
   methods: {
@@ -148,6 +156,10 @@ export default {
     }
   },
   created() {
+    this.token = this.$session.get("jwt");
+    this.trans_id = this.$session.get("user").trans_id;
+    this.level = this.$session.get("user").level;
+
     this.token = this.$session.get("jwt");
     this.trans_id = this.$session.get("user").trans_id;
     axios
@@ -175,6 +187,12 @@ export default {
       .catch(err => {
         console.log(err);
       });
+
+    if (this.level >= 4) {
+      this.premium = true;
+    } else {
+      this.notPremium = "You Need To Upgrade Your Membership ";
+    }
   },
   filters: {
     formatDate: function(value) {

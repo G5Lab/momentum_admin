@@ -66,7 +66,7 @@
               <Failuremsg v-on:closeMsg="closeMsg" :msg="msg2" />
               <div class="p-2 border">
                 <form @submit.prevent="collectFromUser" class="p-1" v-if="button2">
-                  <label for="number">Enter Reciever Id</label>
+                  <label for="number">Enter Recievers Id</label>
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="basic-addon1">

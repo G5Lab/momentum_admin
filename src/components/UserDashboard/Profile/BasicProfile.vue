@@ -118,7 +118,7 @@
                         <label>Referer</label>
                       </div>
                       <div class="col-md-6">
-                        <p>{{referer}}</p>
+                        <p>{{referer || 'Not Referered'}}</p>
                       </div>
                     </div>
                   </div>
@@ -196,7 +196,6 @@
   </Structure>
 </template>
 
-
 <script>
 import Structure from "../GUserLayouts/Structure";
 export default {
@@ -246,7 +245,6 @@ export default {
   }
 };
 </script>
-
 
 <style scoped>
 .profile-img {

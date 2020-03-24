@@ -5,7 +5,7 @@
         <Loader />
       </div>
       <div v-if="noMessage">
-        <p class="text-center my-5 h1 display-4 text-danger">Sent Messages is Currently Empty</p>
+        <p class="text-center my-5 h1 display-4 text-danger">There Is No Sent Messages.</p>
       </div>
       <div class="row">
         <div v-for="message of sentMessage" :key="message._id" class="col-md-4 col-xl-4 mb-3">

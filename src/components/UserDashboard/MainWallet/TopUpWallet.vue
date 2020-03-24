@@ -6,7 +6,7 @@
           <div class="col-md-10 col-lg-8">
             <div class="shadow card">
               <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">- Save Here!</h6>
+                <h6 class="m-0 font-weight-bold text-primary">- Save Money Here!</h6>
               </div>
               <div class="card-body">
                 <p class="p-2 mb-2">

@@ -7,7 +7,9 @@
           <div class="text-center text-gray-900 h3 pb-2 pt-3">Set A Pin</div>
           <!-- Set Pin Form -->
           <form v-on:submit.prevent="updatePin">
-            <p>For Security Purpose, We Will be Requesting a Four Digit Pin On Every Transaction You Want To make on this Application</p>
+            <p
+              class="text-center"
+            >For Security Reason, We Will be Requesting A Four Digit Pin On Every Transaction You Will Be Making On This Application</p>
             <p class="text-center font-weight-bold">
               Pls Keep Transaction Pin
               Confidential
@@ -18,7 +20,7 @@
                 required
                 class="form-control"
                 v-model="pin1"
-                type="text"
+                type="password"
                 placeholder="Set A Four Digit Pin"
               />
             </div>
@@ -28,7 +30,7 @@
                 maxlength="4"
                 v-model="pin2"
                 class="form-control"
-                type="text"
+                type="password"
                 placeholder=" Confirm Pin"
               />
             </div>

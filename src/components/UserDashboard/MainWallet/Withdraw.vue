@@ -25,10 +25,10 @@
           <div class="col-md-7">
             <div class="card shadow">
               <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">- Withdraw From Any Wallet</h6>
+                <h6 class="m-0 font-weight-bold text-primary">- Withdraw From Main Wallet</h6>
               </div>
               <div class="card-body">
-                <p class="p-2 mb-2">
+                <p class="mb-3">
                   <span
                     class="d-block text-center"
                   >You can make withdrawal from your wallet to your bank account.</span>

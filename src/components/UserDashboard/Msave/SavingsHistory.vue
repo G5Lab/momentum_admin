@@ -27,10 +27,8 @@
           </tbody>
         </table>
         <div class="container">
-          <div v-if="noHistory" class="row justify-content-center m-5">
-            <div class="text-center">
-              <div class="card-body bg-danger text-white border h3 font-weight-bolder">{{noHistory}}</div>
-            </div>
+          <div v-if="noHistory">
+            <p class="text-center my-5 h1 display-4 text-danger">History is Currently Empty</p>
           </div>
         </div>
       </div>

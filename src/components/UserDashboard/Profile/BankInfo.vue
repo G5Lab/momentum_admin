@@ -11,8 +11,11 @@
                     class="text-primary text-center font-weight-bold mb-2"
                   >Bank Details Already Entered</div>
                   <p>
-                    You have already uploaded your Bank Details on Momentum,
-                    you can continue using the platform. If you wish to change the existing details, contact Support. Below is your Bank Details.
+                    You have already uploaded your Bank Details on Momentum.
+                    You can continue using the platform. If you wish to change the existing details, contact Support.
+                    <span
+                      class="d-block"
+                    >Below is your Bank Details.</span>
                   </p>
                   <div class="p">
                     <span class="d-block">
@@ -46,6 +49,21 @@
           >The bank details entered will be your default bank when you request for withdraw</div>
           <div class="row justify-content-center">
             <div class="col-md-11">
+              <label for="number">Account Number</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <i class="fa fa-pencil"></i>
+                  </span>
+                </div>
+                <input
+                  v-model="accountNumber"
+                  type="Number"
+                  required
+                  placeholder="XXXXXXXXXXXXX"
+                  class="form-control"
+                />
+              </div>
               <label>Select Bank</label>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -83,23 +101,7 @@
                   <option value="057">Zenith Bank</option>
                 </select>
               </div>
-              <label for="number">Account Number</label>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">
-                    <i class="fa fa-pencil"></i>
-                  </span>
-                </div>
-                <input
-                  v-model="accountNumber"
-                  type="Number"
-                  required
-                  placeholder="XXXXXXXXXXXXX"
-                  class="form-control"
-                  id="email"
-                  name="email"
-                />
-              </div>
+
               <button
                 :disabled="loading"
                 type="submit"

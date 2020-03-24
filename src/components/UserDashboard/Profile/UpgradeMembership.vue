@@ -15,7 +15,8 @@
                 </div>
               </div>
               <div class="d-flex my-3">
-                <div class="fa fa-check-square-o mx-3 my-auto"></div>
+                <div v-if="level < 4" class="fa fa-square-o mx-3 my-auto"></div>
+                <div v-if="level >= 4" class="fa fa-check-square-o mx-3 my-auto"></div>
                 <div>
                   <span class="font-weight-bold">Premium Membership</span>
                   (&#8358;
@@ -23,7 +24,8 @@
                 </div>
               </div>
               <div class="d-flex my-3">
-                <div class="fa fa-check-square-o mx-3 my-auto"></div>
+                <div v-if="level <= 4" class="fa fa-square-o mx-3 my-auto"></div>
+                <div v-if="level >= 10" class="fa fa-check-square-o mx-3 my-auto"></div>
                 <div>
                   <span class="font-weight-bold">Partner Membership</span>
                   (&#8358;
@@ -44,7 +46,7 @@
             </a>
             <div class="card border m-2 p-2 py-4 collapse" id="collapse3">
               <p v-if="level >= 4" class="text-center font-weight-bold p">You Are A Premium Member</p>
-              <p v-if="level < 4" class="text-center p">
+              <p v-if="level < 10" class="text-center p">
                 Premium Membership Upgrade Costs
                 <span class="ml-1 font-weight-bold">&#8358;2,500</span>
               </p>

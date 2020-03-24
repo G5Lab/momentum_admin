@@ -59,8 +59,6 @@ export default {
       .then(res => {
         const result = res.data;
         if (result.status == true) {
-          console.log(res.data);
-          console.log(new Date(res.data.ajo.date));
           this.ajoAmount = res.data.ajo.ajo_amount;
           if (res.data.ajo.ajo_cycle == 30) {
             this.cycle = "Monthly";
@@ -71,7 +69,6 @@ export default {
           if (res.data.ajo.ajo_cycle == 180) {
             this.cycle = "Bi-Annually";
           }
-          // this.cycle = res.data.ajo.ajo_cycle;
         }
       })
       .catch(err => {
@@ -81,6 +78,17 @@ export default {
       .get(`https://momentum.ng/backend/api/users/${this.user_id}`)
       .then(res => {
         this.ajoAgent = res.data.agent;
+
+        // Get Agent Name
+        axios
+          .get(`https://momentum.ng/backend/api/admin/mujeeb/${this.ajoAgent}`)
+          .then(res => {
+            console.log(res.data);
+            this.ajoAgent = res.data.data.fullname;
+          })
+          .catch(err => {
+            console.log(err);
+          });
       })
       .catch(err => {
         console.log(err);

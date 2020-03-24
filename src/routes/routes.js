@@ -50,6 +50,7 @@ import BreakAjo from "../components/UserDashboard/MAjo/BreakAjoSavings"
 import CreditUsers from "../components/UserDashboard/MAjo/CreditUsers"
 import SetAjoCycle from "../components/UserDashboard/MAjo/SetAjoCycle"
 import AjoHistory from "../components/UserDashboard/MAjo/AjoHistory"
+import RemoveAgent from "../components/UserDashboard/MAjo/RemoveAgent"
 
 // mInvest
 import ViewInvestment from "../components/UserDashboard/MInvest/ViewInvestment"
@@ -364,6 +365,13 @@ const routes = [
     {
         path: '/AjoHistory',
         component: AjoHistory,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/removeagent',
+        component: RemoveAgent,
         meta: {
             requiresAuth: true
         }

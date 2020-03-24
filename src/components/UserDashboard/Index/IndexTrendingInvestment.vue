@@ -9,7 +9,7 @@
           You can also Fill The Upload Investment Form If You Need Investors for your business
         </p>
       </div>
-      <div v-if="premium" class="row no-gutters">
+      <div class="row no-gutters">
         <div
           v-for="(investment, index) in investments"
           :key="index"
@@ -66,9 +66,6 @@
           >View All Investments</router-link>
         </button>
       </div>
-      <div v-if="notPremium" class="container my-5">
-        <p class="text-center my-2 h1 text-danger">{{notPremium}}</p>
-      </div>
     </div>
   </div>
 </template>
@@ -83,9 +80,7 @@ export default {
       trans_id: "",
       investments: [],
 
-      level: "",
-      premium: false,
-      notPremium: ""
+      level: ""
     };
   },
   created() {

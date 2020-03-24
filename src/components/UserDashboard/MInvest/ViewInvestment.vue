@@ -60,7 +60,7 @@
     </div>
     <div class="container">
       <div v-if="notPremium" class>
-        <p class="text-center my-2 h1 text-danger">{{notPremium}}</p>
+        <p class="text-center my-5 my-2 h1 text-danger">{{notPremium}}</p>
       </div>
     </div>
   </Structure>
