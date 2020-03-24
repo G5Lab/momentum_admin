@@ -20,7 +20,7 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-          <span class="mr-2 d-none d-lg-inline text-gray-600">{{name}}</span>
+          <span class="mr-2 d-none d-lg-inline text-capitalize text-gray-600">{{name}}</span>
           <span class="rounded-circle">
             <i class="rounded-circle fa fa-user"></i>
           </span>

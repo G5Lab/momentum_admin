@@ -60,16 +60,17 @@
       </div>
     </div>
     <div class="text-center py-3">
-      <span class="mr-3">
+      <span>
+        <router-link to="/aboutMomentum" class="text-dark">
+          <i>About Momentum</i>
+        </router-link>
+      </span>
+      <span class="mx-4">
         <router-link to="/termsCondition" class="text-dark">
           <i>Terms &#38; Conditions</i>
         </router-link>
       </span>
-      <!-- <span>
-        <router-link to="#" class="mx-3 text-dark">
-          <i>Help</i>
-        </router-link>
-      </span>-->
+
       <span>
         <router-link to="/privacyPolicy" class="text-dark">
           <i>Privacy Policy</i>

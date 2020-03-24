@@ -17,6 +17,7 @@ import Recover from '../components/Auth/Recover'
 import Initial from '../components/Auth/Initial'
 import TermsCondition from "../components/Auth/TermsCondition"
 import PrivacyPolicy from "../components/Auth/PrivacyPolicy"
+import AboutMomentum from "../components/Auth/AboutMomentum"
 
 // UserDashboard
 import UserDashboard from '../components/UserDashboard'
@@ -146,6 +147,13 @@ const routes = [
     {
         path: '/privacyPolicy',
         component: PrivacyPolicy,
+        meta: {
+            guest: true
+        }
+    },
+    {
+        path: '/aboutMomentum',
+        component: AboutMomentum,
         meta: {
             guest: true
         }
