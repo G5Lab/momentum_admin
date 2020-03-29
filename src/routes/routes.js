@@ -3,7 +3,7 @@ import NotFound from "../components/GLayouts/NotFound"
 
 // Cooming Soon
 
-import MarketPlace from "../components/UserDashboard/Cooming/MarketPlace"
+import PayBills from "../components/UserDashboard/Cooming/PayBills"
 import HirePurchase from "../components/UserDashboard/Cooming/HirePurchase"
 import Loan from "../components/UserDashboard/Cooming/Loan"
 
@@ -87,8 +87,8 @@ const routes = [
 
     // Cooming Sooon 
     {
-        path: '/marketplace',
-        component: MarketPlace,
+        path: '/PayBills',
+        component: PayBills,
         meta: {
             requiresAuth: true
         }
@@ -160,11 +160,17 @@ const routes = [
     },
     {
         path: "/recover",
-        component: Recover
+        component: Recover,
+        meta: {
+            recover: true
+        }
     },
     {
         path: "/initial",
-        component: Initial
+        component: Initial,
+        meta: {
+            initail: true
+        }
     },
     {
         path: '/welcomemessage',

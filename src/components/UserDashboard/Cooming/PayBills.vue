@@ -8,16 +8,16 @@
             <div class="wrapper">
               <div class="logo">
                 <h1>
-                  <span class="d-block mb-4">
-                    <i class="fas fa-hand-holding-usd text-gray-900"></i>
+                  <span class="d-block mb-2">
+                    <i class="fa fa-money text-gray-900"></i>
                   </span>
                   <!-- <img src="images/logo1.png" /> -->
-                  Loan
+                  Pay Bills
                 </h1>
               </div>
             </div>
           </div>
-          <h2>Loan will be out soon!!!</h2>
+          <h2>Bill payment will be out soon!!!</h2>
         </div>
       </section>
 
@@ -28,34 +28,22 @@
             <div class="col-md-6">
               <div class="featuresPro">
                 <div class="col-md-11 col-sm-10 col-xs-10">
-                  <h4>Business-Loan</h4>
                   <p>
-                    Disbursement is subject to approval. Member must have been saving consistently for up
-                    to 4monthsA sustainable guarantor is required – guarantor must be an active member of Momentum,
-                    with asset on momentum in excess of applicant request amount.
+                    <span class="faintbold">Momentum</span>
+                    will integrating a Bill Payment System into the application for the convenience of its members.
                     <span
                       class="d-block my-2"
                     >
-                      <span class="faintbold">Loan Tenure:</span>
-                      10 Weeks max.
-                    </span>
-                    <span class="d-block mb-2">
-                      <span class="faintbold">Maximum Amount Allowable:</span>
-                      10 Weeks max.
-                      Twice the balance on the applicant Savings.
-                    </span>
-                    <span class="d-block mb-2">
-                      <span class="faintbold">Processing FEE:</span>
-                      N2,000 or 10% amount requested whichever that is higher.
-                    </span>
-                    <span
-                      class="d-block mb-3"
-                    >Repayment shall be through direct credit/ deposit to the loan wallet</span>
-                    System shall generate weekly Demand Note to help member pay back their loan easily in 10 installment.
-                    <span>
-                      Prompt payment of loan will raise the borrower’s credit score and impact on credit limit. Credit Score and
-                      Loan Limit Cap – in the first instance the loan limit shall be 20k, 50k, 100k then twice Savings Balance; this
-                      limit shall be adjusted based on prompt repayment history.
+                      This
+                      is to enable member easily pay their various bill such as
+                      <span
+                        class="star"
+                      >CableTV Bill,</span>
+                      <span class="star ml-1">Internet Subscription Bill,</span>
+                      <span class="star ml-1">GSM Airtime Top,</span>
+                      <span class="star ml-1">Internet Data Bill,</span>
+                      <span class="star ml-1">Power Bill,</span>
+                      etc from the balance on their main wallet.
                     </span>
                   </p>
                 </div>
@@ -65,23 +53,10 @@
             <div class="col-md-6">
               <div class="featuresPro">
                 <div class="col-md-11 col-sm-10 col-xs-10">
-                  <h4>Quick-Loan</h4>
                   <p>
-                    It is disbursed instantly (Loan Wallet debited and Main Wallet Credited).
-                    <span
-                      class="d-block my-2"
-                    >
-                      <span class="faintbold">Loan Tenure:</span>
-                      30Days max.
-                    </span>
-                    <span class="d-block mb-2">
-                      <span class="faintbold">Maximum Amount Allowable:</span>
-                      50% of Savings Wallet Balance and/or Term Dep.
-                    </span>
-                    <span class="d-block mb-2">
-                      <span class="faintbold">Processing FEE:</span>
-                      N1,000 or 5% amount requested whichever that is higher.
-                    </span>
+                    <span class="faintbold">Momentum</span>
+                    shall be implementing the Cash-Back Model, thus, Members get cash credit every time they
+                    make a bill payment (members can get up to 3% as cash back reward on their main wallet).
                   </p>
                 </div>
               </div>
@@ -93,11 +68,10 @@
   </div>
 </Structure>
 </template>
-
 <script>
 import Structure from "../GUserLayouts/Structure";
 export default {
-  name: "Loan",
+  name: "PayBills",
   components: {
     Structure
   }
@@ -219,6 +193,10 @@ a:hover {
 }
 .featuresPro {
   font-size: 15px;
+}
+.star {
+  font-weight: 500;
+  color: blue;
 }
 @media (max-width: 768px) {
   body {

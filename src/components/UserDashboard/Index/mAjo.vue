@@ -81,10 +81,12 @@ export default {
 
         // Get Agent Name
         axios
-          .get(`https://momentum.ng/backend/api/admin/mujeeb/${this.ajoAgent}`)
+          .get(
+            `https://momentum.ng/backend/api/admin/mujeeb/user/${this.ajoAgent}`
+          )
           .then(res => {
             console.log(res.data);
-            this.ajoAgent = res.data.data.fullname;
+            this.ajoAgent = res.data.data[0].fullname;
           })
           .catch(err => {
             console.log(err);

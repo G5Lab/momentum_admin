@@ -31,18 +31,7 @@
                   class="btn p-2 btn-danger btn-block my-4"
                 >Continue</button>
               </form>
-              <div v-if="msg" class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>{{msg}}</strong>
-                <button
-                  type="button"
-                  @click="closeMsg"
-                  class="close"
-                  data-dismiss="alert"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
+              <Failuremsg :msg="msg" v-on:closeMsg="closeMsg" />
               <hr class="my-4" />
               <div class="text-center">
                 Password Remembered? Kindly
@@ -64,11 +53,13 @@
 import axios from "axios";
 import Loader from "../UserDashboard/MAjo/Loader";
 import AuthLogo from "./AuthLogo";
+import Failuremsg from "../UserDashboard/GUserLayouts/Failuremsg";
 export default {
   name: "ForgotPassword",
   components: {
     Loader,
-    AuthLogo
+    AuthLogo,
+    Failuremsg
   },
   data() {
     return {
@@ -79,20 +70,19 @@ export default {
   },
   methods: {
     resetPassword() {
-      this.$router.push("recover");
       this.loading = true;
       axios
-        .post(`http://localhost:3000/api/users/forgotpassword/${this.email}`)
+        .post(`https://momentum.ng/backend/api/users/forgotpasscode`, {
+          email: this.email
+        })
         .then(res => {
           this.loading = false;
-          console.log(res.data);
-          if (res.data.status != true) {
-            this.msg = "Email Does not exist";
+          if (res.data.status == false) {
+            this.msg = res.data.message;
           } else {
-            this.msg = "Email Sent";
-            setTimeout(() => {
-              this.$router.push("login");
-            }, 2500);
+            sessionStorage.setItem("reset", JSON.stringify("recover"));
+            sessionStorage.setItem("email", JSON.stringify(this.email));
+            this.$router.push("/recover");
           }
         })
         .catch(err => {

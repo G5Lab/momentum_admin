@@ -22,6 +22,7 @@
                     class="form-control p-4"
                     type="email"
                     placeholder="Email"
+                    name="email"
                   />
                 </div>
                 <div class="form-group my-4">
@@ -62,7 +63,7 @@
     <div class="text-center py-3">
       <span>
         <router-link to="/aboutMomentum" class="text-dark">
-          <i>About Momentum</i>
+          <i>About Us</i>
         </router-link>
       </span>
       <span class="mx-4">

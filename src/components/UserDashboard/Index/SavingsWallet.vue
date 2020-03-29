@@ -9,7 +9,7 @@
             <div class="h5 mb-2 font-weight-bold text-gray-800">&#8358;{{savings_balance || 0}}</div>
           </div>
           <div class="col-auto">
-            <i class="fas fa-clipboard-list fa-3x text-gray-300"></i>
+            <i class="fas fa-clipboard-list fa-3x text-gray-800"></i>
           </div>
         </div>
         <div class="row no-gutters align-items-center">

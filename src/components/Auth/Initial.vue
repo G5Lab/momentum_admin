@@ -10,13 +10,14 @@
         <div class="card o-hidden py-0 border-0 shadow-lg">
           <div class="card-body px-0 py-0">
             <div class="bg-white py-3 px-3">
+              <Successmsg :mssg="mssg" v-on:closeMsg="closeMssg" />
               <div
-                style="font-size: 1.1rem; font-weight: 600"
-                class="text-center py-4"
-              >Choose a new password</div>
-              <p
+                style="font-size: 1.4rem; font-weight: 600"
+                class="text-center py-2 pb-4"
+              >Set a new password</div>
+              <!--  <p
                 class="mb-4 text-justify"
-              >Create a new password that is at least 6 characters long. A strong password has a combination of letters, digits and punctuation marks.</p>
+              >Create a new password that is at least 6 characters long. A strong password has a combination of letters, digits and punctuation marks.</p>-->
 
               <form class v-on:submit.prevent="resetPassword">
                 <div class="form-group">
@@ -39,11 +40,10 @@
                 </div>
                 <button type="submit" class="btn btn-danger p-2 btn-block my-4">Continue</button>
               </form>
+              <Failuremsg :msg="msg" v-on:closeMsg="closeMsg" />
               <hr />
               <div class="text-center">
-                <router-link to="/ForgotPassword" class="text-primary">Didn't get a code?</router-link>
-                <span class="mx-2">||</span>
-                <router-link to="/login" class="text-primary">Cancel</router-link>
+                <router-link to="/login" @click.native="clearSession" class="text-danger">Cancel</router-link>
               </div>
             </div>
           </div>
@@ -57,54 +57,70 @@
 <script>
 import AuthLogo from "./AuthLogo";
 import axios from "axios";
+import Failuremsg from "../UserDashboard/GUserLayouts/Failuremsg";
+import Successmsg from "../UserDashboard/GUserLayouts/Successmsg";
+import Loader from "../UserDashboard/MAjo/Loader";
 export default {
   name: "Initial",
   components: {
-    AuthLogo
+    AuthLogo,
+    Failuremsg,
+    Successmsg,
+    Loader
   },
   data() {
     return {
       msg: "",
+      mssg: "",
       password: "",
-      password2: ""
+      password2: "",
+      email: "",
+      loading: false
     };
   },
   methods: {
+    clearSession() {
+      sessionStorage.clear();
+    },
+    closeMsg() {
+      this.msg = "";
+      this.password = "";
+      this.password2 = "";
+    },
+    closeMssg() {
+      setTimeout(() => {
+        this.clearSession();
+        this.$router.push("/");
+      }, 500);
+    },
     resetPassword() {
       if (this.password != this.password2) {
         this.msg = "Unmatched Password";
-        setTimeout(() => {
-          this.msg = "";
-        }, 2500);
       } else {
+        this.loading = true;
         axios
-          .patch(
-            `http://localhost:3000/api/users/resetpassword/${sessionStorage.getItem(
-              "emailpassupdate"
-            )}`,
-            { password: this.password }
-          )
+          .post(`https://momentum.ng/backend/api/users/setnewpassword`, {
+            email: this.email,
+            password: this.password2
+          })
           .then(res => {
-            if (
-              res.data.status == true &&
-              res.data.msg == "Password Updated Successfully"
-            ) {
-              this.msg = "Password Updated successfully";
-              setTimeout(() => {
-                this.$router.push("login");
-              }, 2000);
+            this.loading = false;
+            if (res.data.status == false) {
+              this.msg = res.data.message;
             } else {
-              this.msg = "Email Does not exist";
-              setTimeout(() => {
-                this.msg = "";
-              }, 1500);
+              this.mssg = res.data.message;
             }
           })
           .catch(err => {
+            this.loading = false;
+            this.msg = "Error occured";
             console.error(err);
           });
       }
     }
+  },
+  created() {
+    this.email = JSON.parse(sessionStorage.getItem("email"));
   }
 };
 </script>

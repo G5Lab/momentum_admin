@@ -5,8 +5,8 @@
       <Topbar v-on:hideSidebar="$emit('hideSidebar')" />
       <div class="container-fluid">
         <!-- Page Heading -->
-        <div class="d-sm-flex align-items-center justify-content-between mb-2">
-          <h1 class="h2 font-weight-bold page mb-3 text-gray-850">{{page}}</h1>
+        <div v-if="page" class="d-sm-flex align-items-center justify-content-between mb-2">
+          <h1 class="h2 page mb-3">{{page}}</h1>
         </div>
       </div>
       <!-- Body Content Goes Here! -->
@@ -39,5 +39,9 @@ export default {
   .page {
     font-size: 1.5rem;
   }
+}
+h1 {
+  font-weight: 700 !important;
+  color: rgba(0, 0, 0, 0.808);
 }
 </style>

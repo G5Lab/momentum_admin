@@ -100,7 +100,6 @@ export default {
   methods: {
     clearSession() {
       sessionStorage.clear();
-      console.log("slldkdk");
     }
   }
 };

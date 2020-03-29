@@ -24,6 +24,10 @@
           <span class="rounded-circle">
             <i class="rounded-circle fa fa-user"></i>
           </span>
+          <!-- <img
+            class="img-profile rounded-circle"
+            src="https://source.unsplash.com/QAB-WJcbgJk/60x60"
+          />-->
         </a>
         <!-- Dropdown - User Information -->
         <div

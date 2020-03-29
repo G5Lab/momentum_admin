@@ -182,7 +182,6 @@ export default {
 };
 </script>
 
-
 <style scoped>
 body {
   min-height: 100vh;

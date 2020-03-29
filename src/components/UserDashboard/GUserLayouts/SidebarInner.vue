@@ -147,7 +147,7 @@
         aria-expanded="true"
         aria-controls="collapsePages"
       >
-        <i class="fas fa-fw fa-money"></i>
+        <i class="fas fa-fw fa-coins"></i>
         <span>mInvest</span>
       </a>
       <div
@@ -167,7 +167,7 @@
     <hr class="sidebar-divider d-none d-md-block" />
 
     <!-- Cooming Soon  -->
-    <!-- <li class="nav-item">
+    <!--  <li class="nav-item">
       <router-link class="route" to="/marketplace">
         <a
           class="nav-link"
@@ -194,7 +194,8 @@
           <span class="mx-1">Hire Purchase</span>
         </a>
       </router-link>
-    </li>
+    </li>-->
+    <!-- Loan -->
     <li class="nav-item">
       <router-link class="route" to="/loan">
         <a
@@ -204,11 +205,30 @@
           aria-expanded
           aria-controls="collapsePages"
         >
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Loan</span>
+          <i class="fas fa-hand-holding-usd"></i>
+          <span>Interest Free Loan</span>
         </a>
       </router-link>
-    </li>-->
+    </li>
+    <hr class="sidebar-divider d-none d-md-block" />
+
+    <!-- Pay Bills -->
+    <li class="nav-item">
+      <router-link class="route" to="/paybills">
+        <a
+          class="nav-link"
+          data-toggle="collapse"
+          data-target="#"
+          aria-expanded
+          aria-controls="collapsePages"
+        >
+          <i class="fas fa-fw fa-money"></i>
+          <span>Pay Bills</span>
+        </a>
+      </router-link>
+    </li>
+
+    <hr class="sidebar-divider d-none d-md-block" />
 
     <!-- Learning Center -->
     <li class="nav-item">
@@ -220,7 +240,7 @@
         aria-controls="collapseUtilities"
       >
         <i class="fas fa-fw fa-school"></i>
-        <span>Learning Center</span>
+        <span>College of Money</span>
       </a>
       <div
         id="learningCenter"
@@ -229,7 +249,7 @@
         data-parent="#accordionSidebar"
       >
         <div class="bg-white py-2 collapse-inner rounded">
-          <router-link class="collapse-item" to="/learningmaterials">Learning Materials</router-link>
+          <router-link class="collapse-item" to="/learningmaterials">Materials</router-link>
         </div>
       </div>
     </li>
@@ -287,9 +307,6 @@ export default {
     margin-right: 1rem;
   }
 }
-.route:hover {
-  text-decoration: none !important;
-}
 .nav-link,
 .nav-link .fas,
 .nav-link span {
@@ -305,5 +322,8 @@ hr {
 }
 .collapse-inner {
   padding: 0.5rem !important;
+}
+.route {
+  text-decoration: none;
 }
 </style>

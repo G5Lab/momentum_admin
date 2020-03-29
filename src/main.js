@@ -32,7 +32,7 @@ router.beforeEach((to, from, next) => {
       next()
     }
   } else if (to.matched.some(record => record.meta.guest)) {
-    if (localStorage.getItem('jwt') == null) {
+    if (sessionStorage.getItem('jwt') == null) {
       next()
     } else {
       next({
@@ -51,6 +51,28 @@ router.beforeEach((to, from, next) => {
       })
     }
 
+  } else if (to.matched.some(record => record.meta.recover)) {
+    if (JSON.parse(sessionStorage.getItem('reset')) == "recover") {
+      next()
+    } else {
+      next({
+        path: '/ForgotPassword',
+        params: {
+          nextUrl: to.fullPath
+        }
+      })
+    }
+  } else if (to.matched.some(record => record.meta.initail)) {
+    if (JSON.parse(sessionStorage.getItem('reset')) == "initial") {
+      next()
+    } else {
+      next({
+        path: '/ForgotPassword',
+        params: {
+          nextUrl: to.fullPath
+        }
+      })
+    }
   } else {
     next()
   }
