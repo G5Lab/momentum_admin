@@ -2,13 +2,13 @@
   <Structure page="Security">
     <div class="container-fluid mb-3">
       <div class="row justify-content-center px-1 my-3">
-        <div v-if="loading" class="my-2 text-center">
-          <Loader />
-        </div>
         <form
           v-on:submit.prevent="ChangePassword"
           class="col-md-11 col-lg-8 border bg-white py-2 px-3"
         >
+          <div v-if="loading" class="my-2 text-center">
+            <Loader />
+          </div>
           <div class="text-center text-primary font-weight-bold h5 py-2">Change Password</div>
           <p class="p-2 mb-2">
             Your security is of utmost importance, for your Investments, Savings and other transactions. If you notice unusual activities, kindly change your password to something only you can remember.
