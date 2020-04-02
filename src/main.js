@@ -5,8 +5,31 @@ import VueSession from 'vue-session'
 import vueSmoothScroll from 'vue-smooth-scroll'
 Vue.use(vueSmoothScroll)
 
+Vue.use(require('vue-moment'));
+
 import axios from 'axios'
 import routes from './routes/routes'
+
+const jquery = require('jquery')
+window.$ = window.jQuery = jquery
+
+
+
+//  Bootstrap core JavaScript
+require("../public/vendor/bootstrap/js/bootstrap.bundle.min.js");
+require("../public/vendor/jquery/jquery.min.js");
+
+
+//  Core plugin JavaScript
+require("../public/vendor/jquery-easing/jquery.easing.min.js");
+
+//  Custom scripts for all pages
+require("../public/js/sb-admin-2.min.js");
+
+//  Page level plugins
+require("../public/vendor/chart.js/Chart.min.js");
+
+
 
 Vue.use(VueSession)
 Window.axios = axios
@@ -16,7 +39,6 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
   mode: 'history',
-  // base: '/userportal/',
   routes
 })
 router.beforeEach((to, from, next) => {

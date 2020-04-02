@@ -85,7 +85,6 @@ export default {
             `https://momentum.ng/backend/api/admin/mujeeb/user/${this.ajoAgent}`
           )
           .then(res => {
-            console.log(res.data);
             this.ajoAgent = res.data.data[0].fullname;
           })
           .catch(err => {

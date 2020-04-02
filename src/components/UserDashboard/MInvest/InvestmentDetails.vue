@@ -133,6 +133,7 @@
 import Loader from "../Msave/Loader";
 import axios from "axios";
 import Structure from "../GUserLayouts/Structure";
+
 export default {
   name: "InvestmentDetails",
   components: {
@@ -202,3 +203,16 @@ export default {
   }
 };
 </script>
+
+<style src="../GUserLayouts/Structure" >
+</style>
+
+
+
+
+
+
+
+
+
+

@@ -61,7 +61,7 @@
         aria-expanded="true"
         aria-controls="collapseUtilities"
       >
-        <i class="fa fa-fw fa-google-wallet"></i>
+        <i class="fas fa-fw fa-wallet"></i>
         <span class>Main</span>
         <span class>Wallet</span>
       </a>
@@ -297,6 +297,13 @@ export default {
   }
 };
 </script>
+
+
+<style>
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url("https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i");
+</style>
+
 
 <style scoped>
 @media (max-width: 765px) {

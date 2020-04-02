@@ -11,7 +11,7 @@
             <div class="h5 mb-0 font-weight-bold text-gray-800">&#8358;{{main_balance}}</div>
           </div>
           <div class="col-auto">
-            <i class="fa fa-google-wallet fa-3x text-gray-800"></i>
+            <i class="fas fa-wallet fa-3x text-gray-800"></i>
           </div>
         </div>
       </div>
@@ -34,3 +34,8 @@ export default {
   props: ["main_balance", "dividends"]
 };
 </script>
+
+<style>
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url("https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i");
+</style>

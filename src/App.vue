@@ -5,6 +5,18 @@
 </template>
 
 <script>
+//  Bootstrap core JavaScript
+// require("../../../../public/vendor/bootstrap/js/bootstrap.bundle.min.js");
+// require("../../../../public/vendor/jquery/jquery.min.js");
+
+//  Core plugin JavaScript
+// require("../../../../public/vendor/jquery-easing/jquery.easing.min.js");
+
+//  Custom scripts for all pages
+// require("../../../../public/js/sb-admin-2.min.js");
+
+//  Page level plugins
+// require("../../../../public/vendor/chart.js/Chart.min.js");
 export default {
   name: "App"
 };
@@ -26,4 +38,15 @@ export default {
 router:hover {
   text-decoration: none !important;
 }
+</style>
+<!-- First css-->
+<style  src="../public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+</style>
+<style>
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url("https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i");
+</style>
+
+<style  src="../public/css/sb-admin-2.min.css" rel="stylesheet"
+>
 </style>
