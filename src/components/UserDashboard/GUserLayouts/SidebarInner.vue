@@ -195,21 +195,31 @@
         </a>
       </router-link>
     </li>-->
-    <!-- Loan -->
+    <!--mLoan -->
     <li class="nav-item">
-      <router-link class="route" to="/loan">
-        <a
-          class="nav-link"
-          data-toggle="collapse"
-          data-target="#"
-          aria-expanded
-          aria-controls="collapsePages"
-        >
-          <i class="fas fa-hand-holding-usd"></i>
-          <span>Interest Free Loan</span>
-        </a>
-      </router-link>
+      <a
+        class="nav-link collapsed"
+        data-toggle="collapse"
+        data-target="#mLoan"
+        aria-expanded="true"
+        aria-controls="collapsePages"
+      >
+        <i class="fas fa-hand-holding-usd"></i>
+        <span>mLoan</span>
+      </a>
+      <div
+        id="mLoan"
+        class="collapse"
+        aria-labelledby="headingPages"
+        data-parent="#accordionSidebar"
+      >
+        <div class="bg-white py-2 collapse-inner rounded">
+          <router-link class="collapse-item" to="/quickloan">Quick Loan</router-link>
+          <router-link class="collapse-item" to="/businessloan">Business Loan</router-link>
+        </div>
+      </div>
     </li>
+
     <hr class="sidebar-divider d-none d-md-block" />
 
     <!-- Pay Bills -->

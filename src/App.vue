@@ -5,18 +5,6 @@
 </template>
 
 <script>
-//  Bootstrap core JavaScript
-// require("../../../../public/vendor/bootstrap/js/bootstrap.bundle.min.js");
-// require("../../../../public/vendor/jquery/jquery.min.js");
-
-//  Core plugin JavaScript
-// require("../../../../public/vendor/jquery-easing/jquery.easing.min.js");
-
-//  Custom scripts for all pages
-// require("../../../../public/js/sb-admin-2.min.js");
-
-//  Page level plugins
-// require("../../../../public/vendor/chart.js/Chart.min.js");
 export default {
   name: "App"
 };

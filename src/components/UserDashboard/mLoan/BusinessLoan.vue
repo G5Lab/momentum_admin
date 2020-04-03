@@ -1,0 +1,248 @@
+<template>
+  <Structure page="Business Loan">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-center">
+        <div class="col-md-10 border p-3 pb-5 text-gray-900">
+          <p class="py-2 mb-2">
+            <span class="font-weight-bold">Business-Loan –</span>
+            disbursement is subject to approval. Member must have been saving consistently for up
+            to 4months. A sustainable guarantor is required – guarantor must be an active member of Momentum,
+            with asset on momentum in excess of applicant request amount.
+          </p>
+          <p class="m-0">
+            <span class="font-weight-bold">Loan Tenure:</span>
+            10 Weeks max.
+          </p>
+
+          <p class="m-1">
+            <span class="font-weight-bold">Maximum Amount Allowable:</span>
+            Twice the balance on the applicant Savings.
+          </p>
+          <p class="m-1 mb-3">
+            <span class="font-weight-bold">Processing FEE:</span>
+            N2,000 or 10% amount requested whichever that is higher.
+          </p>
+          <p class="m-1">
+            <span class>Repayment shall be through direct credit/ deposit to the loan wallet.</span>
+          </p>
+          <p
+            class="m-1"
+          >System shall generate weekly Demand Note to help member pay back their loan easily in 10 installment.</p>
+          <div class="text-muted my-2">
+            Prompt payment of loan will raise the borrower’s credit score and impact on credit limit. Credit Score and
+            Loan Limit Cap – in the first instance the loan limit shall be 20k, 50k, 100k then twice Savings Balance; this
+            limit shall be adjusted based on prompt repayment history
+          </div>
+          <div class="text-center">
+            <i class="fa fa-arrow-down h2 text-primary d-inline-block text-center scroll"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="container mt-3 d-flex justify-content-center">
+          <div class="col-md-8">
+            <Loader class="text-center d-block" v-if="loading" />
+            <VerifyPin class="my-2 shadow card" v-if="verifypin" v-on:verifyPin="verifyPin" />
+            <div v-if="mode" class="card shadow justify-content-center mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">- Create Business Loan</h6>
+              </div>
+
+              <div class="card-body">
+                <form class="register bg-white" v-on:submit.prevent="BusinessLoan">
+                  <div class="form-group mb-4">
+                    <label>Enter Amount</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="fas text-primary fa-hand-holding-usd"></i>
+                        </span>
+                      </div>
+                      <input
+                        type="number"
+                        v-model="businessLoan.amount"
+                        class="form-control"
+                        placeholder="Loan Amount"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label>Enter Guarantor's Id</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="fa text-primary fa-id-badge"></i>
+                        </span>
+                      </div>
+                      <input
+                        type="number"
+                        v-model="businessLoan.guarantorId"
+                        class="form-control"
+                        placeholder="Guarantor's Transaction Id"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label>Select Bank</label>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                          <i class="fa fa-clock-o"></i>
+                        </span>
+                      </div>
+                      <select required v-model="businessLoan.duration" class="form-control">
+                        <option value disabled selected>Select</option>
+                        <option value="7">Weekly</option>
+                        <option value="30">Monthly</option>
+                      </select>
+                    </div>
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary mt-3 btn-block text-center mb-3"
+                  >Request</button>
+                </form>
+              </div>
+            </div>
+            <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg" />
+            <Failuremsg v-on:closeMsg="closeMsg" :msg="msg" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </Structure>
+</template>
+
+<script>
+import Structure from "../GUserLayouts/Structure";
+import Loader from "../Msave/Loader";
+
+import VerifyPin from "../../Auth/VerifyPin";
+import Failuremsg from "../GUserLayouts/Failuremsg";
+import Successmsg from "../GUserLayouts/Successmsg";
+
+import axios from "axios";
+
+export default {
+  name: "BusinessLoan",
+  components: {
+    Structure,
+    Loader,
+    VerifyPin,
+    Failuremsg,
+    Successmsg
+  },
+  data() {
+    return {
+      user_id: "",
+      trans_id: "",
+      token: "",
+
+      businessLoan: {
+        amount: "",
+        guarantorId: "",
+        duration: ""
+      },
+      msg: "",
+      mssg: "",
+
+      verifypin: false,
+      mode: true,
+      loading: false
+    };
+  },
+  methods: {
+    closeMsg() {
+      this.msg = "";
+      this.mssg = "";
+      this.mode = true;
+      this.verifypin = false;
+    },
+    BusinessLoan() {
+      this.mode = false;
+      this.verifypin = true;
+    },
+    verifyPin(pin) {
+      this.loading = true;
+
+      axios
+        .post(
+          `https://momentum.ng/backend/api/users/verifypin`,
+          {
+            user_id: this.user_id,
+            pin: pin
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${this.token}`
+            }
+          }
+        )
+        .then(res => {
+          if (res.data.status == true) {
+            // Make the pay Request
+            /*  axios
+              .post(
+                `https://momentum.ng/backend/api/savings/mainwalletcredit`,
+                {
+                  trans_id: this.trans_id,
+                  amount: this.Mamount
+                },
+                {
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${this.token}`
+                  }
+                }
+              )
+              .then(res => {
+                this.loading = false;
+                if (res.data.status == true) {
+                  this.mssg = res.data.message;
+                } else {
+                  this.loading = false;
+                  this.msg = res.data.message;
+                }
+              })
+              .catch(err => {
+                console.log(err);
+              }); */
+            this.mssg = "Waiting For Api";
+            this.loading = false;
+          } else {
+            this.loading = false;
+            this.msg = "Incorrect Pin";
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  },
+  created() {
+    this.user_id = this.$session.get("user")._id;
+    this.token = this.$session.get("jwt");
+    this.trans_id = this.$session.get("user").trans_id;
+  }
+};
+</script>
+
+<style scoped>
+.scroll {
+  width: 30px;
+  animation: move 1s infinite alternate;
+  font-size: 1.5rem;
+}
+@keyframes move {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(20px);
+  }
+}
+</style>

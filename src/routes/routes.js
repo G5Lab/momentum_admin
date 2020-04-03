@@ -4,8 +4,7 @@ import NotFound from "../components/GLayouts/NotFound"
 // Cooming Soon
 
 import PayBills from "../components/UserDashboard/Cooming/PayBills"
-import HirePurchase from "../components/UserDashboard/Cooming/HirePurchase"
-import Loan from "../components/UserDashboard/Cooming/Loan"
+// import HirePurchase from "../components/UserDashboard/Cooming/HirePurchase"
 
 
 // Authentication
@@ -62,6 +61,16 @@ import InvestmentDetails from "../components/UserDashboard/MInvest/InvestmentDet
 import InvestmentReportDetails from "../components/UserDashboard/MInvest/InvestmentReportDetails"
 
 
+// mLoan
+import QuickLoan from "../components/UserDashboard/mLoan/QuickLoan"
+import BusinessLoan from "../components/UserDashboard/mLoan/BusinessLoan"
+
+
+
+// College Of Money
+import LearningMaterials from "../components/UserDashboard/LearningCenter/LearningMaterials"
+import LearningMaterialsDetails from "../components/UserDashboard/LearningCenter/LearningMaterialsDetails"
+
 // Support 
 import CreateTicket from "../components/UserDashboard/Support/CreateTicket"
 import Inbox from "../components/UserDashboard/Support/Inbox"
@@ -70,19 +79,13 @@ import SentMessages from "../components/UserDashboard/Support/SentMessages"
 import InboxDetails from "../components/UserDashboard/Support/InboxDetails"
 import AnnouncementDetails from "../components/UserDashboard/Support/AnnouncementDetails"
 
-// Learning Center
-import LearningMaterials from "../components/UserDashboard/LearningCenter/LearningMaterials"
-import LearningMaterialsDetails from "../components/UserDashboard/LearningCenter/LearningMaterialsDetails"
+
 
 const routes = [
     // 404
     {
-        path: '/404',
+        path: "*",
         component: NotFound
-    },
-    {
-        path: '*',
-        redirect: '/404'
     },
 
     // Cooming Sooon 
@@ -93,20 +96,13 @@ const routes = [
             requiresAuth: true
         }
     },
-    {
-        path: '/hirepurchase',
-        component: HirePurchase,
-        meta: {
-            requiresAuth: true
-        }
-    },
-    {
-        path: '/loan',
-        component: Loan,
-        meta: {
-            requiresAuth: true
-        }
-    },
+    /*  {
+         path: '/hirepurchase',
+         component: HirePurchase,
+         meta: {
+             requiresAuth: true
+         }
+     }, */
 
     // Authentication
     {
@@ -390,6 +386,24 @@ const routes = [
             requiresAuth: true
         }
     },
+
+    // mLoan
+    {
+        path: '/quickloan',
+        component: QuickLoan,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/businessloan',
+        component: BusinessLoan,
+        meta: {
+            requiresAuth: true
+        }
+    },
+
+
 
     // Support 
     {

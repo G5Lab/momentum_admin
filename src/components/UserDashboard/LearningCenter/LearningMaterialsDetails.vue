@@ -1,17 +1,25 @@
 <template>
-  <Structure page="Learning Center / Details">
+  <Structure page="College of Money Details">
     <div class="container-fluid">
       <div class="container">
         <div class="row">
           <div v-if="arrive" class="m-0 p-0 col-md">
             <div class="row no-gutters">
               <div class="col-md-6 m-0">
-                <div class="card-header widd text-center">
+                <div class="card-header">
                   <p>
-                    <span class="d-block font-weight-bold text-primary mb-3">{{materials.title}}</span>
-                    <span class="d-block mb-3 text-gray-900 h5">{{materials.category}}</span>
-                    <span class="d-block mt-2 h6">"{{materials.overview}}"</span>
+                    <span
+                      class="text-center d-block font-weight-bold text-primary mb-3"
+                    >{{materials.title}}</span>
                   </p>
+                  <div class="text-gray-900 hh font-weight-bold">
+                    <span>Category:</span>
+                    {{materials.category}}
+                  </div>
+                  <div class="mt-2 h4 lead">{{materials.overview}}</div>
+                  <div class="text-right text-primary">
+                    <small class="font-weight-bold">Date: {{materials.date | formatDate}}</small>
+                  </div>
                 </div>
               </div>
               <div class="d-none d-md-block col-md-6 m-0">
@@ -20,7 +28,7 @@
                 </div>
               </div>
             </div>
-            <div class="border p-3">
+            <div class="border py-4 p-3">
               <p>{{materials.body}}</p>
               <div class="d-flex justify-content-center mt-5">
                 <router-link class="btn btn-outline-primary px-5" to="/learningmaterials">
@@ -108,13 +116,16 @@ export default {
 
 <style scoped>
 .card-header {
-  font-size: 2rem;
-  line-height: 1.1;
   color: black;
   background: #42618a42;
+  height: 20.5rem;
+}
+.card-header p {
+  font-size: 2rem;
+  line-height: 1.1;
 }
 .widd {
-  height: 15rem;
+  max-height: 20.5rem;
   width: 100%;
 }
 @media only screen and (max-width: 600px) {
