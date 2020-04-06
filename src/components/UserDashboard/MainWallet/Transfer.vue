@@ -1,99 +1,101 @@
 
 <template>
-  <Structure page="MainWallet / Transfer">
+  <Structure page="Transfer Fund">
     <div class="container-fluid mb-4">
-      <div
-        v-if="mssg"
-        class="alert text-center alert-primary alert-dismissible mt-2 fade show"
-        role="alert"
-      >
-        <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
-        <button
-          type="button"
-          @click="closeMsg"
-          class="close"
-          data-dismiss="alert"
-          aria-label="Close"
+      <div>
+        <div
+          v-if="mssg"
+          class="alert text-center alert-primary alert-dismissible mt-2 fade show"
+          role="alert"
         >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="text-center" v-if="loading">
-        <Loader />
-      </div>
-      <div class="row no-gutters justify-content-center mb-3">
-        <form
-          v-if="form"
-          v-on:submit.prevent="registeragent"
-          class="col-md-7 card shadow border bg-white"
-        >
-          <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">- Transfer to a User</h6>
-          </div>
-          <div class="card-body">
-            <p class="p-2 mb-2">
-              <span
-                class="d-block"
-              >You can transfer funds to other users. Transfer occurs from your Main Wallet.</span>
-            </p>
-
-            <label for="number">Enter Reciever Id</label>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">
-                  <i class="fa fa-user"></i>
-                </span>
-              </div>
-              <input
-                v-model="reciever_id"
-                type="number"
-                required
-                placeholder="Reciever Id"
-                class="form-control"
-              />
-            </div>
-            <label for="number">Enter Amount To Transfer</label>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">
-                  <i class="fa fa-money"></i>
-                </span>
-              </div>
-              <input
-                v-model="amount"
-                type="number"
-                required
-                placeholder="Amount in naira"
-                class="form-control"
-              />
-            </div>
-            <button
-              type="submit"
-              class="btn btn-primary mt-3 mx-auto d-block px-4 text-center mb-3"
-            >Transfer</button>
-          </div>
-        </form>
-        <div v-if="verified" class="col-md-6">
-          <Verify class="bg-white p-5" v-on:verifyPin="verifyPin" />
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-md-6">
-          <div
-            v-if="msg"
-            class="alert text-center alert-danger alert-dismissible mt-2 fade show"
-            role="alert"
+          <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
+          <button
+            type="button"
+            @click="closeMsg"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
           >
-            <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
-            <button
-              type="button"
-              @click="closeMsg"
-              class="close"
-              data-dismiss="alert"
-              aria-label="Close"
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="text-center" v-if="loading">
+          <Loader />
+        </div>
+        <div class="row justify-content-center mb-3">
+          <form
+            v-if="form"
+            v-on:submit.prevent="registeragent"
+            class="col-md-10 bg-white p-0 shadow col-lg-8 border"
+          >
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">- Transfer to a User</h6>
+            </div>
+            <div class="card-body">
+              <p class="p-2 mb-2">
+                <span
+                  class="d-block"
+                >You can transfer funds to other users. Transfer occurs from your Main Wallet.</span>
+              </p>
+
+              <label for="number">Enter Reciever Id</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <i class="fa fa-user"></i>
+                  </span>
+                </div>
+                <input
+                  v-model="reciever_id"
+                  type="number"
+                  required
+                  placeholder="Reciever Id"
+                  class="form-control"
+                />
+              </div>
+              <label for="number">Enter Amount To Transfer</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <i class="fa fa-money"></i>
+                  </span>
+                </div>
+                <input
+                  v-model="amount"
+                  type="number"
+                  required
+                  placeholder="Amount in naira"
+                  class="form-control"
+                />
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary mt-3 mx-auto d-block px-4 text-center mb-3"
+              >Transfer</button>
+            </div>
+          </form>
+          <div v-if="verified" class="col-md-6">
+            <Verify class="bg-white p-5" v-on:verifyPin="verifyPin" />
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div
+              v-if="msg"
+              class="alert text-center alert-danger alert-dismissible mt-2 fade show"
+              role="alert"
             >
-              <span aria-hidden="true">&times;</span>
-            </button>
+              <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
+              <button
+                type="button"
+                @click="closeMsg"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>

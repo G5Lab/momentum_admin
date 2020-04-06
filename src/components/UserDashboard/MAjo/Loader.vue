@@ -6,8 +6,8 @@
     <span></span>
     <span></span>
     <span></span>
-    <span></span>
-    <span></span>
+    <span class="d-none d-md-inline-block"></span>
+    <span class="d-none d-md-inline-block"></span>
   </div>
 </template>
 

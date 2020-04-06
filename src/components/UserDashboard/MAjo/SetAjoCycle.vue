@@ -1,27 +1,10 @@
 <template>
   <Structure page="Set Ajo Cycle ">
-    <div class="text-center" v-if="loading">
-      <Loader />
-    </div>
     <div class="container-fluid">
-      <div
-        v-if="mssg"
-        class="alert text-center alert-primary alert-dismissible mt-2 fade show"
-        role="alert"
-      >
-        <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
-        <button
-          type="button"
-          @click="closeMsg"
-          class="close"
-          data-dismiss="alert"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="row no-gutters justify-content-center">
-        <form v-on:submit.prevent="SetCycle" class="col-md-7 border bg-white p-4">
+      <Loader class="text-center" v-if="loading" />
+      <Successmsg :mssg="mssg" v-on:closeMsg="closeMsg" />
+      <div class="row justify-content-center">
+        <form v-on:submit.prevent="SetCycle" class="col-md-10 py-4 px-3 bg-white shadow col-lg-8">
           <div class="text-center text-primary font-weight-bold h4 py-3">Set Your Ajo Plan</div>
           <p
             class="p-2 mb-2 text-center font-gray-900"
@@ -60,22 +43,7 @@
             type="submit"
             class="btn d-block mx-auto btn-primary my-2"
           >Create Cycle</button>
-          <div
-            v-if="msg"
-            class="alert text-center alert-danger alert-dismissible mt-2 fade show"
-            role="alert"
-          >
-            <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
-            <button
-              type="button"
-              @click="closeMsg"
-              class="close"
-              data-dismiss="alert"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+          <Failuremsg v-on:closeMsg="closeMsg" :msg="msg" />
         </form>
       </div>
     </div>
@@ -85,12 +53,16 @@
 <script>
 import Structure from "../GUserLayouts/Structure";
 import Loader from "../Index/Loader";
+import Failuremsg from "../GUserLayouts/Failuremsg";
+import Successmsg from "../GUserLayouts/Successmsg";
 import axios from "axios";
 export default {
   name: "SetAjoCycle",
   components: {
     Structure,
-    Loader
+    Loader,
+    Failuremsg,
+    Successmsg
   },
   data() {
     return {

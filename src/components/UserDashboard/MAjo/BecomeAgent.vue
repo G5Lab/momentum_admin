@@ -1,105 +1,104 @@
 <template>
   <Structure page="Collect Ajo">
-    <div class="container-fluid mt-4 d-flex justify-content-center">
-      <div class="card-body shadow col-md-12 col-xs-12 col-lg-10 mb-4">
-        <div class="py-1">
-          <div class="bg-light">
-            <div
-              class="text-center text-uppercase text-primary font-weight-bold h4 mb-0"
-            >COLLEECT AJO OPTIONS</div>
-            <div class="py-2">
-              <p>Community leaders can collect funds from users under them at regular intervals as part of the user's savings. At the point of collection, the Community Leader transfer to the User (Client), and the user gets the funds in their wallet.</p>
-            </div>
-          </div>
-        </div>
-        <div id="accordion" class="mt-2">
-          <!-- Become a collector -->
-          <div class="border mb-2">
-            <a href="#collapse3" data-parent="#accordion" data-toggle="collapse">
-              <div class="p-2 mb-2 text-dark">
-                <i class="fa fa-users mr-3 lead"></i>
-                <span class="font-weight-bold">Become a Collector</span>
-              </div>
-            </a>
-            <div class="card border m-2 p-2 py-4 collapse" id="collapse3">
-              <div>Community leaders are responsible for collecting funds from users under them. You will collect funds and transfer to the users account as set up by the user. As a Community leader, you will need to have sufficient balance in your account, as this will be the source of the funds you transfer to users.</div>
-
-              <div class="row justify-content-center">
-                <div class="col-md-6">
-                  <div v-if="loading1" class="my-1 text-center">
-                    <Loader />
-                  </div>
-                  <VerifyPin v-if="verifyBasic" v-on:verifyPin="becomeACollectorPin" />
-                </div>
-              </div>
-              <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg1" />
-              <Failuremsg v-on:closeMsg="closeMsg" :msg="msg1" />
-              <div>
-                <div class="d-flex justify-content-center mt-2" v-if="button1">
-                  <button @click="becomeACollector" class="btn btn-primary">I Understand</button>
-                </div>
+    <div class="container-fluid mt-4">
+      <div class="row justify-content-center">
+        <div class="card-body shadow col-md-12 col-xs-12 col-lg-10 mb-4">
+          <div class="py-1">
+            <div class="bg-light">
+              <div
+                class="text-center text-uppercase text-primary font-weight-bold h4 mb-0"
+              >COLLEECT AJO OPTIONS</div>
+              <div class="py-2">
+                <p>Community leaders can collect funds from users under them at regular intervals as part of the user's savings. At the point of collection, the Community Leader transfer to the User (Client), and the user gets the funds in their wallet.</p>
               </div>
             </div>
           </div>
-
-          <!-- Collect -->
-          <div class="border mb-2">
-            <a href="#collapse4" data-parent="#accordion" data-toggle="collapse">
-              <div class="p-2 mb-2 text-dark">
-                <i class="fa fa-handshake-o mr-3 lead"></i>
-                <span class="font-weight-bold">Collect From Users</span>
-              </div>
-            </a>
-            <div class="border m-2 p-2 p py-4 collapse" id="collapse4">
-              <div>
-                <p>When Collecting Ajo form users, enter the transaction Id and the amount collected, to complete the transaction</p>
-              </div>
-              <div class="row justify-content-center">
-                <div class="col-md-6">
-                  <div v-if="loading2" class="my-1 text-center">
-                    <Loader />
+          <div id="accordion" class="mt-2">
+            <!-- Become a collector -->
+            <div class="border mb-2">
+              <a href="#collapse3" data-parent="#accordion" data-toggle="collapse">
+                <div class="p-2 mb-2 text-dark">
+                  <i class="fa fa-users mr-3 lead"></i>
+                  <span class="font-weight-bold">Become a Collector</span>
+                </div>
+              </a>
+              <div class="card m-0 p-2 collapse bg-light border-0" id="collapse3">
+                Community leaders are responsible for collecting funds from users under them. You will collect funds and transfer to the users account as set up by the user. As a Community leader, you will need to have sufficient balance in your account, as this will be the source of the funds you transfer to users.
+                <div class="row justify-content-center">
+                  <div class="col-md-6">
+                    <div v-if="loading1" class="my-1 text-center">
+                      <Loader />
+                    </div>
+                    <VerifyPin v-if="verifyBasic" v-on:verifyPin="becomeACollectorPin" />
                   </div>
-                  <VerifyPin v-if="verifyPro" v-on:verifyPin="completeCollection" />
+                </div>
+                <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg1" />
+                <Failuremsg v-on:closeMsg="closeMsg" :msg="msg1" />
+                <div>
+                  <div class="d-flex justify-content-center mt-2" v-if="button1">
+                    <button @click="becomeACollector" class="btn btn-primary">I Understand</button>
+                  </div>
                 </div>
               </div>
-              <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg2" />
-              <Failuremsg v-on:closeMsg="closeMsg" :msg="msg2" />
-              <div class="p-2 border">
-                <form @submit.prevent="collectFromUser" class="p-1" v-if="button2">
-                  <label for="number">Enter Recievers Id</label>
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1">
-                        <i class="fa fa-user"></i>
-                      </span>
+            </div>
+
+            <!-- Collect -->
+            <div class="border mb-2">
+              <a href="#collapse4" data-parent="#accordion" data-toggle="collapse">
+                <div class="p-2 mb-2 text-dark">
+                  <i class="fa fa-handshake-o mr-3 lead"></i>
+                  <span class="font-weight-bold">Collect From Users</span>
+                </div>
+              </a>
+              <div class="m-0 p-2 collapse border-0" id="collapse4">
+                <p
+                  class="text-center"
+                >When Collecting Ajo form users, enter the transaction Id and the amount collected, to complete the transaction</p>
+                <div class="row justify-content-center">
+                  <div class="col-md-6">
+                    <Loader v-if="loading2" class="my-1 text-center" />
+                    <VerifyPin v-if="verifyPro" v-on:verifyPin="completeCollection" />
+                  </div>
+                </div>
+                <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg2" />
+                <Failuremsg v-on:closeMsg="closeMsg" :msg="msg2" />
+                <div>
+                  <form @submit.prevent="collectFromUser" class="p-1 border-0" v-if="button2">
+                    <label for="number">Enter Recievers Id</label>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                          <i class="fa fa-user"></i>
+                        </span>
+                      </div>
+                      <input
+                        v-model="reciever_id"
+                        type="number"
+                        required
+                        placeholder="Reciever Id"
+                        class="form-control"
+                      />
                     </div>
-                    <input
-                      v-model="reciever_id"
-                      type="number"
-                      required
-                      placeholder="Reciever Id"
-                      class="form-control"
-                    />
-                  </div>
-                  <label for="number">Enter Amount To Transfer</label>
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1">
-                        <i class="fa fa-money"></i>
-                      </span>
+                    <label for="number">Enter Amount To Transfer</label>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                          <i class="fa fa-money"></i>
+                        </span>
+                      </div>
+                      <input
+                        v-model="amount"
+                        type="number"
+                        required
+                        placeholder="Amount in naira"
+                        class="form-control"
+                      />
                     </div>
-                    <input
-                      v-model="amount"
-                      type="number"
-                      required
-                      placeholder="Amount in naira"
-                      class="form-control"
-                    />
-                  </div>
-                  <div class="d-flex justify-content-center">
-                    <button class="btn btn-primary">Complete Transaction</button>
-                  </div>
-                </form>
+                    <div class="d-flex justify-content-center">
+                      <button class="btn btn-primary">Complete Transaction</button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>

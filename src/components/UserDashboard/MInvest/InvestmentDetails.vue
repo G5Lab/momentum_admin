@@ -10,55 +10,53 @@
             <div v-if="notPremium" class="container my-5">
               <p class="text-center my-2 h1 text-danger">{{notPremium}}</p>
             </div>
-            <div v-if="premium">
-              <div class="col-xl-8 col-md-10 mb-2">
-                <div class="card">
-                  <img class="card-img-top" :src="investmentDetails.attachment" alt="Image" />
-                  <div class="card-body text-dark">
-                    <p class="h3">Name: {{investmentDetails.title}}</p>
-                    <span class="d-block text-gray-900 h6">
-                      <span class="mr-1">Category:</span>
-                      {{investmentDetails.category}}
-                    </span>
+            <div v-if="premium" class="col-lg-8 col-md-10 mb-2">
+              <div class="card">
+                <img class="card-img-top" :src="investmentDetails.attachment" alt="Image" />
+                <div class="card-body text-dark">
+                  <p class="h3">Name: {{investmentDetails.title}}</p>
+                  <span class="d-block text-gray-900 h6">
+                    <span class="mr-1">Category:</span>
+                    {{investmentDetails.category}}
+                  </span>
 
-                    <p class="p">
+                  <!-- <p class="p">
                       <span class="small rounded p-1 bg-light">Description:</span>
                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident odio illo, non accusantium impedit nesciunt incidunt architecto dignissimos omnis. Soluta voluptates culpa autem quidem qui dolorem eius laborum, ad accusamus.
                     </p>
                     <p class="p">
                       <span class="small rounded p-1 bg-light">Risks Involved:</span>
                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident odio illo, non accusantium impedit nesciunt incidunt architecto dignissimos omnis. Soluta voluptates culpa autem quidem qui dolorem eius laborum, ad accusamus.
-                    </p>
-                    <p class="m-1">
-                      Returns:
-                      <span class="font-weight-bold">
-                        <span class>{{investmentDetails.min_return_projection}}%</span>
-                        <span class="mx-1">-</span>
-                        <span class>{{investmentDetails.max_return_projection}}%</span>
-                      </span>
-                    </p>
-                    <p class="m-1">
-                      Price :
-                      <span
-                        class="font-weight-bold"
-                      >&#8358;{{investmentDetails.unit_investment}}</span>
-                    </p>
-                    <p class="m-1">
-                      Available Units :
-                      <span
-                        class="font-weight-bold"
-                      >{{investmentDetails.unit_available}}</span>
-                    </p>
-                    <p class="m-1">
-                      Location :
-                      <span class="font-weight-bold">{{investmentDetails.location}}</span>
-                    </p>
-                    <p class="m-1">
-                      Risk_plan:
-                      <span class="font-weight-bold">{{investmentDetails.risk_plan}}</span>
-                    </p>
-                    <button class="btn btn-dark">Invest Now</button>
-                  </div>
+                  </p>-->
+                  <p class="m-1">
+                    Returns:
+                    <span class="font-weight-bold">
+                      <span class>{{investmentDetails.min_return_projection}}%</span>
+                      <span class="mx-1">-</span>
+                      <span class>{{investmentDetails.max_return_projection}}%</span>
+                    </span>
+                  </p>
+                  <p class="m-1">
+                    Price :
+                    <span
+                      class="font-weight-bold"
+                    >&#8358;{{investmentDetails.unit_investment}}</span>
+                  </p>
+                  <p class="m-1">
+                    Available Units :
+                    <span
+                      class="font-weight-bold"
+                    >{{investmentDetails.unit_available}}</span>
+                  </p>
+                  <p class="m-1">
+                    Location :
+                    <span class="font-weight-bold">{{investmentDetails.location}}</span>
+                  </p>
+                  <p class="m-1">
+                    Risk_plan:
+                    <span class="font-weight-bold">{{investmentDetails.risk_plan}}</span>
+                  </p>
+                  <button class="btn m-2 btn-dark">Invest Now</button>
                 </div>
               </div>
             </div>

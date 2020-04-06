@@ -4,7 +4,7 @@
       <div class="row justify-content-center px-1 my-3">
         <form
           v-on:submit.prevent="ChangePassword"
-          class="col-md-11 col-lg-8 border bg-white py-2 px-3"
+          class="col-md-11 col-lg-8 shadow bg-white py-2 px-3"
         >
           <div v-if="loading" class="my-2 text-center">
             <Loader />

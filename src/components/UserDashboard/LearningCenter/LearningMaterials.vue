@@ -1,54 +1,52 @@
 <template>
   <Structure page="Materials">
     <div class="container-fluid">
-      <div class="container">
-        <div class="row">
-          <div
-            class="col-xl-3 col-md-4 col-lg-4 mb-2"
-            v-for="(material, index) in materials"
-            :key="index"
-          >
-            <div class="card">
-              <h4 class="card-header bg-primary text-white p-2 py-3 m-0 h5">
-                <span class="lead font-weight-bold">Title :</span>
-                {{material.title}}
-              </h4>
-              <div class="card-body overflow-d p-2">
-                <p class="my-0 py-0">
-                  <span class="font-weight-bold lead">Category :</span>
-                  {{material.category}}
-                </p>
-                <p class="m-0 p-0">
-                  <span class>Date :</span>
-                  {{material.date | formatDate}}
-                </p>
-                <hr class="my-1" />
-                <p>
-                  <span class="font-weight-bold lead">Overview :</span>
-                  {{material.overview | All}}
-                </p>
-                <router-link
-                  class="btn btn-outline-primary"
-                  v-bind:to="'/learningmaterialsdetails/'+ index"
-                >Start Learning</router-link>
-              </div>
+      <div class="row">
+        <div
+          class="col-xl-3 col-md-4 col-lg-4 mb-2"
+          v-for="(material, index) in materials"
+          :key="index"
+        >
+          <div class="card">
+            <h4 class="card-header bg-primary text-white p-2 py-3 m-0 h5">
+              <span class="lead font-weight-bold">Title :</span>
+              {{material.title}}
+            </h4>
+            <div class="card-body overflow-d p-2">
+              <p class="my-0 py-0">
+                <span class="font-weight-bold lead">Category :</span>
+                {{material.category}}
+              </p>
+              <p class="m-0 p-0">
+                <span class>Date :</span>
+                {{material.date | formatDate}}
+              </p>
+              <hr class="my-1" />
+              <p>
+                <span class="font-weight-bold lead">Overview :</span>
+                {{material.overview | All}}
+              </p>
+              <router-link
+                class="btn btn-outline-primary"
+                v-bind:to="'/learningmaterialsdetails/'+ index"
+              >Start Learning</router-link>
             </div>
           </div>
-          <div class="container">
-            <div v-if="onMaterials" class="row justify-content-center m-5">
-              <div class="text-center">
-                <div
-                  class="card-body bg-danger text-white border h3 font-weight-bolder"
-                >{{onMaterials}}</div>
-              </div>
+        </div>
+        <div class="container">
+          <div v-if="onMaterials" class="row justify-content-center m-5">
+            <div class="text-center">
+              <div
+                class="card-body bg-danger text-white border h3 font-weight-bolder"
+              >{{onMaterials}}</div>
             </div>
           </div>
         </div>
       </div>
-      <div v-if="loading" class="row justify-content-center">
-        <div class="text-center">
-          <Loader />
-        </div>
+    </div>
+    <div v-if="loading" class="row justify-content-center">
+      <div class="text-center">
+        <Loader />
       </div>
     </div>
   </Structure>

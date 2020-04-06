@@ -1,7 +1,7 @@
 <template>
   <Structure page="Withdraw">
     <div class="container-fluid">
-      <div class="container">
+      <div>
         <div class="text-center my-2" v-if="loading">
           <Loader />
         </div>
@@ -22,62 +22,60 @@
           </button>
         </div>
         <div class="row justify-content-center mb-4">
-          <div class="col-md-7">
-            <div class="card shadow">
-              <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">- Withdraw From Main Wallet</h6>
-              </div>
-              <div class="card-body">
-                <p class="mb-3">
-                  <span
-                    class="d-block text-center"
-                  >You can make withdrawal from your wallet to your bank account.</span>
-                </p>
-                <form v-if="form" @submit.prevent="swap" class="register bg-white">
-                  <label for="name">Amount</label>
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1">
-                        <i class="fa fa-money"></i>
-                      </span>
-                    </div>
-                    <input
-                      required
-                      type="number"
-                      v-model="amount"
-                      name="name"
-                      class="form-control"
-                      id="name"
-                      placeholder="Amount To Withdraw"
-                    />
+          <div class="col-md-10 bg-white p-0 shadow col-lg-8 border">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">- Withdraw From Main Wallet</h6>
+            </div>
+            <div class="card-body">
+              <p class="mb-3">
+                <span
+                  class="d-block text-center"
+                >You can make withdrawal from your wallet to your bank account.</span>
+              </p>
+              <form v-if="form" @submit.prevent="swap" class="register bg-white">
+                <label for="name">Amount</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                      <i class="fa fa-money"></i>
+                    </span>
                   </div>
-                  <button
-                    :disabled="loading || nobk"
-                    type="submit"
-                    class="btn btn-primary mt-3 d-block mx-auto text-center mb-3"
-                  >Withdraw</button>
-                </form>
-                <div v-if="verified" class="col-md-6">
-                  <Verify class="bg-white p-5" v-on:verifyPin="verifyPin" />
+                  <input
+                    required
+                    type="number"
+                    v-model="amount"
+                    name="name"
+                    class="form-control"
+                    id="name"
+                    placeholder="Amount To Withdraw"
+                  />
                 </div>
-              </div>
-
-              <div
-                v-if="msg"
-                class="alert text-center alert-danger alert-dismissible mt-1 fade show"
-                role="alert"
-              >
-                <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
                 <button
-                  type="button"
-                  @click="closeMsg"
-                  class="close"
-                  data-dismiss="alert"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                  :disabled="loading || nobk"
+                  type="submit"
+                  class="btn btn-primary mt-3 d-block mx-auto text-center mb-3"
+                >Withdraw</button>
+              </form>
+              <div v-if="verified" class="col-md-6">
+                <Verify class="bg-white p-5" v-on:verifyPin="verifyPin" />
               </div>
+            </div>
+
+            <div
+              v-if="msg"
+              class="alert text-center alert-danger alert-dismissible mt-1 fade show"
+              role="alert"
+            >
+              <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
+              <button
+                type="button"
+                @click="closeMsg"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
           </div>
         </div>

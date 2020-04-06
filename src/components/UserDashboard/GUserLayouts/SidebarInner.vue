@@ -158,7 +158,7 @@
       >
         <div class="bg-white py-2 collapse-inner rounded">
           <router-link class="collapse-item" to="/viewinvestment">View Investments</router-link>
-          <router-link class="collapse-item" to="/investmentreport">Investment Reports</router-link>
+          <!-- <router-link class="collapse-item" to="/investmentreport">Investment Reports</router-link> -->
           <router-link class="collapse-item" to="/uploadinvestment">Upload Investment</router-link>
           <router-link class="collapse-item" to="/investmenthistory">Investment History</router-link>
         </div>
@@ -250,7 +250,10 @@
         aria-controls="collapseUtilities"
       >
         <i class="fas fa-fw fa-school"></i>
-        <span>College of Money</span>
+        <span>
+          College
+          <span class="d-none d-md-inline">of Money</span>
+        </span>
       </a>
       <div
         id="learningCenter"

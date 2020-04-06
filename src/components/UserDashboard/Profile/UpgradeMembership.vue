@@ -1,188 +1,192 @@
 <template>
   <Structure page="Upgrade Membership">
-    <div class="container-fluid mt-4 d-flex justify-content-center">
-      <div class="card-body shadow col-md-12 col-xs-12 col-lg-10 mb-4">
-        <div class="py-1">
-          <div class="bg-light">
-            <div class="text-center text-uppercase font-weight-bold h4 mb-0">MEMBERSHIP</div>
-            <div class="text-center mb-4 lead">Membership For Momentum Is In Three Categories</div>
-            <div class="p">
-              <div class="d-flex">
-                <div class="fa fa-check-square-o mx-3 my-auto"></div>
-                <div>
-                  <span class="font-weight-bold">Free Membership</span>
-                  (free for life) Features include: Saving, BillPay, FundTransfer,, Support, MyProfile, Refer &#38; Invite, Announcement. Once you create an account you automatically become a basic member.
+    <div class="container-fluid mt-4">
+      <div>
+        <div class="row justify-content-center">
+          <div class="card-body shadow col-md-12 col-xs-12 col-lg-10 mb-4">
+            <div class="py-1">
+              <div class="bg-light">
+                <div class="text-center text-uppercase font-weight-bold h4 mb-0">MEMBERSHIP</div>
+                <div class="text-center mb-4 lead">Membership For Momentum Is In Three Categories</div>
+                <div class="p">
+                  <div class="d-flex">
+                    <div class="fa fa-check-square-o mx-3 my-auto"></div>
+                    <div>
+                      <span class="font-weight-bold">Free Membership</span>
+                      (free for life) Features include: Saving, BillPay, FundTransfer,, Support, MyProfile, Refer &#38; Invite, Announcement. Once you create an account you automatically become a basic member.
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div id="accordion" class="mt-2">
-          <!-- Standard Member -->
-          <div class="border mb-2">
-            <a href="#collapes4" data-parent="#accordion" data-toggle="collapse">
-              <div class="p-2 mb-2 text-dark">
-                <i class="fa fa-shield mr-3 lead"></i>
-                <span class="font-weight-bold">Become a Basic Member</span>
+            <div id="accordion" class="mt-2">
+              <!-- Standard Member -->
+              <div class="border mb-2">
+                <a href="#collapes4" data-parent="#accordion" data-toggle="collapse">
+                  <div class="p-2 mb-2 text-dark">
+                    <i class="fa fa-shield mr-3 lead"></i>
+                    <span class="font-weight-bold">Become a Basic Member</span>
+                  </div>
+                </a>
+                <div class="border bg-light m-2 p p-2 collapse" id="collapse3">
+                  <div class="d-flex my-3">
+                    <div v-if="level < 4" class="fa fa-square-o mx-3 my-auto"></div>
+                    <div v-if="level >= 4" class="fa fa-check-square-o mx-3 my-auto"></div>
+                    <div>
+                      <span class="font-weight-bold">Basic Membership</span>
+                      <!--  (&#8358;
+                      2,500 / Year) Features include Basic + Investment, Loan, Hire Purchase, and Referral.-->
+                      gets full access to all features of the app (Activation Fee: &#8358;2000)
+                    </div>
+                  </div>
+                  <div v-if="level >= 4" class="row justify-content-center">
+                    <p
+                      class="text-center font-weight-bolder text-uppercase bg-primary p-2 text-white col-md-7 p lead"
+                    >You Are A Basic Member</p>
+                  </div>
+                  <p v-if="level < 4" class="text-center p">
+                    Premium Membership Upgrade Costs
+                    <span class="ml-1 font-weight-bold">&#8358;2,500</span>
+                  </p>
+                  <div class="row justify-content-center">
+                    <div class="col-md-6">
+                      <div v-if="loading1" class="my-1 text-center">
+                        <Loader />
+                      </div>
+                      <VerifyPin v-if="verifyBasic" v-on:verifyPin="verifyBasicPin" />
+                    </div>
+                  </div>
+                  <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg1" />
+                  <Failuremsg v-on:closeMsg="closeMsg" :msg="msg1" />
+                  <div v-if="level < 4">
+                    <div class="d-flex justify-content-center" v-if="button1">
+                      <button @click="becomeBasic" class="btn btn-primary">Become Premium</button>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </a>
-            <div class="border bg-light m-2 p p-2 collapse" id="collapse3">
-              <div class="d-flex my-3">
+
+              <!-- Pro -->
+              <div class="border mb-2">
+                <a href="#collapse4" data-parent="#accordion" data-toggle="collapse">
+                  <div class="p-2 mb-2 text-dark">
+                    <i class="fa fa-star-o mr-3 lead"></i>
+                    <span class="font-weight-bold">Become a Shareholder</span>
+                  </div>
+                </a>
+                <div class="border m-2 p-2 p collapse" id="collapse4">
+                  <div class="d-flex my-3">
+                    <div v-if="level <= 4" class="fa fa-square-o mx-3 my-auto"></div>
+                    <div v-if="level >= 10" class="fa fa-check-square-o mx-3 my-auto"></div>
+                    <div>
+                      <span class="font-weight-bold">Shareholder Membership</span>
+
+                      <!-- (&#8358;
+                      50,000 for 3 years) Features include Standard + Community Leader, + Share in 25% of Momentum Profit (we have created 3,000 unit @ 50k)-->
+                      gets full access to all features of the app plus Ecosystem Profit Share (Minimum
+                      Share Acquisition: &#8358;20,000)
+                    </div>
+                  </div>
+                  <p v-if="level >= 10" class="text-center p">You Are A Shareholder Member</p>
+                  <div class="row justify-content-center">
+                    <div class="col-md-6">
+                      <div v-if="loading2" class="my-1 text-center">
+                        <Loader />
+                      </div>
+                      <VerifyPin v-if="verifyPro" v-on:verifyPin="verifyProPin" />
+                    </div>
+                  </div>
+                  <form v-if="level < 10" v-on:submit.prevent class="p-2 border">
+                    <label for="amount">Number Of Shares To Buy</label>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                          <i class="fa fa-pencil"></i>
+                        </span>
+                      </div>
+                      <input
+                        type="number"
+                        v-on:keyup="checkUnitNum"
+                        v-model="unit"
+                        class="form-control"
+                        placeholder="Enter Units Of Shares"
+                      />
+                    </div>
+                    <div v-if="btnRave">
+                      <Rave
+                        class="shop d-block mx-auto px-0 btn btn-primary text-white"
+                        :email="email"
+                        :amount="parseInt(amount)"
+                        :reference="reference"
+                        :rave-key="raveKey"
+                        :callback="callback"
+                        :close="close"
+                        :metadata="meta"
+                        :redirectUrl="redirect"
+                        :paymentPlan="plan"
+                        :customerFirstname="fname"
+                        paymentOptions="card,barter,account,ussd"
+                        hostedPayemt="1"
+                        customTitle="Momentum Top-Up Main Wallet"
+                        currency="NGN"
+                        country="NG"
+                      >
+                        <i>Buy Shares</i>
+                      </Rave>
+                    </div>
+                    <div v-if="level < 10">
+                      <div class="d-flex mt-2 justify-content-center" v-if="button2">
+                        <button @click="throwErrorMsg" class="btn btn-primary">Buy Shares</button>
+                      </div>
+                    </div>
+                  </form>
+                  <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg2" />
+                  <Failuremsg v-on:closeMsg="closeMsg" :msg="msg2" />
+                </div>
+              </div>
+
+              <!-- Enterprise Agency Partner -->
+              <div class="border mb-2">
+                <a href="#collapes4" data-parent="#accordion" data-toggle="collapse">
+                  <div class="p-2 mb-2 text-dark">
+                    <i class="fa fa-star mr-3 lead"></i>
+
+                    <span class="font-weight-bold">Become a Basic Member</span>
+                  </div>
+                </a>
+                <div class="border bg-light m-2 p p-2 collapse" id="collapes4">
+                  <!--  <div class="d-flex my-3">
                 <div v-if="level < 4" class="fa fa-square-o mx-3 my-auto"></div>
                 <div v-if="level >= 4" class="fa fa-check-square-o mx-3 my-auto"></div>
                 <div>
                   <span class="font-weight-bold">Basic Membership</span>
-                  <!--  (&#8358;
-                  2,500 / Year) Features include Basic + Investment, Loan, Hire Purchase, and Referral.-->
                   gets full access to all features of the app (Activation Fee: &#8358;2000)
                 </div>
-              </div>
-              <div v-if="level >= 4" class="row justify-content-center">
-                <p
-                  class="text-center font-weight-bolder text-uppercase bg-primary p-2 text-white col-md-7 p lead"
-                >You Are A Basic Member</p>
-              </div>
-              <p v-if="level < 4" class="text-center p">
+                  </div>-->
+                  <div class="row justify-content-center">
+                    <p
+                      class="text-center font-weight-bolder text-uppercase bg-primary p-2 text-white col-md-7 p lead"
+                    >COMING SOON</p>
+                  </div>
+                  <!--  <p v-if="level < 4" class="text-center p">
                 Premium Membership Upgrade Costs
                 <span class="ml-1 font-weight-bold">&#8358;2,500</span>
-              </p>
-              <div class="row justify-content-center">
-                <div class="col-md-6">
-                  <div v-if="loading1" class="my-1 text-center">
-                    <Loader />
+                  </p>-->
+                  <div class="row justify-content-center">
+                    <div class="col-md-6">
+                      <div v-if="loading1" class="my-1 text-center">
+                        <Loader />
+                      </div>
+                      <VerifyPin v-if="verifyBasic" v-on:verifyPin="verifyBasicPin" />
+                    </div>
                   </div>
-                  <VerifyPin v-if="verifyBasic" v-on:verifyPin="verifyBasicPin" />
-                </div>
-              </div>
-              <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg1" />
-              <Failuremsg v-on:closeMsg="closeMsg" :msg="msg1" />
-              <div v-if="level < 4">
-                <div class="d-flex justify-content-center" v-if="button1">
-                  <button @click="becomeBasic" class="btn btn-primary">Become Premium</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Pro -->
-          <div class="border mb-2">
-            <a href="#collapse4" data-parent="#accordion" data-toggle="collapse">
-              <div class="p-2 mb-2 text-dark">
-                <i class="fa fa-star-o mr-3 lead"></i>
-                <span class="font-weight-bold">Become a Shareholder</span>
-              </div>
-            </a>
-            <div class="border m-2 p-2 p collapse" id="collapse4">
-              <div class="d-flex my-3">
-                <div v-if="level <= 4" class="fa fa-square-o mx-3 my-auto"></div>
-                <div v-if="level >= 10" class="fa fa-check-square-o mx-3 my-auto"></div>
-                <div>
-                  <span class="font-weight-bold">Shareholder Membership</span>
-
-                  <!-- (&#8358;
-                  50,000 for 3 years) Features include Standard + Community Leader, + Share in 25% of Momentum Profit (we have created 3,000 unit @ 50k)-->
-                  gets full access to all features of the app plus Ecosystem Profit Share (Minimum
-                  Share Acquisition: &#8358;20,000)
-                </div>
-              </div>
-              <p v-if="level >= 10" class="text-center p">You Are A Shareholder Member</p>
-              <div class="row justify-content-center">
-                <div class="col-md-6">
-                  <div v-if="loading2" class="my-1 text-center">
-                    <Loader />
+                  <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg1" />
+                  <Failuremsg v-on:closeMsg="closeMsg" :msg="msg1" />
+                  <div v-if="level < 4">
+                    <div class="d-flex justify-content-center" v-if="button1">
+                      <button @click="becomeBasic" class="btn btn-primary">Become Premium</button>
+                    </div>
                   </div>
-                  <VerifyPin v-if="verifyPro" v-on:verifyPin="verifyProPin" />
-                </div>
-              </div>
-              <form v-if="level < 10" v-on:submit.prevent class="p-2 border">
-                <label for="amount">Number Of Shares To Buy</label>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">
-                      <i class="fa fa-pencil"></i>
-                    </span>
-                  </div>
-                  <input
-                    type="number"
-                    v-on:keyup="checkUnitNum"
-                    v-model="unit"
-                    class="form-control"
-                    placeholder="Enter Units Of Shares"
-                  />
-                </div>
-                <div v-if="btnRave">
-                  <Rave
-                    class="shop d-block mx-auto px-0 btn btn-primary text-white"
-                    :email="email"
-                    :amount="parseInt(amount)"
-                    :reference="reference"
-                    :rave-key="raveKey"
-                    :callback="callback"
-                    :close="close"
-                    :metadata="meta"
-                    :redirectUrl="redirect"
-                    :paymentPlan="plan"
-                    :customerFirstname="fname"
-                    paymentOptions="card,barter,account,ussd"
-                    hostedPayemt="1"
-                    customTitle="Momentum Top-Up Main Wallet"
-                    currency="NGN"
-                    country="NG"
-                  >
-                    <i>Buy Shares</i>
-                  </Rave>
-                </div>
-                <div v-if="level < 10">
-                  <div class="d-flex mt-2 justify-content-center" v-if="button2">
-                    <button @click="throwErrorMsg" class="btn btn-primary">Buy Shares</button>
-                  </div>
-                </div>
-              </form>
-              <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg2" />
-              <Failuremsg v-on:closeMsg="closeMsg" :msg="msg2" />
-            </div>
-          </div>
-
-          <!-- Enterprise Agency Partner -->
-          <div class="border mb-2">
-            <a href="#collapes4" data-parent="#accordion" data-toggle="collapse">
-              <div class="p-2 mb-2 text-dark">
-                <i class="fa fa-star mr-3 lead"></i>
-
-                <span class="font-weight-bold">Become a Basic Member</span>
-              </div>
-            </a>
-            <div class="border bg-light m-2 p p-2 collapse" id="collapes4">
-              <!--  <div class="d-flex my-3">
-                <div v-if="level < 4" class="fa fa-square-o mx-3 my-auto"></div>
-                <div v-if="level >= 4" class="fa fa-check-square-o mx-3 my-auto"></div>
-                <div>
-                  <span class="font-weight-bold">Basic Membership</span>
-                  gets full access to all features of the app (Activation Fee: &#8358;2000)
-                </div>
-              </div>-->
-              <div class="row justify-content-center">
-                <p
-                  class="text-center font-weight-bolder text-uppercase bg-primary p-2 text-white col-md-7 p lead"
-                >COMING SOON</p>
-              </div>
-              <!--  <p v-if="level < 4" class="text-center p">
-                Premium Membership Upgrade Costs
-                <span class="ml-1 font-weight-bold">&#8358;2,500</span>
-              </p>-->
-              <div class="row justify-content-center">
-                <div class="col-md-6">
-                  <div v-if="loading1" class="my-1 text-center">
-                    <Loader />
-                  </div>
-                  <VerifyPin v-if="verifyBasic" v-on:verifyPin="verifyBasicPin" />
-                </div>
-              </div>
-              <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg1" />
-              <Failuremsg v-on:closeMsg="closeMsg" :msg="msg1" />
-              <div v-if="level < 4">
-                <div class="d-flex justify-content-center" v-if="button1">
-                  <button @click="becomeBasic" class="btn btn-primary">Become Premium</button>
                 </div>
               </div>
             </div>

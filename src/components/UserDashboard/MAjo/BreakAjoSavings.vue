@@ -1,32 +1,17 @@
 <template>
   <Structure page="Break Ajo">
     <div class="container">
-      <div
-        v-if="mssg"
-        class="alert text-center alert-primary alert-dismissible mt-2 fade show"
-        role="alert"
-      >
-        <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
-        <button
-          type="button"
-          @click="closeMsg"
-          class="close"
-          data-dismiss="alert"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+      <Successmsg :mssg="mssg" v-on:closeMsg="closeMsg" />
       <div class="text-center" v-if="loading">
         <Loader />
       </div>
-      <div class="row no-gutters justify-content-center">
+      <div class="row justify-content-center">
         <form
           v-if="form"
           v-on:submit.prevent="breakSavings"
-          class="col-md-7 card shadow border bg-white p-4"
+          class="col-md-7 shadow border bg-white p-3"
         >
-          <div class="text-center text-primary font-weight-bold h4 py-3">Enter Amount To Break</div>
+          <div class="text-center text-primary font-weight-bold h4 pt-3 pb-2">Enter Amount To Break</div>
           <p
             class="p-2 mb-3 text-center font-gray-900"
           >It is not ideal to withdraw your savings before your cycle completes. However, if it’s a case of emergency, you can break your savings (Ajo) by entering the amount you wish to withdraw.</p>
@@ -53,22 +38,7 @@
       </div>
       <div class="row justify-content-center">
         <div class="col-md-6">
-          <div
-            v-if="msg"
-            class="alert text-center alert-danger alert-dismissible mt-2 fade show"
-            role="alert"
-          >
-            <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
-            <button
-              type="button"
-              @click="closeMsg"
-              class="close"
-              data-dismiss="alert"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+          <Failuremsg :msg="msg" v-on:closeMsg="closeMsg" />
         </div>
       </div>
     </div>
@@ -80,12 +50,17 @@ import Structure from "../GUserLayouts/Structure";
 import Verify from "../../Auth/VerifyPin";
 import Loader from "../Index/Loader";
 import axios from "axios";
+
+import Successmsg from "../GUserLayouts/Successmsg";
+import Failuremsg from "../GUserLayouts/Failuremsg";
 export default {
   name: "BreakAjoSavings",
   components: {
     Structure,
     Verify,
-    Loader
+    Loader,
+    Successmsg,
+    Failuremsg
   },
   data() {
     return {

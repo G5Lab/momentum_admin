@@ -1,7 +1,11 @@
 <template>
   <Structure page="MainWallet / History">
     <div class="container-fluid">
-      <div class="table-responsive d-none d-md-block">
+      <div
+        class="table-responsive d-none d-md-block"
+        v-for="history of ajoHistory"
+        :key="history._id"
+      >
         <table class="table table-striped table-bordered">
           <thead>
             <tr>
@@ -13,7 +17,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="history of ajoHistory" :key="history._id">
+            <tr>
               <th>{{history.date | formatDate }}</th>
               <td
                 v-bind:class="{'danger': history.type  != 'Credit' }"
@@ -26,7 +30,7 @@
           </tbody>
         </table>
       </div>
-      <div class="table-responsive d-md-none">
+      <div class="table-responsive d-md-none" v-for="history of ajoHistory" :key="history._id">
         <table class="table table-striped table-bordered">
           <thead>
             <tr>
@@ -36,7 +40,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="py-0" v-for="history of ajoHistory" :key="history._id">
+            <tr class="py-0">
               <th class="px-1 py-1">{{history.date | formatDate }}</th>
               <td class="px-0 py-1">
                 <span
@@ -62,7 +66,6 @@
     </div>
   </Structure>
 </template>
-
 
 <script>
 import Structure from "../GUserLayouts/Structure";

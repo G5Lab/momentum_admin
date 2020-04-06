@@ -1,18 +1,18 @@
 <template>
   <Structure page="Update Profile">
     <div class="container-fluid">
-      <div class="container">
-        <div class="row justify-content-center px-1">
+      <div class>
+        <div class="row justify-content-center">
           <form
             v-on:submit.prevent="completeProfile"
-            class="border col-lg-10 col-md-11 mb-3 bg-white p-3"
+            class="shadow col-lg-10 col-md-10 mb-3 bg-white p-3"
           >
             <div v-if="loading" class="my-2 text-center">
               <Loader />
             </div>
-            <div class="text-center text-primary font-weight-bold h5 mx-0 p-0 py-2">Update Profile</div>
+            <div class="text-center text-primary font-weight-bold h4 mx-0 p-0 pt-2">Update Profile</div>
             <div
-              class="p-2 mb-2 text-center h5"
+              class="p-2 mb-2 text-center p"
             >Update your profile, fill out the Information below to unlock other features</div>
             <label>Residential Address</label>
             <div class="input-group mb-3">

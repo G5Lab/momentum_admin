@@ -1,11 +1,11 @@
 <template>
-  <Structure page="Reset Transaction Pin">
+  <Structure page="Reset Pin">
     <div class="container-fluid mb-4">
       <div class="row justify-content-center px-1 mb-2">
         <div v-if="loading" class="my-2 text-center">
           <Loader />
         </div>
-        <form v-on:submit.prevent="updatePin" class="col-md-11 col-lg-7 border bg-white py-2 px-3">
+        <form v-on:submit.prevent="updatePin" class="col-md-11 col-lg-7 shadow bg-white py-2 px-3">
           <div class="text-center text-gray-900 h5 py-2">Reset Pin</div>
 
           <label for="number">Input Pin</label>

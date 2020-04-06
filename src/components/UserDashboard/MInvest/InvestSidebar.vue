@@ -20,7 +20,7 @@
 .list-group-item {
   font-size: 1.17rem;
   color: whitesmoke;
-  background: rgb(74, 71, 138);
+  background: rgb(83, 76, 221);
 }
 .nav-item,
 .nav-link {
@@ -32,7 +32,7 @@
 
 .nav-item:hover,
 .nav-link:hover {
-  background: rgba(61, 60, 60, 0.336);
+  background: rgba(120, 128, 150, 0.336);
   color: white !important;
 }
 ul {

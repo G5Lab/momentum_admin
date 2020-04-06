@@ -53,14 +53,6 @@ router.beforeEach((to, from, next) => {
     } else {
       next()
     }
-  } else if (to.matched.some(record => record.meta.guest)) {
-    if (sessionStorage.getItem('jwt') == null) {
-      next()
-    } else {
-      next({
-        name: 'userdashboard'
-      })
-    }
   } else if (to.matched.some(record => record.meta.registerNow)) {
     if (sessionStorage.getItem('registrationSucces') == "true") {
       next()

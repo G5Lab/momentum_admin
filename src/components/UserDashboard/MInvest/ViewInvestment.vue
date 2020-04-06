@@ -3,32 +3,35 @@
     <div class="text-center mt-3" v-if="loading">
       <Loader />
     </div>
-    <div class="container-fluid px-2">
-      <div v-if="premium" class="container mx-0">
-        <div v-if="mode" class="row">
-          <div class="d-none d-lg-block col-lg-3 col-xl-2 mb-3">
-            <InSidebar />
-          </div>
-          <div class="col-lg-9 mx-0 px-0 col-xl-10">
-            <div class="row justify-content-start">
-              <div
-                v-for="(investment, index) in investments"
-                :key="index"
-                class="col-md-4 col-xl-4 col-lg-4 col-sm-4 mb-1"
+    <div class="container-fluid">
+      <div v-if="mode && premium" class="row">
+        <div class="d-none d-lg-block col-lg-3 col-xl-2 mb-3">
+          <InSidebar />
+        </div>
+        <div class="col-lg-9 mx-0 px-0 col-xl-10">
+          <div class="row justify-content-start">
+            <div
+              v-for="(investment, index) in investments"
+              :key="index"
+              class="col-md-3 col-lg-4 mb-3"
+            >
+              <router-link
+                class="nav-link text-dark p-0 card"
+                v-bind:to="'/investmentDetails/'+ index"
               >
-                <router-link class="nav-link card" v-bind:to="'/investmentDetails/'+ index">
-                  <img
-                    style="height: 110px"
-                    class="card-img-top mb-2"
-                    :src="investment.attachment"
-                    alt="Image"
-                  />
-                  <div class="d-flex justify-content-between">
-                    <div>
-                      <p class="mb-0">{{investment.title}}</p>
+                <img
+                  style="height: 110px"
+                  class="card-img-top mb-0"
+                  :src="investment.attachment"
+                  alt="Image"
+                />
+                <div class="card-body px-2 pt-2">
+                  <div class="d-flex justify-content-between m-0 p-0">
+                    <div class="m-0">
+                      <p class="m-0 font-weight-bold text-capitalize">{{investment.title}}</p>
                     </div>
                     <div class="m-0 p-0">
-                      <div class="btn mr-auto btn-success">{{investment.status}}</div>
+                      <div class="btn p-1 m-0 mr-auto btn-success">{{investment.status}}</div>
                     </div>
                   </div>
                   <small class="p text-muted">
@@ -49,10 +52,9 @@
                     <span class="mr-2">Cylce:</span>
                     <span>{{investment.investment_cycle}} months</span>
                   </small>
-
                   <div class="p text-gray-600 font-weight-bold my-0">{{investment.risk_plan}}</div>
-                </router-link>
-              </div>
+                </div>
+              </router-link>
             </div>
           </div>
         </div>
@@ -65,7 +67,6 @@
     </div>
   </Structure>
 </template>
-
 
 
 <script>
@@ -135,3 +136,34 @@ export default {
 };
 </script>
 
+<style scoped>
+.card-body {
+  position: relative;
+  margin-top: -5px !important;
+}
+.card {
+  border-radius: 5%;
+  transition: 0.6s all;
+}
+
+.card:hover {
+  transform: translateY(4px);
+  box-shadow: 2px 1px 2px 2px rgb(83, 76, 221);
+}
+
+@media only screen and (max-width: 411px) {
+  .card {
+    border-radius: 5%;
+    transition: 0.6s all;
+    position: relative;
+  }
+}
+@media only screen and (width: 320px) {
+  .container-fluid {
+    margin-left: -10px !important;
+  }
+  .card-body {
+    margin: -9px !important;
+  }
+}
+</style>

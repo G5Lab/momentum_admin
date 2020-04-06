@@ -1,7 +1,11 @@
 <template>
   <Structure page="mInvest / History">
     <div class="container-fluid">
-      <div class="table-responsive d-none d-md-block">
+      <div
+        class="table-responsive d-none d-md-block"
+        v-for="history of investmentHistory"
+        :key="history._id"
+      >
         <table class="table table-striped table-bordered">
           <thead>
             <tr>
@@ -13,7 +17,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="history of investmentHistory" :key="history._id">
+            <tr>
               <th>{{history.date | formatDate }}</th>
               <td
                 v-bind:class="{'danger': history.type  != 'Credit' }"

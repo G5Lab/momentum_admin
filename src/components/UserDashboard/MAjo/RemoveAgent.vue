@@ -1,31 +1,29 @@
 <template>
   <Structure page="Register an Agent ">
     <div class="container-fluid mb-4">
-      <div class="container">
-        <div class="row mt-5 justify-content-center">
-          <div class="col-md-8">
-            <div class="card shadow p-3 bg-light">
-              <div class="card-body p-0">
-                <div class="text-center text-danger font-weight-bold h4 pt-2">Remove Agent</div>
-                <div class="text-center" v-if="loading2">
-                  <Loader />
-                </div>
-                <div v-if="removeForm" class="p-2">
-                  <p class>
-                    To be able to donate Ajo to a particular Agent, you should register the Agent in the form above.
-                    If you wish to remove your agent, click the button below to remove existing Agent.
-                  </p>
-                  <button
-                    @click="removeAgent"
-                    class="btn d-block mx-auto btn-danger px-4"
-                  >Remove Agent</button>
-                </div>
-                <div v-if="verified2" class="col">
-                  <Verify class="bg-white p-5" v-on:verifyPin="verifyPin2" />
-                </div>
-                <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg2" />
-                <Failuremsg v-on:closeMsg="closeMsg" :msg="msg2" />
+      <div class="row mt-4 justify-content-center">
+        <div class="col-md-8 col-lg-7">
+          <div class="card shadow p-3 bg-light">
+            <div class="card-body p-0">
+              <div class="text-center text-danger font-weight-bold h4 pt-2">Remove Agent</div>
+              <div class="text-center" v-if="loading2">
+                <Loader />
               </div>
+              <div v-if="removeForm" class="p-2">
+                <p class>
+                  To be able to donate Ajo to a particular Agent, you should register the Agent in the form above.
+                  If you wish to remove your agent, click the button below to remove existing Agent.
+                </p>
+                <button
+                  @click="removeAgent"
+                  class="btn d-block mx-auto btn-danger px-4"
+                >Remove Agent</button>
+              </div>
+              <div v-if="verified2" class="col">
+                <Verify class="bg-white p-5" v-on:verifyPin="verifyPin2" />
+              </div>
+              <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg2" />
+              <Failuremsg v-on:closeMsg="closeMsg" :msg="msg2" />
             </div>
           </div>
         </div>

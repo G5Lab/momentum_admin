@@ -1,9 +1,9 @@
 <template>
   <Structure page="Basic Information">
     <div class="container-fluid">
-      <div class="container">
+      <div>
         <div class="row justify-content-center">
-          <div class="col-md-10 bg-white shadow col-lg-8 border p-4">
+          <div class="col-md-10 p-4 bg-white shadow col-lg-8 border">
             <div class="row">
               <div class="col-md-4">
                 <div class="profile-img my-2 mb-3">
