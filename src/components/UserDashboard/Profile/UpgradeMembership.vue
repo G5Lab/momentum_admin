@@ -22,13 +22,13 @@
             <div id="accordion" class="mt-2">
               <!-- Standard Member -->
               <div class="border mb-2">
-                <a href="#collapes4" data-parent="#accordion" data-toggle="collapse">
+                <a href="#collapes3" data-parent="#accordion" data-toggle="collapse">
                   <div class="p-2 mb-2 text-dark">
                     <i class="fa fa-shield mr-3 lead"></i>
                     <span class="font-weight-bold">Become a Basic Member</span>
                   </div>
                 </a>
-                <div class="border bg-light m-2 p p-2 collapse" id="collapse3">
+                <div class="border bg-light m-2 p p-2 collapse" id="collapes3">
                   <div class="d-flex my-3">
                     <div v-if="level < 4" class="fa fa-square-o mx-3 my-auto"></div>
                     <div v-if="level >= 4" class="fa fa-check-square-o mx-3 my-auto"></div>
@@ -147,14 +147,14 @@
 
               <!-- Enterprise Agency Partner -->
               <div class="border mb-2">
-                <a href="#collapes4" data-parent="#accordion" data-toggle="collapse">
+                <a href="#collapes5" data-parent="#accordion" data-toggle="collapse">
                   <div class="p-2 mb-2 text-dark">
                     <i class="fa fa-star mr-3 lead"></i>
 
                     <span class="font-weight-bold">Become a Basic Member</span>
                   </div>
                 </a>
-                <div class="border bg-light m-2 p p-2 collapse" id="collapes4">
+                <div class="border bg-light m-2 p p-2 collapse" id="collapes5">
                   <!--  <div class="d-flex my-3">
                 <div v-if="level < 4" class="fa fa-square-o mx-3 my-auto"></div>
                 <div v-if="level >= 4" class="fa fa-check-square-o mx-3 my-auto"></div>
