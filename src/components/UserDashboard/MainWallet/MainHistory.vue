@@ -1,12 +1,8 @@
 <template>
   <Structure page="MainWallet / History">
     <div class="container-fluid">
-      <div
-        class="table-responsive d-none d-md-block"
-        v-for="history of ajoHistory"
-        :key="history._id"
-      >
-        <table class="table table-striped table-bordered">
+      <div class="table-responsive d-none d-md-block">
+        <table class="table table-hover table-bordered table-striped">
           <thead>
             <tr>
               <th scope="col">Date</th>
@@ -16,7 +12,7 @@
               <th scope="col">Amount</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody v-for="history of ajoHistory" :key="history._id">
             <tr>
               <th>{{history.date | formatDate }}</th>
               <td

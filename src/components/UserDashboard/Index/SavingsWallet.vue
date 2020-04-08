@@ -1,12 +1,14 @@
 <template>
   <!-- mSave -->
-  <div class="col-xl-3 first col-md-5 col-lg-6 mb-2">
+  <div class="col-xl-3 first col-md-6 col-lg-6 mb-3">
     <div class="card border-left-info shadow h-100 pt-2">
       <div class="card-body px-2">
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-ls font-weight-bold text-info text-uppercase mb-1">mSave</div>
-            <div class="h5 mb-2 font-weight-bold text-gray-800">&#8358;{{savings_balance || 0}}</div>
+            <div
+              class="h5 mb-2 font-weight-bold text-gray-800"
+            >&#8358;{{savings_balance || 0 | formart}}</div>
           </div>
           <div class="col-auto">
             <i class="fas fa-clipboard-list fa-3x text-gray-800"></i>
@@ -22,7 +24,10 @@
       <div class="card-footer m-0 p-1 d-flex justify-content-center">
         <small class>
           <span class>Target:</span>
-          <span class="h6 m-2 font-weight-bold">N{{msavetarget || "ot Set"}}</span>
+          <span class="h6 m-2 font-weight-bold">
+            <span v-if="msavetarget">&#8358;</span>
+            {{msavetarget || "Not Set" | formart}}
+          </span>
         </small>
       </div>
     </div>
@@ -66,6 +71,11 @@ export default {
       .catch(err => {
         console.log(err);
       });
+  },
+  filters: {
+    formart(value) {
+      return value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    }
   }
 };
 </script>

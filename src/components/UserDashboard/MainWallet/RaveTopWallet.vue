@@ -20,6 +20,7 @@
     <i>{{name}}</i>
   </Rave>
 </template>
+
 <script type="text/javascript">
 import axios from "axios";
 import Rave from "vue-ravepayment";

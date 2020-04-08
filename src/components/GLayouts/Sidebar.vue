@@ -22,9 +22,10 @@ ul {
 @media (max-width: 767px) {
   .navbar-nav {
     margin-left: -10px !important;
+    /* padding-right: 1.3rem; */
   }
   .sidebar {
-    min-width: 5.2rem !important;
+    min-width: 5.7rem !important;
   }
 }
 </style>

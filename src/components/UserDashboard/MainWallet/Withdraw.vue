@@ -107,6 +107,9 @@ import Loader from "../Msave/Loader";
 import Verify from "../../Auth/VerifyPin";
 import axios from "axios";
 
+// import Failuremsg from "../GUserLayouts/Failuremsg";
+// import Successmsg from "../GUserLayouts/Successmsg";
+
 export default {
   name: "Withdraw",
   components: {

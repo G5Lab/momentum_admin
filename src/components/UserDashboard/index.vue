@@ -1,14 +1,14 @@
 <template>
   <Structure page="Dashboard">
-    <div class="container-fluid mx-0 px-2">
-      <div class="container p-1 m-1">
+    <div class="container-fluid px-3">
+      <div class>
         <!-- Set Pin-->
         <div v-if="others.setpinform" class="row mt-5 justify-content-center">
           <SetPin />
         </div>
         <div v-if="others.mode">
           <!-- First -->
-          <div class="row mb-4">
+          <div class="row mb-4 justify-content-center">
             <!-- Main Wallet -->
             <MainWallet :main_balance="main_balance" :dividends="dividends" />
             <!-- Ajo Wallet -->
@@ -129,16 +129,17 @@ export default {
 
 
 <style scoped>
-.first {
-  transition: 0.6s all;
-}
-.first:hover {
-  cursor: pointer;
-  transform: translateY(8px);
+@media only screen and (min-width: 765px) {
+  .first {
+    transition: 0.6s all;
+  }
+
+  .first:hover {
+    cursor: pointer;
+    transform: translateY(8px);
+  }
 }
 .link:hover {
   text-decoration: none;
-}
-.container {
 }
 </style>

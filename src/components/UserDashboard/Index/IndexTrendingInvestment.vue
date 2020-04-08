@@ -1,7 +1,7 @@
 <template>
   <div class="pb-5">
-    <div class="card pt-2 pb-0">
-      <div class="p-3">
+    <div class="card pb-0">
+      <div class="p-3 card-header">
         <h6 class="m-0 mb-2 h4 font-weight-bold text-primary">-Latest Investments</h6>
         <p class="mb-1 ml-3 px-1 text-md text-muted">
           <span class="d-block">You Can Invest In Any Of The Investment below</span>
@@ -9,7 +9,7 @@
           You can also Fill The Upload Investment Form If You Need Investors for your business
         </p>
       </div>
-      <div class="row no-gutters">
+      <div class="row py-2 no-gutters">
         <div
           v-for="(investment, index) in investments"
           :key="index"

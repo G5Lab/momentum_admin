@@ -3,22 +3,7 @@
   <Structure page="Transfer Fund">
     <div class="container-fluid mb-4">
       <div>
-        <div
-          v-if="mssg"
-          class="alert text-center alert-primary alert-dismissible mt-2 fade show"
-          role="alert"
-        >
-          <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
-          <button
-            type="button"
-            @click="closeMsg"
-            class="close"
-            data-dismiss="alert"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+        <Failuremsg v-on:closeMsg="closeMsg" :mssg="mssg" />
         <div class="text-center" v-if="loading">
           <Loader />
         </div>
@@ -80,22 +65,7 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-md-6">
-            <div
-              v-if="msg"
-              class="alert text-center alert-danger alert-dismissible mt-2 fade show"
-              role="alert"
-            >
-              <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
-              <button
-                type="button"
-                @click="closeMsg"
-                class="close"
-                data-dismiss="alert"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
+            <Successmsg :msg="msg" v-on:closeMsg="closeMsg" />
           </div>
         </div>
       </div>
@@ -108,13 +78,18 @@
 import Structure from "../GUserLayouts/Structure";
 import Verify from "../../Auth/VerifyPin";
 import Loader from "../Index/Loader";
+import Failuremsg from "../GUserLayouts/Failuremsg";
+import Successmsg from "../GUserLayouts/Successmsg";
+
 import axios from "axios";
 export default {
   name: "Transfer",
   components: {
     Structure,
     Verify,
-    Loader
+    Loader,
+    Failuremsg,
+    Successmsg
   },
   data() {
     return {

@@ -148,6 +148,7 @@
 import Structure from "../GUserLayouts/Structure";
 import axios from "axios";
 import Loader from "../Msave/Loader";
+// import Calls from "../../../Service/Calls";
 export default {
   name: "BankInfo",
   components: {
@@ -270,6 +271,9 @@ export default {
     }
   },
   created() {
+    /*  Calls.getUsers().then(res => {
+      console.log(res);
+    }); */
     this.token = this.$session.get("jwt");
     this.trans_id = this.$session.get("user").trans_id;
     this.user_id = this.$session.get("user")._id;

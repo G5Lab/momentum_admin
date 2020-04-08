@@ -3,8 +3,9 @@ import NotFound from "../components/GLayouts/NotFound"
 
 // Cooming Soon
 
-import PayBills from "../components/UserDashboard/Cooming/PayBills"
 // import HirePurchase from "../components/UserDashboard/Cooming/HirePurchase"
+
+
 
 
 // Authentication
@@ -65,6 +66,14 @@ import InvestmentReportDetails from "../components/UserDashboard/MInvest/Investm
 import QuickLoan from "../components/UserDashboard/mLoan/QuickLoan"
 import BusinessLoan from "../components/UserDashboard/mLoan/BusinessLoan"
 
+// mBills
+import Airtime from "../components/UserDashboard/mBills/Airtime"
+import DataSub from "../components/UserDashboard/mBills/DataSub"
+import CableTv from "../components/UserDashboard/mBills/CableTv"
+import Power from "../components/UserDashboard/mBills/Power"
+
+
+
 
 
 // College Of Money
@@ -89,13 +98,7 @@ const routes = [
     },
 
     // Cooming Sooon 
-    {
-        path: '/PayBills',
-        component: PayBills,
-        meta: {
-            requiresAuth: true
-        }
-    },
+
     /*  {
          path: '/hirepurchase',
          component: HirePurchase,
@@ -403,6 +406,35 @@ const routes = [
         }
     },
 
+    // mBills
+    {
+        path: '/airtime_topup',
+        component: Airtime,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/data_subs',
+        component: DataSub,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/cable_tv',
+        component: CableTv,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/electricity',
+        component: Power,
+        meta: {
+            requiresAuth: true
+        }
+    },
 
 
     // Support 

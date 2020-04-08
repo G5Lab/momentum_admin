@@ -31,7 +31,7 @@
         aria-controls="collapseTwo"
       >
         <i class="fas fa-fw fa-user"></i>
-        <span>Profile</span>
+        <span>mProfile</span>
       </a>
       <div
         id="collapseTwo"
@@ -50,7 +50,7 @@
         </div>
       </div>
     </li>
-    <hr class="sidebar-divider d-none d-md-block" />
+    <hr class="sidebar-divider d-md-block" />
 
     <!-- Main Wallet -->
     <li class="nav-item">
@@ -62,8 +62,8 @@
         aria-controls="collapseUtilities"
       >
         <i class="fas fa-fw fa-wallet"></i>
-        <span class>Main</span>
-        <span class>Wallet</span>
+        <!-- <span class>Main</span> -->
+        <span class>mWallet</span>
       </a>
       <div
         id="transactions"
@@ -79,7 +79,7 @@
         </div>
       </div>
     </li>
-    <hr class="sidebar-divider d-none d-md-block" />
+    <hr class="sidebar-divider d-md-block" />
 
     <!-- mAjo -->
     <li class="nav-item">
@@ -110,7 +110,7 @@
         </div>
       </div>
     </li>
-    <hr class="sidebar-divider d-none d-md-block" />
+    <hr class="sidebar-divider d-md-block" />
 
     <!-- mSAVE -->
     <li class="nav-item">
@@ -136,7 +136,7 @@
         </div>
       </div>
     </li>
-    <hr class="sidebar-divider d-none d-md-block" />
+    <hr class="sidebar-divider d-md-block" />
 
     <!-- mINVEST -->
     <li class="nav-item">
@@ -164,7 +164,7 @@
         </div>
       </div>
     </li>
-    <hr class="sidebar-divider d-none d-md-block" />
+    <hr class="sidebar-divider d-md-block" />
 
     <!-- Cooming Soon  -->
     <!--  <li class="nav-item">
@@ -220,27 +220,39 @@
       </div>
     </li>
 
-    <hr class="sidebar-divider d-none d-md-block" />
+    <hr class="sidebar-divider d-md-block" />
 
     <!-- Pay Bills -->
+
     <li class="nav-item">
-      <router-link class="route" to="/paybills">
-        <a
-          class="nav-link"
-          data-toggle="collapse"
-          data-target="#"
-          aria-expanded
-          aria-controls="collapsePages"
-        >
-          <i class="fas fa-fw fa-money"></i>
-          <span>Pay Bills</span>
-        </a>
-      </router-link>
+      <a
+        class="nav-link collapsed"
+        data-toggle="collapse"
+        data-target="#mBills"
+        aria-expanded="true"
+        aria-controls="collapsePages"
+      >
+        <i class="fas fa-fw fa-money"></i>
+        <span>mBills</span>
+      </a>
+      <div
+        id="mBills"
+        class="collapse"
+        aria-labelledby="headingPages"
+        data-parent="#accordionSidebar"
+      >
+        <div class="bg-white py-2 collapse-inner rounded">
+          <router-link class="collapse-item" to="/airtime_topup">Airtime Topup</router-link>
+          <router-link class="collapse-item" to="/data_subs">Data Subscriptions</router-link>
+          <router-link class="collapse-item" to="/cable_tv">Cable Tv</router-link>
+          <router-link class="collapse-item" to="/electricity">Electricity</router-link>
+        </div>
+      </div>
     </li>
 
-    <hr class="sidebar-divider d-none d-md-block" />
+    <hr class="sidebar-divider d-md-block" />
 
-    <!-- Learning Center -->
+    <!-- College Of Money -->
     <li class="nav-item">
       <a
         class="nav-link collapsed"
@@ -249,10 +261,11 @@
         aria-expanded="true"
         aria-controls="collapseUtilities"
       >
-        <i class="fas fa-fw fa-school"></i>
+        <i class="fas fa-fw fa-user-graduate"></i>
+        <!-- <i class="fas fa-fw fa-school"></i> -->
         <span>
-          College
-          <span class="d-none d-md-inline">of Money</span>
+          mCollege
+          <!-- <span class="d-none d-md-inline">of Money</span> -->
         </span>
       </a>
       <div
@@ -266,7 +279,7 @@
         </div>
       </div>
     </li>
-    <hr class="sidebar-divider d-none d-md-block" />
+    <hr class="sidebar-divider d-md-block" />
 
     <!-- Support -->
     <li class="nav-item">
@@ -278,7 +291,7 @@
         aria-controls="collapseUtilities"
       >
         <i class="fas fa-fw fa-support"></i>
-        <span>Support</span>
+        <span>mSupport</span>
       </a>
       <div
         id="collapseUtilitiesp"
@@ -294,6 +307,7 @@
         </div>
       </div>
     </li>
+    <hr class="sidebar-divider d-md-block" />
   </div>
 </template>
 
@@ -329,6 +343,7 @@ export default {
 }
 .nav-link,
 .nav-link .fas,
+.nav-link .fa,
 .nav-link span {
   font-size: 1.04rem !important;
 }

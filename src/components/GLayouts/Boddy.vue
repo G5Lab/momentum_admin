@@ -17,6 +17,8 @@
     <Footer />
   </div>
 </template>
+
+
 <script>
 import Topbar from "./Topbar";
 import Footer from "./Footer";
@@ -37,7 +39,7 @@ export default {
 <style scoped>
 @media only screen and (max-width: 600px) {
   .page {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
   }
 }
 h1 {
