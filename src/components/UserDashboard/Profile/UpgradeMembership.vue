@@ -36,7 +36,7 @@
                       <span class="font-weight-bold">Basic Membership</span>
                       <!--  (&#8358;
                       2,500 / Year) Features include Basic + Investment, Loan, Hire Purchase, and Referral.-->
-                      gets full access to all features of the app (Activation Fee: &#8358;2000)
+                      gets full access to all features of the app (Activation Fee: &#8358;2,000)
                     </div>
                   </div>
                   <div v-if="level >= 4" class="row justify-content-center">
@@ -45,8 +45,8 @@
                     >You Are A Basic Member</p>
                   </div>
                   <p v-if="level < 4" class="text-center p">
-                    Premium Membership Upgrade Costs
-                    <span class="ml-1 font-weight-bold">&#8358;2,500</span>
+                    Basic Membership Upgrade Costs
+                    <span class="ml-1 font-weight-bold">&#8358;2,000</span>
                   </p>
                   <div class="row justify-content-center">
                     <div class="col-md-6">

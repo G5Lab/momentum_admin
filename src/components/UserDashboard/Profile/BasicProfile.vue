@@ -234,7 +234,11 @@ export default {
     this.nok_number = this.$session.get("user").nok_number;
     this.EmployerName = this.$session.get("user").employer;
     this.EmployerAddress = this.$session.get("user").employer_address;
-    this.dob = new Date(this.$session.get("user").dob).toString().slice(0, 15);
+    if (this.dob) {
+      this.dob = new Date(this.$session.get("user").dob)
+        .toString()
+        .slice(0, 15);
+    }
     if (this.level == 1) {
       this.membershipStatus = "Basic Member";
     } else if (this.level == 4) {

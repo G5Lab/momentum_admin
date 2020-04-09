@@ -9,7 +9,7 @@
           <form v-on:submit.prevent="updatePin">
             <p
               class="text-center"
-            >For Security Reason, We Will be Requesting A Four Digit Pin On Every Transaction You Will Be Making On This Application</p>
+            >For security reason, we will be requesting a four digit pin on every transaction you will be making on this application</p>
             <p class="text-center font-weight-bold">
               Pls Keep Transaction Pin
               Confidential
