@@ -216,6 +216,7 @@
         <div class="bg-white py-2 collapse-inner rounded">
           <router-link class="collapse-item" to="/quickloan">Quick Loan</router-link>
           <router-link class="collapse-item" to="/businessloan">Business Loan</router-link>
+          <router-link class="collapse-item" to="/loanHistory">History</router-link>
         </div>
       </div>
     </li>
@@ -243,9 +244,9 @@
       >
         <div class="bg-white py-2 collapse-inner rounded">
           <router-link class="collapse-item" to="/airtime_topup">Airtime Topup</router-link>
-          <router-link class="collapse-item" to="/data_subs">Data Subscriptions</router-link>
-          <router-link class="collapse-item" to="/cable_tv">Cable Tv</router-link>
-          <router-link class="collapse-item" to="/electricity">Electricity</router-link>
+          <!-- <router-link class="collapse-item" to="/data_subs">Data Subscriptions</router-link> -->
+          <!-- <router-link class="collapse-item" to="/cable_tv">Cable Tv</router-link> -->
+          <!-- <router-link class="collapse-item" to="/electricity">Electricity</router-link> -->
         </div>
       </div>
     </li>

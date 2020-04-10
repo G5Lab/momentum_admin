@@ -18,11 +18,7 @@
             <div id="addMoney" class="container tab-pane active">
               <br />
 
-              <!-- <strong>MTN</strong>: 0.00% &emsp;
-              <strong>GLO</strong>: 0.00% &emsp;
-              <strong>Airtel</strong>: 0.00% &emsp;
-              <strong>9Mobile</strong>: 0.00% &emsp;-->
-              <br />
+              <!-- <br /> -->
               <div v-if="loading1" class="text-center">
                 <Loader />
               </div>
@@ -76,22 +72,24 @@
                   placeholder="Enter amount"
                   required
                 />
+                <br />
+                <label for="amount">
+                  <b>Your Pin:</b>
+                </label>
+                <input
+                  name="airAmnt"
+                  id="airAmnt"
+                  class="form-control input-sm"
+                  v-model="pin"
+                  placeholder="Enter Your Pin"
+                  required
+                />
 
                 <br />
                 <Failuremsg :msg="msg" v-on:closeMsg="closeMsg" />
-                <Successmsg :msg="msg" v-on:closeMsg="closeMsg" />
+                <Successmsg :mssg="mssg" v-on:closeMsg="closeMsg" />
 
                 <br />
-                <!-- <font color="red">
-                  <b>NOTE:</b>
-                </font> Minimum airtime purchase is
-                <font color="red">
-                  <b>&#8358;10.00</b>
-                </font> and Maximum is
-                <font color="red">
-                  <b>&#8358;25,000.00</b>
-                </font>
-                <br />-->
                 <button :disabled="loading1" class="btn btn-block btn-lg btn-primary" type="submit">
                   <b>Buy Airtime</b>
                 </button>
@@ -204,9 +202,15 @@ export default {
       network: "",
       amount: null,
       recipent: "",
+      apiToken: null,
 
       msg: "",
-      mssg: ""
+      mssg: "",
+
+      user_id: "",
+      fullname: "",
+      level: "",
+      pin: ""
     };
   },
 
@@ -217,27 +221,54 @@ export default {
     },
     onSubmit() {
       this.loading1 = true;
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.token}`
+      };
       axios
         .post(
-          `https://www.payscribe.ng/api/vend/airtime/`,
+          `https://momentum.ng/backend/api/users/verifypin`,
           {
-            network: this.network,
-            amount: parseInt(this.amount),
-            recipent: this.recipent
+            user_id: this.user_id,
+            pin: this.pin
           },
           {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${this.apiToken}`
-            }
+            headers
           }
         )
         .then(res => {
-          if (res.data.status != true) {
-            this.loading1 = false;
-            alert("Transaction Failed Please Try again");
+          // If Pin is correct
+          if (res.data.status == true) {
+            axios
+              .post(
+                `https://www.payscribe.ng/api/vend/airtime/`,
+                {
+                  network: this.network,
+                  amount: parseInt(this.amount),
+                  recipent: this.recipent
+                },
+                {
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${this.apiToken}`
+                  }
+                }
+              )
+              .then(res => {
+                if (res.data.status != true) {
+                  this.loading1 = false;
+                  this.msg = res.data.message.description;
+                  // alert("Transaction Failed Please Try again");
+                } else {
+                  //   Listen To Axios from Momentum backend To Store History
+                }
+              })
+              .catch(err => {
+                console.log(err);
+              });
           } else {
-            //   Listen To Axios from Momentum backend
+            this.loading1 = false;
+            this.msg = res.data.message;
           }
         })
         .catch(err => {
@@ -249,6 +280,8 @@ export default {
   created() {
     this.token = this.$session.get("jwt");
     this.trans_id = this.$session.get("user").trans_id;
+    this.user_id = this.$session.get("user")._id;
+    this.level = this.$session.get("user").level;
     /* axios
       .get(`https://momentum.ng/backend/api/savings/history/${this.trans_id}`, {
         headers: {

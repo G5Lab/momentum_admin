@@ -55,21 +55,24 @@
                   placeholder="Enter decoder/ iuc number"
                   required
                 />
+                <br />
+                <label for="amount">
+                  <b>Your Pin:</b>
+                </label>
+                <input
+                  name="airAmnt"
+                  id="airAmnt"
+                  class="form-control input-sm"
+                  v-model="pin"
+                  placeholder="Enter Your Pin"
+                  required
+                />
 
                 <br />
                 <Failuremsg :msg="msg" v-on:closeMsg="closeMsg" />
-                <Successmsg :msg="msg" v-on:closeMsg="closeMsg" />
+                <Successmsg :mssg="mssg" v-on:closeMsg="closeMsg" />
                 <br />
-                <!-- <font color="red">
-                  <b>NOTE:</b>
-                </font> Minimum airtime purchase is
-                <font color="red">
-                  <b>&#8358;10.00</b>
-                </font> and Maximum is
-                <font color="red">
-                  <b>&#8358;25,000.00</b>
-                </font>
-                <br />-->
+
                 <button :disabled="loading1" class="btn btn-block btn-lg btn-primary" type="submit">
                   <b>Buy Airtime</b>
                 </button>
@@ -181,40 +184,44 @@ export default {
       noHistory: "",
 
       multichoice_type: "",
-      smart_card_no: ""
+      smart_card_no: "",
+      msg: "",
+      mssg: "",
+      pin: ""
     };
   },
 
   methods: {
+    closeMsg() {
+      this.mssg = "";
+      this.msg = "";
+    },
     onSubmit() {
       this.loading1 = true;
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.token}`
+      };
       axios
         .post(
-          `https://www.payscribe.ng/api/validate/multichoice/`,
+          `https://momentum.ng/backend/api/users/verifypin`,
           {
-            multichoice_type: this.multichoice_type,
-            smart_card_no: this.smart_card_no
+            user_id: this.user_id,
+            pin: this.pin
           },
           {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${this.apiToken}`
-            }
+            headers
           }
         )
         .then(res => {
-          if (res.data.status != true) {
-            this.loading1 = false;
-            console.log(res.data);
-            alert(res.data.message.description);
-          } else {
+          // If Pin is correct
+          if (res.data.status == true) {
             axios
               .post(
-                `https://www.payscribe.ng/api/multichoice/payment/`,
+                `https://www.payscribe.ng/api/validate/multichoice/`,
                 {
                   multichoice_type: this.multichoice_type,
                   smart_card_no: this.smart_card_no
-                  // amount:
                 },
                 {
                   headers: {
@@ -225,15 +232,44 @@ export default {
               )
               .then(res => {
                 if (res.data.status != true) {
-                  this.msg = res.data.message.description;
                   this.loading1 = false;
+                  this.msg = res.data.message.description;
                 } else {
-                  // Momentum Api Request
+                  axios
+                    .post(
+                      `https://www.payscribe.ng/api/multichoice/payment/`,
+                      {
+                        multichoice_type: this.multichoice_type,
+                        smart_card_no: this.smart_card_no
+                        // amount: null to be fixed,
+                        // product_code: res.data.message.details.bouquets
+                      },
+                      {
+                        headers: {
+                          "Content-Type": "application/json",
+                          Authorization: `Bearer ${this.apiToken}`
+                        }
+                      }
+                    )
+                    .then(res => {
+                      if (res.data.status != true) {
+                        this.msg = res.data.message.description;
+                        this.loading1 = false;
+                      } else {
+                        // Momentum Api Request
+                      }
+                    })
+                    .catch(err => {
+                      console.log(err);
+                    });
                 }
               })
               .catch(err => {
                 console.log(err);
               });
+          } else {
+            this.loading1 = false;
+            this.msg = res.data.message;
           }
         })
         .catch(err => {
@@ -245,6 +281,8 @@ export default {
   created() {
     this.token = this.$session.get("jwt");
     this.trans_id = this.$session.get("user").trans_id;
+    this.user_id = this.$session.get("user")._id;
+    this.level = this.$session.get("user").level;
     /* axios
       .get(`https://momentum.ng/backend/api/savings/history/${this.trans_id}`, {
         headers: {

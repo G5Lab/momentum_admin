@@ -1,7 +1,11 @@
 <template>
-  <Structure page="MainWallet History">
+  <Structure page="Loan History">
     <div class="container-fluid">
-      <div class="table-responsive d-none d-md-block">
+      <div
+        class="table-responsive d-none d-md-block"
+        v-for="history of ajoHistory"
+        :key="history._id"
+      >
         <table class="table table-hover table-bordered table-striped">
           <thead>
             <tr>
@@ -12,7 +16,7 @@
               <th scope="col">Amount</th>
             </tr>
           </thead>
-          <tbody v-for="history of ajoHistory" :key="history._id">
+          <tbody>
             <tr>
               <th>{{history.date | formatDate }}</th>
               <td
@@ -54,8 +58,8 @@
       <!-- <div class="border"> -->
     </div>
     <!-- </div> -->
-    <div v-if="noHistory" class="row justify-content-center m-5">
-      <p class="text-center my-5 h1 display-4 text-danger">History is Currently Empty</p>
+    <div v-if="noHistory" class="row justify-content-center m-3">
+      <p class="text-center my-5 h1 display-4 text-danger">Loan History is Currently Empty</p>
     </div>
     <div v-if="loading" class="text-center">
       <Loader />
@@ -86,12 +90,15 @@ export default {
     this.token = this.$session.get("jwt");
     this.trans_id = this.$session.get("user").trans_id;
     axios
-      .get(`https://momentum.ng/backend/api/wallet/history/${this.trans_id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${this.token}`
+      .get(
+        `https://momentum.ng/backend/api/userinvestments/history/${this.trans_id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${this.token}`
+          }
         }
-      })
+      )
       .then(res => {
         this.loading = false;
         if (res.data.data.length == 0) {

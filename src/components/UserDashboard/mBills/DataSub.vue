@@ -18,12 +18,6 @@
             <div id="addMoney" class="container tab-pane active">
               <br />
 
-              <!-- <strong>MTN</strong>: 0.00% &emsp;
-              <strong>GLO</strong>: 0.00% &emsp;
-              <strong>Airtel</strong>: 0.00% &emsp;
-              <strong>9Mobile</strong>: 0.00% &emsp;-->
-              <br />
-
               <br />
               <form id="myForm" v-on:submit.prevent="onSubmit">
                 <label for="networkName">
@@ -37,7 +31,7 @@
                   v-model="network"
                   required
                 >
-                  <option value>-- Select Network --</option>
+                  <option value disabled selected>-- Select Network --</option>
                   <option value="mtn">MTN</option>
                   <option value="glo">GLO</option>
                   <option value="airtel">Airtel</option>
@@ -77,19 +71,10 @@
 
                 <br />
                 <Failuremsg :msg="msg" v-on:closeMsg="closeMsg" />
-                <Successmsg :msg="msg" v-on:closeMsg="closeMsg" />
+                <Successmsg :mssg="msg" v-on:closeMsg="closeMsg" />
                 <br />
-                <!-- <font color="red">
-                  <b>NOTE:</b>
-                </font> Minimum airtime purchase is
-                <font color="red">
-                  <b>&#8358;10.00</b>
-                </font> and Maximum is
-                <font color="red">
-                  <b>&#8358;25,000.00</b>
-                </font>
-                <br />-->
-                <button class="btn btn-block btn-lg btn-primary" id="mybtn" type="button">
+
+                <button class="btn btn-block btn-lg btn-primary" type="submit">
                   <b>Buy Airtime</b>
                 </button>
                 <br />

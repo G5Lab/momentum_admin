@@ -65,6 +65,7 @@ import InvestmentReportDetails from "../components/UserDashboard/MInvest/Investm
 // mLoan
 import QuickLoan from "../components/UserDashboard/mLoan/QuickLoan"
 import BusinessLoan from "../components/UserDashboard/mLoan/BusinessLoan"
+import LoanHistory from "../components/UserDashboard/mLoan/History"
 
 // mBills
 import Airtime from "../components/UserDashboard/mBills/Airtime"
@@ -401,6 +402,13 @@ const routes = [
     {
         path: '/businessloan',
         component: BusinessLoan,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/loanHistory',
+        component: LoanHistory,
         meta: {
             requiresAuth: true
         }

@@ -4,23 +4,23 @@
       <div class="d-flex justify-content-center">
         <div class="col-md-10 border p-3 pb-5 text-gray-900">
           <p class="py-2 mb-2">
-            <span class="font-weight-bold">Business-Loan –</span>
-            disbursement is subject to approval. Member must have been saving consistently for up
+            <span class="font-weight-bold">Business-Loan :</span>
+            Disbursement is subject to approval. Member must have been saving consistently for up
             to 4months. A sustainable guarantor is required – guarantor must be an active member of Momentum,
             with asset on momentum in excess of applicant request amount.
           </p>
-          <p class="m-0">
+          <p class="my-0">
             <span class="font-weight-bold">Loan Tenure:</span>
             10 Weeks max.
           </p>
 
-          <p class="m-1">
+          <p class="my-2">
             <span class="font-weight-bold">Maximum Amount Allowable:</span>
-            Twice the balance on the applicant Savings.
+            Twice the balance on the applicant savings.
           </p>
-          <p class="m-1 mb-3">
+          <p class="mb-3">
             <span class="font-weight-bold">Processing FEE:</span>
-            N2,000 or 10% amount requested whichever that is higher.
+            &#8358;2,000 or 10% amount requested whichever that is higher.
           </p>
           <p class="m-1">
             <span class>Repayment shall be through direct credit/ deposit to the loan wallet.</span>
@@ -29,6 +29,7 @@
             class="m-1"
           >System shall generate weekly Demand Note to help member pay back their loan easily in 10 installment.</p>
           <div class="text-muted my-2">
+            <b class="text-dark">NOTE:</b>
             Prompt payment of loan will raise the borrower’s credit score and impact on credit limit. Credit Score and
             Loan Limit Cap – in the first instance the loan limit shall be 20k, 50k, 100k then twice Savings Balance; this
             limit shall be adjusted based on prompt repayment history
@@ -39,77 +40,74 @@
         </div>
       </div>
 
-      <div class="row mt-4">
-        <div class="container mt-3 d-flex justify-content-center">
-          <div class="col-md-8">
-            <Loader class="text-center d-block" v-if="loading" />
-            <VerifyPin class="my-2 shadow card" v-if="verifypin" v-on:verifyPin="verifyPin" />
-            <div v-if="mode" class="card shadow justify-content-center mb-4">
-              <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">- Create Business Loan</h6>
-              </div>
-
-              <div class="card-body">
-                <form class="register bg-white" v-on:submit.prevent="BusinessLoan">
-                  <div class="form-group mb-4">
-                    <label>Enter Amount</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">
-                          <i class="fas text-primary fa-hand-holding-usd"></i>
-                        </span>
-                      </div>
-                      <input
-                        type="number"
-                        v-model="businessLoan.amount"
-                        class="form-control"
-                        placeholder="Loan Amount"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="form-group mb-4">
-                    <label>Enter Guarantor's Id</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">
-                          <i class="fa text-primary fa-id-badge"></i>
-                        </span>
-                      </div>
-                      <input
-                        type="number"
-                        v-model="businessLoan.guarantorId"
-                        class="form-control"
-                        placeholder="Guarantor's Transaction Id"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="form-group mb-4">
-                    <label>Select Bank</label>
-                    <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">
-                          <i class="fa fa-clock-o"></i>
-                        </span>
-                      </div>
-                      <select required v-model="businessLoan.duration" class="form-control">
-                        <option value disabled selected>Select</option>
-                        <option value="7">Weekly</option>
-                        <option value="30">Monthly</option>
-                      </select>
-                    </div>
-                  </div>
-                  <button
-                    type="submit"
-                    class="btn btn-primary mt-3 btn-block text-center mb-3"
-                  >Request</button>
-                </form>
-              </div>
-            </div>
-            <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg" />
-            <Failuremsg v-on:closeMsg="closeMsg" :msg="msg" />
+      <div class="d-flex justify-content-center mt-5">
+        <div class="col-md-10">
+          <Loader class="text-center d-block" v-if="loading" />
+          <div class="d-flex justify-content-center">
+            <VerifyPin class="my-2 shadow col-md-6" v-if="verifypin" v-on:verifyPin="verifyPin" />
           </div>
+          <div v-if="mode" class="card m-0 shadow mb-4">
+            <h6 class="m-0 card-header py-3 font-weight-bold text-primary">- Create a Business Loan</h6>
+            <div class="card-body">
+              <form class="bg-white p-0" v-on:submit.prevent="BusinessLoan">
+                <div class="form-group mb-4">
+                  <label>Enter Amount</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="fas text-primary fa-hand-holding-usd"></i>
+                      </span>
+                    </div>
+                    <input
+                      type="number"
+                      v-model="businessLoan.amount"
+                      class="form-control"
+                      placeholder="Loan Amount"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label>Enter Guarantor's Id</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="fa text-primary fa-id-badge"></i>
+                      </span>
+                    </div>
+                    <input
+                      type="number"
+                      v-model="businessLoan.guarantorId"
+                      class="form-control"
+                      placeholder="Guarantor's Transaction Id"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label>Repayment Frequency</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">
+                        <i class="fa fa-clock-o"></i>
+                      </span>
+                    </div>
+                    <select required v-model="businessLoan.duration" class="form-control">
+                      <option value disabled selected>Select</option>
+                      <option value="7">Weekly</option>
+                      <option value="30">Monthly</option>
+                    </select>
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-primary mt-3 btn-block text-center mb-3"
+                >Request</button>
+              </form>
+            </div>
+          </div>
+          <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg" />
+          <Failuremsg v-on:closeMsg="closeMsg" :msg="msg" />
         </div>
       </div>
     </div>
