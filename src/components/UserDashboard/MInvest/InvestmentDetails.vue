@@ -61,62 +61,62 @@
               </div>
             </div>
             <!--   Related Investments -->
-            <!--
-              <div class="d-none d-md-block col-xl-5 col-md-5 mb-2">
-                <p class="lead h3 ml-4 text-dark font-weight-normal">Related Investments</p>
-                <div
-                  v-for="(relate, index) in related"
-                  :key="index"
-                  class="row justify-content-center no-gutters"
-                >
-                  <div class="col-xl-8 mb-2">
-                    <div class="mb-2">
-                      <router-link class="nav-link card" to v-on:click="putUp">
-                        <img
-                          style="height: 110px"
-                          class="card-img-top mb-2"
-                          :src="relate.attachment"
-                          alt="Image"
-                        />
-                        <div class="d-flex justify-content-between">
-                          <div>
-                            <p class="mb-0">{{relate.title}}</p>
-                          </div>
-                          <div class="m-0 p-0">
-                            <div class="btn mr-auto btn-success">{{relate.status}}</div>
-                          </div>
-                        </div>
-                        <small class="p text-muted">
-                          <i class="fa fa-map-marker mr-2"></i>
-                          <span>{{relate.location}}</span>
-                        </small>
-                        <p class="lead font-weight-bold my-0">&#8358;{{relate.unit_investment}}</p>
+
+            <!--  <div class="d-none d-md-block col-lg-4 col-md-2 mb-2">
+              <p class="lead h3 ml-4 text-dark font-weight-normal">Related Investments</p>
+              <div
+                v-for="(relate, index) in related"
+                :key="index"
+                class="row justify-content-center no-gutters"
+              >
+                <div class="col-xl-8 mb-2">
+                  <div class="mb-2">
+                    <router-link class="nav-link card" to v-on:click="putUp">
+                      <img
+                        style="height: 110px"
+                        class="card-img-top mb-2"
+                        :src="relate.attachment"
+                        alt="Image"
+                      />
+                      <div class="d-flex justify-content-between">
                         <div>
-                          <i class="fa font-weight-bold fa-line-chart mr-2"></i>
-                          Returns :
-                          <span
-                            class="small"
-                          >{{relate.min_return_projection}}%</span>
-                          <span class="mx-1">-</span>
-                          <span class="small">{{relate.max_return_projection}}%</span>
+                          <p class="mb-0">{{relate.title}}</p>
                         </div>
-                        <small>
-                          <span class="mr-2">Cylce:</span>
-                          <span>{{relate.investment_cycle}} months</span>
-                        </small>
-                        <div class="p text-gray-600 font-weight-bold my-0">{{relate.risk_plan}}</div>
-                      </router-link>
-                    </div>
+                        <div class="m-0 p-0">
+                          <div class="btn mr-auto btn-success">{{relate.status}}</div>
+                        </div>
+                      </div>
+                      <small class="p text-muted">
+                        <i class="fa fa-map-marker mr-2"></i>
+                        <span>{{relate.location}}</span>
+                      </small>
+                      <p class="lead font-weight-bold my-0">&#8358;{{relate.unit_investment}}</p>
+                      <div>
+                        <i class="fa font-weight-bold fa-line-chart mr-2"></i>
+                        Returns :
+                        <span
+                          class="small"
+                        >{{relate.min_return_projection}}%</span>
+                        <span class="mx-1">-</span>
+                        <span class="small">{{relate.max_return_projection}}%</span>
+                      </div>
+                      <small>
+                        <span class="mr-2">Cylce:</span>
+                        <span>{{relate.investment_cycle}} months</span>
+                      </small>
+                      <div class="p text-gray-600 font-weight-bold my-0">{{relate.risk_plan}}</div>
+                    </router-link>
                   </div>
                 </div>
+              </div>
             </div>-->
           </div>
           <div class="border mt-0 p-3">
             <p>{{investmentDetails.body}}</p>
             <div class="d-flex justify-content-center mt-5">
-              <router-link class="btn btn-outline-primary px-5" to="/userdashboard">
+              <router-link class="btn btn-outline-primary px-5" to="/viewinvestment">
                 <i class="fa fa-arrow-left"></i>
-                Home
+                View All
               </router-link>
             </div>
           </div>

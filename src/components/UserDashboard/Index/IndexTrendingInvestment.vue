@@ -1,9 +1,9 @@
 <template>
   <div class="pb-5">
     <div class="card pb-0">
-      <div class="p-3 card-header">
-        <h6 class="m-0 mb-2 h4 font-weight-bold text-primary">-Latest Investments</h6>
-        <p class="mb-1 ml-3 px-1 text-md text-muted">
+      <div class="p-2 card-header">
+        <h6 class="m-0 mb-2 h4 text-primary">-Latest Investments</h6>
+        <p class="mb-1 h6 ml-3 px-1 text-md text-muted">
           <span class="d-block">You Can Invest In Any Of The Investment below</span>
           <span class="p-1 font-weight-bolder text-danger">Note :</span>
           You can also Fill The Upload Investment Form If You Need Investors for your business
@@ -13,9 +13,9 @@
         <div
           v-for="(investment, index) in investments"
           :key="index"
-          class="col-md-5 col-lg-4 col-xl-3 col-sm-3 mb-1"
+          class="col-md-5 test col-lg-4 col-xl-3 mb-1"
         >
-          <router-link class="nav-link" v-bind:to="'/investmentDetails/'+ index">
+          <router-link class="nav-link card1" v-bind:to="'/investmentDetails/'+ index">
             <div class="card">
               <img
                 style="max-height: 110px"
@@ -124,11 +124,28 @@ export default {
 
 
 <style  scoped>
-.nav-link {
-  transition: 0.6s all;
+@media only screen and (max-width: 765px) {
+  .test {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /* flex-wrap: wrap; */
+    flex-flow: row wrap;
+  }
+  .card1 {
+    flex: 1;
+    max-width: 355px !important;
+    margin: 10px;
+  }
 }
-.nav-link:hover {
-  cursor: pointer;
-  transform: scale(1.03);
+
+@media only screen and (min-width: 765px) {
+  .nav-link {
+    transition: 0.6s all;
+  }
+  .nav-link:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+  }
 }
 </style>

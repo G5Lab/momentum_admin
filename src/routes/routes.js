@@ -54,12 +54,13 @@ import AjoHistory from "../components/UserDashboard/MAjo/AjoHistory"
 import RemoveAgent from "../components/UserDashboard/MAjo/RemoveAgent"
 
 // mInvest
-import ViewInvestment from "../components/UserDashboard/MInvest/ViewInvestment"
 import InvestmentReports from "../components/UserDashboard/MInvest/InvestmentReport"
 import InvestmentHistory from "../components/UserDashboard/MInvest/InvestmentHistory"
 import UploadInvestment from "../components/UserDashboard/MInvest/UploadInvestment"
 import InvestmentDetails from "../components/UserDashboard/MInvest/InvestmentDetails"
 import InvestmentReportDetails from "../components/UserDashboard/MInvest/InvestmentReportDetails"
+import AllInvestment from "../components/UserDashboard/MInvest/reuseable/All"
+import Agriculture from "../components/UserDashboard/MInvest/reuseable/Agriculture"
 
 
 // mLoan
@@ -298,7 +299,14 @@ const routes = [
     // mInvest
     {
         path: '/viewinvestment',
-        component: ViewInvestment,
+        component: AllInvestment,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/viewinvestmentAgric',
+        component: Agriculture,
         meta: {
             requiresAuth: true
         }
