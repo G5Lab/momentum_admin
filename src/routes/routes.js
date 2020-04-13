@@ -57,10 +57,13 @@ import RemoveAgent from "../components/UserDashboard/MAjo/RemoveAgent"
 import InvestmentReports from "../components/UserDashboard/MInvest/InvestmentReport"
 import InvestmentHistory from "../components/UserDashboard/MInvest/InvestmentHistory"
 import UploadInvestment from "../components/UserDashboard/MInvest/UploadInvestment"
-import InvestmentDetails from "../components/UserDashboard/MInvest/InvestmentDetails"
 import InvestmentReportDetails from "../components/UserDashboard/MInvest/InvestmentReportDetails"
+import AllInvestmentDetails from "../components/UserDashboard/MInvest/AllInvestmentDetails"
 import AllInvestment from "../components/UserDashboard/MInvest/reuseable/All"
 import Agriculture from "../components/UserDashboard/MInvest/reuseable/Agriculture"
+import AgrInvestmentDetails from "../components/UserDashboard/MInvest/AgrInvestmentDetails"
+import Transportation from "../components/UserDashboard/MInvest/reuseable/Transportation"
+import TransInvestmentDetails from "../components/UserDashboard/MInvest/TransInvestmentDetails"
 
 
 // mLoan
@@ -73,9 +76,6 @@ import Airtime from "../components/UserDashboard/mBills/Airtime"
 import DataSub from "../components/UserDashboard/mBills/DataSub"
 import CableTv from "../components/UserDashboard/mBills/CableTv"
 import Power from "../components/UserDashboard/mBills/Power"
-
-
-
 
 
 // College Of Money
@@ -312,8 +312,22 @@ const routes = [
         }
     },
     {
+        path: '/viewinvestmentTrans',
+        component: Transportation,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
         path: '/investmentreport',
         component: InvestmentReports,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: "/investmentReportDetails/:id",
+        component: InvestmentReportDetails,
         meta: {
             requiresAuth: true
         }
@@ -333,19 +347,31 @@ const routes = [
         }
     },
     {
-        path: "/investmentDetails/:id",
-        component: InvestmentDetails,
+        path: "/allinvestmentDetails/:id",
+        name: 'AllInvestmentDetails',
+        props: true,
+        component: AllInvestmentDetails,
         meta: {
             requiresAuth: true
         }
     },
     {
-        path: "/investmentReportDetails/:id",
-        component: InvestmentReportDetails,
+        path: "/agrinvestmentDetails/:id",
+        name: 'AgrInvestmentDetails',
+        component: AgrInvestmentDetails,
         meta: {
             requiresAuth: true
         }
     },
+    {
+        path: "/transinvestmentDetails/:id",
+        name: 'TransInvestmentDetails',
+        component: TransInvestmentDetails,
+        meta: {
+            requiresAuth: true
+        }
+    },
+
 
 
     // mAjo

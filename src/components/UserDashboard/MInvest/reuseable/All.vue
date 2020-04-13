@@ -3,8 +3,8 @@
     <div class="my-3 px-3 p-2 bg-white overflow-auto scroll shadow">
       <router-link class="nav-link nav1" to="viewinvestment">All</router-link>
       <router-link class="nav-link" to="viewinvestmentAgric">Agriculture</router-link>
-      <router-link class="nav-link" to>Tech</router-link>
-      <router-link class="nav-link" to>Transportation</router-link>
+      <!-- <router-link class="nav-link" to="viewinvestmentTech">Tech</router-link> -->
+      <router-link class="nav-link" to="viewinvestmentTrans">Transportation</router-link>
     </div>
     <div v-if="loading" class="text-center mt-5">
       <Loader />
@@ -12,7 +12,7 @@
     <div class="row">
       <div v-for="(investment, index) in investments" :key="index" class="col-lg-3 col-xl-3 mb-3">
         <CardInvestment
-          :link="'/investmentDetails/'+ index"
+          :link="'/allinvestmentDetails/'+ index"
           :attachment="investment.attachment"
           :title="investment.title"
           :status="investment.status"

@@ -15,7 +15,10 @@
           :key="index"
           class="col-md-5 test col-lg-4 col-xl-3 mb-1"
         >
-          <router-link class="nav-link card1" v-bind:to="'/investmentDetails/'+ index">
+          <router-link
+            class="nav-link card1"
+            :to="{ name: 'AllInvestmentDetails', params: {  id: index }}"
+          >
             <div class="card">
               <img
                 style="max-height: 110px"
@@ -80,7 +83,8 @@ export default {
       trans_id: "",
       investments: [],
 
-      level: ""
+      level: "",
+      cat: ""
     };
   },
   created() {
@@ -100,8 +104,7 @@ export default {
         if (res.data.data.length == 0) {
           this.onInvestments = "There Is Currectly No Investment";
         } else {
-          var returns = res.data.data.slice(0, 4);
-          this.investments = returns.slice().reverse();
+          this.investments = res.data.data.reverse().slice(0, 4);
         }
       })
       .catch(err => {

@@ -61,8 +61,8 @@
               </div>
             </div>
             <!--   Related Investments -->
-
-            <!--  <div class="d-none d-md-block col-lg-4 col-md-2 mb-2">
+            <!-- 
+            <div class="d-none d-md-block col-lg-4 col-md-2 mb-2">
               <p class="lead h3 ml-4 text-dark font-weight-normal">Related Investments</p>
               <div
                 v-for="(relate, index) in related"
@@ -71,7 +71,7 @@
               >
                 <div class="col-xl-8 mb-2">
                   <div class="mb-2">
-                    <router-link class="nav-link card" to v-on:click="putUp">
+                    <router-link class="nav-link card" to>
                       <img
                         style="height: 110px"
                         class="card-img-top mb-2"
@@ -114,9 +114,9 @@
           <div class="border mt-0 p-3">
             <p>{{investmentDetails.body}}</p>
             <div class="d-flex justify-content-center mt-5">
-              <router-link class="btn btn-outline-primary px-5" to="/viewinvestment">
+              <router-link class="btn btn-outline-primary px-5" to @click.native="goBack">
                 <i class="fa fa-arrow-left"></i>
-                View All
+                Go Back
               </router-link>
             </div>
           </div>
@@ -133,7 +133,7 @@ import axios from "axios";
 import Structure from "../GUserLayouts/Structure";
 
 export default {
-  name: "InvestmentDetails",
+  name: "AgrInvestmentDetails",
   components: {
     Structure,
     Loader
@@ -150,8 +150,33 @@ export default {
     };
   },
   methods: {
-    putUp(index) {
-      console.log(index);
+    goBack() {
+      this.$router.go(-1);
+    },
+    fetch(id) {
+      axios
+        .get(`https://momentum.ng/backend/api/investments/investments`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${this.token}`
+          }
+        })
+        .then(res => {
+          this.loading = false;
+          this.arrive = true;
+          if (res.data.data.length == 0) {
+            this.onMaterials = "Thers is currently no investment";
+          } else {
+            this.related = res.data.data
+              .slice()
+              .reverse()
+              .slice(1, 3);
+            this.investmentDetails = res.data.data.slice().reverse()[id];
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   },
   created() {
@@ -159,33 +184,7 @@ export default {
     this.trans_id = this.$session.get("user").trans_id;
     this.level = this.$session.get("user").level;
 
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
-    axios
-      .get(`https://momentum.ng/backend/api/investments/investments`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${this.token}`
-        }
-      })
-      .then(res => {
-        this.loading = false;
-        this.arrive = true;
-        if (res.data.data.length == 0) {
-          this.onMaterials = "Thers is currently no investment";
-        } else {
-          this.related = res.data.data
-            .slice()
-            .reverse()
-            .slice(0, 3);
-          this.investmentDetails = res.data.data.slice().reverse()[
-            this.$route.params.id
-          ];
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.fetch(this.$route.params.id);
 
     if (this.level >= 4) {
       this.premium = true;
@@ -201,16 +200,3 @@ export default {
   }
 };
 </script>
-
-<style src="../GUserLayouts/Structure" >
-</style>
-
-
-
-
-
-
-
-
-
-

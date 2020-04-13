@@ -2,9 +2,9 @@
   <ViewInvestment>
     <div class="my-3 px-3 p-2 bg-white scroll shadow">
       <router-link class="nav-link" to="viewinvestment">All</router-link>
-      <router-link class="nav-link nav1" to="viewinvestmentAgric">Agriculture</router-link>
+      <router-link class="nav-link" to="viewinvestmentAgric">Agriculture</router-link>
       <!-- <router-link class="nav-link" to="viewinvestmentTech">Tech</router-link> -->
-      <router-link class="nav-link" to="viewinvestmentTrans">Transportation</router-link>
+      <router-link class="nav-link nav1" to="viewinvestmentTrans">Transportation</router-link>
     </div>
     <div v-if="loading" class="text-center mt-5">
       <Loader />
@@ -15,7 +15,7 @@
     <div class="row">
       <div v-for="(investment, index) in investments" :key="index" class="col-lg-3 col-xl-3 mb-3">
         <CardInvestment
-          :link="'/agrinvestmentDetails/'+ index"
+          :link="'/transinvestmentDetails/'+ index"
           :attachment="investment.attachment"
           :title="investment.title"
           :status="investment.status"
@@ -69,9 +69,8 @@ export default {
           this.noInvestments = "There Is Currectly No Investment";
         } else {
           var allInvestment = res.data.data.slice().reverse();
-
           allInvestment = allInvestment.filter(function(item) {
-            if (item.category == "agriculture") {
+            if (item.category == "Transportation") {
               return item;
             }
           });
