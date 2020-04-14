@@ -9,6 +9,7 @@
           You can also Fill The Upload Investment Form If You Need Investors for your business
         </p>
       </div>
+      <Loader v-if="loading" class="d-block text-center mt-4" />
       <div class="row py-2 no-gutters">
         <div
           v-for="(investment, index) in investments"
@@ -75,8 +76,12 @@
 
 <script>
 import axios from "axios";
+import Loader from "../MAjo/Loader";
 export default {
   name: "IndexTrendingInvestment",
+  components: {
+    Loader
+  },
   data() {
     return {
       token: "",
@@ -84,7 +89,8 @@ export default {
       investments: [],
 
       level: "",
-      cat: ""
+
+      loading: true
     };
   },
   created() {

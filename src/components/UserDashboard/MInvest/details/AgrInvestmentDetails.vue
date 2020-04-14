@@ -12,7 +12,12 @@
             </div>
             <div v-if="premium" class="col-lg-8 col-md-10 mb-2">
               <div class="card">
-                <img class="card-img-top" :src="investmentDetails.attachment" alt="Image" />
+                <img
+                  class="card-img-top"
+                  style="max-height:30em"
+                  :src="investmentDetails.attachment"
+                  alt="Image"
+                />
                 <div class="card-body text-dark">
                   <p class="h3">Name: {{investmentDetails.title}}</p>
                   <span class="d-block text-gray-900 h6">
@@ -128,9 +133,9 @@
 
 
 <script>
-import Loader from "../Msave/Loader";
+import Loader from "../../Msave/Loader";
 import axios from "axios";
-import Structure from "../GUserLayouts/Structure";
+import Structure from "../../GUserLayouts/Structure";
 
 export default {
   name: "AgrInvestmentDetails",
@@ -171,7 +176,14 @@ export default {
               .slice()
               .reverse()
               .slice(1, 3);
-            this.investmentDetails = res.data.data.slice().reverse()[id];
+            var allInvestment = res.data.data.slice().reverse();
+
+            allInvestment = allInvestment.filter(function(item) {
+              if (item.category == "agriculture") {
+                return item;
+              }
+            });
+            this.investmentDetails = allInvestment[id];
           }
         })
         .catch(err => {

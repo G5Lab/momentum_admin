@@ -23,7 +23,7 @@
           <div class="border mt-0 p-3">
             <p>{{announcement.body}}</p>
             <div class="d-flex justify-content-center mt-5">
-              <router-link class="btn btn-outline-primary px-5" to="/announcement">
+              <router-link class="btn btn-outline-primary px-5" to @click.native="goBack">
                 <i class="fa fa-arrow-left"></i>
                 View more
               </router-link>
@@ -34,7 +34,6 @@
     </div>
   </Structure>
 </template>
-
 
 <script>
 import Loader from "../Msave/Loader";
@@ -51,6 +50,11 @@ export default {
       onMaterials: "",
       arrive: false
     };
+  },
+  methods: {
+    goBack() {
+      this.$router.go(-1);
+    }
   },
   components: {
     Loader,

@@ -9,7 +9,7 @@
           <p
             class="text-gray-800 font-weight-bold mb-0 text-uppercase"
           >We Are Sorry, But The Page You Requested Was Not Found.</p>
-          <router-link to="/userdashboard" class="mt-3 btn btn-primary font-weight-bold">
+          <router-link to @click.native="goBack" class="mt-3 btn btn-primary font-weight-bold">
             <i class="fa fa-arrow-left text-white"></i>
             Go Back
           </router-link>
@@ -25,6 +25,11 @@ export default {
   name: "NotFound",
   components: {
     MomentumAbout
+  },
+  methods: {
+    goBack() {
+      this.$router.go(-1);
+    }
   }
 };
 </script>

@@ -3,11 +3,14 @@
     <div class="my-3 px-3 p-2 bg-white overflow-auto scroll shadow">
       <router-link class="nav-link nav1" to="viewinvestment">All</router-link>
       <router-link class="nav-link" to="viewinvestmentAgric">Agriculture</router-link>
-      <!-- <router-link class="nav-link" to="viewinvestmentTech">Tech</router-link> -->
       <router-link class="nav-link" to="viewinvestmentTrans">Transportation</router-link>
+      <router-link class="nav-link" to="viewinvestmentOthers">Others</router-link>
     </div>
     <div v-if="loading" class="text-center mt-5">
       <Loader />
+    </div>
+    <div v-if="noInvestments">
+      <p class="text-center my-5 h1 display-4 text-danger">{{noInvestments}}</p>
     </div>
     <div class="row">
       <div v-for="(investment, index) in investments" :key="index" class="col-lg-3 col-xl-3 mb-3">
@@ -45,7 +48,8 @@ export default {
     return {
       investments: [],
       token: "",
-      loading: true
+      loading: true,
+      noInvestments: ""
     };
   },
   created() {
@@ -61,7 +65,7 @@ export default {
         this.loading = false;
         this.mode = true;
         if (res.data.data.length == 0) {
-          this.onInvestments = "There Is Currectly No Investment";
+          this.noInvestments = "There Is Currectly No Investment";
         } else {
           this.investments = res.data.data.slice().reverse();
         }

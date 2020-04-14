@@ -133,12 +133,12 @@
 
 
 <script>
-import Loader from "../Msave/Loader";
+import Loader from "../../Msave/Loader";
 import axios from "axios";
-import Structure from "../GUserLayouts/Structure";
+import Structure from "../../GUserLayouts/Structure";
 
 export default {
-  name: "InvestmentDetails",
+  name: "OthersInvestmentDetails",
   components: {
     Structure,
     Loader
@@ -176,7 +176,14 @@ export default {
               .slice()
               .reverse()
               .slice(1, 3);
-            this.investmentDetails = res.data.data.slice().reverse()[id];
+            var allInvestment = res.data.data.slice().reverse();
+
+            allInvestment = allInvestment.filter(function(item) {
+              if (item.category == "others") {
+                return item;
+              }
+            });
+            this.investmentDetails = allInvestment[id];
           }
         })
         .catch(err => {
@@ -205,17 +212,3 @@ export default {
   }
 };
 </script>
-
-
-<style src="../GUserLayouts/Structure" >
-</style>
-
-
-
-
-
-
-
-
-
-

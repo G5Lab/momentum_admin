@@ -93,6 +93,7 @@ export default {
         }
       })
       .then(res => {
+        console.log(res.data);
         this.loading = false;
         if (res.data.data.length == 0) {
           this.noHistory = "You Do Not Have Any History Yet";

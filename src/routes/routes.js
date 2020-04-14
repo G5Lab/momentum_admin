@@ -58,12 +58,17 @@ import InvestmentReports from "../components/UserDashboard/MInvest/InvestmentRep
 import InvestmentHistory from "../components/UserDashboard/MInvest/InvestmentHistory"
 import UploadInvestment from "../components/UserDashboard/MInvest/UploadInvestment"
 import InvestmentReportDetails from "../components/UserDashboard/MInvest/InvestmentReportDetails"
-import AllInvestmentDetails from "../components/UserDashboard/MInvest/AllInvestmentDetails"
-import AllInvestment from "../components/UserDashboard/MInvest/reuseable/All"
-import Agriculture from "../components/UserDashboard/MInvest/reuseable/Agriculture"
-import AgrInvestmentDetails from "../components/UserDashboard/MInvest/AgrInvestmentDetails"
-import Transportation from "../components/UserDashboard/MInvest/reuseable/Transportation"
-import TransInvestmentDetails from "../components/UserDashboard/MInvest/TransInvestmentDetails"
+// Investment Categories
+import AllInvestment from "../components/UserDashboard/MInvest/categories/All"
+import Agriculture from "../components/UserDashboard/MInvest/categories/Agriculture"
+import Transportation from "../components/UserDashboard/MInvest/categories/Transportation"
+import Others from "../components/UserDashboard/MInvest/categories/Others"
+
+// Investment Categories detail
+import AllInvestmentDetails from "../components/UserDashboard/MInvest/details/AllInvestmentDetails"
+import AgrInvestmentDetails from "../components/UserDashboard/MInvest/details/AgrInvestmentDetails"
+import TransInvestmentDetails from "../components/UserDashboard/MInvest/details/TransInvestmentDetails"
+import OthersInvestmentDetails from "../components/UserDashboard/MInvest/details/OthersInvestmentDetails"
 
 
 // mLoan
@@ -319,6 +324,13 @@ const routes = [
         }
     },
     {
+        path: '/viewinvestmentOthers',
+        component: Others,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
         path: '/investmentreport',
         component: InvestmentReports,
         meta: {
@@ -367,6 +379,14 @@ const routes = [
         path: "/transinvestmentDetails/:id",
         name: 'TransInvestmentDetails',
         component: TransInvestmentDetails,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: "/otherinvestmentDetails/:id",
+        name: 'OtherInvestmentDetails',
+        component: OthersInvestmentDetails,
         meta: {
             requiresAuth: true
         }
