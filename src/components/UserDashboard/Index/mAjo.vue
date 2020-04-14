@@ -51,6 +51,7 @@ export default {
     const token = this.$session.get("jwt");
     const trans_id = this.$session.get("user").trans_id;
     this.user_id = this.$session.get("user")._id;
+    console.log(this.user_id);
     // Get ajo
     axios
       .get(`https://momentum.ng/backend/api/fetchdata/ajo/${trans_id}`, {

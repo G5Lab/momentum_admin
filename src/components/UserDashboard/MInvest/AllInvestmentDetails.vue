@@ -12,7 +12,12 @@
             </div>
             <div v-if="premium" class="col-lg-8 col-md-10 mb-2">
               <div class="card">
-                <img class="card-img-top" :src="investmentDetails.attachment" alt="Image" />
+                <img
+                  class="card-img-top"
+                  style="max-height:30em"
+                  :src="investmentDetails.attachment"
+                  alt="Image"
+                />
                 <div class="card-body text-dark">
                   <p class="h3">Name: {{investmentDetails.title}}</p>
                   <span class="d-block text-gray-900 h6">
