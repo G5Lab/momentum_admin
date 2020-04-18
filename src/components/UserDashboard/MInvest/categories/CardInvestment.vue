@@ -4,7 +4,7 @@
     <div class="card-body px-2 pt-2">
       <div class="d-flex justify-content-between m-0 p-0">
         <div class="m-0">
-          <p class="m-0 font-weight-bold text-capitalize">{{title}}</p>
+          <p class="m-0 lead font-weight-bold text-capitalize">{{title}}</p>
         </div>
         <div class="m-0 p-0">
           <div class="btn p-1 m-0 mr-auto btn-success">{{status}}</div>
@@ -14,7 +14,7 @@
         <i class="fa fa-map-marker mr-2"></i>
         <span>{{location}}</span>
       </small>
-      <p class="lead font-weight-bold my-0">&#8358;{{unit_investment}}</p>
+      <p class="font-weight-bold my-0">&#8358;{{unit_investment}}</p>
       <div>
         <i class="fa font-weight-bold fa-line-chart mr-2"></i>
         Returns :

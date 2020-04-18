@@ -70,6 +70,9 @@
                 />
 
                 <br />
+                <div v-if="loading" class="text-center">
+                  <Loader />
+                </div>
                 <Failuremsg :msg="msg" v-on:closeMsg="closeMsg" />
                 <Successmsg :mssg="msg" v-on:closeMsg="closeMsg" />
                 <br />

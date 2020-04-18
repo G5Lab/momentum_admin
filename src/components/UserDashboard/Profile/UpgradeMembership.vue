@@ -6,8 +6,8 @@
           <div class="card-body shadow col-md-12 col-xs-12 col-lg-10 mb-4">
             <div class="py-1">
               <div class="bg-light">
-                <div class="text-center text-uppercase font-weight-bold h4 mb-0">MEMBERSHIP</div>
-                <div class="text-center mb-4 lead">Membership For Momentum Is In Three Categories</div>
+                <p class="text-center text-uppercase font-weight-bold h4 mb-1">MEMBERSHIP</p>
+                <p class="text-center lead mb-4">Membership For Momentum Is In Three Categories</p>
                 <div class="p">
                   <div class="d-flex">
                     <div class="fa fa-check-square-o mx-3 my-auto"></div>
@@ -151,7 +151,7 @@
                   <div class="p-2 mb-2 text-dark">
                     <i class="fa fa-star mr-3 lead"></i>
 
-                    <span class="font-weight-bold">Become a Basic Member</span>
+                    <span class="font-weight-bold">Become an Enterprise Agency / Partner</span>
                   </div>
                 </a>
                 <div class="border bg-light m-2 p p-2 collapse" id="collapes5">
@@ -203,9 +203,12 @@ import VerifyPin from "../../Auth/VerifyPin";
 import Structure from "../GUserLayouts/Structure";
 import axios from "axios";
 import Rave from "vue-ravepayment";
-import Loader from "../Msave/Loader";
+import Loader from "../MAjo/Loader";
 import Successmsg from "../GUserLayouts/Successmsg";
 import Failuremsg from "../GUserLayouts/Failuremsg";
+
+import Calls from "../../../Service/Calls";
+
 export default {
   name: "UpgradeMembership",
   components: {
@@ -280,18 +283,13 @@ export default {
       axios
         .get(`https://momentum.ng/backend/api/users/${this.user_id}`)
         .then(res => {
-          console.log(res.data);
-          this.$session.remove("user");
-          this.$session.start();
-          this.$session.set("user", res.data);
           // Reset Values
-          this.token = this.$session.get("jwt");
-          this.trans_id = this.$session.get("user").trans_id;
-          this.user_id = this.$session.get("user")._id;
-          this.fullname = this.$session.get("user").fullname;
-          this.email = this.$session.get("user").email;
-          this.fname = this.$session.get("user").fullname;
-          this.level = this.$session.get("user").level;
+          this.trans_id = res.data.trans_id;
+          this.user_id = res.data._id;
+          this.fullname = res.data.fullname;
+          this.email = res.data.email;
+          this.fname = res.data.fullname;
+          this.level = res.data.level;
 
           this.verifyBasic = false;
         })
@@ -314,30 +312,26 @@ export default {
       this.msg2 = "The min units of shares you can buy is 2000";
     },
     callback: function(response) {
-      const token = this.$session.get("jwt");
-      const trans_id = this.$session.get("user").trans_id;
-      console.log(response);
       if (
-        response.data.tx.status == "successful" &&
-        response.data.tx.chargeResponseCode === "00"
+        response.tx.status == "successful" &&
+        response.tx.chargeResponseCode === "00"
       ) {
         axios
           .post(
             `https://momentum.ng/backend/api/wallet/buyshares`,
             {
-              trans_id: trans_id,
+              trans_id: this.trans_id,
               amount: this.amount,
               unit: this.unit
             },
             {
               headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${this.token}`
               }
             }
           )
           .then(res => {
-            console.log(res.data);
             if (res.data.status == true) {
               this.resestSession();
               this.mssg = res.data.message;
@@ -352,7 +346,7 @@ export default {
       }
     },
     close: function() {
-      console.log("Payment closed");
+      alert("Payment Closed");
     },
     closeMsg() {
       this.msg1 = "";
@@ -366,18 +360,17 @@ export default {
     },
     verifyBasicPin(pin) {
       this.loading1 = true;
-      const token = this.$session.get("jwt");
-      const user_id = this.$session.get("user")._id;
+
       const headers = {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${this.token}`
       };
       // Verify Pin
       axios
         .post(
           `https://momentum.ng/backend/api/users/verifypin`,
           {
-            user_id: user_id,
+            user_id: this.user_id,
             pin: pin
           },
           {
@@ -385,7 +378,6 @@ export default {
           }
         )
         .then(res => {
-          console.log(res.data);
           this.loading1 = false;
           // If Pin is correct
           if (res.data.status == true) {
@@ -405,7 +397,6 @@ export default {
                 }
               )
               .then(res => {
-                console.log(res.data);
                 if (res.data.status == true) {
                   this.resestSession();
                   this.mssg1 = res.data.message;
@@ -423,27 +414,27 @@ export default {
         .catch(err => {
           console.log(err);
         });
+    },
+    start() {
+      Calls.getUsers().then(res => {
+        this.trans_id = res.trans_id;
+        this.user_id = res._id;
+        this.fullname = res.fullname;
+        this.email = res.email;
+        this.fname = res.fullname;
+        this.level = res.level;
+      });
     }
   },
   created() {
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
-    this.user_id = this.$session.get("user")._id;
-    this.fullname = this.$session.get("user").fullname;
-    this.email = this.$session.get("user").email;
-    this.fname = this.$session.get("user").fullname;
-    this.level = this.$session.get("user").level;
+    this.start();
+    this.token = Calls.getJwt();
+
+    if (this.token == null) {
+      Calls.reloadPage();
+    }
   }
 };
 </script>
 
 
-<style>
-.p,
-p {
-  font-size: 1.035rem;
-}
-.fa {
-  color: rgb(59, 111, 172);
-}
-</style>

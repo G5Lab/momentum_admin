@@ -1,7 +1,7 @@
 <template>
 <body id="page-top">
   <div id="wrapper" class="text-gray-800">
-    <Sidebar :class="{Sidebar: hide == true}">
+    <Sidebar :class="{Sidebar: hide == true}" class="none">
       <SidebarInner />
     </Sidebar>
     <Boddy v-on:hideSidebar="hideSidebar" :page="page">
@@ -50,6 +50,11 @@ export default {
 
 <style  scoped>
 .Sidebar {
-  display: none !important;
+  display: block !important;
+}
+@media only screen and (max-width: 765px) {
+  .none {
+    display: none;
+  }
 }
 </style>

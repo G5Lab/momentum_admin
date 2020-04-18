@@ -18,10 +18,8 @@
             <div id="addMoney" class="container tab-pane active">
               <br />
 
-              <br />
-              <div v-if="loading1" class="text-center">
-                <Loader />
-              </div>
+              <!-- <br /> -->
+
               <br />
               <form v-on:submit.prevent="onSubmit">
                 <label for="networkName">
@@ -69,6 +67,9 @@
                 />
 
                 <br />
+                <div v-if="loading1" class="text-center">
+                  <Loader />
+                </div>
                 <Failuremsg :msg="msg" v-on:closeMsg="closeMsg" />
                 <Successmsg :mssg="mssg" v-on:closeMsg="closeMsg" />
                 <br />
@@ -160,7 +161,7 @@
 
 <script>
 import Structure from "../GUserLayouts/Structure";
-import Loader from "../Msave/Loader";
+import Loader from "../MAjo/Loader";
 import Failuremsg from "../GUserLayouts/Failuremsg";
 import Successmsg from "../GUserLayouts/Successmsg";
 

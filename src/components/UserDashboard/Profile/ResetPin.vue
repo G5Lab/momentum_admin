@@ -2,9 +2,6 @@
   <Structure page="Reset Pin">
     <div class="container-fluid mb-4">
       <div class="row justify-content-center px-1 mb-2">
-        <div v-if="loading" class="my-2 text-center">
-          <Loader />
-        </div>
         <form v-on:submit.prevent="updatePin" class="col-md-11 col-lg-7 shadow bg-white py-2 px-3">
           <div class="text-center text-gray-900 h5 py-2">Reset Pin</div>
 
@@ -56,6 +53,11 @@
               v-model="formerPin"
             />
           </div>
+
+          <Loader v-if="loading" class="my-4 text-center d-block" />
+
+          <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg" />
+          <Failuremsg v-on:closeMsg="closeMsg" :msg="msg" />
           <button
             :disabled="loading"
             type="submit"
@@ -63,52 +65,26 @@
           >Reset</button>
         </form>
       </div>
-      <div
-        v-if="mssg"
-        class="alert text-center alert-primary alert-dismissible mt-2 fade show"
-        role="alert"
-      >
-        <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
-        <button
-          type="button"
-          @click="closeMsg"
-          class="close"
-          data-dismiss="alert"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div
-        v-if="msg"
-        class="alert text-center alert-danger alert-dismissible mt-2 fade show"
-        role="alert"
-      >
-        <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
-        <button
-          type="button"
-          @click="closeMsg"
-          class="close"
-          data-dismiss="alert"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
     </div>
   </Structure>
 </template>
 
 
 <script>
-import Loader from "../Msave/Loader";
+import Loader from "../MAjo/Loader";
 import Structure from "../GUserLayouts/Structure";
+
+import Successmsg from "../GUserLayouts/Successmsg";
+import Failuremsg from "../GUserLayouts/Failuremsg";
 import axios from "axios";
+import Calls from "../../../Service/Calls";
 export default {
   name: "ResetPin",
   components: {
     Structure,
-    Loader
+    Loader,
+    Failuremsg,
+    Successmsg
   },
   data() {
     return {
@@ -117,7 +93,6 @@ export default {
       formerPin: "",
 
       token: "",
-      trans_id: "",
       user_id: "",
 
       msg: "",
@@ -212,9 +187,12 @@ export default {
     }
   },
   created() {
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
-    this.user_id = this.$session.get("user")._id;
+    this.token = Calls.getJwt();
+    this.user_id = Calls.getUser_id();
+
+    if (this.token == null) {
+      Calls.reloadPage();
+    }
   }
 };
 </script>

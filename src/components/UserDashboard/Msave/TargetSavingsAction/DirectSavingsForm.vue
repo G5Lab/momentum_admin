@@ -1,65 +1,82 @@
 <template>
   <div>
-    <div v-if="mssg" class="alert alert-primary alert-dismissible mt-2 fade show" role="alert">
-      <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
-      <button type="button" @click="closeMsg" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div v-if="loading" class="text-center">
-      <Loader />
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <VerifyPin class="my-2" v-if="verifypin" v-on:verifyPin="verifyPin" />
+    <div v-if="arrive">
+      <div v-if="mssg" class="alert alert-primary alert-dismissible mt-2 fade show" role="alert">
+        <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
+        <button
+          type="button"
+          @click="closeMsg"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-    </div>
-    <div v-if="msg" class="alert alert-danger alert-dismissible mt-2 fade show" role="alert">
-      <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
-      <button type="button" @click="closeMsg" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <form v-if="pay" action class="border p-2 my-2" v-on:submit.prevent>
-      <div class="form-group">
-        <label class="h6 font-weight-bold">Enter Amount To Save</label>
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">
-              <i class="fa fa-money"></i>
-            </span>
-          </div>
-          <input
-            type="number"
-            v-model="Mamount"
-            class="form-control"
-            placeholder="Enter Amount"
-            required
-          />
+      <div v-if="loading" class="text-center">
+        <Loader />
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <VerifyPin class="my-2" v-if="verifypin" v-on:verifyPin="verifyPin" />
         </div>
       </div>
-      <div class="d-flex justify-content-between">
+      <div v-if="msg" class="alert alert-danger alert-dismissible mt-2 fade show" role="alert">
+        <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
         <button
-          :disabled="Mamount<1"
-          v-on:click="SubmitMain"
-          class="btn btn-primary mr-3"
-        >From Wallet</button>
-        <Rave
-          class="btn rave btn-primary"
-          name="From Bank"
-          :email="email"
-          :amount="parseInt(Mamount)"
-        ></Rave>
+          type="button"
+          @click="closeMsg"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-    </form>
+      <form v-if="pay" action class="border p-2 my-2" v-on:submit.prevent>
+        <div class="form-group">
+          <label class="h6 font-weight-bold">Enter Amount To Save</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-money"></i>
+              </span>
+            </div>
+            <input
+              type="number"
+              v-model="Mamount"
+              class="form-control"
+              placeholder="Enter Amount"
+              required
+            />
+          </div>
+        </div>
+        <div class="d-flex justify-content-between">
+          <button
+            :disabled="Mamount<1"
+            v-on:click="SubmitMain"
+            class="btn btn-primary mr-3"
+          >From Wallet</button>
+          <Rave
+            class="btn rave btn-primary"
+            name="From Bank"
+            :email="email"
+            :amount="parseInt(Mamount)"
+          ></Rave>
+        </div>
+      </form>
+    </div>
+    <Loader class="d-block text-center" v-if="pageLoading" />
   </div>
 </template>
 
 <script>
-import Loader from "../Loader";
+import Loader from "../../MAjo/Loader";
 import VerifyPin from "../../../Auth/VerifyPin";
 import Rave from "./TestRave";
 import axios from "axios";
+
+import Calls from "../../../../Service/Calls";
 export default {
   name: "DirectSavingsForm",
   components: {
@@ -69,13 +86,16 @@ export default {
   },
   data() {
     return {
-      Mamount: "",
-      loading: false,
-      msg: "",
-      mssg: "",
       verifypin: false,
       pay: true,
-      email: ""
+      email: "",
+      Mamount: "",
+      arrive: false,
+
+      loading: false,
+      pageLoading: true,
+      msg: "",
+      mssg: ""
     };
   },
   computed: {
@@ -160,8 +180,15 @@ export default {
     }
   },
   created() {
-    this.email = this.$session.get("user").email;
-    this.fname = this.$session.get("user").fullname;
+    Calls.getUsers().then(res => {
+      this.email = res.email;
+      this.fname = res.fullname;
+      if (this.fname == null) {
+        Calls.reloadPage();
+      }
+      this.arrive = true;
+      this.pageLoading = false;
+    });
   }
 };
 </script>

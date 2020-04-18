@@ -1,46 +1,44 @@
 <template>
   <div class="container-fluid">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="border bg-white col-md-6 py-auto">
-          <h2 v-if="msg.length>1" class="text-danger py-1 font-weight-normal text-center h2">{{msg}}</h2>
-          <div class="text-center text-gray-900 h3 pb-2 pt-3">Set A Pin</div>
-          <!-- Set Pin Form -->
-          <form v-on:submit.prevent="updatePin">
-            <p
-              class="text-center"
-            >For security reason, we will be requesting a four digit pin on every transaction you will be making on this application</p>
-            <p class="text-center font-weight-bold">
-              Pls Keep Transaction Pin
-              Confidential
-            </p>
-            <div class="form-group">
-              <input
-                maxlength="4"
-                required
-                class="form-control"
-                v-model="pin1"
-                type="password"
-                placeholder="Set A Four Digit Pin"
-              />
-            </div>
-            <div class="form-group">
-              <input
-                required
-                maxlength="4"
-                v-model="pin2"
-                class="form-control"
-                type="password"
-                placeholder=" Confirm Pin"
-              />
-            </div>
-            <button
-              type="submit"
-              v-bind:disabled="pin1.length > 4 || pin2.length > 4"
-              class="btn my-3 mt-4 btn-primary mx-auto"
-            >Set Pin</button>
-          </form>
-        </div>
+    <div class="row justify-content-center">
+      <div class="border bg-white col-md-6 py-auto">
+        <h2 v-if="msg.length>1" class="text-danger py-1 font-weight-normal text-center h2">{{msg}}</h2>
+        <div class="text-center text-gray-900 h3 pb-2 pt-3">Set A Pin</div>
+        <!-- Set Pin Form -->
+        <form v-on:submit.prevent="updatePin">
+          <p
+            class="text-center"
+          >For security reason, we will be requesting a four digit pin on every transaction you will be making on this application</p>
+          <p class="text-center font-weight-bold">
+            Pls Keep Transaction Pin
+            Confidential
+          </p>
+          <div class="form-group">
+            <input
+              maxlength="4"
+              required
+              class="form-control"
+              v-model="pin1"
+              type="password"
+              placeholder="Set A Four Digit Pin"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              required
+              maxlength="4"
+              v-model="pin2"
+              class="form-control"
+              type="password"
+              placeholder=" Confirm Pin"
+            />
+          </div>
+          <button
+            type="submit"
+            v-bind:disabled="pin1.length > 4 || pin2.length > 4"
+            class="btn my-3 mt-4 btn-primary mx-auto"
+          >Set Pin</button>
+        </form>
       </div>
     </div>
   </div>
@@ -102,6 +100,7 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 .btn {
   display: block;

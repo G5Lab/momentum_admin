@@ -2,7 +2,7 @@
   <Structure page="Business Loan">
     <div class="container-fluid">
       <div class="d-flex justify-content-center">
-        <div class="col-md-10 border p-3 pb-5 text-gray-900">
+        <div class="col-md-10 border p-3 pb-md-5 text-gray-900">
           <p class="py-2 mb-2">
             <span class="font-weight-bold">Business-Loan :</span>
             Disbursement is subject to approval. Member must have been saving consistently for up
@@ -41,10 +41,10 @@
       </div>
 
       <div class="d-flex justify-content-center mt-5">
-        <div class="col-md-10">
+        <div class="col-md-9">
           <Loader class="text-center d-block" v-if="loading" />
           <div class="d-flex justify-content-center">
-            <VerifyPin class="my-2 shadow col-md-6" v-if="verifypin" v-on:verifyPin="verifyPin" />
+            <VerifyPin class="my-2 shadow col-md-9" v-if="verifypin" v-on:verifyPin="verifyPin" />
           </div>
           <div v-if="mode" class="card m-0 shadow mb-4">
             <h6 class="m-0 card-header py-3 font-weight-bold text-primary">- Create a Business Loan</h6>
@@ -116,11 +116,12 @@
 
 <script>
 import Structure from "../GUserLayouts/Structure";
-import Loader from "../Msave/Loader";
-
+import Loader from "../MAjo/Loader";
 import VerifyPin from "../../Auth/VerifyPin";
 import Failuremsg from "../GUserLayouts/Failuremsg";
 import Successmsg from "../GUserLayouts/Successmsg";
+
+import Calls from "../../../Service/Calls";
 
 import axios from "axios";
 
@@ -222,9 +223,9 @@ export default {
     }
   },
   created() {
-    this.user_id = this.$session.get("user")._id;
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
+    this.user_id = Calls.getUser_id();
+    this.token = Calls.getJwt();
+    this.trans_id = Calls.getTrans_Id();
   }
 };
 </script>

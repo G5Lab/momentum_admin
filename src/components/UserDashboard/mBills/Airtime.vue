@@ -1,6 +1,6 @@
 <template>
   <Structure page="Airtime Top-up">
-    <div class="container-fluid">
+    <div class="container-fluid px-3">
       <!-- Content Row -->
       <div class="row">
         <div class="col-md-12">
@@ -19,10 +19,6 @@
               <br />
 
               <!-- <br /> -->
-              <div v-if="loading1" class="text-center">
-                <Loader />
-              </div>
-              <br />
               <form v-on:submit.prevent="onSubmit">
                 <label for="networkName">
                   <b>Select Network:</b>
@@ -86,6 +82,9 @@
                 />
 
                 <br />
+                <div v-if="loading1" class="text-center">
+                  <Loader />
+                </div>
                 <Failuremsg :msg="msg" v-on:closeMsg="closeMsg" />
                 <Successmsg :mssg="mssg" v-on:closeMsg="closeMsg" />
 
@@ -176,7 +175,7 @@
 
 <script>
 import Structure from "../GUserLayouts/Structure";
-import Loader from "../Msave/Loader";
+import Loader from "../MAjo/Loader";
 import Failuremsg from "../GUserLayouts/Failuremsg";
 import Successmsg from "../GUserLayouts/Successmsg";
 

@@ -8,10 +8,11 @@
           v-on:submit.prevent="registeragent"
           class="col-md-10 py-4 px-3 bg-white shadow col-lg-8"
         >
-          <div class="text-center text-primary font-weight-bold h4 pb-2 pt-2">Register an agent</div>
+          <div class="text-center text-primary font-weight-bold h4 p2">Register an agent</div>
           <p
-            class="p-2 mb-3 text-center font-gray-900"
+            class="p-2 text-center font-gray-900"
           >You can register an agent that will collect your savings (Ajo) at regular intervals</p>
+          <hr class="my-3" />
           <label for="number">Enter Agents Id</label>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -50,6 +51,8 @@ import Loader from "../Index/Loader";
 import axios from "axios";
 import Successmsg from "../GUserLayouts/Successmsg";
 import Failuremsg from "../GUserLayouts/Failuremsg";
+
+import Calls from "../../../Service/Calls";
 export default {
   name: "RegisterAgent",
   components: {
@@ -141,9 +144,13 @@ export default {
     }
   },
   created() {
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
-    this.user_id = this.$session.get("user")._id;
+    this.token = Calls.getJwt();
+    this.trans_id = Calls.getTrans_Id();
+    this.user_id = Calls.getUser_id();
+
+    if (this.trans_id == null) {
+      Calls.reloadPage();
+    }
   }
 };
 </script>

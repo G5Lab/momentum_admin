@@ -5,7 +5,7 @@
         <div class="col-md-8 col-lg-7">
           <div class="card shadow p-3 bg-light">
             <div class="card-body p-0">
-              <div class="text-center text-danger font-weight-bold h4 pt-2">Remove Agent</div>
+              <div class="text-center text-danger font-weight-bold h4">Remove Agent</div>
               <div class="text-center" v-if="loading2">
                 <Loader />
               </div>
@@ -20,7 +20,7 @@
                 >Remove Agent</button>
               </div>
               <div v-if="verified2" class="col">
-                <Verify class="bg-white p-5" v-on:verifyPin="verifyPin2" />
+                <Verify class="bg-white" v-on:verifyPin="verifyPin2" />
               </div>
               <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg2" />
               <Failuremsg v-on:closeMsg="closeMsg" :msg="msg2" />
@@ -36,10 +36,11 @@
 <script>
 import Structure from "../GUserLayouts/Structure";
 import Verify from "../../Auth/VerifyPin";
-import Loader from "../Index/Loader";
+import Loader from "./Loader";
 import axios from "axios";
 import Successmsg from "../GUserLayouts/Successmsg";
 import Failuremsg from "../GUserLayouts/Failuremsg";
+import Calls from "../../../Service/Calls";
 export default {
   name: "RemoveAgent",
   components: {
@@ -119,7 +120,6 @@ export default {
           } else {
             this.loading2 = false;
             this.msg2 = "Incorrect Pin";
-            console.log(res.data);
           }
         })
         .catch(err => {
@@ -128,9 +128,13 @@ export default {
     }
   },
   created() {
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
-    this.user_id = this.$session.get("user")._id;
+    this.token = Calls.getJwt();
+    this.trans_id = Calls.getTrans_Id();
+    this.user_id = Calls.getUser_id();
+
+    if (this.trans_id == null) {
+      Calls.reloadPage();
+    }
   }
 };
 </script>

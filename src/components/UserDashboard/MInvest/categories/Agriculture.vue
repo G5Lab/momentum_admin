@@ -1,6 +1,6 @@
 <template>
   <ViewInvestment>
-    <div class="my-3 px-3 p-2 bg-white scroll shadow">
+    <div class="my-3 md-px-3 p-1 md-p-2 bg-white scroll shadow">
       <router-link class="nav-link" to="viewinvestment">All</router-link>
       <router-link class="nav-link nav1" to="viewinvestmentAgric">Agriculture</router-link>
       <router-link class="nav-link" to="viewinvestmentTrans">Transportation</router-link>
@@ -15,6 +15,7 @@
     <div class="row">
       <div v-for="(investment, index) in investments" :key="index" class="col-lg-3 col-xl-3 mb-3">
         <CardInvestment
+          class="col"
           :link="'/agrinvestmentDetails/'+ index"
           :attachment="investment.attachment"
           :title="investment.title"
@@ -88,17 +89,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.nav1 {
-  border-bottom: 2.5px solid blue;
-}
-.nav-link {
-  display: inline-block;
-  color: rgb(56, 56, 56);
-}
-.scroll {
-  overflow-x: auto;
-  white-space: nowrap;
-}
-</style>

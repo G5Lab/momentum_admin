@@ -1,15 +1,15 @@
 <template>
   <Structure page="Momentum Investments">
-    <div class="container-fluid">
-      <div class="mx-2">
+    <div class="container-fluid px-3">
+      <div>
         <div v-if="premium">
           <slot></slot>
         </div>
       </div>
     </div>
-    <div class="container">
+    <div class>
       <div v-if="notPremium" class>
-        <p class="text-center my-5 my-2 h1 text-danger">{{notPremium}}</p>
+        <p class="text-center my-md-5 h1 text-danger">{{notPremium}}</p>
       </div>
     </div>
   </Structure>
@@ -53,3 +53,16 @@ export default {
 };
 </script>
 
+<style>
+.nav1 {
+  border-bottom: 2px solid blue;
+}
+.nav-link {
+  display: inline-block;
+  color: rgb(56, 56, 56);
+}
+.scroll {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+</style>

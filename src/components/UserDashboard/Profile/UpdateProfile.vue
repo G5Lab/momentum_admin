@@ -7,12 +7,11 @@
             v-on:submit.prevent="completeProfile"
             class="shadow col-lg-10 col-md-10 mb-3 bg-white p-3"
           >
-            <div v-if="loading" class="my-2 text-center">
-              <Loader />
-            </div>
-            <div class="text-center text-primary font-weight-bold h4 mx-0 p-0 pt-2">Update Profile</div>
             <div
-              class="p-2 mb-2 text-center p"
+              class="text-center text-primary font-weight-bold h4 mx-0 p-0 pt-md-2"
+            >Update Profile</div>
+            <div
+              class="mb-2 text-center p-md-2"
             >Update your profile, fill out the Information below to unlock other features</div>
             <label>Residential Address</label>
             <div class="input-group mb-3">
@@ -95,6 +94,9 @@
                 name="password"
               />
             </div>
+            <Loader v-if="loading" class="my-4 d-block text-center" />
+            <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg" />
+            <Failuremsg v-on:closeMsg="closeMsg" :msg="msg" />
             <button
               type="submit"
               :disabled="loading"
@@ -103,39 +105,6 @@
           </form>
         </div>
       </div>
-
-      <div
-        v-if="mssg"
-        class="alert text-center alert-primary alert-dismissible mt-2 fade show"
-        role="alert"
-      >
-        <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
-        <button
-          type="button"
-          @click="closeMsg"
-          class="close"
-          data-dismiss="alert"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div
-        v-if="msg"
-        class="alert text-center alert-danger alert-dismissible mt-2 fade show"
-        role="alert"
-      >
-        <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
-        <button
-          type="button"
-          @click="closeMsg"
-          class="close"
-          data-dismiss="alert"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
     </div>
   </Structure>
 </template>
@@ -143,13 +112,21 @@
 
 <script>
 import Structure from "../GUserLayouts/Structure";
-import Loader from "../Msave/Loader";
+import Loader from "../MAjo/Loader";
+
+import Successmsg from "../GUserLayouts/Successmsg";
+import Failuremsg from "../GUserLayouts/Failuremsg";
 import axios from "axios";
+
+import Calls from "../../../Service/Calls";
+
 export default {
   name: "UpdateProfile",
   components: {
     Structure,
-    Loader
+    Loader,
+    Failuremsg,
+    Successmsg
   },
   data() {
     return {
@@ -160,7 +137,6 @@ export default {
       password: "",
 
       token: "",
-      trans_id: "",
       user_id: "",
 
       msg: "",
@@ -216,6 +192,7 @@ export default {
               .then(res => {
                 this.loading = false;
                 this.mssg = res.data.message;
+                this.start();
               })
               .catch(err => {
                 console.log(err);
@@ -228,12 +205,24 @@ export default {
         .catch(err => {
           console.log(err);
         });
+    },
+    start() {
+      Calls.getUsers().then(res => {
+        this.address = res.address;
+        this.nextOfKin = res.nok;
+        this.nextOfKinNumber = res.nok_number;
+      });
     }
   },
   created() {
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
-    this.user_id = this.$session.get("user")._id;
+    this.start();
+
+    this.token = Calls.getJwt();
+    this.user_id = Calls.getUser_id();
+
+    if (this.token == null) {
+      Calls.reloadPage();
+    }
   }
 };
 </script>

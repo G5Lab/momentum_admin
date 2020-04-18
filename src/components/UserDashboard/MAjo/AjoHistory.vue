@@ -1,9 +1,9 @@
 <template>
-  <Structure page="mAjo / History">
-    <div class="container-fluid">
-      <div class="table-responsive border" v-for="history of ajoHistory" :key="history._id">
-        <table class="table table-striped table-bordered">
-          <thead>
+  <Structure page="mAjo History">
+    <div class="container-fluid px-3">
+      <div class="table-responsive d-none d-md-block">
+        <table class="table table-hover table-bordered">
+          <thead class="thead-light">
             <tr>
               <th scope="col">Date</th>
               <th scope="col">Type</th>
@@ -14,7 +14,7 @@
             </tr>
           </thead>
 
-          <tbody>
+          <tbody v-for="history of ajoHistory" :key="history._id">
             <tr>
               <th>{{history.date | formatDate }}</th>
               <td
@@ -29,16 +29,16 @@
           </tbody>
         </table>
       </div>
-      <div class="table-responsive d-md-none" v-for="history of ajoHistory" :key="history._id">
-        <table class="table table-striped table-bordered">
-          <thead>
+      <div class="table-responsive d-md-none">
+        <table class="table table-hover table-bordered">
+          <thead class="thead-light">
             <tr>
               <th scope="col">DATE</th>
               <th scope="col">TYPE / DETAILS</th>
               <th scope="col">Amount</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody v-for="history of ajoHistory" :key="history._id">
             <tr class="py-0">
               <th class="px-1 py-1">{{history.date | formatDate }}</th>
               <td class="px-0 py-1">
@@ -58,8 +58,8 @@
     <div v-if="loading" class="text-center">
       <Loader />
     </div>
-    <div v-if="noHistory">
-      <p class="text-center my-5 h1 display-4 text-danger">History is Currently Empty</p>
+    <div v-if="noHistory" class="row justify-content-center">
+      <p class="text-center my-md-5 display-4 text-danger">History is Currently Empty</p>
     </div>
   </Structure>
 </template>
@@ -69,6 +69,7 @@
 import Structure from "../GUserLayouts/Structure";
 import Loader from "./Loader";
 import axios from "axios";
+import Calls from "../../../Service/Calls";
 export default {
   name: "AjoHistory",
   components: {
@@ -85,8 +86,11 @@ export default {
     };
   },
   created() {
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
+    this.token = Calls.getJwt();
+    this.trans_id = Calls.getTrans_Id();
+    if (this.trans_id == null) {
+      Calls.reloadPage();
+    }
     axios
       .get(`https://momentum.ng/backend/api/ajo/history/${this.trans_id}`, {
         headers: {

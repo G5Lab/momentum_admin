@@ -11,6 +11,16 @@ export default {
 </script>
 
 <style>
+.p,
+p {
+  font-size: 1.035rem;
+}
+.fa {
+  color: rgb(59, 111, 172);
+}
+label {
+  font-weight: 650;
+}
 .btn-primary:hover {
   background: rgba(27, 93, 131, 0.89) !important;
 }

@@ -3,7 +3,7 @@
     <div class="container-fluid px-3">
       <div class>
         <!-- Set Pin-->
-        <div v-if="others.setpinform" class="row mt-5 justify-content-center">
+        <div v-if="others.setpinform" class="row mt-md-5 justify-content-center">
           <SetPin />
         </div>
         <div v-if="others.mode">
@@ -50,6 +50,7 @@ import IndexAnnouncement from "./Index/IndexAnnouncement";
 
 import Loader from "./Msave/Loader";
 import SetPin from "./Index/SetPin";
+import Calls from "../../Service/Calls";
 
 export default {
   name: "index",
@@ -76,22 +77,29 @@ export default {
         mode: false,
         loading: true,
         setpinform: false
-      }
+      },
+      trans_id: ""
     };
   },
   created() {
-    const token = this.$session.get("jwt");
-    const trans_id = this.$session.get("user").trans_id;
+    this.trans_id = Calls.getTrans_Id();
+    const token = Calls.getJwt();
 
+    if (this.trans_id == null) {
+      Calls.reloadPage();
+    }
     const headers = {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`
     };
     // Get All Wallet Balance
     axios
-      .get(`https://momentum.ng/backend/api/fetchdata/wallet/${trans_id}`, {
-        headers
-      })
+      .get(
+        `https://momentum.ng/backend/api/fetchdata/wallet/${this.trans_id}`,
+        {
+          headers
+        }
+      )
       .then(res => {
         this.main_balance = res.data.wallet.main_balance;
         this.savings_balance = res.data.wallet.savings_balance;
@@ -107,9 +115,12 @@ export default {
 
     // Check if Pin isset
     axios
-      .get(`https://momentum.ng/backend/api/fetchdata/userpin/${trans_id}`, {
-        headers
-      })
+      .get(
+        `https://momentum.ng/backend/api/fetchdata/userpin/${this.trans_id}`,
+        {
+          headers
+        }
+      )
       .then(res => {
         if (res.data.status == false && res.data.message == "Not Set") {
           this.others.loading = false;

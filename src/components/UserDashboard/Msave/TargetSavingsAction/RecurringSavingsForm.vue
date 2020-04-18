@@ -1,87 +1,93 @@
 <template>
-  <form v-on:submit.prevent="RecureSavings" class="border p-2 my-2">
-    <div class="form-group">
-      <label class="h6 font-weight-bold">Enter Debit Amount</label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">
-            <i class="fa fa-money"></i>
-          </span>
+  <div>
+    <form v-if="arrive" v-on:submit.prevent="RecureSavings" class="border p-2 my-2">
+      <div class="form-group">
+        <label class="h6 font-weight-bold">Enter Debit Amount</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <i class="fa fa-money"></i>
+            </span>
+          </div>
+          <input
+            type="number"
+            v-model="amount"
+            class="form-control"
+            placeholder="Debit Amount"
+            required
+          />
         </div>
-        <input
-          type="number"
-          v-model="amount"
-          class="form-control"
-          placeholder="Debit Amount"
-          required
-        />
       </div>
-    </div>
-    <div class="form-group">
-      <label class="h6 font-weight-bold">Select A Date To Stop</label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">
-            <i class="fa fa-calendar"></i>
-          </span>
+      <div class="form-group">
+        <label class="h6 font-weight-bold">Select A Date To Stop</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <i class="fa fa-calendar"></i>
+            </span>
+          </div>
+          <input
+            type="date"
+            v-model="maturitydate"
+            class="form-control"
+            placeholder="Maturity Date"
+            required
+          />
         </div>
-        <input
-          type="date"
-          v-model="maturitydate"
-          class="form-control"
-          placeholder="Maturity Date"
-          required
-        />
       </div>
-    </div>
-    <div class="form-group">
-      <label class="h6 font-weight-bold">Select Frequency</label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">
-            <i class="fa fa-date"></i>
-          </span>
+      <div class="form-group">
+        <label class="h6 font-weight-bold">Select Frequency</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <i class="fa fa-date"></i>
+            </span>
+          </div>
+          <select required v-model="frequency" class="form-control">
+            <option value="1">Daily</option>
+            <option value="7">Weekly</option>
+            <option value="30">Monthly</option>
+          </select>
         </div>
-        <select required v-model="frequency" class="form-control">
-          <option value="1">Daily</option>
-          <option value="7">Weekly</option>
-          <option value="30">Monthly</option>
-        </select>
       </div>
-    </div>
-    <div class="d-flex justify-content-center">
-      <Rave
-        class="shop btn btn-primary text-white"
-        :email="email"
-        :amount="parseInt(amount)"
-        :reference="reference"
-        :rave-key="raveKey"
-        :callback="callback"
-        :close="close"
-        :metadata="meta"
-        :paymentPlan="plan"
-        :customerFirstname="fname"
-        :customerLastname="lname"
-        paymentOptions="card,barter,account,ussd"
-        hostedPayemt="1"
-        customTitle="Momentum Recurrent Savings"
-        currency="NGN"
-        country="NG"
-      >
-        <i>Recure</i>
-      </Rave>
-    </div>
-  </form>
+      <div class="d-flex justify-content-center">
+        <Rave
+          class="shop btn btn-primary text-white"
+          :email="email"
+          :amount="parseInt(amount)"
+          :reference="reference"
+          :rave-key="raveKey"
+          :callback="callback"
+          :close="close"
+          :metadata="meta"
+          :paymentPlan="plan"
+          :customerFirstname="fname"
+          :customerLastname="lname"
+          paymentOptions="card,barter,account,ussd"
+          hostedPayemt="1"
+          customTitle="Momentum Recurrent Savings"
+          currency="NGN"
+          country="NG"
+        >
+          <i>Recure</i>
+        </Rave>
+      </div>
+    </form>
+    <Loader class="d-block text-center" v-if="pageLoading" />
+  </div>
 </template>
 
 <script>
 import axios from "axios";
 import Rave from "vue-ravepayment";
+import Loader from "../Loader";
+import Calls from "../../../../Service/Calls";
 
 export default {
   name: "RecurringSavings",
   components: {
-    Rave
+    Rave,
+    Loader
   },
   data() {
     return {
@@ -112,7 +118,9 @@ export default {
       email: "",
       trans_id: "",
       authSecKey: "",
-      token: ""
+      token: "",
+      pageLoading: true,
+      arrive: false
     };
   },
   computed: {
@@ -130,12 +138,9 @@ export default {
   methods: {
     callback: function(response) {
       if (
-        response.data.tx.status == "successful" &&
-        response.data.tx.chargeResponseCode === "00"
+        response.tx.status == "successful" &&
+        response.tx.chargeResponseCode === "00"
       ) {
-        // const txRef = response.data.tx.txRef;
-
-        // handle success
         axios
           .post(
             `https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/verify`,
@@ -220,33 +225,43 @@ export default {
     },
     close: function() {
       console.log("Payment closed");
+    },
+    getPaykeys() {
+      axios
+        .post(
+          `https://momentum.ng/backend/api/users/getpaykeys`,
+          {
+            trans_id: this.trans_id
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${this.token}`
+            }
+          }
+        )
+        .then(res => {
+          if (res.data.status == true) {
+            this.secretKey = res.data.authSecKey;
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   },
   created() {
-    this.token = this.$session.get("jwt");
-    this.email = this.$session.get("user").email;
-    this.trans_id = this.$session.get("user").trans_id;
-    axios
-      .post(
-        `https://momentum.ng/backend/api/users/getpaykeys`,
-        {
-          trans_id: this.trans_id
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${this.token}`
-          }
-        }
-      )
-      .then(res => {
-        if (res.data.status == true) {
-          this.secretKey = res.data.authSecKey;
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.token = Calls.getJwt();
+    Calls.getUsers().then(res => {
+      this.email = res.email;
+      this.trans_id = res.trans_id;
+      if (this.fname == null) {
+        Calls.reloadPage();
+      }
+      this.arrive = true;
+      this.pageLoading = false;
+    });
+    this.getPaykeys();
   }
 };
 </script>

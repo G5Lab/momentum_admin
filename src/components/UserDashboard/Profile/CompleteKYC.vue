@@ -1,14 +1,11 @@
 <template>
-  <Structure page="KYC Request Form">
+  <Structure page="Complete KYC">
     <div class="container-fluid">
-      <div v-if="loading" class="my-2 text-center">
-        <Loader />
-      </div>
       <div class="row justify-content-center px-1">
         <form v-on:submit.prevent="submitKyc" class="px-4 shadow col-md-11 col-lg-9 bg-white p-3">
           <div class="text-center text-primary font-weight-bold h5 py-2">Kyc Request</div>
           <p
-            class="p-2 mb-3 text-center"
+            class="p-md-2 mb-3 text-center"
           >Your KYC is necessary for you to have access to some part of the platform. Kindly fill out the information below appropraitely and submit.</p>
           <div class="input-group-row">
             <label>Guarantor (Must be a Premium Member)</label>
@@ -20,7 +17,7 @@
               </div>
               <input
                 type="number"
-                v-model="guarantorId"
+                v-model="guarantor_id"
                 class="form-control"
                 required
                 placeholder="Guarantor Id"
@@ -65,25 +62,20 @@
                 <i class="fa fa-shield"></i>
               </span>
             </div>
-            <input
-              type="number"
-              v-model="bvn"
-              required
-              placeholder="BVN Number"
-              class="form-control"
-            />
+            <input type="number" v-model="bvn" placeholder="BVN Number" class="form-control" />
           </div>
           <div class="form-group">
             <label for="number">Upload Utility Bill</label>
-            <input type="file" required class="form-control" />
+            <input type="file" class="form-control" />
           </div>
           <div class="form-group">
             <label for="number">Upload National Identification</label>
-            <input type="file" required class="form-control" />
+            <input type="file" class="form-control" />
           </div>
-          <button type="submit" class="btn btn-primary mx-auto d-block mt-2 mb-3">Submit Kyc</button>
+          <Loader v-if="loading" class="my-4 text-center d-block" />
           <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg" />
           <Failuremsg v-on:closeMsg="closeMsg" :msg="msg" />
+          <button type="submit" class="btn btn-primary mx-auto d-block mt-2 mb-3">Submit Kyc</button>
         </form>
       </div>
     </div>
@@ -92,11 +84,13 @@
 
 <script>
 import Structure from "../GUserLayouts/Structure";
-
 import Successmsg from "../GUserLayouts/Successmsg";
 import Failuremsg from "../GUserLayouts/Failuremsg";
 import axios from "axios";
-import Loader from "../Msave/Loader";
+import Loader from "../MAjo/Loader";
+
+import Calls from "../../../Service/Calls";
+
 export default {
   name: "CompleteKYC",
   components: {
@@ -107,13 +101,12 @@ export default {
   },
   data() {
     return {
-      guarantorId: "",
+      guarantor_id: "",
       employer: "",
       employer_address: "",
       bvn: "",
 
       token: "",
-      trans_id: "",
       user_id: "",
 
       loading: false,
@@ -122,22 +115,12 @@ export default {
     };
   },
   methods: {
-    resestSession() {
-      axios
-        .get(`https://momentum.ng/backend/api/users/${this.user_id}`)
-        .then(res => {
-          console.log(res.data);
-          this.$session.remove("user");
-          this.$session.start();
-          this.$session.set("user", res.data);
-          // Reset Values
-          this.trans_id = this.$session.get("user").trans_id;
-          this.user_id = this.$session.get("user")._id;
-          this.verifyBasic = false;
-        })
-        .catch(err => {
-          console.log(err);
-        });
+    start() {
+      Calls.getUsers().then(res => {
+        this.guarantor_id = res.guarantor_id;
+        this.employer = res.employer;
+        this.employer_address = res.employer_address;
+      });
     },
     closeMsg() {
       this.msg = "";
@@ -164,7 +147,7 @@ export default {
         )
         .then(res => {
           this.loading = false;
-          this.resestSession();
+          this.start();
           if (res.data.status == true) {
             this.mssg = res.data.message;
           } else {
@@ -179,9 +162,12 @@ export default {
     }
   },
   created() {
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
-    this.user_id = this.$session.get("user")._id;
+    this.start();
+    this.token = Calls.getJwt();
+    this.user_id = Calls.getUser_id();
+    if (this.token == null) {
+      Calls.reloadPage();
+    }
   }
 };
 </script>

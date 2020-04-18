@@ -6,9 +6,6 @@
           v-on:submit.prevent="ChangePassword"
           class="col-md-11 col-lg-8 shadow bg-white py-2 px-3"
         >
-          <div v-if="loading" class="my-2 text-center">
-            <Loader />
-          </div>
           <div class="text-center text-primary font-weight-bold h5 py-2">Change Password</div>
           <p class="p-2 mb-2">
             Your security is of utmost importance, for your Investments, Savings and other transactions. If you notice unusual activities, kindly change your password to something only you can remember.
@@ -45,44 +42,15 @@
               class="form-control"
             />
           </div>
+          <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg" />
+          <Failuremsg v-on:closeMsg="closeMsg" :msg="msg" />
+          <Loader v-if="loading" class="my-4 d-block text-center" />
           <button
             :disabled="loading"
             type="submit"
             class="btn d-block mx-auto btn-primary my-2"
           >Change</button>
         </form>
-      </div>
-      <div
-        v-if="mssg"
-        class="alert text-center alert-primary alert-dismissible mt-2 fade show"
-        role="alert"
-      >
-        <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
-        <button
-          type="button"
-          @click="closeMsg"
-          class="close"
-          data-dismiss="alert"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div
-        v-if="msg"
-        class="alert text-center alert-danger alert-dismissible mt-2 fade show"
-        role="alert"
-      >
-        <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
-        <button
-          type="button"
-          @click="closeMsg"
-          class="close"
-          data-dismiss="alert"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
     </div>
   </Structure>
@@ -91,12 +59,17 @@
 <script>
 import axios from "axios";
 import Structure from "../GUserLayouts/Structure";
-import Loader from "../Msave/Loader";
+import Successmsg from "../GUserLayouts/Successmsg";
+import Failuremsg from "../GUserLayouts/Failuremsg";
+import Loader from "../MAjo/Loader";
+import Calls from "../../../Service/Calls";
 export default {
   name: "ChangePassword",
   components: {
     Structure,
-    Loader
+    Loader,
+    Failuremsg,
+    Successmsg
   },
   data() {
     return {
@@ -105,7 +78,6 @@ export default {
       oldPassword: "",
 
       token: "",
-      trans_id: "",
       user_id: "",
 
       msg: "",
@@ -156,15 +128,13 @@ export default {
     }
   },
   created() {
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
-    this.user_id = this.$session.get("user")._id;
+    this.token = Calls.getJwt();
+    this.user_id = Calls.getUser_id();
+
+    if (this.user_id == null) {
+      Calls.reloadPage();
+    }
   }
 };
 </script>
 
-<style>
-label {
-  font-weight: 650;
-}
-</style>

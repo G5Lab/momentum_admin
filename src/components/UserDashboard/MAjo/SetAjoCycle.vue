@@ -5,10 +5,11 @@
       <Successmsg :mssg="mssg" v-on:closeMsg="closeMsg" />
       <div class="row justify-content-center">
         <form v-on:submit.prevent="SetCycle" class="col-md-10 py-4 px-3 bg-white shadow col-lg-8">
-          <div class="text-center text-primary font-weight-bold h4 py-3">Set Your Ajo Plan</div>
+          <div class="text-center text-primary font-weight-bold h4 py-md-3">Set Your Ajo Plan</div>
           <p
-            class="p-2 mb-2 text-center font-gray-900"
+            class="p-2 text-center font-gray-900"
           >You have the option to change the frequency and amount you want to save through Ajo</p>
+          <hr class="my-3" />
           <label>Enter Ajo Amount</label>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -52,10 +53,11 @@
 
 <script>
 import Structure from "../GUserLayouts/Structure";
-import Loader from "../Index/Loader";
+import Loader from "./Loader";
 import Failuremsg from "../GUserLayouts/Failuremsg";
 import Successmsg from "../GUserLayouts/Successmsg";
 import axios from "axios";
+import Calls from "../../../Service/Calls";
 export default {
   name: "SetAjoCycle",
   components: {
@@ -114,8 +116,12 @@ export default {
     }
   },
   created() {
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
+    this.token = Calls.getJwt();
+    this.trans_id = Calls.getTrans_Id();
+
+    if (this.trans_id == null) {
+      Calls.reloadPage();
+    }
   }
 };
 </script>

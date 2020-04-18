@@ -38,9 +38,11 @@
 </template>
 
 <script>
-import Loader from "../Loader";
+import Loader from "../../MAjo/Loader";
 import VerifyPin from "../../../Auth/VerifyPin";
 import axios from "axios";
+
+import Calls from "../../../../Service/Calls";
 
 export default {
   name: "BreakSavingsForm",
@@ -137,9 +139,13 @@ export default {
     }
   },
   created() {
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
-    this.user_id = this.$session.get("user")._id;
+    this.token = Calls.getJwt();
+    this.trans_id = Calls.getTrans_Id();
+    this.user_id = Calls.getUser_id();
+
+    if (this.trans_id == null) {
+      Calls.reloadPage();
+    }
   }
 };
 </script>

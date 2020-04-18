@@ -3,7 +3,6 @@
   <Structure page="Transfer Fund">
     <div class="container-fluid mb-4">
       <div>
-        <Failuremsg v-on:closeMsg="closeMsg" :mssg="mssg" />
         <div class="text-center" v-if="loading">
           <Loader />
         </div>
@@ -17,7 +16,7 @@
               <h6 class="m-0 font-weight-bold text-primary">- Transfer to a User</h6>
             </div>
             <div class="card-body">
-              <p class="p-2 mb-2">
+              <p class="p-md-2 mb-3">
                 <span
                   class="d-block"
                 >You can transfer funds to other users. Transfer occurs from your Main Wallet.</span>
@@ -63,9 +62,11 @@
             <Verify class="bg-white p-5" v-on:verifyPin="verifyPin" />
           </div>
         </div>
+
         <div class="row justify-content-center">
-          <div class="col-md-6">
-            <Successmsg :msg="msg" v-on:closeMsg="closeMsg" />
+          <div class="col-md-7">
+            <Failuremsg v-on:closeMsg="closeMsg" :msg="msg" />
+            <Successmsg :mssg="mssg" v-on:closeMsg="closeMsg" />
           </div>
         </div>
       </div>
@@ -82,6 +83,7 @@ import Failuremsg from "../GUserLayouts/Failuremsg";
 import Successmsg from "../GUserLayouts/Successmsg";
 
 import axios from "axios";
+import Calls from "../../../Service/Calls";
 export default {
   name: "Transfer",
   components: {
@@ -174,9 +176,13 @@ export default {
     }
   },
   created() {
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
-    this.user_id = this.$session.get("user")._id;
+    this.token = Calls.getJwt();
+    this.trans_id = Calls.getTrans_Id();
+    this.user_id = Calls.getUser_id();
+
+    if (this.trans_id == null) {
+      Calls.reloadPage();
+    }
   }
 };
 </script>

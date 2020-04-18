@@ -1,6 +1,6 @@
 <template>
   <Structure page="Break Ajo">
-    <div class="container">
+    <div class="container-fluid">
       <Successmsg :mssg="mssg" v-on:closeMsg="closeMsg" />
       <div class="text-center" v-if="loading">
         <Loader />
@@ -11,10 +11,11 @@
           v-on:submit.prevent="breakSavings"
           class="col-md-7 shadow border bg-white p-3"
         >
-          <div class="text-center text-primary font-weight-bold h4 pt-3 pb-2">Enter Amount To Break</div>
+          <div class="text-center text-primary font-weight-bold h4 pt-md-3">Enter Amount To Break</div>
           <p
-            class="p-2 mb-3 text-center font-gray-900"
+            class="p-2 text-center font-gray-900"
           >It is not ideal to withdraw your savings before your cycle completes. However, if it’s a case of emergency, you can break your savings (Ajo) by entering the amount you wish to withdraw.</p>
+          <hr class="my-4" />
           <label for="number">Amount</label>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -48,11 +49,14 @@
 <script>
 import Structure from "../GUserLayouts/Structure";
 import Verify from "../../Auth/VerifyPin";
-import Loader from "../Index/Loader";
+import Loader from "./Loader";
 import axios from "axios";
 
 import Successmsg from "../GUserLayouts/Successmsg";
 import Failuremsg from "../GUserLayouts/Failuremsg";
+
+import Calls from "../../../Service/Calls";
+
 export default {
   name: "BreakAjoSavings",
   components: {
@@ -143,9 +147,13 @@ export default {
     }
   },
   created() {
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
-    this.user_id = this.$session.get("user")._id;
+    this.token = Calls.getJwt();
+    this.trans_id = Calls.getTrans_Id();
+    this.user_id = Calls.getUser_id();
+
+    if (this.trans_id == null) {
+      Calls.reloadPage();
+    }
   }
 };
 </script>

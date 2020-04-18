@@ -5,22 +5,7 @@
         <div class="text-center my-2" v-if="loading">
           <Loader />
         </div>
-        <div
-          v-if="mssg"
-          class="alert text-center alert-primary alert-dismissible my-2 fade show"
-          role="alert"
-        >
-          <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
-          <button
-            type="button"
-            @click="closeMsg"
-            class="close"
-            data-dismiss="alert"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+        <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg" />
         <div class="row justify-content-center mb-4">
           <div class="col-md-10 bg-white p-0 shadow col-lg-8 border">
             <div class="card-header py-3">
@@ -51,7 +36,7 @@
                   />
                 </div>
                 <button
-                  :disabled="loading || nobk"
+                  :disabled="nobk"
                   type="submit"
                   class="btn btn-primary mt-3 d-block mx-auto text-center mb-3"
                 >Withdraw</button>
@@ -60,42 +45,10 @@
                 <Verify class="bg-white p-5" v-on:verifyPin="verifyPin" />
               </div>
             </div>
-
-            <div
-              v-if="msg"
-              class="alert text-center alert-danger alert-dismissible mt-1 fade show"
-              role="alert"
-            >
-              <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
-              <button
-                type="button"
-                @click="closeMsg"
-                class="close"
-                data-dismiss="alert"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
+            <Failuremsg :msg="msg" v-on:closeMsg="closeMsg" />
           </div>
         </div>
-
-        <div
-          v-if="nobk"
-          class="alert text-center alert-danger alert-dismissible mt-2 fade show"
-          role="alert"
-        >
-          <span class="text-center d-inline-block font-weight-bolder">{{nobk}}</span>
-          <button
-            type="button"
-            @click="closeNobk"
-            class="close"
-            data-dismiss="alert"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+        <Failuremsg :msg="nobk" v-on:closeMsg="closeNobk" />
       </div>
     </div>
   </Structure>
@@ -103,19 +56,23 @@
 
 <script>
 import Structure from "../GUserLayouts/Structure";
-import Loader from "../Msave/Loader";
+import Loader from "../MAjo/Loader";
 import Verify from "../../Auth/VerifyPin";
 import axios from "axios";
 
-// import Failuremsg from "../GUserLayouts/Failuremsg";
-// import Successmsg from "../GUserLayouts/Successmsg";
+import Failuremsg from "../GUserLayouts/Failuremsg";
+import Successmsg from "../GUserLayouts/Successmsg";
+
+import Calls from "../../../Service/Calls";
 
 export default {
   name: "Withdraw",
   components: {
     Structure,
     Loader,
-    Verify
+    Verify,
+    Failuremsg,
+    Successmsg
   },
   data() {
     return {
@@ -232,7 +189,6 @@ export default {
             } else {
               this.loading = false;
               this.msg = "Incorrect Pin";
-              console.log(res.data);
             }
           })
           .catch(err => {
@@ -242,30 +198,39 @@ export default {
         this.loading = false;
         this.msg = "Insufficient funds";
       }
+    },
+    getmWalletBalance() {
+      axios
+        .get(
+          `https://momentum.ng/backend/api/fetchdata/wallet/${this.trans_id}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${this.token}`
+            }
+          }
+        )
+        .then(res => {
+          this.main_balance = res.data.wallet.main_balance;
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   },
   created() {
     this.loading = true;
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
-    this.user_id = this.$session.get("user")._id;
 
-    axios
-      .get(
-        `https://momentum.ng/backend/api/fetchdata/wallet/${this.trans_id}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${this.token}`
-          }
-        }
-      )
-      .then(res => {
-        this.main_balance = res.data.wallet.main_balance;
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.token = Calls.getJwt();
+    this.trans_id = Calls.getTrans_Id();
+    this.user_id = Calls.getUser_id();
+
+    if (this.trans_id == null) {
+      Calls.reloadPage();
+    }
+
+    this.getmWalletBalance();
+
     axios
       .post(
         `https://momentum.ng/backend/api/users/verifypaypinweb`,
@@ -281,7 +246,7 @@ export default {
       )
       .then(res => {
         this.loading = false;
-        console.log(res.data);
+        // console.log(res.data);
 
         this.paystackAuthPubKey = res.data.paystackAuthPubKey;
         this.paystackAuthSecKey = res.data.paystackAuthSecKey;

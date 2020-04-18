@@ -1,13 +1,9 @@
 <template>
   <Structure page="mInvest / History">
     <div class="container-fluid">
-      <div
-        class="table-responsive d-none d-md-block"
-        v-for="history of investmentHistory"
-        :key="history._id"
-      >
-        <table class="table table-striped table-bordered">
-          <thead>
+      <div class="table-responsive d-none d-md-block">
+        <table class="table table-hover table-bordered">
+          <thead class="thead-light">
             <tr>
               <th scope="col">Date</th>
               <th scope="col">Type</th>
@@ -16,7 +12,7 @@
               <th scope="col">Amount</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody v-for="history of investmentHistory" :key="history._id">
             <tr>
               <th>{{history.date | formatDate }}</th>
               <td
@@ -31,8 +27,8 @@
         </table>
       </div>
       <div class="table-responsive d-md-none">
-        <table class="table table-striped table-bordered">
-          <thead>
+        <table class="table table-hover table-bordered">
+          <thead class="thead-light">
             <tr>
               <th scope="col">DATE</th>
               <th scope="col">TYPE / DETAILS</th>
@@ -57,7 +53,7 @@
       </div>
     </div>
     <div v-if="noHistory" class>
-      <p class="text-center my-5 h1 display-4 text-danger">History is Currently Empty</p>
+      <p class="text-center my-md-5 h1 display-4 text-danger">History is Currently Empty</p>
     </div>
     <div v-if="loading" class="text-center">
       <Loader />

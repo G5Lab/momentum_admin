@@ -1,9 +1,9 @@
 <template>
   <Structure page="Collect Ajo">
-    <div class="container-fluid mt-4">
+    <div class="container-fluid mt-md-4">
       <div class="row justify-content-center">
         <div class="card-body shadow col-md-12 col-xs-12 col-lg-10 mb-4">
-          <div class="py-1">
+          <div class="py-md-1">
             <div class="bg-light">
               <div
                 class="text-center text-uppercase text-primary font-weight-bold h4 mb-0"
@@ -50,9 +50,9 @@
                   <span class="font-weight-bold">Collect From Users</span>
                 </div>
               </a>
-              <div class="m-0 p-2 collapse border-0" id="collapse4">
+              <div class="p-md-2 collapse border-0" id="collapse4">
                 <p
-                  class="text-center"
+                  class="md-text-center p-1"
                 >When Collecting Ajo form users, enter the transaction Id and the amount collected, to complete the transaction</p>
                 <div class="row justify-content-center">
                   <div class="col-md-6">
@@ -94,7 +94,7 @@
                         class="form-control"
                       />
                     </div>
-                    <div class="d-flex justify-content-center">
+                    <div class="d-flex justify-content-center my-2">
                       <button class="btn btn-primary">Complete Transaction</button>
                     </div>
                   </form>
@@ -115,6 +115,8 @@ import Loader from "../Index/Loader";
 import axios from "axios";
 import Structure from "../GUserLayouts/Structure";
 import VerifyPin from "../../Auth/VerifyPin";
+
+import Calls from "../../../Service/Calls";
 
 export default {
   name: "BecomeAgent",
@@ -144,9 +146,7 @@ export default {
 
       token: "",
       trans_id: "",
-      user_id: "",
-      fullname: "",
-      level: ""
+      user_id: ""
     };
   },
   methods: {
@@ -284,11 +284,12 @@ export default {
     }
   },
   created() {
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
-    this.user_id = this.$session.get("user")._id;
-    this.fullname = this.$session.get("user").fullname;
-    this.level = this.$session.get("user").level;
+    this.token = Calls.getJwt();
+    this.trans_id = Calls.getTrans_Id();
+    this.user_id = Calls.getTrans_Id();
+    if (this.trans_id == null) {
+      Calls.reloadPage();
+    }
   }
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
 <body class="bg-gray-200">
-  <div class="container pt-4">
+  <div class="container pt-4 px-3">
     <AuthLogo />
     <div v-if="loading" class="text-center pb-3">
       <Loader />
@@ -108,13 +108,15 @@ export default {
   },
   methods: {
     onLogin() {
-      // https://momentum.ng/backend
       this.loading = true;
       axios
         .post("https://momentum.ng/backend/api/users/login", this.login)
         .then(res => {
           this.loading = false;
           if (res.data.status == true) {
+            sessionStorage.setItem("userId", res.data.user._id);
+            sessionStorage.setItem("trans_id", res.data.user.trans_id);
+            sessionStorage.setItem("jwt", res.data.token);
             this.$session.start();
             this.$session.set("jwt", res.data.token);
             this.$session.set("user", res.data.user);

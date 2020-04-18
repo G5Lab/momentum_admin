@@ -2,7 +2,8 @@
   <Structure page="Enter Bank Details">
     <div class="container-fluid mt-4">
       <div>
-        <div class="row justify-content-center">
+        <Loader v-if="pageLoading" class="d-block my-5 text-center" />
+        <div v-if="arrive" class="row justify-content-center">
           <div class="col-md-10 bg-white shadow col-lg-8">
             <div v-if="recepientPresent">
               <div class>
@@ -147,8 +148,8 @@
 <script>
 import Structure from "../GUserLayouts/Structure";
 import axios from "axios";
-import Loader from "../Msave/Loader";
-// import Calls from "../../../Service/Calls";
+import Loader from "../MAjo/Loader";
+import Calls from "../../../Service/Calls";
 export default {
   name: "BankInfo",
   components: {
@@ -167,6 +168,8 @@ export default {
       msg: "",
       mssg: "",
       loading: false,
+      pageLoading: true,
+      arrive: false,
 
       paystackAuthPubKey: "",
       paystackAuthSecKey: "",
@@ -271,14 +274,29 @@ export default {
     }
   },
   created() {
-    /*  Calls.getUsers().then(res => {
-      console.log(res);
-    }); */
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
-    this.user_id = this.$session.get("user")._id;
-    this.fullname = this.$session.get("user").fullname;
-    this.recipient_code = this.$session.get("user").recipient_code;
+    if (this.trans_id == null) {
+      Calls.reloadPage();
+    }
+    Calls.getUsers().then(res => {
+      this.pageLoading = false;
+      this.arrive = true;
+      this.user_id = res.user_id;
+      this.fullname = res.fullname;
+      this.recipient_code = res.recipient_code;
+      this.trans_id = res.trans_id;
+      this.user_id = res._id;
+
+      if (this.recipient_code == null) {
+        this.NotRecepientPresent = true;
+        this.recepientPresent = false;
+      } else {
+        this.NotRecepientPresent = false;
+        this.recepientPresent = true;
+        this.accountNumber = res.account_number;
+        this.bank_name = res.bank_name;
+      }
+    });
+    this.token = Calls.getJwt();
 
     axios
       .post(
@@ -300,16 +318,6 @@ export default {
       .catch(err => {
         console.log(err);
       });
-
-    if (this.recipient_code == null) {
-      this.NotRecepientPresent = true;
-      this.recepientPresent = false;
-    } else {
-      this.NotRecepientPresent = false;
-      this.recepientPresent = true;
-      this.accountNumber = this.$session.get("user").account_number;
-      this.bank_name = this.$session.get("user").bank_name;
-    }
   }
 };
 </script>
