@@ -36,11 +36,6 @@ label {
 router:hover {
   text-decoration: none !important;
 }
-@media only screen and (max-width: 765px) {
-  p {
-    /* font-size: 1.09rem; */
-  }
-}
 </style>
 <!-- First css-->
 <style  src="../public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -53,3 +48,4 @@ router:hover {
 <style  src="../public/css/sb-admin-2.min.css" rel="stylesheet"
 >
 </style>
+

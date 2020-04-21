@@ -2,9 +2,8 @@
 <body class="bg-gray-200">
   <div class="container pt-4 px-3">
     <AuthLogo />
-    <div v-if="loading" class="text-center pb-3">
-      <Loader />
-    </div>
+    <Loader v-if="loading" class="text-center my-3 d-block" />
+
     <div class="row justify-content-center">
       <div class="col-xl-6 col-lg-6 col-md-10">
         <div class="card o-hidden py-0 border-0 shadow-lg">
@@ -35,16 +34,13 @@
                     placeholder="Password"
                   />
                 </div>
-
                 <input
                   :disabled="loading"
                   type="submit"
                   value="Login"
                   class="btn btn-primary mb-3 p-2 btn-block"
                 />
-                <div v-if="msg">
-                  <Failuremsg :msg="msg" />
-                </div>
+                <Failuremsg :msg="msg" v-on:closeMsg="closeMsg" />
                 <hr />
                 <div class="text-center text-gray-850 my-2 mt-4 mb-0">
                   Don't have an account?
@@ -107,6 +103,9 @@ export default {
     };
   },
   methods: {
+    closeMsg() {
+      this.msg = "";
+    },
     onLogin() {
       this.loading = true;
       axios
@@ -117,14 +116,7 @@ export default {
             sessionStorage.setItem("userId", res.data.user._id);
             sessionStorage.setItem("trans_id", res.data.user.trans_id);
             sessionStorage.setItem("jwt", res.data.token);
-            this.$session.start();
-            this.$session.set("jwt", res.data.token);
-            this.$session.set("user", res.data.user);
-            this.$session.set("wallet", res.data.wallet);
-            setTimeout(() => {
-              sessionStorage.clear();
-              this.$router.push("login");
-            }, 900000);
+
             this.$router.push("userdashboard");
           } else if (res.data.status == false) {
             if (res.data.message == "Password Incorrect") {
@@ -140,9 +132,6 @@ export default {
         .catch(err => {
           console.error(err);
         });
-    },
-    closeMsg() {
-      this.msg = "";
     }
   }
 };

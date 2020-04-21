@@ -78,7 +78,7 @@
 <script>
 import Structure from "../GUserLayouts/Structure";
 import Verify from "../../Auth/VerifyPin";
-import Loader from "../Index/Loader";
+import Loader from "../MAjo/Loader";
 import Failuremsg from "../GUserLayouts/Failuremsg";
 import Successmsg from "../GUserLayouts/Successmsg";
 

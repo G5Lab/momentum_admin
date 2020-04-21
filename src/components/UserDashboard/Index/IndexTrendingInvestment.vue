@@ -16,10 +16,7 @@
           :key="index"
           class="col-md-5 test col-lg-4 col-xl-3 mb-1"
         >
-          <router-link
-            class="nav-link card1"
-            :to="{ name: 'AllInvestmentDetails', params: {  id: index }}"
-          >
+          <router-link class="nav-link card1" v-bind:to="'/allDetails/'+ index">
             <div class="card">
               <img
                 style="max-height: 110px"
@@ -75,8 +72,9 @@
 </template>
 
 <script>
-import axios from "axios";
 import Loader from "../MAjo/Loader";
+import Calls from "../../../Service/Calls";
+import axios from "axios";
 export default {
   name: "IndexTrendingInvestment",
   components: {
@@ -88,15 +86,16 @@ export default {
       trans_id: "",
       investments: [],
 
-      level: "",
-
       loading: true
     };
   },
   created() {
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
-    this.level = this.$session.get("user").level;
+    this.token = Calls.getJwt();
+    this.trans_id = Calls.getTrans_Id();
+
+    if (this.token == "") {
+      Calls.reloadPage();
+    }
 
     axios
       .get(`https://momentum.ng/backend/api/investments/investments`, {
@@ -116,11 +115,6 @@ export default {
       .catch(err => {
         console.log(err);
       });
-    if (this.level >= 4) {
-      this.premium = true;
-    } else {
-      this.notPremium = "You Need To Upgrade Your Membership ";
-    }
   },
   filters: {
     formatDate: function(value) {

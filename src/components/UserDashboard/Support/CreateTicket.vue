@@ -2,14 +2,11 @@
   <Structure page="Create Ticket">
     <div class="container-fluid">
       <div class="row justify-content-center px-2">
-        <div v-if="loading" class="my-2 text-center">
-          <Loader />
-        </div>
-        <div class="card col-md-11 p-0 shadow mb-4">
+        <div class="card col-md-9 p-0 shadow mb-4">
           <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">- Write To Admin</h6>
           </div>
-          <div class="card-body px-5">
+          <div class="card-body">
             <form class="bg-white" @submit.prevent="createTicket">
               <div class="form-group">
                 <label for="exampleTextarea">Subject</label>
@@ -40,46 +37,18 @@
                   rows="7"
                 ></textarea>
               </div>
+              <Loader v-if="loading" class="my-2 text-center d-block" />
+
               <button
                 type="submit"
                 :disabled="loading"
                 class="btn btn-primary mt-3 btn-block text-center mb-3"
               >Create Ticket</button>
+              <Successmsg :mssg="mssg" v-on:closeMsg="closeMsg" />
+              <Failuremsg :msg="msg" v-on:closeMsg="closeMsg" />
             </form>
           </div>
         </div>
-      </div>
-      <div
-        v-if="mssg"
-        class="alert text-center alert-primary alert-dismissible mt-2 fade show"
-        role="alert"
-      >
-        <span class="text-center d-inline-block font-weight-bolder">{{mssg}}</span>
-        <button
-          type="button"
-          @click="closeMsg"
-          class="close"
-          data-dismiss="alert"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div
-        v-if="msg"
-        class="alert text-center alert-danger alert-dismissible mt-2 fade show"
-        role="alert"
-      >
-        <span class="text-center d-inline-block font-weight-bolder">{{msg}}</span>
-        <button
-          type="button"
-          @click="closeMsg"
-          class="close"
-          data-dismiss="alert"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
     </div>
   </Structure>
@@ -87,12 +56,19 @@
 
 <script>
 import Structure from "../GUserLayouts/Structure";
-import Loader from "../Msave/Loader";
+import Loader from "../MAjo/Loader";
+import Failuremsg from "../GUserLayouts/Failuremsg";
+import Successmsg from "../GUserLayouts/Successmsg";
+
+import Calls from "../../../Service/Calls";
+
 import axios from "axios";
 export default {
   name: "CreateTicket",
   components: {
     Structure,
+    Failuremsg,
+    Successmsg,
     Loader
   },
   data() {
@@ -152,9 +128,13 @@ export default {
     }
   },
   created() {
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
-    this.user_id = this.$session.get("user")._id;
+    this.token = Calls.getJwt();
+    this.trans_id = Calls.getTrans_Id();
+    this.user_id = Calls.getUser_id();
+
+    if (this.trans_id == "") {
+      Calls.reloadPage();
+    }
   }
 };
 </script>

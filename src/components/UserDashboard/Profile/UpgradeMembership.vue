@@ -20,7 +20,7 @@
               </div>
             </div>
             <div id="accordion" class="mt-2">
-              <!-- Standard Member -->
+              <!-- Basic Member -->
               <div class="border mb-2">
                 <a href="#collapes3" data-parent="#accordion" data-toggle="collapse">
                   <div class="p-2 mb-2 text-dark">
@@ -66,7 +66,7 @@
                 </div>
               </div>
 
-              <!-- Pro -->
+              <!-- Shareholder -->
               <div class="border mb-2">
                 <a href="#collapse4" data-parent="#accordion" data-toggle="collapse">
                   <div class="p-2 mb-2 text-dark">

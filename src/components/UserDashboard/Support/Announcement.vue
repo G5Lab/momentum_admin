@@ -1,6 +1,6 @@
 <template>
   <Structure page="Announcement">
-    <div class="container-fluid mb-4">
+    <div class="container-fluid px-3 mb-4">
       <div v-if="loading" class="my-2 text-center">
         <Loader />
       </div>
@@ -20,7 +20,7 @@
             </p>
             <router-link
               v-bind:to="'/announcementDetails/'+ index"
-              class="btn btn-info"
+              class="btn btn-primary"
             >View Message</router-link>
           </div>
         </div>
@@ -31,20 +31,16 @@
 
 
 <script>
-import axios from "axios";
 import Structure from "../GUserLayouts/Structure";
-import Loader from "../Msave/Loader";
+import Loader from "../MAjo/Loader";
+import Calls from "../../../Service/Calls";
+
+import axios from "axios";
 export default {
   name: "Inbox",
   components: {
     Structure,
     Loader
-  },
-  filters: {
-    formatDate: function(value) {
-      var day = new Date(value);
-      return day.toString().slice(0, 15);
-    }
   },
   data() {
     return {
@@ -57,10 +53,20 @@ export default {
       noAnnouncement: ""
     };
   },
+  filters: {
+    formatDate: function(value) {
+      var day = new Date(value);
+      return day.toString().slice(0, 15);
+    }
+  },
   created() {
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
-    this.user_id = this.$session.get("user")._id;
+    this.token = Calls.getJwt();
+    this.trans_id = Calls.getTrans_Id();
+    this.user_id = Calls.getUser_id();
+
+    if (this.trans_id == "") {
+      Calls.reloadPage();
+    }
 
     axios
       .get(`https://momentum.ng/backend/api/fetchdata/announcements`, {

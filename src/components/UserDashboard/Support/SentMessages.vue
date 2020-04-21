@@ -1,9 +1,7 @@
 <template>
   <Structure page="Sent Messages">
-    <div class="container-fluid">
-      <div v-if="loading" class="my-2 text-center">
-        <Loader />
-      </div>
+    <div class="container-fluid px-3">
+      <Loader v-if="loading" class="my-2 text-center d-block" />
       <div v-if="noMessage">
         <p class="text-center my-5 h1 display-4 text-danger">There Is No Sent Messages.</p>
       </div>
@@ -28,8 +26,10 @@
 
 <script>
 import Structure from "../GUserLayouts/Structure";
+import Loader from "../MAjo/Loader";
 import axios from "axios";
-import Loader from "../Msave/Loader";
+
+import Calls from "../../../Service/Calls";
 export default {
   name: "SentMessages",
   components: {
@@ -54,9 +54,13 @@ export default {
     };
   },
   created() {
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
-    this.user_id = this.$session.get("user")._id;
+    this.token = Calls.getJwt();
+    this.trans_id = Calls.getTrans_Id();
+    this.user_id = Calls.getUser_id();
+
+    if (this.trans_id == "") {
+      Calls.reloadPage();
+    }
 
     axios
       .get(

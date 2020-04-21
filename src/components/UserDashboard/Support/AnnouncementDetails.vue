@@ -36,9 +36,11 @@
 </template>
 
 <script>
-import Loader from "../Msave/Loader";
+import Loader from "../MAjo/Loader";
 import Structure from "../GUserLayouts/Structure";
 import axios from "axios";
+
+import Calls from "../../../Service/Calls";
 export default {
   name: "InboxDetails",
   data() {
@@ -61,8 +63,13 @@ export default {
     Structure
   },
   created() {
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
+    this.token = Calls.getJwt();
+    this.trans_id = Calls.getTrans_Id();
+
+    if (this.trans_id == "") {
+      Calls.reloadPage();
+    }
+
     axios
       .get(`https://momentum.ng/backend/api/fetchdata/announcements`, {
         headers: {

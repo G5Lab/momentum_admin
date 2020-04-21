@@ -65,9 +65,9 @@ import Transportation from "../components/UserDashboard/MInvest/categories/Trans
 import Others from "../components/UserDashboard/MInvest/categories/Others"
 
 // Investment Categories detail
-import AllInvestmentDetails from "../components/UserDashboard/MInvest/details/AllInvestmentDetails"
 import AgrInvestmentDetails from "../components/UserDashboard/MInvest/details/AgrInvestmentDetails"
 import TransInvestmentDetails from "../components/UserDashboard/MInvest/details/TransInvestmentDetails"
+import Details from "../components/UserDashboard/MInvest/details/Details"
 import OthersInvestmentDetails from "../components/UserDashboard/MInvest/details/OthersInvestmentDetails"
 
 
@@ -359,15 +359,6 @@ const routes = [
         }
     },
     {
-        path: "/allinvestmentDetails/:id",
-        name: 'AllInvestmentDetails',
-        props: true,
-        component: AllInvestmentDetails,
-        meta: {
-            requiresAuth: true
-        }
-    },
-    {
         path: "/agrinvestmentDetails/:id",
         name: 'AgrInvestmentDetails',
         component: AgrInvestmentDetails,
@@ -379,6 +370,14 @@ const routes = [
         path: "/transinvestmentDetails/:id",
         name: 'TransInvestmentDetails',
         component: TransInvestmentDetails,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: "/allDetails/:id",
+        name: 'Details',
+        component: Details,
         meta: {
             requiresAuth: true
         }

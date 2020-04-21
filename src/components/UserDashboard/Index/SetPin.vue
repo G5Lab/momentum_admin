@@ -2,8 +2,7 @@
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="border bg-white col-md-6 py-auto">
-        <h2 v-if="msg.length>1" class="text-danger py-1 font-weight-normal text-center h2">{{msg}}</h2>
-        <div class="text-center text-gray-900 h3 pb-2 pt-3">Set A Pin</div>
+        <div class="text-center text-gray-900 h4 pb-2 pt-3">Set A Pin</div>
         <!-- Set Pin Form -->
         <form v-on:submit.prevent="updatePin">
           <p
@@ -33,69 +32,95 @@
               placeholder=" Confirm Pin"
             />
           </div>
+          <Loader v-if="loading" class="text-center d-block" />
           <button
             type="submit"
             v-bind:disabled="pin1.length > 4 || pin2.length > 4"
             class="btn my-3 mt-4 btn-primary mx-auto"
           >Set Pin</button>
+          <Failuremsg :msg="msg" v-on:closeMsg="closeMsg" />
+          <Successmsg :mssg="mssg" v-on:closeMsg="closeMsg" />
         </form>
       </div>
     </div>
   </div>
 </template>
+
 <script>
+import Calls from "../../../Service/Calls";
+import Failuremsg from "../GUserLayouts/Failuremsg";
+import Successmsg from "../GUserLayouts/Successmsg";
+import Loader from "../MAjo/Loader";
 import axios from "axios";
 export default {
   name: "setPin",
+  components: {
+    Failuremsg,
+    Successmsg,
+    Loader
+  },
   data() {
     return {
+      loading: false,
       pin1: "",
       pin2: "",
-      msg: ""
+      msg: "",
+
+      token: "",
+      user_id: ""
     };
   },
   methods: {
+    closeMsg() {
+      this.msg = "";
+      this.mssg = "";
+    },
     updatePin() {
-      const token = this.$session.get("jwt");
       const headers = {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${this.token}`
       };
+
       if (
         this.pin1 == this.pin2 &&
         this.pin1.length == 4 &&
         this.pin2.length == 4
       ) {
+        this.loading = true;
         axios
           .post(
             `https://momentum.ng/backend/api/users/updatepin`,
             {
-              user_id: this.$session.get("user")._id,
+              user_id: this.user_id,
               pin: this.pin2
             },
             {
               headers
             }
           )
-          .then(() => {
-            // console.log(res.data);
-            console.log("Good");
-            location.reload();
+          .then(res => {
+            this.loading = false;
+            this.mssg = res.data.message;
+            setTimeout(() => {
+              location.reload();
+            }, 1000);
           })
           .catch(err => {
             console.log(err);
           });
       } else if (this.pin1 != this.pin2) {
         this.msg = "Pins do not match";
-        setTimeout(() => {
-          this.msg = "";
-        }, 2500);
       } else {
         this.msg = "Pin Should be 4 digit";
-        setTimeout(() => {
-          this.msg = "";
-        }, 2500);
       }
+    }
+  },
+  created() {
+    this.token = Calls.getJwt();
+    this.user_id = Calls.getUser_id();
+
+    if (this.token == "") {
+      Calls.reloadPage();
     }
   }
 };

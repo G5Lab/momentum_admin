@@ -30,6 +30,7 @@
 
 
 <script>
+import Calls from "../../../Service/Calls";
 import axios from "axios";
 export default {
   name: "IndexAnnouncement",
@@ -51,9 +52,13 @@ export default {
     };
   },
   created() {
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
-    this.user_id = this.$session.get("user")._id;
+    this.token = Calls.getJwt();
+    this.trans_id = Calls.getTrans_Id();
+    this.user_id = Calls.getUser_id();
+
+    if (this.token == "") {
+      location.reload();
+    }
 
     axios
       .get(`https://momentum.ng/backend/api/fetchdata/announcements`, {

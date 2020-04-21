@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import Calls from "../../Service/Calls";
 export default {
   name: "Topbar",
   data() {
@@ -57,9 +58,13 @@ export default {
       name: ""
     };
   },
-  methods: {},
   created() {
-    this.name = this.$session.get("user").fullname;
+    Calls.getUsers().then(res => {
+      this.name = res.fullname;
+      if (this.fullname == "") {
+        location.reload();
+      }
+    });
   }
 };
 </script>

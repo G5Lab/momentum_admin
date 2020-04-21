@@ -313,6 +313,7 @@
 </template>
 
 <script>
+import Calls from "../../../Service/Calls";
 export default {
   name: "SidebarInner",
   data() {
@@ -321,7 +322,7 @@ export default {
     };
   },
   created() {
-    this.trans_id = this.$session.get("user").trans_id;
+    this.trans_id = Calls.getTrans_Id();
   }
 };
 </script>

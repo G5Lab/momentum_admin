@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import Calls from "../../../Service/Calls";
 import axios from "axios";
 export default {
   name: "Invest",
@@ -52,8 +53,13 @@ export default {
     }
   },
   created() {
-    const token = this.$session.get("jwt");
-    const trans_id = this.$session.get("user").trans_id;
+    const token = Calls.getJwt();
+    const trans_id = Calls.getTrans_Id();
+
+    if (token == null) {
+      location.reload();
+    }
+
     // Get Investmet
     axios
       .get(

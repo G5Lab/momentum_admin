@@ -1,12 +1,12 @@
 <template>
   <Structure page="Inbox">
-    <div class="container-fluid mb-4">
-      <div v-if="loading" class="my-2 text-center">
-        <Loader />
-      </div>
-      <div v-if="noInbox">
-        <p class="text-center my-5 h1 display-4 text-danger">Inbox is Currently Empty</p>
-      </div>
+    <div class="container-fluid mb-4 px-3">
+      <Loader v-if="loading" class="my-2 text-center d-block" />
+      <p
+        v-if="noInbox"
+        class="text-center my-3 my-md-5 h1 display-4 text-danger"
+      >Inbox is Currently Empty</p>
+
       <div class="row">
         <div v-for="(message, index) in inbox" :key="index" class="first">
           <div class="card-body">
@@ -29,17 +29,19 @@
     </div>
   </Structure>
 </template>
+
 <script>
-import axios from "axios";
 import Structure from "../GUserLayouts/Structure";
-import Loader from "../Msave/Loader";
+import Loader from "../MAjo/Loader";
+import Calls from "../../../Service/Calls";
+import axios from "axios";
+
 export default {
   name: "Inbox",
   components: {
     Structure,
     Loader
   },
-  methods: {},
   filters: {
     formatDate: function(value) {
       var day = new Date(value);
@@ -58,9 +60,13 @@ export default {
     };
   },
   created() {
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
-    this.user_id = this.$session.get("user")._id;
+    this.token = Calls.getJwt();
+    this.trans_id = Calls.getTrans_Id();
+    this.user_id = Calls.getUser_id();
+
+    if (this.trans_id == "") {
+      Calls.reloadPage();
+    }
 
     axios
       .get(`https://momentum.ng/backend/api/tickets/inbox/${this.trans_id}`, {
@@ -83,6 +89,7 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 .first {
   width: 20rem;

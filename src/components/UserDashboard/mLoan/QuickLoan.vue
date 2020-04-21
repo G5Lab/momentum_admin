@@ -179,6 +179,10 @@ export default {
     this.user_id = Calls.getUser_id();
     this.token = Calls.getJwt();
     this.trans_id = Calls.getTrans_Id();
+
+    if (this.trans_id == "") {
+      Calls.reloadPage();
+    }
   }
 };
 </script>

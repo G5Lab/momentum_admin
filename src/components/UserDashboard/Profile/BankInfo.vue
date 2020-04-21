@@ -274,9 +274,6 @@ export default {
     }
   },
   created() {
-    if (this.trans_id == null) {
-      Calls.reloadPage();
-    }
     Calls.getUsers().then(res => {
       this.pageLoading = false;
       this.arrive = true;
@@ -294,6 +291,9 @@ export default {
         this.recepientPresent = true;
         this.accountNumber = res.account_number;
         this.bank_name = res.bank_name;
+      }
+      if (this.trans_id == "") {
+        Calls.reloadPage();
       }
     });
     this.token = Calls.getJwt();

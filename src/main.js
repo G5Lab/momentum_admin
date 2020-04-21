@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
-import VueSession from 'vue-session'
 import vueSmoothScroll from 'vue-smooth-scroll'
 Vue.use(vueSmoothScroll)
 
@@ -29,9 +28,6 @@ require("../public/js/sb-admin-2.min.js");
 //  Page level plugins
 require("../public/vendor/chart.js/Chart.min.js");
 
-
-
-Vue.use(VueSession)
 Window.axios = axios
 Vue.config.productionTip = false;
 
@@ -44,7 +40,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (sessionStorage.getItem('vue-session-key') == null) {
+    if (sessionStorage.getItem('jwt') == null) {
       next({
         path: '/login',
         params: {

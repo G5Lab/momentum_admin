@@ -32,33 +32,33 @@
 
 
 <script>
-import Loader from "../../MAjo/Loader";
 import Structure from "../../GUserLayouts/Structure";
+import Loader from "../../MAjo/Loader";
 import DetailsCard from "./reuseable/DetailsCard";
-
 import Form from "./reuseable/Form";
+
 import Calls from "../../../../Service/Calls";
 import axios from "axios";
 
 export default {
-  name: "TransInvestmentDetails",
+  name: "Details",
   components: {
     Structure,
     DetailsCard,
-    Form,
-    Loader
+    Loader,
+    Form
   },
   data() {
     return {
+      email: "",
       token: "",
       trans_id: "",
-      email: "",
 
       investmentDetails: [],
       loading: true,
-      arrive: false,
       related: [],
 
+      arrive: false,
       premium: false,
       notPremium: ""
     };
@@ -82,14 +82,7 @@ export default {
               .slice()
               .reverse()
               .slice(1, 3);
-            var allInvestment = res.data.data.slice().reverse();
-
-            allInvestment = allInvestment.filter(function(item) {
-              if (item.category == "Transportation") {
-                return item;
-              }
-            });
-            this.investmentDetails = allInvestment[id];
+            this.investmentDetails = res.data.data.slice().reverse()[id];
           }
         })
         .catch(err => {

@@ -20,7 +20,7 @@
       >
         <CardInvestment
           class="col"
-          :link="'/allinvestmentDetails/'+ index"
+          :link="'/allDetails/'+ index"
           :attachment="investment.attachment"
           :title="investment.title"
           :status="investment.status"
@@ -40,6 +40,7 @@
 import ViewInvestment from "../ViewInvestment";
 import CardInvestment from "./CardInvestment";
 import Loader from "../../MAjo/Loader";
+import Calls from "../../../../Service/Calls";
 import axios from "axios";
 
 export default {
@@ -58,7 +59,7 @@ export default {
     };
   },
   created() {
-    this.token = this.$session.get("jwt");
+    this.token = Calls.getJwt();
     axios
       .get(`https://momentum.ng/backend/api/investments/investments`, {
         headers: {

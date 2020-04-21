@@ -18,8 +18,10 @@
             <div id="addMoney" class="container tab-pane active">
               <br />
 
+              <Loader v-if="pageLoading" class="text-center d-block" />
+
               <!-- <br /> -->
-              <form v-on:submit.prevent="onSubmit">
+              <form v-if="arrive" v-on:submit.prevent="onSubmit">
                 <label for="networkName">
                   <b>Select Network:</b>
                 </label>
@@ -82,9 +84,8 @@
                 />
 
                 <br />
-                <div v-if="loading1" class="text-center">
-                  <Loader />
-                </div>
+                <Loader v-if="loading1" class="text-center d-block" />
+
                 <Failuremsg :msg="msg" v-on:closeMsg="closeMsg" />
                 <Successmsg :mssg="mssg" v-on:closeMsg="closeMsg" />
 
@@ -178,6 +179,7 @@ import Structure from "../GUserLayouts/Structure";
 import Loader from "../MAjo/Loader";
 import Failuremsg from "../GUserLayouts/Failuremsg";
 import Successmsg from "../GUserLayouts/Successmsg";
+import Calls from "../../../Service/Calls";
 
 import axios from "axios";
 
@@ -209,7 +211,10 @@ export default {
       user_id: "",
       fullname: "",
       level: "",
-      pin: ""
+      pin: "",
+
+      pageLoading: true,
+      arrive: false
     };
   },
 
@@ -275,12 +280,21 @@ export default {
         });
     }
   },
-
   created() {
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
-    this.user_id = this.$session.get("user")._id;
-    this.level = this.$session.get("user").level;
+    this.token = Calls.getJwt();
+    Calls.getUsers().then(res => {
+      this.level = res.level;
+      this.trans_id = res.trans_id;
+      this.user_id = res._id;
+
+      this.pageLoading = false;
+      this.arrive = true;
+
+      if (this.trans_id == "") {
+        Calls.reloadPage();
+      }
+    });
+
     /* axios
       .get(`https://momentum.ng/backend/api/savings/history/${this.trans_id}`, {
         headers: {

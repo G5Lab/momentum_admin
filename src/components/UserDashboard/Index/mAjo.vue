@@ -36,6 +36,7 @@
 
 <script>
 import axios from "axios";
+import Calls from "../../../Service/Calls";
 export default {
   name: "mAjo",
   props: ["ajo_balance"],
@@ -48,9 +49,13 @@ export default {
     };
   },
   created() {
-    const token = this.$session.get("jwt");
-    const trans_id = this.$session.get("user").trans_id;
-    this.user_id = this.$session.get("user")._id;
+    const token = Calls.getJwt();
+    const trans_id = Calls.getTrans_Id();
+    this.user_id = Calls.getUser_id();
+
+    if (token == "") {
+      Calls.reloadPage();
+    }
     // Get ajo
     axios
       .get(`https://momentum.ng/backend/api/fetchdata/ajo/${trans_id}`, {

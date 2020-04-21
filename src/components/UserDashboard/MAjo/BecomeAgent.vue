@@ -111,7 +111,7 @@
 <script>
 import Successmsg from "../GUserLayouts/Successmsg";
 import Failuremsg from "../GUserLayouts/Failuremsg";
-import Loader from "../Index/Loader";
+import Loader from "../MAjo/Loader";
 import axios from "axios";
 import Structure from "../GUserLayouts/Structure";
 import VerifyPin from "../../Auth/VerifyPin";

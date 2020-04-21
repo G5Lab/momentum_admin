@@ -2,14 +2,7 @@
   <Structure page="Momentum Investments">
     <div class="container-fluid px-3">
       <div>
-        <div v-if="premium">
-          <slot></slot>
-        </div>
-      </div>
-    </div>
-    <div class>
-      <div v-if="notPremium" class>
-        <p class="text-center my-md-5 h1 text-danger">{{notPremium}}</p>
+        <slot></slot>
       </div>
     </div>
   </Structure>
@@ -25,25 +18,10 @@ export default {
   data() {
     return {
       token: "",
-      trans_id: "",
-
-      level: "",
-      premium: false,
-      notPremium: ""
+      trans_id: ""
     };
   },
-  created() {
-    this.token = this.$session.get("jwt");
-    this.trans_id = this.$session.get("user").trans_id;
-    this.level = this.$session.get("user").level;
 
-    if (this.level >= 4) {
-      this.premium = true;
-    } else {
-      this.loading = false;
-      this.notPremium = "You Need To Upgrade Your Membership ";
-    }
-  },
   filters: {
     formatDate: function(value) {
       var day = new Date(value);

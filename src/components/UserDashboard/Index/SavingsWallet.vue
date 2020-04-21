@@ -36,6 +36,7 @@
 
 <script>
 import axios from "axios";
+import Calls from "../../../Service/Calls";
 export default {
   name: "SavingsWallet",
   props: ["savings_balance"],
@@ -47,8 +48,11 @@ export default {
   },
 
   created() {
-    const token = this.$session.get("jwt");
-    const trans_id = this.$session.get("user").trans_id;
+    const token = Calls.getJwt();
+    const trans_id = Calls.getTrans_Id();
+    if (token == "") {
+      Calls.reloadPage();
+    }
     // Get Savings Wallet
     axios
       .get(`https://momentum.ng/backend/api/fetchdata/savings/${trans_id}`, {
