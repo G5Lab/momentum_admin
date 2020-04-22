@@ -6,8 +6,6 @@ import NotFound from "../components/GLayouts/NotFound"
 // import HirePurchase from "../components/UserDashboard/Cooming/HirePurchase"
 
 
-
-
 // Authentication
 import Login from '../components/Auth/Login'
 import Register from '../components/Auth/Register'
@@ -58,6 +56,7 @@ import InvestmentReports from "../components/UserDashboard/MInvest/InvestmentRep
 import InvestmentHistory from "../components/UserDashboard/MInvest/InvestmentHistory"
 import UploadInvestment from "../components/UserDashboard/MInvest/UploadInvestment"
 import InvestmentReportDetails from "../components/UserDashboard/MInvest/InvestmentReportDetails"
+import MyInvestments from "../components/UserDashboard/MInvest/MyInvestments"
 // Investment Categories
 import AllInvestment from "../components/UserDashboard/MInvest/categories/All"
 import Agriculture from "../components/UserDashboard/MInvest/categories/Agriculture"
@@ -337,6 +336,14 @@ const routes = [
             requiresAuth: true
         }
     },
+    {
+        path: '/myInvestments',
+        component: MyInvestments,
+        meta: {
+            requiresAuth: true
+        }
+    },
+
     {
         path: "/investmentReportDetails/:id",
         component: InvestmentReportDetails,

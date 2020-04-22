@@ -40,7 +40,7 @@
         <div class="input-group">
           <div class="input-group-prepend">
             <span class="input-group-text">
-              <i class="fa fa-date"></i>
+              <i class="fa fa-clock-o"></i>
             </span>
           </div>
           <select required v-model="frequency" class="form-control">

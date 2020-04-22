@@ -157,9 +157,10 @@
         data-parent="#accordionSidebar"
       >
         <div class="bg-white py-2 collapse-inner rounded">
-          <router-link class="collapse-item" to="/viewinvestment">View Investments</router-link>
+          <router-link class="collapse-item" to="/viewinvestment">All Investments</router-link>
           <!-- <router-link class="collapse-item" to="/investmentreport">Investment Reports</router-link> -->
-          <router-link class="collapse-item" to="/uploadinvestment">Upload Investment</router-link>
+          <!-- <router-link class="collapse-item" to="/myInvestments">My Investments</router-link> -->
+          <!-- <router-link class="collapse-item" to="/uploadinvestment">Upload Investment</router-link> -->
           <router-link class="collapse-item" to="/investmenthistory">Investment History</router-link>
         </div>
       </div>
@@ -224,7 +225,6 @@
     <hr class="sidebar-divider d-md-block" />
 
     <!-- Pay Bills -->
-
     <li class="nav-item">
       <a
         class="nav-link collapsed"

@@ -46,7 +46,7 @@
                     </div>
                     <input
                       type="number"
-                      v-model="createSavingss.target_amount"
+                      v-model="amount"
                       class="form-control"
                       placeholder="Loan Amount"
                       required
@@ -93,11 +93,8 @@ export default {
       trans_id: "",
       token: "",
 
-      createSavingss: {
-        plan: "",
-        target_amount: "",
-        maturity: ""
-      },
+      amount: "",
+
       msg: "",
       mssg: "",
 
@@ -116,6 +113,33 @@ export default {
     QuickLoan() {
       this.mode = false;
       this.verifypin = true;
+    },
+    getQuickLoan() {
+      axios
+        .post(
+          `https://momentum.ng/backend/api/wallet/quickloan`,
+          {
+            trans_id: this.trans_id,
+            amount: this.amount
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${this.token}`
+            }
+          }
+        )
+        .then(res => {
+          this.loading = false;
+          if (res.data.status == true) {
+            this.mssg = res.data.message;
+          } else {
+            this.msg = res.data.message;
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     verifyPin(pin) {
       this.loading = true;
@@ -137,34 +161,7 @@ export default {
         .then(res => {
           if (res.data.status == true) {
             // Make the pay Request
-            /*  axios
-              .post(
-                `https://momentum.ng/backend/api/savings/mainwalletcredit`,
-                {
-                  trans_id: this.trans_id,
-                  amount: this.Mamount
-                },
-                {
-                  headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${this.token}`
-                  }
-                }
-              )
-              .then(res => {
-                this.loading = false;
-                if (res.data.status == true) {
-                  this.mssg = res.data.message;
-                } else {
-                  this.loading = false;
-                  this.msg = res.data.message;
-                }
-              })
-              .catch(err => {
-                console.log(err);
-              }); */
-            this.mssg = "Waiting For Api";
-            this.loading = false;
+            this.getQuickLoan();
           } else {
             this.loading = false;
             this.msg = "Incorrect Pin";

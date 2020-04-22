@@ -7,7 +7,6 @@
   />
 </template>
 
-
 <script>
 import HistoryCard from "../GUserLayouts/HistoryCard";
 
@@ -44,7 +43,7 @@ export default {
           if (res.data.data.length == 0) {
             this.noHistory = "You Do Not Have Any History Yet";
           } else {
-            this.investmentHistory = res.data.data.slice().reverse();
+            this.investmentHistory = res.data.data;
           }
         })
         .catch(err => {

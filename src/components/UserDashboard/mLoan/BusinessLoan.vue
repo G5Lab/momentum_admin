@@ -66,7 +66,7 @@
                       required
                     />
                   </div>
-                </div>
+                </div>// TODO - todo note
                 <div class="form-group mb-4">
                   <label>Enter Guarantor's Id</label>
                   <div class="input-group">
@@ -80,7 +80,6 @@
                       v-model="businessLoan.guarantorId"
                       class="form-control"
                       placeholder="Guarantor's Transaction Id"
-                      required
                     />
                   </div>
                 </div>
@@ -159,14 +158,46 @@ export default {
       this.mssg = "";
       this.mode = true;
       this.verifypin = false;
+      this.businessLoan.amount = "";
+      this.businessLoan.guarantorId = "";
+      this.businessLoan.duration = "";
     },
     BusinessLoan() {
       this.mode = false;
       this.verifypin = true;
     },
+    getBusinessLoan() {
+      // Make the pay Request
+      axios
+        .post(
+          `https://momentum.ng/backend/api/wallet/loanapply`,
+          {
+            trans_id: this.trans_id,
+            amount: this.businessLoan.amount,
+            duration: this.businessLoan.duration
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${this.token}`
+            }
+          }
+        )
+        .then(res => {
+          this.loading = false;
+          if (res.data.status == true) {
+            this.mssg = res.data.message;
+          } else {
+            this.loading = false;
+            this.msg = res.data.message;
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
     verifyPin(pin) {
       this.loading = true;
-
       axios
         .post(
           `https://momentum.ng/backend/api/users/verifypin`,
@@ -183,35 +214,7 @@ export default {
         )
         .then(res => {
           if (res.data.status == true) {
-            // Make the pay Request
-            /*  axios
-              .post(
-                `https://momentum.ng/backend/api/savings/mainwalletcredit`,
-                {
-                  trans_id: this.trans_id,
-                  amount: this.Mamount
-                },
-                {
-                  headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${this.token}`
-                  }
-                }
-              )
-              .then(res => {
-                this.loading = false;
-                if (res.data.status == true) {
-                  this.mssg = res.data.message;
-                } else {
-                  this.loading = false;
-                  this.msg = res.data.message;
-                }
-              })
-              .catch(err => {
-                console.log(err);
-              }); */
-            this.mssg = "Waiting For Api";
-            this.loading = false;
+            this.getBusinessLoan();
           } else {
             this.loading = false;
             this.msg = "Incorrect Pin";

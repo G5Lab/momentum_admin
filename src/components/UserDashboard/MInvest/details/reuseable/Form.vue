@@ -288,7 +288,9 @@ export default {
         });
     },
     throwErrorMsg() {
-      this.msg2 = `The min units of shares you can buy is `;
+      this.msg2 = `The minimun and maximum number of units of can buy is ${1} and ${
+        this.investmentDetails.unit_available
+      } respectively. `;
     },
     checkUnitNum() {
       if (this.unit_purchasedbank == null) {
