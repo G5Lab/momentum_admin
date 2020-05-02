@@ -217,7 +217,7 @@
         <div class="bg-white py-2 collapse-inner rounded">
           <router-link class="collapse-item" to="/quickloan">Quick Loan</router-link>
           <router-link class="collapse-item" to="/businessloan">Business Loan</router-link>
-          <router-link class="collapse-item" to="/loanHistory">History</router-link>
+          <!-- <router-link class="collapse-item" to="/loanHistory">History</router-link> -->
         </div>
       </div>
     </li>
