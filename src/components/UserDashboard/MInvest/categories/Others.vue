@@ -74,7 +74,7 @@ export default {
           var allInvestment = res.data.data.slice().reverse();
 
           allInvestment = allInvestment.filter(function(item) {
-            if (item.category == "others") {
+            if (item.category == "Others") {
               return item;
             }
           });
