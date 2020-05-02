@@ -66,23 +66,8 @@
                       required
                     />
                   </div>
-                </div>// TODO - todo note
-                <div class="form-group mb-4">
-                  <label>Enter Guarantor's Id</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <i class="fa text-primary fa-id-badge"></i>
-                      </span>
-                    </div>
-                    <input
-                      type="number"
-                      v-model="businessLoan.guarantorId"
-                      class="form-control"
-                      placeholder="Guarantor's Transaction Id"
-                    />
-                  </div>
                 </div>
+
                 <div class="form-group mb-4">
                   <label>Repayment Frequency</label>
                   <div class="input-group mb-3">
@@ -141,7 +126,6 @@ export default {
 
       businessLoan: {
         amount: "",
-        guarantorId: "",
         duration: ""
       },
       msg: "",
@@ -159,7 +143,6 @@ export default {
       this.mode = true;
       this.verifypin = false;
       this.businessLoan.amount = "";
-      this.businessLoan.guarantorId = "";
       this.businessLoan.duration = "";
     },
     BusinessLoan() {

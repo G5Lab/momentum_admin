@@ -21,7 +21,7 @@
               <Loader v-if="pageLoading" class="text-center d-block" />
 
               <!-- <br /> -->
-              <form v-if="arrive" v-on:submit.prevent="onSubmit">
+              <form v-if="arrive" v-on:submit.prevent="buyAirtime">
                 <label for="networkName">
                   <b>Select Network:</b>
                 </label>
@@ -30,7 +30,7 @@
                   name="networkName"
                   id="networkName"
                   autofocus
-                  v-model="network"
+                  v-model="vendor"
                   required
                 >
                   <option value disabled selected>-- Select Network --</option>
@@ -71,12 +71,12 @@
                   required
                 />
                 <br />
-                <label for="amount">
+                <label>
                   <b>Your Pin:</b>
                 </label>
                 <input
-                  name="airAmnt"
-                  id="airAmnt"
+                  maxlength="4"
+                  type="password"
                   class="form-control input-sm"
                   v-model="pin"
                   placeholder="Enter Your Pin"
@@ -93,10 +93,6 @@
                 <button :disabled="loading1" class="btn btn-block btn-lg btn-primary" type="submit">
                   <b>Buy Airtime</b>
                 </button>
-                <br />
-                <br />
-                <br />
-                <br />
                 <br />
                 <br />
               </form>
@@ -195,15 +191,15 @@ export default {
     return {
       token: "",
       trans_id: "",
+
       airtimeHistory: [],
       loading: true,
       loading1: false,
       noHistory: "",
 
-      network: "",
+      vendor: "",
       amount: null,
       recipent: "",
-      apiToken: null,
 
       msg: "",
       mssg: "",
@@ -223,12 +219,13 @@ export default {
       this.msg = "";
       this.mssg = "";
     },
-    onSubmit() {
+    buyAirtime() {
       this.loading1 = true;
       const headers = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${this.token}`
       };
+      // Verify Pin
       axios
         .post(
           `https://momentum.ng/backend/api/users/verifypin`,
@@ -245,26 +242,23 @@ export default {
           if (res.data.status == true) {
             axios
               .post(
-                `https://www.payscribe.ng/api/vend/airtime/`,
+                `https://momentum.ng/backend/api/bills/airtime`,
                 {
-                  network: this.network,
+                  trans_id: parseInt(this.trans_id),
                   amount: parseInt(this.amount),
-                  recipent: this.recipent
+                  recipent: parseInt(this.recipent),
+                  vendor: this.vendor
                 },
                 {
-                  headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${this.apiToken}`
-                  }
+                  headers
                 }
               )
               .then(res => {
-                if (res.data.status != true) {
-                  this.loading1 = false;
-                  this.msg = res.data.message.description;
-                  // alert("Transaction Failed Please Try again");
+                this.loading1 = false;
+                if (res.data.status == true) {
+                  this.mssg = res.data.message;
                 } else {
-                  //   Listen To Axios from Momentum backend To Store History
+                  this.msg = res.data.message;
                 }
               })
               .catch(err => {
@@ -313,7 +307,6 @@ export default {
       .catch(err => {
         console.log(err);
       }); */
-    axios;
   },
   filters: {
     formatDate: function(value) {

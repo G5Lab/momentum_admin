@@ -6,9 +6,8 @@
         required
         class="form-control"
         v-model="pin"
-        type="password"
-        placeholder="Enter Four Digit Pin"
         maxlength="4"
+        placeholder="Enter Four Digit Pin"
       />
     </div>
     <button

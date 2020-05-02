@@ -34,14 +34,8 @@
               </div>
             </div>
           </div>
-          <div class="container">
-            <div v-if="onMaterials" class="row justify-content-center m-5">
-              <div class="text-center">
-                <div
-                  class="card-body bg-danger text-white border h3 font-weight-bolder"
-                >{{onMaterials}}</div>
-              </div>
-            </div>
+          <div v-if="onMaterials" class="container-fluid">
+            <p class="text-center my-md-5 display-4 text-danger">There Is No Learning Materials</p>
           </div>
         </div>
       </div>
@@ -95,7 +89,7 @@ export default {
       .then(res => {
         this.loading = false;
         if (res.data.data.length == 0) {
-          this.onMaterials = "You Do Not Have Any History Yet";
+          this.onMaterials = "Yet";
         } else {
           this.materials = res.data.data.slice().reverse();
         }

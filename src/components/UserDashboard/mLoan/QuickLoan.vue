@@ -12,7 +12,7 @@
           </p>
 
           <p class="m-1">
-            <span class="font-weight-bold">Maximum Amount Allowable:</span> 50% of Savings Wallet Balance and/or Term Deposit Balance.
+            <span class="font-weight-bold">Maximum Amount Allowable:</span> 50% of Savings Wallet Balance and / or Term Deposit Balance.
           </p>
           <p class="m-1">
             <span class="font-weight-bold">Processing FEE:</span> &#8358;1,000 or 5% amount requested whichever that is higher.
@@ -67,7 +67,6 @@
     </div>
   </Structure>
 </template>
-
 
 <script>
 import Structure from "../GUserLayouts/Structure";
@@ -183,7 +182,6 @@ export default {
   }
 };
 </script>
-
 
 <style scoped>
 .scroll {

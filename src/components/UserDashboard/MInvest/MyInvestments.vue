@@ -67,6 +67,7 @@ export default {
           this.loading = false;
           const result = res.data;
           if (result.status == true) {
+            // console.log(result);
             this.investments = result.userinvestments.reverse();
           }
         })
