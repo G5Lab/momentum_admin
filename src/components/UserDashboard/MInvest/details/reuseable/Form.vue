@@ -140,7 +140,7 @@ export default {
   data() {
     return {
       // Rave Starts
-      raveKey: "FLWPUBK_TEST-3f485a6ba24b0da67274f34f4193fcb9-X",
+      raveKey: "FLWPUBK-7492f6c786edc0035ec95c5cb64c4f38-X",
       plan: 2928,
       fname: "",
       meta: [
@@ -336,7 +336,6 @@ export default {
       let text = "";
       let possible =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
       for (let i = 0; i < 10; i++)
         text += possible.charAt(Math.floor(Math.random() * possible.length));
 

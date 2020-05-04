@@ -74,7 +74,7 @@ export default {
   },
   data() {
     return {
-      raveKey: "FLWPUBK_TEST-3f485a6ba24b0da67274f34f4193fcb9-X",
+      raveKey: "FLWPUBK-7492f6c786edc0035ec95c5cb64c4f38-X",
       plan: 2928,
       fname: "",
       redirect: "/userdashboard",
