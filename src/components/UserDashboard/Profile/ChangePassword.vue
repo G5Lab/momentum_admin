@@ -12,6 +12,16 @@
             Do Not Share Your Password With Anyone Else
           </p>
           <div class="form-group">
+            <label for="number">Enter Old Password</label>
+            <input
+              type="password"
+              v-model="oldPassword"
+              required
+              placeholder="Former Password"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
             <label for="number">New Password</label>
             <input
               type="password"
@@ -28,17 +38,6 @@
               type="password"
               required
               placeholder="Confirm Password"
-              class="form-control"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="number">Enter Old Password</label>
-            <input
-              type="password"
-              v-model="oldPassword"
-              required
-              placeholder="Former Password"
               class="form-control"
             />
           </div>

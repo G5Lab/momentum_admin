@@ -10,7 +10,7 @@
         </p>
       </div>
       <Loader v-if="loading" class="d-block text-center mt-4" />
-      <div class="row py-2 no-gutters">
+      <div v-if="show" class="row py-2 no-gutters">
         <div
           v-for="(investment, index) in investments"
           :key="index"
@@ -60,13 +60,17 @@
             </div>
           </router-link>
         </div>
-        <button class="btn mx-auto d-block">
+        <button v-if="investments" class="btn mx-auto d-block">
           <router-link
             to="/viewinvestment"
             class="btn mx-auto btn-success my-3 px-5 py-2 mb-0"
           >View All Investments</router-link>
         </button>
       </div>
+      <p
+        v-if="onInvestments"
+        class="text-center font-weight-normal my-3 text-gray-900 h1"
+      >There Is Currently No Investment</p>
     </div>
   </div>
 </template>
@@ -86,7 +90,9 @@ export default {
       trans_id: "",
       investments: [],
 
-      loading: true
+      loading: true,
+      onInvestments: "",
+      show: true
     };
   },
   created() {
@@ -108,6 +114,7 @@ export default {
         this.loading = false;
         if (res.data.data.length == 0) {
           this.onInvestments = "There Is Currectly No Investment";
+          this.show = false;
         } else {
           this.investments = res.data.data.reverse().slice(0, 4);
         }

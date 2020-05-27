@@ -38,6 +38,13 @@ const router = new VueRouter({
   routes
 })
 
+if (sessionStorage.getItem('jwt') != null) {
+  setTimeout(() => {
+    sessionStorage.clear();
+    console.log("12233");
+  }, 43200000);
+}
+
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (sessionStorage.getItem('jwt') == null) {

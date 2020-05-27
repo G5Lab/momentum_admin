@@ -2,8 +2,8 @@
   <ViewInvestment>
     <div class="my-3 md-px-3 p-1 md-p-2 bg-white scroll shadow">
       <router-link class="nav-link" to="viewinvestment">All</router-link>
+      <router-link class="nav-link" to="viewinvestmentTrans">Latest</router-link>
       <router-link class="nav-link" to="viewinvestmentAgric">Agriculture</router-link>
-      <router-link class="nav-link" to="viewinvestmentTrans">Transportation</router-link>
       <router-link class="nav-link nav1" to="viewinvestmentOthers">Others</router-link>
     </div>
     <div v-if="loading" class="text-center mt-5">

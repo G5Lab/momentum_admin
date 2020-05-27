@@ -4,14 +4,14 @@
       <!-- Content Row -->
       <div class="row">
         <div class="col-md-12">
-          <ul class="nav nav-tabs">
+          <!-- <ul class="nav nav-tabs">
             <li class="nav-item">
               <a class="nav-link active" data-toggle="tab" href="#addMoney">Buy Airtime</a>
             </li>
-            <li class="nav-item">
+             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#transHist">Airtime History</a>
             </li>
-          </ul>
+          </ul>-->
 
           <!-- Tab panes -->
           <div class="tab-content">

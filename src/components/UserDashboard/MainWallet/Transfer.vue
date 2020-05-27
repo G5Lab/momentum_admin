@@ -19,7 +19,7 @@
               <p class="p-md-2 mb-3">
                 <span
                   class="d-block"
-                >You can transfer funds to other users. Transfer occurs from your Main Wallet.</span>
+                >You can transfer funds to another user on Momentum. Transfer occurs from your Main Wallet.</span>
               </p>
 
               <label for="number">Enter Reciever Id</label>

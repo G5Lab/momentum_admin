@@ -24,15 +24,32 @@
                     name="email"
                   />
                 </div>
-                <div class="form-group my-4">
+                <div class="input-group my-3">
                   <input
                     required
                     v-model="login.password"
+                    :type="passwordFieldType"
                     class="form-control p-4"
-                    type="password"
-                    id="password"
                     placeholder="Password"
+                    id="password"
+                    name="password"
                   />
+                  <div class="input-group-append">
+                    <span
+                      v-if="showPasswordButton"
+                      @click="showPassword"
+                      class="input-group-text btn btn-outline-secondary"
+                    >
+                      <i class="fa fa-eye-slash"></i>
+                    </span>
+                    <span
+                      v-if="showMaskButton"
+                      @click="showMask"
+                      class="input-group-text btn btn-outline-secondary"
+                    >
+                      <i class="fa fa-eye"></i>
+                    </span>
+                  </div>
                 </div>
                 <input
                   :disabled="loading"
@@ -99,12 +116,26 @@ export default {
         password: ""
       },
       msg: "",
-      loading: false
+      loading: false,
+      passwordFieldType: "password",
+      showPasswordButton: true,
+      showMaskButton: false
     };
   },
+
   methods: {
     closeMsg() {
       this.msg = "";
+    },
+    showPassword() {
+      this.passwordFieldType = "text";
+      this.showPasswordButton = false;
+      this.showMaskButton = true;
+    },
+    showMask() {
+      this.passwordFieldType = "password";
+      this.showPasswordButton = true;
+      this.showMaskButton = false;
     },
     onLogin() {
       this.loading = true;

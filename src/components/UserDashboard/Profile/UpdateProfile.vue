@@ -153,6 +153,8 @@ export default {
       this.dataOfBirth = "";
       this.address = "";
       this.password = "";
+
+      Calls.reloadPage();
     },
     completeProfile() {
       this.loading = true;

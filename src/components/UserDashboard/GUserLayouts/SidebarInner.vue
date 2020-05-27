@@ -42,11 +42,11 @@
         <div class="bg-white p-2 collapse-inner rounded">
           <router-link class="collapse-item" to="/basicprofile">Basic Info</router-link>
           <router-link class="collapse-item" to="/updateprofile">Update Profile</router-link>
+          <router-link class="collapse-item" to="/ChangePassword">Change Password</router-link>
+          <router-link class="collapse-item" to="/kyc">Complete KYC</router-link>
+          <router-link class="collapse-item" to="/resetPin">Reset Pin</router-link>
           <router-link class="collapse-item" to="/upgrademembership">Upgrade Membership</router-link>
           <router-link class="collapse-item" to="/bkinfo">Enter Bank Info</router-link>
-          <router-link class="collapse-item" to="/kyc">Complete KYC</router-link>
-          <router-link class="collapse-item" to="/ChangePassword">Update Password</router-link>
-          <router-link class="collapse-item" to="/resetPin">Reset Pin</router-link>
         </div>
       </div>
     </li>
@@ -301,10 +301,11 @@
         data-parent="#accordionSidebar"
       >
         <div class="bg-white py-2 collapse-inner rounded">
-          <router-link class="collapse-item" to="/createticket">Report To Admin</router-link>
+          <router-link class="collapse-item" to="/createticket">Message Admin</router-link>
+          <router-link class="collapse-item" to="/sentmessages">Sent Messages</router-link>
           <router-link class="collapse-item" to="/inbox">Inbox</router-link>
           <router-link class="collapse-item" to="/announcement">Announcements</router-link>
-          <router-link class="collapse-item" to="/sentmessages">Sent Messages</router-link>
+          <!-- <router-link class="collapse-item" to="/announcement">Announcements</router-link> -->
         </div>
       </div>
     </li>

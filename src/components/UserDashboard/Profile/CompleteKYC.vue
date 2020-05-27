@@ -20,7 +20,7 @@
                 v-model="guarantor_id"
                 class="form-control"
                 required
-                placeholder="Guarantor Id"
+                placeholder="Must be a Premium Member"
               />
             </div>
             <label for="KycName">Employer Name</label>
@@ -39,7 +39,6 @@
               />
             </div>
           </div>
-
           <label>Employer Address</label>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -65,13 +64,14 @@
             <input type="number" v-model="bvn" placeholder="BVN Number" class="form-control" />
           </div>
           <div class="form-group">
-            <label for="number">Upload Utility Bill</label>
-            <input type="file" class="form-control" />
+            <label for="number">Upload Valid Id</label>
+            <input type="file" class="form-control" @change="handleValidId" />
           </div>
           <div class="form-group">
-            <label for="number">Upload National Identification</label>
-            <input type="file" class="form-control" />
+            <label for="number">Upload Current Utility Bill</label>
+            <input type="file" class="form-control" @change="handleUtilityBill" />
           </div>
+
           <Loader v-if="loading" class="my-4 text-center d-block" />
           <Successmsg v-on:closeMsg="closeMsg" :mssg="mssg" />
           <Failuremsg v-on:closeMsg="closeMsg" :msg="msg" />
@@ -105,6 +105,8 @@ export default {
       employer: "",
       employer_address: "",
       bvn: "",
+      uploadValidIdFile: null,
+      uploadUtilityBillFile: null,
 
       token: "",
       user_id: "",
@@ -115,6 +117,13 @@ export default {
     };
   },
   methods: {
+    handleValidId(event) {
+      this.uploadValidIdFile = event.target.files[0];
+    },
+    handleUtilityBill(event) {
+      this.uploadUtilityBillFile = event.target.files[0];
+    },
+
     start() {
       Calls.getUsers().then(res => {
         this.guarantor_id = res.guarantor_id;
@@ -128,23 +137,23 @@ export default {
     },
     submitKyc() {
       this.loading = true;
+
+      let data = new FormData();
+      data.append("user_id", this.user_id);
+      data.append("guarantor_id", this.guarantor_id);
+      data.append("employer", this.employer);
+      data.append("employer_address", this.employer_address);
+      data.append("bvn", this.bvn);
+      data.append("id", this.uploadValidIdFile);
+      data.append("utility_bill", this.uploadUtilityBillFile);
+
       axios
-        .post(
-          `https://momentum.ng/backend/api/users/updatekyc`,
-          {
-            user_id: this.user_id,
-            guarantor_id: this.guarantor_id,
-            employer: this.employer,
-            employer_address: this.employer_address,
-            bvn: this.bvn
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + this.token
-            }
+        .post(`https://momentum.ng/backend/api/users/updatekyc`, data, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: "Bearer " + this.token
           }
-        )
+        })
         .then(res => {
           this.loading = false;
           this.start();

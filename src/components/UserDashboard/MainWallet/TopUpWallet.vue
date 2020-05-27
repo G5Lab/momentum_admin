@@ -113,31 +113,34 @@ export default {
     }
   },
   methods: {
+    topUpWallet() {
+      axios
+        .post(
+          `https://momentum.ng/backend/api/wallet/directbankpayment`,
+          {
+            trans_id: this.trans_id,
+            amount: this.amount
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${this.token}`
+            }
+          }
+        )
+        .then(res => {
+          alert(res.data.message);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
     callback: function(response) {
       if (
         response.tx.status == "successful" &&
         response.tx.chargeResponseCode === "00"
       ) {
-        axios
-          .post(
-            `https://momentum.ng/backend/api/wallet/directbankpayment`,
-            {
-              trans_id: this.trans_id,
-              amount: this.amount
-            },
-            {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${this.token}`
-              }
-            }
-          )
-          .then(res => {
-            alert(res.data.message);
-          })
-          .catch(err => {
-            console.log(err);
-          });
+        this.topUpWallet();
       }
     },
     close: function() {

@@ -15,10 +15,6 @@
                 style="font-size: 1.4rem; font-weight: 600"
                 class="text-center py-2 pb-4"
               >Set a new password</div>
-              <!--  <p
-                class="mb-4 text-justify"
-              >Create a new password that is at least 6 characters long. A strong password has a combination of letters, digits and punctuation marks.</p>-->
-
               <form class v-on:submit.prevent="resetPassword">
                 <div class="form-group">
                   <input

@@ -78,8 +78,9 @@
                     </div>
                     <select required v-model="businessLoan.duration" class="form-control">
                       <option value disabled selected>Select</option>
-                      <option value="7">Weekly</option>
-                      <option value="30">Monthly</option>
+                      <option value="30">1 Month</option>
+                      <option value="90">3 Months</option>
+                      <option value="120">6 Months</option>
                     </select>
                   </div>
                 </div>

@@ -17,10 +17,16 @@
                 </a>
                 <div class>
                   <router-link to="/login" class="py-3 bklogin">
-                    <i class="fa bklogin fa-arrow-left mr-2"></i>
-                    <span>Home</span>
+                    <i class="fa fa-arrow-left mr-2"></i>
+                    <span>Login</span>
                   </router-link>
                 </div>
+                <a class="link">
+                  <router-link class="py-3 bklogin" to="/register">
+                    <i class="fa fa-arrow-left mr-2"></i>
+                    <span>Register</span>
+                  </router-link>
+                </a>
               </div>
             </div>
           </div>
